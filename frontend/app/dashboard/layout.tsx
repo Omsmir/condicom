@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-
-import { Poppins } from "next/font/google";
-import { ThemeProvider } from "next-themes";
 import Dashboard from "@/components/Dashboard";
 import Navbar from "@/components/Navbar";
-import { SidebarTrigger, SidebarProvider } from "@/components/ui/sidebar";
-const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "900"],
-  subsets: ["latin"],
-});
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { DashboardProvider } from "@/components/context/Dashboardprovider";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -23,7 +17,9 @@ export default function RootLayout({
   return (
     <SidebarProvider>
       <Navbar />
-      <Dashboard>{children}</Dashboard>
+      <Dashboard>
+        <DashboardProvider>{children}</DashboardProvider>
+      </Dashboard>
     </SidebarProvider>
   );
 }

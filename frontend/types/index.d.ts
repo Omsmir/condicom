@@ -77,6 +77,7 @@ declare interface prop {
   className?: string;
   id?: string;
   state?:boolean
+  style?:string
 }
 
 // Extend the User object returned by NextAuth
@@ -100,4 +101,21 @@ declare module "next-auth/jwt" {
     id: string;
     role: string;
   }
+}
+
+declare interface Appointment {
+  _id:string;
+  task:string;
+  description:string;
+  startDate:Date;
+  endDate:Date;
+  interval:string;
+  color:string;
+  user:string;
+  completed:boolean;
+}
+
+
+declare interface Appointments {
+appointment:Appointment[]
 }

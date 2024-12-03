@@ -1,5 +1,5 @@
 import { getSingleProduct } from "@/actions/getProducts";
-import { MyHandler } from "./togglers/MyHandler";
+import { MyHandler } from "./togglers/Handler";
 import ProductOverview from "./ProductOverview";
 import { inter } from "@/fonts/fonts";
 import { items } from "@/lib/constants";

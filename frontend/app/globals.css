@@ -2,13 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.index {
+  z-index: 100 !important;
+}
 img{
   pointer-events: none;
 }
 /* ========================================== TAILWIND STYLES */
 @layer base {
   /* Remove scrollbar */
+
+
   .remove-scrollbar::-webkit-scrollbar {
     width: 0px;
     height: 0px;
@@ -24,12 +28,13 @@ img{
     border-radius: 0px;
   }
 
+
   .remove-scrollbar::-webkit-scrollbar-thumb:hover {
     /* background: #1e2238; */
     background: transparent;
   }
   :root {
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: #f8fafc;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
@@ -40,11 +45,11 @@ img{
   }
  
   .dark {
-    --sidebar-background: 240 5.9% 10%;
+    --sidebar-background: #0f172a;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary: #1e293b;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent: #182231;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
@@ -53,13 +58,20 @@ img{
 
 @layer utilities {
   /* ===== UTILITIES */
+
+  
+  .element-class {
+    scrollbar-gutter: stable both-edges;
+ }
   .bg-black-800 {
     background-color: #333; /* Replace with your custom color */
   }
   .sidebar {
     @apply remove-scrollbar w-full max-w-72 flex-col overflow-auto bg-black-800 px-7 py-10;
   }
-
+  .AppointmentCreate  {
+    @apply dark:bg-slate-900 text-slate-50 bg-blue-700 capitalize px-7 !important;
+  }
   .left-sidebar {
     @apply hidden lg:flex;
   }
@@ -378,4 +390,37 @@ img{
 
 .PhoneInputInput::placeholder {
   color: #f1f5f9;
+}
+
+.css-10d30g3-MuiPaper-root-MuiDialog-paper{
+  max-width: none !important;
+  overflow-y: unset !important;
+  max-width: 900px;
+  width: 400px;
+}
+@media (min-width:640px) {
+  .css-10d30g3-MuiPaper-root-MuiDialog-paper{
+    width: 500px;
+  }
+}
+@media (min-width:768px) {
+  .css-10d30g3-MuiPaper-root-MuiDialog-paper{
+    width: 900px;
+  }
+}
+
+
+.css-mdw2u7-MuiModal-root-MuiDialog-root{
+  z-index: 50 !important;
+}
+
+.main:hover .delete {
+  display: block;
+}
+.main:hover .edit{
+  display: flex;
+} 
+.ant-color-picker-color-block:first-of-type{
+  width: 100% !important;
+  height: 100% !important;
 }

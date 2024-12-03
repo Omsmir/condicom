@@ -3,15 +3,17 @@ import { motion } from "framer-motion";
 import React from "react";
 
 interface Props {
-    children:React.ReactNode
+    children:React.ReactNode;
+    className?:string
 }
-export const MotionComponent:React.FC<Props> = ({ children }) => {
+export const MotionComponent:React.FC<Props> = ({ children,className }) => {
   const visible = { opacity: 1, scale: 1, transition: { duration: 0.6 } };
 
   return (
     <motion.section
       initial="hidden"
       animate="visible"
+    className={className}
       exit={{ opacity: 0, transition: { duration: 1 } }}
       variants={{ visible: { transition: { staggerChildren: 0.3 } } }}
     >
@@ -20,6 +22,7 @@ export const MotionComponent:React.FC<Props> = ({ children }) => {
           hidden: { opacity: 0, scale: 0.9 },
           visible,
         }}
+     
       >
         {children}
       </motion.div>

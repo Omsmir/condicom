@@ -1,7 +1,9 @@
-"use client"
 import LoginForm from "@/components/LoginForm";
 import Image from "next/image";
 import { MotionComponent } from "@/components/relatedComponents/Motion";
+
+
+
 
 const Login = () => {
   return (
@@ -19,6 +21,7 @@ const Login = () => {
         width={1000}
         className="side-img max-w-[60%]"
       />
+ 
     </main>
     </MotionComponent>
   );

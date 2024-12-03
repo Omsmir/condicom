@@ -4,20 +4,20 @@ import AuthProvider from "@/components/AuthProvider";
 import AuthHolder from "@/components/AuthHolder";
 import { Metadata } from "next";
 
-import { PrimeReactProvider } from 'primereact/api';
-        
+import { PrimeReactProvider } from "primereact/api";
+
 import "./globals.css";
 
-import "primereact/resources/themes/lara-light-cyan/theme.css";
-
+import { CalenderProvider } from "@/components/context/CalenderProvider";
+import { DashboardProvider } from "@/components/context/Dashboardprovider";
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "900"],
   subsets: ["latin"],
 });
 export const metadata: Metadata = {
-  title:"Sign in",
-  description:"Sign In To Dashboard"
-}
+  title: "Sign in",
+  description: "Sign In To Dashboard",
+};
 
 export default function RootLayout({
   children,
@@ -31,10 +31,14 @@ export default function RootLayout({
           <AuthHolder>
             <AuthProvider>
               <PrimeReactProvider>
-              {children}
+                <CalenderProvider>
+                  <DashboardProvider>
+                    {children}
+                  </DashboardProvider>
+                </CalenderProvider>
               </PrimeReactProvider>
-              </AuthProvider>
-            </AuthHolder>
+            </AuthProvider>
+          </AuthHolder>
         </ThemeProvider>
       </body>
     </html>

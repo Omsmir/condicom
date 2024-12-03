@@ -20,12 +20,12 @@ import {
 
 import { Calendar } from "primereact/calendar";
 
-import { DatePicker } from "antd";
-import type { DatePickerProps } from "antd";
 import Link from "next/link";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-
+import { CalenderHook } from "./context/CalenderProvider";
+import { ColorPicker } from "antd";
+import { useState } from "react";
 export enum FormFieldType {
   INPUT = "input",
   PASSWORD = "password",
@@ -36,6 +36,7 @@ export enum FormFieldType {
   SEARCH = "search",
   DATE = "datePicker",
   PHONE = "phoneInput",
+  COLOR = "colorPicker",
 }
 
 interface CustomProps {
@@ -57,9 +58,14 @@ interface CustomProps {
   error?: any;
   forget?: boolean;
   state?: boolean;
+  showTimeSelect?: boolean;
+  timeOnly?: boolean;
+  calenderDays?: Date[];
+  innerState?: boolean;
 }
 
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
+  const { date, setDate, setDisabled } = CalenderHook();
   const ErrorComponent = () => {
     if (props.state) {
       if (props.error) {
@@ -71,6 +77,17 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       return null;
     }
   };
+
+  const handleChange = (e: any) => {
+    field.onChange(e.value);
+
+    setDate(e.value);
+
+    setDisabled(false);
+  };
+
+  
+
   switch (props.fieldType) {
     case FormFieldType.INPUT:
       return (
@@ -165,17 +182,24 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       );
     case FormFieldType.DATE:
       return (
-        <div className=" ml-2 ">
+        <div className="ml-2">
           <FormControl>
             <Calendar
-              value={field.value}
-              onChange={(e) => field.onChange(e.value)}
+              value={field.value || date}
+              onChange={(e) => handleChange(e)}
               showIcon
-              className="date-picker pl-2 focus:shadow-none"
+              className="date-picker pl-2 focus:shadow-none p-calender"
               placeholder="select a date"
               variant="filled"
               dateFormat="mm/dd/yy"
-            
+              showTime={props.showTimeSelect || undefined}
+              timeOnly={props.timeOnly || undefined}
+              hourFormat="12"
+              enabledDates={props.calenderDays}
+              stepMinute={30}
+              disabled={props.disabled}
+              touchUI
+
             />
           </FormControl>
         </div>
@@ -192,6 +216,14 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
             className="input-phone"
           />
         </FormControl>
+      );
+    case FormFieldType.COLOR:
+      return (
+       <div className="flex justify-center items-center">
+         <FormControl>
+          <ColorPicker defaultValue="#242c55" className="w-full h-11" value={field.value} onChange={(color) => field.onChange(color.toHex())} />
+        </FormControl>
+       </div>
       );
     default:
       return null;

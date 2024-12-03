@@ -37,7 +37,7 @@ const Item = ({item}:{item:any}) => {
     (
       <SidebarMenuItem key={item.title} className={clsx(`flex max-h-[40px] flex-1 justify-center items-center mb-1 px-4`,{"p-0":!open})}>
         <SidebarMenuButton asChild>
-          <Link href={item.url} onClick={handleSidebar} className={clsx("h-full",{"bg-[hsl(var(--sidebar-accent))]":pathname === item.url})}>
+          <Link href={item.url} onClick={handleSidebar} className={clsx("h-full",{"bg-[hsl(var(--sidebar-accent))] dark:bg-[var(--sidebar-accent)]":pathname === item.url})}>
             <item.icon />
             <span className={`font-medium ${inter.className}`}>{item.title}</span>
           </Link>
@@ -58,16 +58,17 @@ const Item = ({item}:{item:any}) => {
             <DialogDescription>Here Is A Description</DialogDescription>
             </VisuallyHidden>
             <SidebarMenu className="h-full">
+              
               {sideItems.map((item) => {
                 if(item.private){
                 if(session?.user.role === "admin"){
                   return (
-                    <Item item={item} />
+                    <Item item={item} key={item.title} />
                    )
                 }
                 }else {
                   return (
-                    <Item item={item} />
+                    <Item item={item} key={item.title} />
 
                   )
                 }

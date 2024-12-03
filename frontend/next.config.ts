@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'firebasestorage.googleapis.com', // Example for Firebase
       },
+      {
+        hostname:"picsum.photos"
+      }
     ],
   }
 };

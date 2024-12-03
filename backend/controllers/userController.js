@@ -99,19 +99,41 @@ export const Login = async (req, res, next) => {
   }
 };
 export const codeGenerator = async (req, res, next) => {
-  const { code } = req.body;
 
-  // Step 1: Validate the input
-  if (!code) {
-    return res.status(400).json({ msg: "Please provide a code" });
+
+
+ 
+const generateCode = () => {
+  let code;
+  const firstLetter = "B"
+
+  const twoNumbers = [1,2]
+
+  const FiveNumbers = [0,1,2,3,4]
+
+  const threeCharacters = ["C","D","E"]
+
+  const lastFiveNumbers = [0,1,2,3,4,5,6,7,8,9]
+
+  code =  firstLetter + twoNumbers[Math.floor(Math.random() * twoNumbers.length)]
+
+  code += FiveNumbers[Math.floor(Math.random() * FiveNumbers.length)]
+
+  code += threeCharacters[Math.floor(Math.random() * threeCharacters.length)]
+  
+  for(let i = 5; i < lastFiveNumbers.length; i++){
+    code += lastFiveNumbers[Math.floor(Math.random() * lastFiveNumbers.length)]
   }
+  return code
 
+}
+const code = generateCode()
   try {
     // Step 2: Validate the code format
     let role;
-    if (code.startsWith("b1")) {
+    if (code.startsWith("B1")) {
       role = "admin";
-    } else if (code.startsWith("b2")) {
+    } else if (code.startsWith("B2")) {
       role = "user";
     } else {
       return res.status(400).json({ msg: "Invalid code format" });

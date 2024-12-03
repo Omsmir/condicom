@@ -2,9 +2,8 @@
 import { singleProductProps } from "@/types";
 import clsx from "clsx";
 import Image from "next/image";
-
 import { useState } from "react";
-
+import { DashboardHook } from "./context/Dashboardprovider";
 const ProductOverview = ({ singleProduct }: singleProductProps) => {
   const [activeImage, setActiveImage] = useState<string>(
     singleProduct.image[0].url
@@ -14,8 +13,11 @@ const ProductOverview = ({ singleProduct }: singleProductProps) => {
     setActiveImage(url);
   };
 
+  const {contextHolder} = DashboardHook()
+
   return (
     <div className="flex flex-col">
+      {contextHolder}
       <div className="h-[80%]">
         <div className="overflow-hidden mb-2 rounded-md h-full">
           <Image

@@ -62,3 +62,13 @@ export const RegisterSchema = Yup.object({
   ),
   code: Yup.string().required("Support a code").matches(/B(1|2)[0-5](C|D|E)[0-9]{5}/g,"Code is Invaild"),
 });
+
+
+export const AppointmentSchema = z.object({
+  Task:z.string({message:"Please Provide a Task"}).min(2,"min characters is 2").max(40,"max length is 20 characters"),
+  description:z.string().max(80,"max length is 80 characters").optional(),
+  startDate: z.date({ message: "please support a start date" }), // Validates ISO 8601 datetime
+  endDate: z.date({ message: "please support an end time" }),
+  color: z.custom()
+  
+})

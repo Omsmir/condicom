@@ -1,4 +1,13 @@
-import { Calendar, Home, Inbox, Search, Settings ,FilePlus,User} from "lucide-react"
+import {
+  Calendar,
+  Home,
+  Inbox,
+  Search,
+  Settings,
+  FilePlus,
+  UserCheck,
+  CircleUser,
+} from "lucide-react";
 
 export const items = [
   {
@@ -53,43 +62,53 @@ export const sideItems = [
     title: "Create",
     url: "/dashboard/create",
     icon: FilePlus,
-    private:true
+    private: true,
   },
   {
     title: "Calendar",
     url: "/dashboard/calender",
     icon: Calendar,
-  },
+  }
+  ,
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    title: "Profile",
+    url: "/dashboard/profile",
+    icon: CircleUser,
   },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-]
+   {
+    title:"Doctors",
+    url:"/dashboard/doctors",
+    icon: UserCheck
+   }
+];
 export const gender = [
   {
-    title:"Male",
-    image:"/assets/icons/male.png"
+    title: "Male",
+    image: "/assets/icons/male.png",
   },
   {
-    title:"Female",
-    image:"/assets/icons/female.png"
-  }
-  ,  {
-    title:"Other",
-    image:"/assets/icons/more.png"
-  }
-]
+    title: "Female",
+    image: "/assets/icons/female.png",
+  },
+  {
+    title: "Other",
+    image: "/assets/icons/more.png",
+  },
+];
 
-
-export const Days = ['Sat','Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+export const Days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 
 export const months = [
-  "January", "February", "March", "April", "May", "June", 
-  "July", "August", "September", "October", "November", "December"
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
