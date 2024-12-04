@@ -1,5 +1,6 @@
 import NextAuth, { DefaultSession, DefaultUser } from "next-auth";
 import { JWT } from "next-auth/jwt";
+import 'jspdf';
 
 declare interface Props {
   name: string;
@@ -118,4 +119,11 @@ declare interface Appointment {
 
 declare interface Appointments {
 appointment:Appointment[]
+}
+
+
+declare module 'jspdf' {
+  interface jsPDF {
+    autoTable: (options: any) => jsPDF;
+  }
 }

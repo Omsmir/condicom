@@ -1,25 +1,23 @@
 import { Payment,columns } from "./relatedComponents/Columns"
 import { DataTable } from "./relatedComponents/Table"
-
-async function getData(): Promise<Payment[]> {
+import { CustomerService } from "./service/Data"
+async function getData(): Promise<any> {
   // Fetch data from your API here.
-  return [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    // ...
-  ]
+  const data =     CustomerService.getCustomersXLarge()
+
+  console.log((await data).map((ele) => ele))
+
+  return (await data).map((ele) => ele)
+  
 }
 
 export default async function Doctors() {
   const data = await getData()
 
   return (
-    <div className="container mx-auto py-24">
-      <DataTable columns={columns} data={data} />
+    <div className="">
+       <DataTable columns={columns} data={data} />
+ 
     </div>
   )
 }

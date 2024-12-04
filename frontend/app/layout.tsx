@@ -3,8 +3,10 @@ import { ThemeProvider } from "next-themes";
 import AuthProvider from "@/components/AuthProvider";
 import AuthHolder from "@/components/AuthHolder";
 import { Metadata } from "next";
-
 import { PrimeReactProvider } from "primereact/api";
+
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import 'primeicons/primeicons.css';
 
 import "./globals.css";
 
