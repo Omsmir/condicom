@@ -1,19 +1,27 @@
-"use client"
-import { useTheme } from 'next-themes';
-import { Moon,Sun } from 'lucide-react';
+"use client";
+import { Moon, Sun } from "lucide-react";
+import { DashboardHook } from "../context/Dashboardprovider";
 const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  
+  const {theme ,setTheme} = DashboardHook()
 
   const handleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
-    <button
-      onClick={handleTheme}
-      className="p-1"
-    >
-      {theme === "dark" ? <Sun /> : <Moon />}
+    <button onClick={handleTheme} className="px-4 py-2 w-full">
+      {theme === "dark" ? (
+        <div className="flex items-center">
+          <h2 className="mr-1 font-medium">Light</h2>
+          <Sun />
+        </div>
+      ) : (
+        <div className="flex items-center">
+          <h2 className="mr-1 font-medium">Dark</h2>
+          <Moon />
+        </div>
+      )}
     </button>
   );
 };

@@ -31,12 +31,19 @@ import { JWT } from "next-auth/jwt";
             const decodedToken = jwt.decode(token) as JwtPayload;
 
             // Return the user object
+            console.log(decodedToken);
+
             return {
               email: credentials?.email,
-              id: decodedToken.userId,
+              id: decodedToken.id,
               role: decodedToken.role,
+              name: decodedToken.name,
+              profileImg:decodedToken.profileImg,
+              verified: decodedToken.verified,
+              expires:decodedToken.expires,
               token,
             };
+
           }
           return null; // Return null if no token is found
         } catch (error: any) {
@@ -55,17 +62,23 @@ import { JWT } from "next-auth/jwt";
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: { token: JWT; user: any }) {
+    async jwt({ token, user }: { token: JWT; user: any ;}) {
       if (user) {
         token.id = user.id;
         token.role = user.role;
+        token.name = user.name;
         token.token = user.token;
+        token.profileImg = user.profileImg;
+        token.verified = user.verified;
       }
+     
+      console.log(token);
       return token;
     },
     async session({ session, token }) {
       if (token) {
-        session.user = { ...session.user, id: token.id, role: token.role };
+        session.user = { ...session.user,id:token.id, role: token.role ,image: token.profileImg as string,name: token.name,verified: token.verified};
+        console.log(session)
       }
       return session;
     },

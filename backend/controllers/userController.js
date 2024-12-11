@@ -1,6 +1,41 @@
 import { User } from "../db/schema/user.js";
 import jwt from "jsonwebtoken";
 import { codeSchema } from "../db/schema/code.js";
+import { MedicalStuffRegex } from "../lib/constants.js";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../db/firebase/firebase.js";
+import { Appointment } from "../db/schema/appointment.js";
+
+export const getAllUsers = async (req, res, next) => {
+  const users = await User.find({})
+  try {
+
+    if(!users) {
+      return res.status(404).json({message:"There is No Users"})
+    }
+    
+     return res.status(200).json({users})
+  } catch (error) {
+    return next(error)
+  }
+}
+
+export const getUser =  async(req, res, next) => {
+  const { id } = req.params;
+
+  const existingUser = await User.findById(id);
+
+  try {
+
+    if(!existingUser){
+      return res.status(404).json({ message: "User Not Found" });
+    }
+
+    return res.status(200).json({existingUser})
+  } catch (error) {
+    return next(error);
+  }
+}
 
 export const register = async (req, res, next) => {
   const {
@@ -58,6 +93,14 @@ export const register = async (req, res, next) => {
       birthDate,
       role: stateToDetermineRole.role,
       code: code,
+      verified: false,
+      profileImg: "",
+      weight: 0,
+      height: 0,
+      counrty: "",
+      bio: "",
+      occupation: "",
+      address: "",
     });
 
     await newUser.save();
@@ -79,8 +122,8 @@ export const Login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email });
 
-    if(!user){
-      return res.status(400).json({msg:"Account doesn't exists"})
+    if (!user) {
+      return res.status(400).json({ msg: "Account doesn't exists" });
     }
 
     if (!user || !(await user.comparePassword(password))) {
@@ -88,7 +131,13 @@ export const Login = async (req, res, next) => {
     }
 
     const token = jwt.sign(
-      { userId: user._id, role: user.role },
+      {
+        id: user._id,
+        role: user.role,
+        profileImg: user.profileImg.url,
+        name: user.name,
+        verified: user.verified,
+      },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
@@ -99,66 +148,158 @@ export const Login = async (req, res, next) => {
   }
 };
 export const codeGenerator = async (req, res, next) => {
+  const { numbers = [], character = [], fiveNumbers = [] } = req.body;
 
+  const generateCode = () => {
+    let code;
+    const firstLetter = "B";
 
+    const lastFiveNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
- 
-const generateCode = () => {
-  let code;
-  const firstLetter = "B"
+    code = firstLetter + numbers[Math.floor(Math.random() * numbers.length)];
 
-  const twoNumbers = [1,2]
+    code += fiveNumbers[Math.floor(Math.random() * fiveNumbers.length)];
 
-  const FiveNumbers = [0,1,2,3,4]
+    code += character[Math.floor(Math.random() * character.length)];
 
-  const threeCharacters = ["C","D","E"]
-
-  const lastFiveNumbers = [0,1,2,3,4,5,6,7,8,9]
-
-  code =  firstLetter + twoNumbers[Math.floor(Math.random() * twoNumbers.length)]
-
-  code += FiveNumbers[Math.floor(Math.random() * FiveNumbers.length)]
-
-  code += threeCharacters[Math.floor(Math.random() * threeCharacters.length)]
-  
-  for(let i = 5; i < lastFiveNumbers.length; i++){
-    code += lastFiveNumbers[Math.floor(Math.random() * lastFiveNumbers.length)]
-  }
-  return code
-
-}
-const code = generateCode()
-  try {
-    // Step 2: Validate the code format
-    let role;
-    if (code.startsWith("B1")) {
-      role = "admin";
-    } else if (code.startsWith("B2")) {
-      role = "user";
-    } else {
-      return res.status(400).json({ msg: "Invalid code format" });
+    for (let i = 5; i < lastFiveNumbers.length; i++) {
+      code +=
+        lastFiveNumbers[Math.floor(Math.random() * lastFiveNumbers.length)];
     }
+    return code;
+  };
+  const code = generateCode();
 
-    // Step 3: Check for duplicate code
+  console.log(code);
+  try {
+    if (numbers.length < 1 && character.length < 1 && fiveNumbers.length < 1) {
+      return res
+        .status(400)
+        .json({ msg: "At least one type of code is required" });
+    }
+    let role;
+
+    MedicalStuffRegex.map((element) => {
+      if (element.regex.test(code)) {
+        role = element.role;
+        console.log(role);
+      }
+    });
+
     const existingCode = await codeSchema.findOne({ code });
     if (existingCode) {
       return res.status(409).json({ msg: "Code already exists" });
     }
 
-    // Step 4: Create and save the new code
     const generatedCode = new codeSchema({ code, role });
     await generatedCode.save();
 
-    // Step 5: Send the response
     return res.status(201).json({
       msg: "Code created successfully",
       code: generatedCode,
     });
   } catch (error) {
-    // Step 6: Handle server errors
     return res.status(500).json({
       msg: "An error occurred while generating the code",
       error: error.message,
     });
   }
 };
+
+export const AddAddtionalInformation = async (req, res, next) => {
+  const { id } = req.params;
+  const { height, weight, occupation, country, address, bio ,profileState} = req.body;
+
+  const profileImg = req.file;
+  const requiredInformation = {
+    profileState,
+    height,
+    weight,
+    occupation,
+    country,
+  };
+
+  const optionalInformation = { bio, address };
+  const existingUser = await User.findById(id);
+
+  try {
+    if (!existingUser) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    for (const [key, value] of Object.entries(requiredInformation)) {
+      if (!value) {
+        return res.status(404).json({ msg: `Some Fields Are Missing Out` });
+      }
+    }
+
+    for (const [key, value] of Object.entries(optionalInformation)) {
+      if (value) {
+        existingUser[key] = value;
+      }
+    }
+
+    for (const [key, value] of Object.entries(requiredInformation)) {
+      existingUser[key] = value;
+    }
+
+    if (profileImg) {
+      const imageToUpload = async () => {
+        const StorageBucket = ref(
+          storage,
+          `Doctors/${existingUser.name}/${existingUser._id}`
+        );
+
+        const SnapShot = await uploadBytes(StorageBucket, profileImg.buffer, {
+          contentType: profileImg.mimetype,
+        });
+
+        const downloadUrl = await getDownloadURL(SnapShot.ref);
+
+      await  existingUser.updateOne({
+          profileImg: {
+            filename: profileImg.originalname,
+            url: downloadUrl,
+            contentType: profileImg.mimetype,
+            path: StorageBucket.fullPath,
+          },
+        });
+      };
+
+      imageToUpload();
+    }
+
+
+    await existingUser.save();
+    return res
+      .status(200)
+      .json({ msg: `Information Added Successfully`, existingUser });
+  } catch (error) {
+    const errMsg = error;
+    return next(errMsg);
+  }
+};
+
+
+export const deleteUser = async (req, res,next) => {
+  const { id } = req.params;
+  const existingUser = await User.findById(id);
+
+   const userAppointments = await Appointment.find({user: id})
+  try {
+    
+    if(!existingUser){
+      return res.status(404).json({message: "User Not Found"})
+
+    }
+
+     userAppointments.map(async(app ) => await app.deleteOne())
+
+
+     await existingUser.deleteOne()
+
+    return res.status(200).json({message: "User deleted successfully",userAppointments})
+  } catch (error) {
+    
+    return next(error);
+  }
+}

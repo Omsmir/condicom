@@ -81,7 +81,6 @@ const CalenderRow: React.FC<Calender> = ({
         },
         className
       )}
-      onClick={() => console.log(day)}
     >
       <div className="flex justify-end md:justify-start mb-2">
         <div
@@ -118,7 +117,7 @@ const CalenderRow: React.FC<Calender> = ({
         ) : (
           <div className="flex ">
             {appointment?.map((task, index) => {
-              if (isSameDay(task.startDate, day)) {
+              if (isSameDay(task.startDate, day) && session?.user.id === task.user) {
                 return (
                   <div
                     key={index}

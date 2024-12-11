@@ -1,14 +1,30 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
+ 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
+  profileImg:{
+    filename: { type: String,},
+    contentType: { type: String, },
+    url: { type: String, },
+    uploadedAt:{type:Date,default:Date.now()},
+    path:{type: String},
+  },
   password: { type: String, required: true },
   phone:{type:String,required:true},
   birthDate:{type:String,required:true},
   gender:{type:String,required:true},
   role: { type: String,required:true },
+  profileState:{type:Boolean,default:false},
+  verified: { type:Boolean,default:false},
+  bio:{type:String},
+  weight: { type:String},
+  height: { type: String},
+  address:{type:String},
+  occupation:{type:String},
+  country: { type:String},
   code:{type:String},
 })
 userSchema.pre("save", async function (next) {

@@ -72,3 +72,16 @@ export const AppointmentSchema = z.object({
   color: z.custom()
   
 })
+
+export const PostRegisterSchema = z.object({
+  profileImg:z.custom<File[]>((file) => file,{
+    message:"Please Select an Image"
+  }),
+  weight: z.string({message: "Please Select Weight"}),
+  height: z.string({message: "Please Select Height"}),
+  address: z.string().optional(),
+  bio:z.string().min(30,"Bio Must Exceed 30 characters").max(350,"Bio Can't Be More Than 350 characters").optional(),
+  occupation: z.string({message: "Please Select Occupation"}),
+  country: z.any().optional()
+
+})

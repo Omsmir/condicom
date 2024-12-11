@@ -38,6 +38,7 @@ const CalenderView = ({ appointment }: Appointments) => {
     setState,
   } = CalenderHook();
 
+
   const WeeksInterval = eachDayOfInterval({
     start: state,
     end: calendarDays[41],

@@ -25,7 +25,11 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { CalenderHook } from "./context/CalenderProvider";
 import { ColorPicker } from "antd";
-import { useState } from "react";
+import ReactCountryFlagsSelect from 'react-country-flags-select';
+import { cn } from "@/lib/utils";
+
+
+
 export enum FormFieldType {
   INPUT = "input",
   PASSWORD = "password",
@@ -37,6 +41,7 @@ export enum FormFieldType {
   DATE = "datePicker",
   PHONE = "phoneInput",
   COLOR = "colorPicker",
+  COUNTRY= "country"
 }
 
 interface CustomProps {
@@ -62,6 +67,7 @@ interface CustomProps {
   timeOnly?: boolean;
   calenderDays?: Date[];
   innerState?: boolean;
+  className?: string;
 }
 
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
@@ -86,12 +92,16 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
     setDisabled(false);
   };
 
-  
+  const classes = {
+    searchSelect: "Country focus:outline-none",
+    optionsWrapper: "countryOptionsWrapper",
+    option: "hover:bg-slate-500",
+  };
 
   switch (props.fieldType) {
     case FormFieldType.INPUT:
       return (
-        <div className="flex justify-center items-center rounded-md border border-slate-200 bg-slate-100">
+        <div className="flex justify-center items-center rounded-md border bg-slate-100 dark:border-[var(--sidebar-accent)] dark:bg-[var(--sidebar-accent)]">
           {props.Lucide && (
             <span className="ml-2 w-[24px] h-[24px]">{props.Lucide}</span>
           )}
@@ -174,7 +184,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                 <SelectValue placeholder={props.placeholder} />
               </SelectTrigger>
             </FormControl>
-            <SelectContent className="shad-select-content">
+            <SelectContent className={cn("shad-select-content",props.className)}>
               {props.children}
             </SelectContent>
           </Select>
@@ -217,7 +227,23 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
           />
         </FormControl>
       );
-    case FormFieldType.COLOR:
+    case FormFieldType.COUNTRY:
+      return (
+        <div className="h-11">
+          <FormControl>
+          <ReactCountryFlagsSelect
+            selected={field.value}
+            onSelect={(e) => field.onChange(e)}
+            searchable
+            searchPlaceholder={props.placeholder}
+            optionsListMaxHeight={150}
+            classes={classes}
+            fullWidth
+          />
+        </FormControl>
+        </div>
+      )
+      case FormFieldType.COLOR:
       return (
        <div className="flex justify-center items-center">
          <FormControl>
@@ -225,7 +251,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
         </FormControl>
        </div>
       );
-    default:
+      default:
       return null;
   }
 };
@@ -236,7 +262,7 @@ const CustomFormField = (props: CustomProps) => {
       control={props.control}
       name={props.name}
       render={({ field }) => (
-        <FormItem className="flex-1 ">
+        <FormItem className="flex-1">
           <div className="flex justify-between">
             {props.label && (
               <FormLabel className="shad-input-label dark:text-slate-50">

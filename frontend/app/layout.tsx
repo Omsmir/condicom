@@ -4,14 +4,13 @@ import AuthProvider from "@/components/AuthProvider";
 import AuthHolder from "@/components/AuthHolder";
 import { Metadata } from "next";
 import { PrimeReactProvider } from "primereact/api";
-
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primeicons/primeicons.css';
-
 import "./globals.css";
-
 import { CalenderProvider } from "@/components/context/CalenderProvider";
 import { DashboardProvider } from "@/components/context/Dashboardprovider";
+
+
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "900"],
   subsets: ["latin"],
@@ -29,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`min-h-screen ${poppins.className}`}>
-        <ThemeProvider attribute="class" defaultTheme="dark">
+        <ThemeProvider attribute="class" defaultTheme="light">
           <AuthHolder>
             <AuthProvider>
               <PrimeReactProvider>

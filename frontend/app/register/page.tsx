@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/RegisterForm";
+import RegisterForm from "@/components/register/RegisterForm";
 import { Metadata } from "next";
 import Image from "next/image";
 import React from "react";

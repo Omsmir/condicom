@@ -16,7 +16,7 @@ const SingleProduct = async ({ id }: { id: string }) => {
   const singleProduct = await getSingleProduct(id);
 
   return (
-    <div className="py-16 px-4 max-w-7xl mx-auto min-h-screen">
+    <div className="py-14  max-w-7xl mx-auto min-h-screen">
       <div className="mt-6 grid grid-cols-12 gap-4 h-full p-4 rounded-md">
         <div className="col-span-12 lg:col-span-6">
           <ProductOverview singleProduct={singleProduct} />

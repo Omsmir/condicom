@@ -29,21 +29,12 @@ import clsx from "clsx";
 export type Payment = {
   id: string;
   name: string;
-  country?: {
-    name: string;
-    code: string;
-  };
-  company?: string;
-  date?: string;
-  verified: boolean;
-  activity?: number;
-  representative: {
-    name: string;
-    image: string;
-  };
-  balance: number;
-  status: "Active" | "Inactive";
   userRole: "Administrator" | "Specialist" | "Nurse" | "Residant" | "Secretary";
+  email:string;
+  birthDate?: Date;
+  verified: boolean;
+  activity?: Date;
+  status: "Active" | "Inactive";
 };
 
 export const columns: ColumnDef<Payment>[] = [
@@ -52,7 +43,7 @@ export const columns: ColumnDef<Payment>[] = [
     header: ({ column }) => {
       return (
         <Button
-        className="pl-0"
+          className="pl-0"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <p className="text-slate-500">ID</p>
@@ -72,10 +63,7 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "name",
     header: () => <p className="text-slate-500">USER</p>,
     cell: ({ row }) => (
-      <Link
-        href={`/users/${row.original.id}`}
-        className="flex items-center text-blue-500"
-      >
+      <div className="flex items-center font-medium">
         <Image
           src={"/assets/images/dr-lee.png"}
           alt="profile"
@@ -84,7 +72,7 @@ export const columns: ColumnDef<Payment>[] = [
           className="mr-2 rounded-full"
         />
         {row.original.name}
-      </Link>
+      </div>
     ),
   },
   {
@@ -148,6 +136,13 @@ export const columns: ColumnDef<Payment>[] = [
     },
   },
   {
+    accessorKey:"email",
+    header: () => <p className="text-slate-500">EMAIL</p>,
+    cell: ({ row }) => {
+      return <p className="text-sm text-slate-600">{row.getValue("email")}</p>;
+    },
+  },
+  {
     accessorKey: "status",
     header: () => <p className="text-slate-500">STATUS</p>,
     cell: ({ row }) => {
@@ -188,8 +183,6 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const id = row.original;
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -199,19 +192,11 @@ export const columns: ColumnDef<Payment>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="bg-slate-100">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              className="cursor-pointer hover:bg-slate-200"
-              onClick={() => navigator.clipboard.writeText(id.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuItem className="cursor-pointer hover:bg-slate-200">
-              View customer
+              View
             </DropdownMenuItem>
             <DropdownMenuItem className="cursor-pointer hover:bg-slate-200">
-              View payment details
+              Edit
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -20,6 +20,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useSession } from "next-auth/react";
 import { DashboardHook } from "./context/Dashboardprovider";
+import { notification } from "antd";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -29,7 +30,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-const AddEvent = ({state}:{state:boolean}) => {
+const AddEvent = ({ state }: { state: boolean }) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -37,7 +38,7 @@ const AddEvent = ({state}:{state:boolean}) => {
 
   const { visible, setVisible, calendarDays, date, disabled } = CalenderHook();
 
-  const {api,contextHolder} = DashboardHook()
+  const { api, contextHolder } = DashboardHook();
 
   const handleClickOpen = () => {
     setVisible(true);
@@ -46,7 +47,6 @@ const AddEvent = ({state}:{state:boolean}) => {
     setVisible(false);
   };
 
-  
   const onSubmit = async (values: Zod.infer<typeof AppointmentSchema>) => {
     setIsLoading(true);
 
@@ -62,11 +62,10 @@ const AddEvent = ({state}:{state:boolean}) => {
     formData.append("task", values.Task);
     formData.append("startDate", startDate.toString());
     formData.append("endDate", endDate.toString());
-    formData.append("interval", `${((hoursInterval / 30) * 100)}%`);
-    formData.append("color", `#${values.color || "242c55"}`);
+    formData.append("interval", `${(hoursInterval / 30) * 100}%`);
+    formData.append("color", `#${values.color}`);
     formData.append("userId", session?.user.id as string);
-    formData.append("description", values.description as string)
-    console.log(formData);
+    formData.append("description", values.description as string);
 
     try {
       if (
@@ -131,18 +130,17 @@ const AddEvent = ({state}:{state:boolean}) => {
 
     setIsLoading(false);
   };
-  
 
-const form = useForm<Zod.infer<typeof AppointmentSchema>>({
-  resolver: zodResolver(AppointmentSchema),
-  defaultValues: {
-    Task: "",
-    startDate: new Date(),
-    endDate: new Date(),
-    color: "#242c55",
-    description: "",
-  },
-});
+  const form = useForm<Zod.infer<typeof AppointmentSchema>>({
+    resolver: zodResolver(AppointmentSchema),
+    defaultValues: {
+      Task: "",
+      startDate: new Date(),
+      endDate: new Date(),
+      color: "242c55",
+      description: "",
+    },
+  });
   return (
     <React.Fragment>
       {contextHolder}
@@ -156,7 +154,7 @@ const form = useForm<Zod.infer<typeof AppointmentSchema>>({
       >
         <DialogTitle
           sx={{ fontSize: "18px", fontWeight: "bold" }}
-          className="dark:bg-[var(--sidebar-accent)] dark:text-slate-50"
+          className="dark:bg-[var(--sidebar-background)] dark:text-slate-50"
         >
           Create Appointment
         </DialogTitle>
@@ -172,7 +170,7 @@ const form = useForm<Zod.infer<typeof AppointmentSchema>>({
         >
           <CloseIcon />
         </IconButton>
-        <DialogContent dividers className="dark:bg-[var(--sidebar-accent)]">
+        <DialogContent dividers className="dark:bg-[var(--sidebar-background)]">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -189,12 +187,12 @@ const form = useForm<Zod.infer<typeof AppointmentSchema>>({
                 state
               />
               <CustomFormField
-              control={form.control}
-              fieldType={FormFieldType.TEXTAREA}
-              name="description"
-              placeholder="Details about appointment"
-              label="Description"
-              Lucide={<User className="dark:text-dark-600" />}
+                control={form.control}
+                fieldType={FormFieldType.TEXTAREA}
+                name="description"
+                placeholder="Details about appointment"
+                label="Description"
+                Lucide={<User className="dark:text-dark-600" />}
               />
               <CustomFormField
                 control={form.control}
@@ -206,26 +204,25 @@ const form = useForm<Zod.infer<typeof AppointmentSchema>>({
                 error={form.formState.errors.startDate}
               />
               <section className="flex ">
-                
-             <div className="flex items-center w-[80%]">
-             <CustomFormField
-                control={form.control}
-                fieldType={FormFieldType.DATE}
-                label="End Time"
-                name="endDate"
-                showTimeSelect
-                calenderDays={[date]}
-                disabled={disabled}
-              />
-             </div>
-             <div className="flex items-start w-[20%] ml-2">
-             <CustomFormField
-                control={form.control}
-                fieldType={FormFieldType.COLOR}
-                label="Color"
-                name="color"
-              />
-             </div>
+                <div className="flex items-center w-[80%]">
+                  <CustomFormField
+                    control={form.control}
+                    fieldType={FormFieldType.DATE}
+                    label="End Time"
+                    name="endDate"
+                    showTimeSelect
+                    calenderDays={[date]}
+                    disabled={disabled}
+                  />
+                </div>
+                <div className="flex items-start w-[20%] ml-2">
+                  <CustomFormField
+                    control={form.control}
+                    fieldType={FormFieldType.COLOR}
+                    label="Color"
+                    name="color"
+                  />
+                </div>
               </section>
 
               <SubmitButton

@@ -4,9 +4,19 @@ const codeApprovalSchema = new mongoose.Schema({
   code: { type: String, required: true, unique: true },
   role: {
     type: String,
-    enum: ["admin", "user"],
+    enum: [
+      "Admin",
+      "Senior Consultant",
+      "Resident Doctor",
+      "Intern Doctor", 
+      "Head Secretary",
+      "Charge Secretary",
+      "Head Nurse",
+      "Charge Nurse",
+    ],
     required: true,
   },
+  used:{type:Boolean,default:false}
 });
 
 

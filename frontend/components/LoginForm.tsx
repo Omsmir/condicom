@@ -15,11 +15,13 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { DashboardHook } from "./context/Dashboardprovider";
 
 const LoginForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [state, setState] = useState<boolean>(false);
+  const {api,contextHolder} = DashboardHook()
   const onSubmit = async (values: z.infer<typeof userSchema>) => {
     setIsLoading(true);
 
@@ -35,11 +37,12 @@ const LoginForm = () => {
       });
 
       if (!result?.ok) {
-        Swal.fire({
-          icon: "error",
-          text: `Something went wrong `,
-          title: `${result?.error}`,
-        });
+       api.error({
+        message:result?.error,
+        description:"Something went wrong",
+        showProgress: true,
+        pauseOnHover: false,
+       })
       } else if (result?.ok) {
         Swal.fire({
           position: "center",
@@ -51,11 +54,12 @@ const LoginForm = () => {
         router.push("/dashboard");
       }
     } catch (error: any) {
-      Swal.fire({
-        icon: "error",
-        title: error,
-        text: "Something went wrong!",
-      });
+     api.error({
+       message:"Something went wrong",
+       description:error,
+       showProgress: true,
+       pauseOnHover: false, 
+     })
     }
 
     setIsLoading(false);
@@ -70,6 +74,7 @@ const LoginForm = () => {
 
   return (
     <Form {...form}>
+      {contextHolder}
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 my-auto px-4 sm:p-0 sm:mx-4"

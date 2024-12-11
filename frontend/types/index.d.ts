@@ -64,6 +64,8 @@ declare interface FileUploaderProps {
   onChange: (files: File[]) => void;
   state?:boolean;
   children?:React.ReactNode  
+  profileState?: boolean
+  className?: string;
 }
 
 declare interface Images {
@@ -87,12 +89,15 @@ declare module "next-auth" {
     user: {
       id: string;
       role: string;
+      verified?:boolean;
     } & DefaultSession["user"];
   }
 
   interface User extends DefaultUser {
     id: string;
     role: string;
+    verified?: boolean;
+
   }
 }
 
@@ -100,7 +105,10 @@ declare module "next-auth" {
 declare module "next-auth/jwt" {
   interface JWT {
     id: string;
-    role: string;
+    role: string
+    verified?: boolean;
+    trigger:any;
+    session:any;
   }
 }
 

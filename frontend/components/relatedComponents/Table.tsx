@@ -4,12 +4,15 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   SortingState,
+  Table as tabless,
   useReactTable,
+  VisibilityState,
 } from "@tanstack/react-table";
-
+import { useMediaQuery } from "react-responsive";
 import {
   Table,
   TableBody,
@@ -19,10 +22,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "../ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { ExportAsCSV, exportToPDF } from "../togglers/TopBarEvents";
+import { count } from "console";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -38,52 +48,88 @@ export function DataTable<TData, TValue>({
     pageSize: 10,
   });
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [globalFilter, setGlobalFilter] = useState<string>("");
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const table = useReactTable({
     data,
     columns,
-    state: { pagination, sorting },
+    state: { pagination, sorting, globalFilter, columnVisibility },
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
+    onColumnVisibilityChange: setColumnVisibility,
     getSortedRowModel: getSortedRowModel(),
-
     getPaginationRowModel: getPaginationRowModel(),
+    onGlobalFilterChange: setGlobalFilter,
+    getFilteredRowModel: getFilteredRowModel(),
   });
-  const exportToPDF = () => {
-    const doc = new jsPDF();
 
-    // Add a title
-    doc.text("Table", 4, 10);
+  const isTablet = useMediaQuery({ query: "(min-width: 997px)" });
+  const isMobile = useMediaQuery({ query: "(min-width: 640px)" });
 
-    // Convert table data for jsPDF
-    const tableData = data.map((row: any) => [
-      row.id,
-      row.name,
-      row.status,
-      row.balance,
-    ]);
-    const tableHeaders = ["ID", "Name", "status", "balance"];
-
-    // Add autoTable to the PDF
-    doc.autoTable({
-      head: [tableHeaders],
-      body: tableData,
-      startY: 20,
-    });
-
-    // Save the PDF
-    doc.save("user-data.pdf");
+  const changeColumnVisibilityBasedOnMedia = () => {
+    table
+      .getAllColumns()
+      .filter((column) => column.getCanHide())
+      .map((column) => {
+        if(!isTablet){
+          if(column.id.startsWith("email") || column.id.startsWith("status")){
+            column.toggleVisibility(false)
+          }
+        }else {
+          column.toggleVisibility(true)
+        }
+      });
   };
+
+  useEffect(() => {
+    changeColumnVisibilityBasedOnMedia()
+  },[isTablet])
   return (
-    <div className="pt-14">
-      <div className="rounded-md border border-l-0" style={{borderTopRightRadius:0,borderTopLeftRadius:0}}>
+    <div className="pt-14 h-screen">
+      <div className="flex justify-between items-center p-2">
+        <div className="flex">
+          <Input
+            placeholder="Search..."
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.target.value)}
+            className="w-60 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="flex">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild className="my-1">
+              <Button variant="outline" className="bg-blue-700 text-slate-50">
+                Export
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="bg-slate-100">
+              <DropdownMenuItem className="cursor-pointer hover:bg-slate-200">
+                <ExportAsCSV table={table} />
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="cursor-pointer hover:bg-slate-200"
+                onClick={() => exportToPDF(table)}
+              >
+                Export as PDF
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
+      {/* Table */}
+
+      <div
+        className="rounded-md border border-l-0"
+        style={{ borderTopRightRadius: 0, borderTopLeftRadius: 0 }}
+      >
         <Table>
-          <TableHeader className="bg-slate-50 fixed w-full flex">
+          <TableHeader className="bg-slate-50">
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className="grid grid-cols-6  w-full">
+              <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className="flex items-center flex-1">
+                    <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -105,7 +151,7 @@ export function DataTable<TData, TValue>({
                   className="hover:bg-slate-100 cursor-pointer"
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className="p-2">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
@@ -127,7 +173,29 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-between mt-4">
+      {/* Pagination */}
+      <div className="flex items-center justify-between my-2">
+        <div className="flex items-center gap-2">
+          <span className="flex items-center ml-2">
+            <p className="text-sm text-slate-600"> Go to page:</p>
+            <Input
+              type="number"
+              min={1}
+              max={table.getPageCount()}
+              defaultValue={pagination.pageIndex + 1}
+              onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                table.setPageIndex(page);
+              }}
+              className="w-20 mx-2 text-sm"
+            />
+          </span>
+          <span className="flex text-sm">
+            {pagination.pageIndex + 1}{" "}
+            <p className="text-slate-600 mx-1"> of </p> {table.getPageCount()}
+          </span>
+        </div>
+
         <div className="flex gap-2">
           <Button
             variant="outline"
@@ -157,44 +225,6 @@ export function DataTable<TData, TValue>({
           >
             {">>"}
           </Button>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span>
-            Page{" "}
-            <strong>
-              {pagination.pageIndex + 1} of {table.getPageCount()}
-            </strong>
-          </span>
-          <span>|</span>
-          <span>
-            Go to page:{" "}
-            <Input
-              type="number"
-              defaultValue={pagination.pageIndex + 1}
-              onChange={(e) => {
-                const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                table.setPageIndex(page);
-              }}
-              className="w-20"
-            />
-          </span>
-        </div>
-
-        <div>
-          <select
-            value={pagination.pageSize}
-            onChange={(e) => {
-              table.setPageSize(Number(e.target.value));
-            }}
-            className="border border-gray-300 rounded px-2 py-1"
-          >
-            {[5, 10, 20, 30].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                Show {pageSize}
-              </option>
-            ))}
-          </select>
         </div>
       </div>
     </div>

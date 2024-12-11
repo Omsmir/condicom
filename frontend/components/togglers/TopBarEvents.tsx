@@ -12,7 +12,7 @@ import {
   differenceInCalendarDays,
   format,
   addMonths,
-  subMonths
+  subMonths,
 } from "date-fns";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,14 +26,26 @@ import { CalenderHook } from "../context/CalenderProvider";
 import { Days } from "@/lib/constants";
 import { useMediaQuery } from "react-responsive";
 import AddEvent from "../AddEvent";
+import { Table } from "@tanstack/react-table";
 
-
+import * as XLSX from 'xlsx';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 export function FadeMenu() {
   const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
 
-
-  const { view, setView, setViewPort ,DayView,setDayView,WeekView,setWeekView,MonthView,setMonthView} = CalenderHook();
+  const {
+    view,
+    setView,
+    setViewPort,
+    DayView,
+    setDayView,
+    WeekView,
+    setWeekView,
+    MonthView,
+    setMonthView,
+  } = CalenderHook();
 
   const handleView = ({
     text,
@@ -61,12 +73,14 @@ export function FadeMenu() {
     return (
       <>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="hover:bg-slate-200 dark:hover:bg-slate-800 dark:border-slate-800">
+          <Button
+            variant="outline"
+            className="hover:bg-slate-200 dark:hover:bg-slate-800 dark:border-slate-800"
+          >
             {!isMobile && view} <p className="-rotate-90">&lt;</p>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-40 bg-slate-100 p-0 dark:bg-[var(--sidebar-accent)] dark:border-slate-800">
-         
           <DropdownMenuSeparator />
           <DropdownMenuCheckboxItem
             className="hover:bg-slate-200 dark:hover:bg-[var(--sidebar-background)] cursor-pointer"
@@ -104,43 +118,46 @@ export function FadeMenu() {
   };
   return (
     <DropdownMenu>
-   <MenuToReturnBasedOnMedia />
+      <MenuToReturnBasedOnMedia />
     </DropdownMenu>
   );
 }
 export const SwitchMonth = () => {
-
-  const {setCurrDate,currDate,setState} = CalenderHook()
+  const { setCurrDate, currDate, setState } = CalenderHook();
 
   const nextMonth = () => {
     const next = addMonths(currDate, 1);
 
     setCurrDate(next);
-    setState(next)
-  }
-  const prevMonth =() => {
+    setState(next);
+  };
+  const prevMonth = () => {
     const prev = subMonths(currDate, 1);
-    prev.setDate(1)
+    prev.setDate(1);
     setCurrDate(prev);
-    setState(prev)
-  }
+    setState(prev);
+  };
 
   return (
     <div className="flex items-center border rounded-md mx-2 dark:border-slate-800">
-      <Button className="hover:bg-slate-100 dark:hover:bg-slate-800 " onClick={prevMonth}>
+      <Button
+        className="hover:bg-slate-100 dark:hover:bg-slate-800 "
+        onClick={prevMonth}
+      >
         &lt;
       </Button>
-      <div className="text-sm font-medium ">
-       {format(currDate,"MMMM")}
-      </div>
-      <Button className="hover:bg-slate-100 dark:hover:bg-slate-800" onClick={nextMonth}>
+      <div className="text-sm font-medium ">{format(currDate, "MMMM")}</div>
+      <Button
+        className="hover:bg-slate-100 dark:hover:bg-slate-800"
+        onClick={nextMonth}
+      >
         &gt;
       </Button>
     </div>
-  )
-}
+  );
+};
 export const SwitchDay = () => {
-  const { state, setState, calendarDays ,viewPort} = CalenderHook();
+  const { state, setState, calendarDays, viewPort } = CalenderHook();
 
   const NextDay = () => {
     const next = addDays(state, 1);
@@ -160,7 +177,7 @@ export const SwitchDay = () => {
         }
         break;
       case 2: {
-        if (differenceInCalendarDays(calendarDays[41],next) < 6) {
+        if (differenceInCalendarDays(calendarDays[41], next) < 6) {
           return null;
         }
         setState(next);
@@ -187,20 +204,41 @@ export const SwitchDay = () => {
 
   return (
     <div className="flex items-center border rounded-md mx-2 dark:border-slate-800">
-      <Button className="hover:bg-slate-100 dark:hover:bg-slate-800 " onClick={PastDay}>
+      <Button
+        className="hover:bg-slate-100 dark:hover:bg-slate-800 "
+        onClick={PastDay}
+      >
         &lt;
       </Button>
       <div className="text-sm font-medium ">
         {editedDays.map((day, index) => {
           if (index === getDay(state)) {
-            if (isToday(state)) return <p className="hidden sm:block" key={index}>Today</p>;
-            if (isTomorrow(state)) return <p className="hidden sm:block" key={index}>Tomorrow</p>;
-            if (isYesterday(state)) return <p className="hidden sm:block" key={index}>Yesterday</p>;
+            if (isToday(state))
+              return (
+                <p className="hidden sm:block" key={index}>
+                  Today
+                </p>
+              );
+            if (isTomorrow(state))
+              return (
+                <p className="hidden sm:block" key={index}>
+                  Tomorrow
+                </p>
+              );
+            if (isYesterday(state))
+              return (
+                <p className="hidden sm:block" key={index}>
+                  Yesterday
+                </p>
+              );
             return day;
           }
         })}
       </div>
-      <Button className="hover:bg-slate-100 dark:hover:bg-slate-800" onClick={NextDay}>
+      <Button
+        className="hover:bg-slate-100 dark:hover:bg-slate-800"
+        onClick={NextDay}
+      >
         &gt;
       </Button>
     </div>
@@ -208,8 +246,58 @@ export const SwitchDay = () => {
 };
 
 export const AddEventButton = () => {
-
-  return (
-    <AddEvent state />
-  );
+  return <AddEvent state />;
 };
+
+export const ExportAsCSV = ({table} :{table: Table<any>}) => {
+  const data = table.getRowModel().rows.map((row) => {
+    return [
+      row.original.id,
+      row.original.name,
+      row.original.status,
+      row.original.verified,
+    ];
+  });
+
+  const headers = ['ID', 'Name', 'Status', 'Verified'];
+
+    const handleExport = () => {
+        const worksheet = XLSX.utils.json_to_sheet(data,{header:["id","name","status","verified"]});
+        XLSX.utils.sheet_add_aoa(worksheet, [headers], { origin: 'A1' }); // Create a worksheet from JSON data
+        const workbook = XLSX.utils.book_new(); // Create a new workbook
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1'); // Add the worksheet to the workbook
+        XLSX.writeFile(workbook, 'table_data.xlsx'); // Download the file
+    }
+
+    return <button onClick={handleExport}>Export to Excel</button>
+}
+
+export  const exportToPDF = (table: Table<any>) => {
+  const doc = new jsPDF();
+
+  // Add a title
+  doc.text("Table", 4, 10);
+
+  // Convert table data for jsPDF
+  const tableData = table.getRowModel().rows.map((row) => {
+    console.log(row.original);
+    return [
+      row.original.id,
+      row.original.name,
+      row.original.status,
+      row.original.verified,
+    ];
+  });
+  const tableHeaders = ["ID", "Name", "status", "verified"];
+
+  // Add autoTable to the PDF
+  doc.autoTable({
+    head: [tableHeaders],
+    body: tableData,
+    startY: 20,
+  });
+
+  // Save the PDF
+  doc.save("user-data.pdf");
+};
+

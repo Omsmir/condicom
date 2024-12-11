@@ -4,8 +4,12 @@ import { prop } from "@/types";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
+import { DashboardHook } from "../context/Dashboardprovider";
 
 const LogoutButton = (props: prop) => {
+
+  const {setTheme } = DashboardHook()
+  const router = useRouter();
 
   const handelLogOut = async () => {
     try {
@@ -21,11 +25,10 @@ const LogoutButton = (props: prop) => {
           Swal.fire("Not logged out", "", "info");
         } else if (result.isConfirmed) {
           Swal.fire("Logged out", "", "success");
-          await new Promise((resolve) => setTimeout(resolve, 1000));
+          signOut();
 
-          signOut({
-            callbackUrl: "/",
-          });
+          setTheme("light")
+          router.push("/")
         }
       });
     } catch (error: any) {
@@ -35,7 +38,7 @@ const LogoutButton = (props: prop) => {
   };
   return (
     <Button className={props.className} onClick={handelLogOut}>
-      Logout
+      Sign Out
     </Button>
   );
 };

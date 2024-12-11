@@ -4,6 +4,8 @@ import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import ProductReview from "./ProductReview";
 import { FileUploaderProps } from "@/types";
+import { NodeIndexOutlined } from "@ant-design/icons";
+import { cn } from "@/lib/utils";
 
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 
@@ -24,6 +26,8 @@ const FileUploader = ({
   onChange,
   state,
   children,
+  profileState,
+  className,
 }: FileUploaderProps) => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     // Do something with the files
@@ -53,31 +57,52 @@ const FileUploader = ({
       </div>
     );
   };
+
   return (
     <>
-      {state &&  children }
+      {state && children}
 
-      <div
-        {...getRootProps()}
-        className={clsx("flex bg-slate-100 rounded-md p-4 file-upload", {
-          "file-upload": !files,
-        })}
-      >
-        <input {...getInputProps()} />
-        <div className="flex ">
-          {files && files.length > 0 ? (
-            files.map((file) => (
-              <Image
-                src={convertFileToUrl(file)}
-                alt="uploaded-image"
-                width={200}
-                key={file.name}
-                height={200}
-                className="w-full h-full object-cover object-center px-2"
-              />
-            ))
+      <div className="flex justify-center ">
+        <div {...getRootProps()} className={cn(className)}>
+          <input {...getInputProps()} />
+          {profileState ? (
+            <div className="flex size-56">
+              {files && files.length > 0 ? (
+                files
+                  .map((file, index) => (
+                    <Image
+                      src={convertFileToUrl(file)}
+                      alt="uploaded-image"
+                      width={200}
+                      key={index}
+                      height={200}
+                      className="w-full h-full object-cover object-center rounded-full"
+                    />
+                  ))
+                  
+              ) : (
+                <div className="flex size-56 justify-center items-center">
+                  <p className="font-medium text-slate-600 capitalize">select image</p>
+                </div>
+              )}
+            </div>
           ) : (
-            <ImageComponent />
+            <div className="flex ">
+              {files && files.length > 0 ? (
+                files.map((file) => (
+                  <Image
+                    src={convertFileToUrl(file)}
+                    alt="uploaded-image"
+                    width={200}
+                    key={file.name}
+                    height={200}
+                    className="w-full h-full object-cover object-center px-2"
+                  />
+                ))
+              ) : (
+                <ImageComponent />
+              )}
+            </div>
           )}
         </div>
       </div>

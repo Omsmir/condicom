@@ -38,8 +38,8 @@ img{
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-accent: #1d4ed8;
+    --sidebar-accent-foreground: #f8fafc;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
@@ -65,6 +65,15 @@ img{
  }
   .bg-black-800 {
     background-color: #333; /* Replace with your custom color */
+  }
+  .Country{
+    @apply flex items-center justify-center border-slate-200 h-11 w-full bg-slate-100 placeholder:text-sm placeholder:text-dark-500 !important;
+  }
+  .countryOptionsWrapper {
+    @apply bg-slate-100 !important;
+  }
+  .countryOption {
+    @apply flex items-center justify-center text-sm text-slate-100 hover:text-slate-300;
   }
   .sidebar {
     @apply remove-scrollbar w-full max-w-72 flex-col overflow-auto bg-black-800 px-7 py-10;
@@ -242,7 +251,7 @@ img{
   }
 
   .shad-input {
-    @apply bg-slate-100 text-dark-400 placeholder:text-dark-600 border-slate-200 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    @apply bg-slate-100 border-slate-200  dark:bg-[var(--sidebar-accent)] dark:caret-slate-50 text-dark-400 placeholder:text-dark-600 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
   }
 
   .shad-input-icon {
@@ -250,7 +259,7 @@ img{
   }
 
   .shad-textArea {
-    @apply bg-slate-100 text-sm text-dark-400 placeholder:text-dark-500 border-slate-200 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    @apply bg-slate-100 dark:bg-[var(--sidebar-accent)] dark:caret-slate-50 text-sm text-dark-400 placeholder:text-dark-600 border-slate-200 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
   }
 
   .shad-combobox-item {
@@ -316,7 +325,7 @@ img{
 
   /* =====  REACT DATE PICKER OVERRIDES */
   .date-picker {
-    @apply overflow-hidden rounded-md text-sm w-full h-11 text-dark-200 bg-slate-100 border border-slate-200 hover:bg-slate-100 hover:border-slate-200 cursor-pointer !important;
+    @apply overflow-hidden rounded-md text-sm w-full h-11  text-dark-200 bg-slate-100 border border-slate-200 hover:bg-slate-100 hover:border-slate-200 cursor-pointer !important;
   }
 }
 
@@ -423,4 +432,8 @@ img{
 .ant-color-picker-color-block:first-of-type{
   width: 100% !important;
   height: 100% !important;
+}
+.ReactSelectFlags-module_selectWrapper__I7wcI{
+  height: auto !important;
+  
 }

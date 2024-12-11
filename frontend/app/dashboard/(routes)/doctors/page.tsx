@@ -1,12 +1,8 @@
-import Doctors from '@/components/Doctors'
-import React from 'react'
+import Doctors from "@/components/Doctors";
+import React from "react";
 
-const page = async() => {
-  return (
+const page = async () => {
+  return <Doctors />;
+};
 
-      <Doctors />
-
-  )
-}
-
-export default page
+export default page;

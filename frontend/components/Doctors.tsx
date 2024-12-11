@@ -5,8 +5,6 @@ async function getData(): Promise<any> {
   // Fetch data from your API here.
   const data =     CustomerService.getCustomersXLarge()
 
-  console.log((await data).map((ele) => ele))
-
   return (await data).map((ele) => ele)
   
 }

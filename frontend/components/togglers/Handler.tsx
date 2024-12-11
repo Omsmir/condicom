@@ -131,7 +131,9 @@ export const ToggleButton =  ( {id,state}:{id:string,state:boolean}) => {
   }
   return (
     <div onDoubleClick={onSubmit} className="hidden justify-center items-end py-2 text-center text-slate-50 text-[12px] normal absolute inset-0 opacity-65 edit">
-      {state?  "DB Click To Mark As Completed" :"DB Click To Mark As Uncompleted"}
+      {!state?  "Completed" :"Uncompleted"}
     </div>
   )
 };
+
+

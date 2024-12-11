@@ -9,6 +9,7 @@ export const CustomerService = {
                     code: 'dz'
                 },
                 company: 'Benton, John B Jr',
+                email:"omarsamir232@gmail.com",
                 date: '2015-09-13',
                 status: 'Inactive',
                 userRole:"Administrator",

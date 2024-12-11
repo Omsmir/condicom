@@ -81,7 +81,7 @@ const router = useRouter()
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex-1 space-y-8 my-auto"
+        className="flex-1 space-y-8 my-auto dark:bg-[var(--sidebar-background)] p-4 rounded-md"
       >
         <section className="grid grid-cols-12">
           <div className="mr-2 col-span-6 sm:col-span-8">
@@ -125,6 +125,7 @@ const router = useRouter()
               <FileUploader
                 files={field.value}
                 onChange={field.onChange}
+                className="flex flex-1 bg-slate-100 rounded-md p-4 file-upload"
               />
             </FormControl>
           )}

@@ -13,7 +13,7 @@ export async function getproducts() {
       "http://localhost:8080/api/products/"
     );
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     if (status === 200) {
       return data;
     }
@@ -33,29 +33,10 @@ export const getSingleProduct = async (id: string) => {
     if (!response.data) {
       throw new Error("Failed to fetch the product");
     }
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     const singleProduct = await response.data;
     return singleProduct.product;
   } catch (error) {
     console.error("Error fetching data:", error);
   }
-};
-
-export const getAppointments = async () => {
-
-    const response = await fetch(
-      "http://localhost:8080/api/appointments/"
-    );
-
-    const data = await response.json()
-
-    const ArrayOfDates = data.Appointments.map((ele:any) => (
-      {
-        ...ele,
-        startDate: new Date(ele.startDate),
-        endDate: new Date(ele.endDate),
-      }
-    ))
-  
-return ArrayOfDates
 };

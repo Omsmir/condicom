@@ -1,14 +1,18 @@
+"use client"
 import LoginForm from "@/components/LoginForm";
 import Image from "next/image";
 import { MotionComponent } from "@/components/relatedComponents/Motion";
 
 
-
+import { DashboardHook } from "@/components/context/Dashboardprovider";
 
 const Login = () => {
+  const { NProgress} = DashboardHook()
+
+  NProgress.done()
   return (
     <MotionComponent>
-    <main className=" min-h-screen h-screen flex justify-center items-center">
+    <main className=" min-h-screen h-screen flex justify-center items-center ">
       <div className="sub-container max-w-[550px] ">
         <LoginForm />
       </div>

@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import ProductReview from "./ProductReview";
 import { Product } from "@/types";
+import clsx from "clsx";
 
 const EditForm = ({ product }: { product: Product }) => {
   const router = useRouter();
@@ -155,8 +156,10 @@ const EditForm = ({ product }: { product: Product }) => {
                 files={field.value}
                 onChange={field.onChange}
                 state={true}
+                className={clsx("flex bg-slate-100 rounded-md p-4 file-upload")}
               >
-                <ProductReview product={product} setIdsArray={setIdsArray} />
+                <ProductReview product={product} setIdsArray={setIdsArray} /> 
+                {/* Needs To Be Refactored In DashboardProvider */}
               </FileUploader>
             </FormControl>
           )}

@@ -3,25 +3,27 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
-import CustomFormField from "./CustomFormField";
-import { FormFieldType } from "./CustomFormField";
+import CustomFormField from "../CustomFormField";
+import { FormFieldType } from "../CustomFormField";
 import { useState } from "react";
 import { User, KeyRound, EyeOff, Eye } from "lucide-react";
-import SubmitButton from "./togglers/SubmitButton";
+import SubmitButton from "../togglers/SubmitButton";
 import { RegisterSchema } from "@/lib/vaildation";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { gender } from "@/lib/constants";
-import { SelectItem } from "./ui/select";
+import { SelectItem } from "../ui/select";
 import Link from "next/link";
 import { QrcodeOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { signIn } from "next-auth/react";
+import { DashboardHook } from "../context/Dashboardprovider";
 const RegisterForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [state, setState] = useState<boolean>(false);
+  const {api,contextHolder} = DashboardHook()
   const onSubmit = async (values: Yup.InferType<typeof RegisterSchema>) => {
     setIsLoading(true);
 
@@ -80,59 +82,60 @@ const RegisterForm = () => {
           icon: "success",
           title: response.data.msg,
           showConfirmButton: false,
-          timer:4000
-        }).then(async() =>{
-          const email = response.data.user.email;
-          const password = values.password;
-    
+          timer:2000
+        })
+
+        const email = values.email;
+        const password = values.password;
+
         
-         const result = await signIn("credentials", {
-            redirect: false,
-            email,
-            password,
-          });
-    
-          if (!result?.ok) {
-            Swal.fire({
-              icon: "error",
-              text: `Something went wrong `,
-              title: `${result?.error}`,
-            });
-          } else if (result?.ok) {
-           
-            router.push("/dashboard");
-          }
+        const result = await signIn("credentials", {
+          redirect: false,
+          email,
+          password,
         });
+  
+        if (!result?.ok) {
+         api.error({
+          message: `${result?.error}`,
+          description: "something went wrong",
+          showProgress: true,
+          pauseOnHover: false,
+         })
+        } 
+         
+          router.push("/register/profile");
+        
       } 
       
      
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          Swal.fire({
-            icon: "error",
-            title: `${error.response.data.msg }`,
-            text: "Something went wrong",
-          });
+          api.error({
+            message: `${error.response.data.msg }`,
+            description: "something went wrong",
+            showProgress: true,
+            pauseOnHover: false,
+          })
         } else {
-          Swal.fire({
-            icon: "error",
-            title: " No Response from Server",
-            text: "Please check your network connection or try again later.",
-          });
+          api.error({
+            message: "No Response from Server",
+            description: "something went wrong",
+            showProgress: true,
+            pauseOnHover: false,
+          })
         }
       } else if (error instanceof Error) {
-        Swal.fire({
-          icon: "error",
-          title: "Unexpected Error",
-          text: error.message,
-        });
+       api.error({
+        message: "Unexpected Error",
+        description: "An unexpected error occurred.",
+       })
       } else {
-        Swal.fire({
-          icon: "error",
-          title: "Error: Unknown Error",
-          text: "An unexpected error occurred.",
-        });
+       api.error({
+        message: "Error: Unknown Error",
+        description: "An unexpected error occurred.",
+       })
       }
     }
 
@@ -151,6 +154,7 @@ const RegisterForm = () => {
 
   return (
     <Form {...form}>
+      {contextHolder}
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex-1 space-y-12"
