@@ -5,6 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { prop } from "@/types";
 import { DashboardHook } from "../context/Dashboardprovider";
+import { useSession } from "next-auth/react";
 
 export const MyHandler = ({ id, name, className, state }: prop) => {
   const router = useRouter();
@@ -64,8 +65,22 @@ export const DeleteAppointmentButton = ({
 }: prop) => {
   const router = useRouter();
   const { api } = DashboardHook();
-
+  const { data: session } = useSession();
   const handleDelete = async () => {
+    const notificationData = new FormData();
+
+    const userRole = () => {
+      if(session?.user.role === "Admin") return "Admin"
+      return ""
+    }
+
+    notificationData.append("type", "appointment deletion");
+    notificationData.append("title", "Appointment Deletion");
+
+    notificationData.append("description", `deleted appointment with id`);
+    notificationData.append("assignedBy", `${userRole()} ${session?.user.name}`);
+    notificationData.append("eventId", `${id}`);
+    notificationData.append("user", `${session?.user.id}`);
     try {
       Swal.fire({
         title: "Do you want to delete the Appointment?",
@@ -82,7 +97,11 @@ export const DeleteAppointmentButton = ({
             `http://localhost:8080/api/appointments/${id}/`
           );
 
-          api.success({message:res.data.message})
+          await axios.post(
+            `http://localhost:8080/api/notifications/create `,
+            notificationData
+          );
+          api.success({ message: res.data.message });
 
           router.refresh();
         }
@@ -106,14 +125,15 @@ export const DeleteAppointmentButton = ({
   );
 };
 
-export const ToggleButton =  ( {id,state}:{id:string,state:boolean}) => {
+export const ToggleButton = ({ id, state }: { id: string; state: boolean }) => {
   const formData = new FormData();
-  const router = useRouter()
+  const router = useRouter();
   const { api } = DashboardHook();
 
+  const { data: session } = useSession();
 
   formData.append("completed", state as any);
-  const onSubmit = async () => { 
+  const onSubmit = async () => {
     try {
       const res = await axios.put(
         `http://localhost:8080/api/appointments/${id}/`,
@@ -122,18 +142,23 @@ export const ToggleButton =  ( {id,state}:{id:string,state:boolean}) => {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
-      
-      api.success({message:state? "Appointment marked as completed": "Appointment marked as uncompleted"})
-      router.refresh()
+
+      api.success({
+        message: state
+          ? "Appointment marked as completed"
+          : "Appointment marked as uncompleted",
+      });
+      router.refresh();
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   return (
-    <div onDoubleClick={onSubmit} className="hidden justify-center items-end py-2 text-center text-slate-50 text-[12px] normal absolute inset-0 opacity-65 edit">
-      {!state?  "Completed" :"Uncompleted"}
+    <div
+      onDoubleClick={onSubmit}
+      className="hidden justify-center items-end py-2 text-center text-slate-50 text-[12px] normal absolute inset-0 opacity-65 edit"
+    >
+      {!state ? "Completed" : "Uncompleted"}
     </div>
-  )
+  );
 };
-
-

@@ -66,6 +66,15 @@ img{
   .bg-black-800 {
     background-color: #333; /* Replace with your custom color */
   }
+  .Tailwind-Dropdown{
+    @apply absolute left-0 z-10 mt-2 w-32 origin-top-right rounded-md
+    bg-slate-100 shadow-lg ring-1 ring-black/5 transition focus:outline-none 
+    data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100
+     data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in;
+  }
+  .tailwind-menuItem{
+    @apply  px-4 py-2 text-sm cursor-pointer text-gray-700 data-[focus]:bg-slate-200 data-[focus]:text-gray-900 ;
+  }
   .Country{
     @apply flex items-center justify-center border-slate-200 h-11 w-full bg-slate-100 placeholder:text-sm placeholder:text-dark-500 !important;
   }
@@ -251,7 +260,7 @@ img{
   }
 
   .shad-input {
-    @apply bg-slate-100 border-slate-200  dark:bg-[var(--sidebar-accent)] dark:caret-slate-50 text-dark-400 placeholder:text-dark-600 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    @apply bg-slate-100 border-slate-200 dark:text-slate-50  dark:bg-[var(--sidebar-accent)] dark:border-[var(--sidebar-background)] dark:caret-slate-50 text-dark-400 placeholder:text-dark-600 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
   }
 
   .shad-input-icon {
@@ -327,6 +336,7 @@ img{
   .date-picker {
     @apply overflow-hidden rounded-md text-sm w-full h-11  text-dark-200 bg-slate-100 border border-slate-200 hover:bg-slate-100 hover:border-slate-200 cursor-pointer !important;
   }
+
 }
 
 /* =====  REACT-DATEPICKER OVERRIDES */
@@ -401,22 +411,6 @@ img{
   color: #f1f5f9;
 }
 
-.css-10d30g3-MuiPaper-root-MuiDialog-paper{
-  max-width: none !important;
-  overflow-y: unset !important;
-  max-width: 900px;
-  width: 400px;
-}
-@media (min-width:640px) {
-  .css-10d30g3-MuiPaper-root-MuiDialog-paper{
-    width: 500px;
-  }
-}
-@media (min-width:768px) {
-  .css-10d30g3-MuiPaper-root-MuiDialog-paper{
-    width: 900px;
-  }
-}
 
 
 .css-mdw2u7-MuiModal-root-MuiDialog-root{
@@ -436,4 +430,20 @@ img{
 .ReactSelectFlags-module_selectWrapper__I7wcI{
   height: auto !important;
   
+}
+.custom ~ [data-radix-popper-content-wrapper]{
+  left: -188px !important;
+}
+
+.css-si425x {
+  max-width: 900px;
+  width: 400px;
+}
+
+@media (min-width: 768px) {
+  /* Styles for screens larger than 768px */
+ .css-si425x {
+  width: 800px;
+ 
+ }
 }

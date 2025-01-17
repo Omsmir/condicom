@@ -258,13 +258,13 @@ const RegisterForm = () => {
             placeholder="select a gender"
           >
             {gender.map((value, index) => (
-              <SelectItem key={index} value={value.title}>
-                <div className="flex cursor-pointer justify-center items-center">
+              <SelectItem key={index} value={value.title} className="cursor-pointer transition-colors hover:bg-slate-200">
+                <div className="flex  justify-center items-center ">
                   <Image
                     src={value.image}
                     alt={value.title}
-                    width={25}
-                    height={25}
+                    width={20}
+                    height={20}
                   />
                   <p className="text-md mx-2">{value.title}</p>
                 </div>

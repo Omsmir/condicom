@@ -13,6 +13,9 @@ import {
   format,
   addMonths,
   subMonths,
+  differenceInHours,
+  differenceInMinutes,
+  differenceInSeconds,
 } from "date-fns";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,14 +26,26 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { CalenderHook } from "../context/CalenderProvider";
-import { Days } from "@/lib/constants";
+import { Days, notificationSounds } from "@/lib/constants";
 import { useMediaQuery } from "react-responsive";
 import AddEvent from "../AddEvent";
 import { Table } from "@tanstack/react-table";
 
-import * as XLSX from 'xlsx';
+import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { Notification, ObjectType } from "@/types";
+import {
+  CheckCircleFilled,
+  DeleteFilled,
+  ExclamationCircleFilled,
+  InfoCircleFilled,
+  SwitcherOutlined,
+  UserAddOutlined,
+} from "@ant-design/icons";
+import * as Tone from "tone";
+import { io, Socket } from "socket.io-client";
+import { DefaultEventsMap } from "@socket.io/component-emitter";
 
 export function FadeMenu() {
   const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
@@ -157,7 +172,8 @@ export const SwitchMonth = () => {
   );
 };
 export const SwitchDay = () => {
-  const { state, setState, calendarDays, viewPort } = CalenderHook();
+  const { state, setState, calendarDays, viewPort, setCurrDate } =
+    CalenderHook();
 
   const NextDay = () => {
     const next = addDays(state, 1);
@@ -249,7 +265,8 @@ export const AddEventButton = () => {
   return <AddEvent state />;
 };
 
-export const ExportAsCSV = ({table} :{table: Table<any>}) => {
+// Tables Related Events
+export const ExportAsCSV = ({ table }: { table: Table<any> }) => {
   const data = table.getRowModel().rows.map((row) => {
     return [
       row.original.id,
@@ -259,20 +276,22 @@ export const ExportAsCSV = ({table} :{table: Table<any>}) => {
     ];
   });
 
-  const headers = ['ID', 'Name', 'Status', 'Verified'];
+  const headers = ["ID", "Name", "Status", "Verified"];
 
-    const handleExport = () => {
-        const worksheet = XLSX.utils.json_to_sheet(data,{header:["id","name","status","verified"]});
-        XLSX.utils.sheet_add_aoa(worksheet, [headers], { origin: 'A1' }); // Create a worksheet from JSON data
-        const workbook = XLSX.utils.book_new(); // Create a new workbook
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1'); // Add the worksheet to the workbook
-        XLSX.writeFile(workbook, 'table_data.xlsx'); // Download the file
-    }
+  const handleExport = () => {
+    const worksheet = XLSX.utils.json_to_sheet(data, {
+      header: ["id", "name", "status", "verified"],
+    });
+    XLSX.utils.sheet_add_aoa(worksheet, [headers], { origin: "A1" }); // Create a worksheet from JSON data
+    const workbook = XLSX.utils.book_new(); // Create a new workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1"); // Add the worksheet to the workbook
+    XLSX.writeFile(workbook, "table_data.xlsx"); // Download the file
+  };
 
-    return <button onClick={handleExport}>Export to Excel</button>
-}
+  return <button onClick={handleExport}>Export to Excel</button>;
+};
 
-export  const exportToPDF = (table: Table<any>) => {
+export const exportToPDF = (table: Table<any>) => {
   const doc = new jsPDF();
 
   // Add a title
@@ -301,3 +320,136 @@ export  const exportToPDF = (table: Table<any>) => {
   doc.save("user-data.pdf");
 };
 
+// Notification Menu Related Events
+export const notificationTime = (startDate: Date, endDate: Date) => {
+  const hourTime = differenceInHours(startDate, endDate);
+  if (hourTime < 1) {
+    const minuteTime = differenceInMinutes(startDate, endDate);
+
+    if (minuteTime < 1) {
+      const secondTime = differenceInSeconds(startDate, endDate);
+
+      return `${secondTime} seconds ago`;
+    } else {
+      return `${minuteTime} minute ago`;
+    }
+  } else if (hourTime >= 24 && hourTime < 48) {
+    return `yesterday`;
+  } else if (hourTime >= 48) {
+    return `${format(endDate, "P")} `;
+  } else {
+    return `${hourTime} hours ago`;
+  }
+};
+
+export const NotificationType = (notification: Notification) => {
+  switch (notification.type) {
+    case "appointment creation":
+      return <SwitcherOutlined />;
+    case "appointment deletion":
+      return <DeleteFilled className="text-red-800" />;
+    case "Email Verification":
+      return <ExclamationCircleFilled className="text-cyan-700" />;
+    case "Email Verified":
+      return <CheckCircleFilled className="text-green-700" />;
+    case "New Member":
+      return <UserAddOutlined className="text-blue-700" />;
+    default:
+      return <InfoCircleFilled className="text-blue-700" />;
+  }
+};
+
+export const playSound = async (tone: keyof ObjectType) => {
+  const notificationTone = notificationSounds(tone);
+  const player = new Tone.Player(`${notificationTone}`).toDestination();
+  player.autostart = true;
+};
+
+export const NotificationAssignedBy = (
+  notification: Notification,
+  session: any
+) => {
+  if (notification.assignedTo === "All") return;
+  if (notification.type === "New Member") {
+    switch (notification.assignedTo) {
+      case "Admin":
+        return;
+    }
+  }
+
+  if (notification.user === session?.user.id) {
+    return <p className="text-slate-500 font-medium mr-1">You Have</p>;
+  } else {
+    return (
+      <p className="text-slate-500 font-medium mr-1">
+        {notification.assignedBy} has
+      </p>
+    );
+  }
+};
+
+export const NotificationDescription = ({
+  notification,
+}: {
+  notification: Notification;
+}) => {
+  const Component = () => {
+    if (notification.eventId) {
+      switch (notification.assignedTo) {
+        case "All":
+          return;
+        default:
+          return (
+            <React.Fragment>
+              <p className="text-left text-[11px] text-green-900">
+                {notification.eventId}
+              </p>
+              <p className="text-left text-[11px] ml-1">
+                at {format(notification.updatedAt, "Pp")}
+              </p>
+            </React.Fragment>
+          );
+      }
+    } else {
+      switch (notification.assignedTo) {
+        case "All":
+          return;
+        default:
+          return (
+            <React.Fragment>
+              <p className="text-left text-[11px]">
+                at {format(notification.updatedAt, "Pp")}
+              </p>
+            </React.Fragment>
+          );
+      }
+    }
+  };
+  return (
+    <div className="flex ">
+      <Component />
+    </div>
+  );
+};
+
+
+
+export const SocketInitiator = async (
+  notificationTO: string,
+  tone: keyof ObjectType,
+  socket:Socket<DefaultEventsMap,DefaultEventsMap>,
+  setNotifications: React.Dispatch<React.SetStateAction<Notification[]>>
+) => {
+  const handleNewNotification = async (data: Notification) => {
+    setNotifications((prev: Notification[]) => [...prev, data]);
+    await playSound(tone);
+  };
+
+  socket.on(notificationTO, async (data: Notification) => {
+    try {
+      await handleNewNotification(data);
+    } catch (error) {
+      console.error("Error handling admin notification:", error);
+    }
+  });
+};

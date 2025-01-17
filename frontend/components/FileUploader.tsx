@@ -78,7 +78,7 @@ const FileUploader = ({
                       height={200}
                       className="w-full h-full object-cover object-center rounded-full"
                     />
-                  ))
+                  )).slice(-1)
                   
               ) : (
                 <div className="flex size-56 justify-center items-center">

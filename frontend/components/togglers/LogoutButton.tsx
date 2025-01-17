@@ -25,10 +25,16 @@ const LogoutButton = (props: prop) => {
           Swal.fire("Not logged out", "", "info");
         } else if (result.isConfirmed) {
           Swal.fire("Logged out", "", "success");
-          signOut();
+          signOut({
+            callbackUrl: "/",
+            redirect: true,           
+          });
+
 
           setTheme("light")
-          router.push("/")
+    
+
+
         }
       });
     } catch (error: any) {

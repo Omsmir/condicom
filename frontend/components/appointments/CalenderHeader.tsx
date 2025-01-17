@@ -7,7 +7,7 @@ const CalenderHeader = ({children}:{children:React.ReactNode}) => {
     const {currDate} = CalenderHook()
   return (
     <div className={`flex h-screen pt-14 ${inter.className} `}>
-      <div className="flex flex-col w-full border dark:bg-[var(--sidebar-accent)] dark:border-slate-800">
+      <div className="flex flex-col w-full border border-l-0 border-t-0 dark:bg-[var(--sidebar-accent)] dark:border-slate-800">
         <div className="flex p-4 justify-between items-center bg-[var(--sidebar-background)] ">
           <div className="flex items-center font-medium">
             <SwitchMonth />

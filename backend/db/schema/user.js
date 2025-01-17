@@ -19,13 +19,19 @@ const userSchema = new mongoose.Schema({
   role: { type: String,required:true },
   profileState:{type:Boolean,default:false},
   verified: { type:Boolean,default:false},
-  bio:{type:String},
+  token: { type: String,default:null},
+  expireToken:{type:Date,default:null},
+  bio:{type:String,default:null},
   weight: { type:String},
   height: { type: String},
-  address:{type:String},
+  address:{type:String,default:null},
   occupation:{type:String},
   country: { type:String},
   code:{type:String},
+  createdAt:{type:Date,default:Date.now()},
+},{
+  timestamps: true,
+
 })
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();

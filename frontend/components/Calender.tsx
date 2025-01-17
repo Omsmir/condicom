@@ -1,6 +1,6 @@
 
 import { Appointments } from "@/types";
-import CalenderView from "./relatedComponents/CalenderView";
+import CalenderView from "./appointments/CalenderView";
 
 const Calender = async ({appointment}:any) => {
   return <CalenderView appointment={appointment} />;

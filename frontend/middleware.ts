@@ -5,56 +5,36 @@ export const middleware = async (req: NextRequest) => {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   const { pathname } = req.nextUrl;
 
+const PrivateRoutes = ["/dashboard/create","/dashboard/doctors"]
+  
   if (token) {
     const user = await getUser(token?.id);
 
-    if (
-      pathname.startsWith("/dashboard") &&
-      token &&
-      !user.existingUser.profileState
-    ) {
+   if(user){
+    if (pathname.startsWith("/dashboard") && !user.profileState) {
       return NextResponse.redirect(new URL("/register/profile", req.url));
     }
 
-    if (
-      pathname === "/register/profile" &&
-      token &&
-      user.existingUser.profileState
-    ) {
+    if (pathname === "/register/profile" && user.profileState) {
       return NextResponse.redirect(new URL("/dashboard", req.url));
     }
 
-    if (
-      (pathname.startsWith("/dashboard/admin") && token?.role !== "admin") ||
-      (pathname.startsWith("/dashboard/create") && token?.role !== "admin")
-    ) {
+   }
+    if (PrivateRoutes.includes(pathname) && token?.role !== "Admin") {
       return NextResponse.redirect(new URL("/dashboard", req.url));
     }
-
-    if (pathname === "/" && token) {
+    const publicPaths = ["/", "/reset", "/register"];
+    if (publicPaths.includes(pathname)) {
       return NextResponse.redirect(new URL("/dashboard", req.url));
     }
-
-    if (pathname.startsWith("/reset") && token) {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
+  } else {
+    if (pathname.startsWith("/dashboard")) {
+      return NextResponse.redirect(new URL("/", req.url));
     }
-    if (pathname === "/register" && token) {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
+
+    if (pathname === "/register/profile") {
+      return NextResponse.redirect(new URL("/register", req.url));
     }
-  }else {
-    
-  if (pathname.startsWith("/dashboard") && !token) {
-    return NextResponse.redirect(new URL("/", req.url));
-  }
-
-  if (pathname.startsWith("/dashboard/appointments") && !token) {
-    return NextResponse.redirect(new URL("/", req.url));
-  }
-
-  if (pathname === "/register/profile" && !token) {
-    return NextResponse.redirect(new URL("/register", req.url));
-  }
-
   }
 
   return NextResponse.next();
@@ -62,13 +42,12 @@ export const middleware = async (req: NextRequest) => {
 
 export const config = {
   matcher: [
-    "/dashboard:path*",
-    "/dashboard/appointments",
+    "/dashboard/:path*",
     "/",
-    "/dashboard/admin:path*",
-    "/reset:path*",
-    "/register:path*",
+    "/reset/:path*",
+    "/register/:path*",
     "/dashboard/create:path*",
+    "/dashboard/doctors:path*",
     "/register/profile:path*",
   ],
 };

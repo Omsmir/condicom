@@ -10,7 +10,7 @@ export const MedicalStuffRegex = [
     },
     {
       regex: /B(1)[3](C)[0-9]{5}/,
-      role: "Residant Doctor"
+      role: "Resident Doctor"
     },
     {
       regex: /B(1)[4](C)[0-9]{5}/,

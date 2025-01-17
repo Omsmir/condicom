@@ -3,8 +3,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
 import {
-  CircleCheck,
-  CircleX,
   MoreHorizontal,
   ArrowUpDown,
   ClipboardList,
@@ -18,58 +16,37 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import clsx from "clsx";
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
+import { format } from "date-fns";
+
 export type Payment = {
-  id: string;
+  _id: string;
   name: string;
-  userRole: "Administrator" | "Specialist" | "Nurse" | "Residant" | "Secretary";
-  email:string;
-  birthDate?: Date;
+  role: "Admin" | "Specialist" | "Charge Nurse" | "Residant" | "Secretary";
+  email: string;
   verified: boolean;
   activity?: Date;
-  status: "Active" | "Inactive";
+  birthDate: Date | undefined;
+  phone: string;
+  profileImg: { url: string };
 };
 
 export const columns: ColumnDef<Payment>[] = [
   {
-    accessorKey: "id",
-    header: ({ column }) => {
-      return (
-        <Button
-          className="pl-0"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          <p className="text-slate-500">ID</p>
-          <ArrowUpDown
-            className={clsx("ml-2 h-4 w-4", {
-              "text-blue-900": column.getIsSorted() === "asc",
-            })}
-          />
-        </Button>
-      );
-    },
-    cell: ({ row }) => {
-      return <p className="text-slate-600">{row.original.id}</p>;
-    },
-  },
-  {
     accessorKey: "name",
     header: () => <p className="text-slate-500">USER</p>,
     cell: ({ row }) => (
-      <div className="flex items-center font-medium">
+      <div className=" flex items-center font-medium">
         <Image
-          src={"/assets/images/dr-lee.png"}
+          src={row.original.profileImg.url || "/assets/images/dr-peter.png"}
           alt="profile"
           width={34}
           height={34}
-          className="mr-2 rounded-full"
+          className="size-10 mr-2 rounded-full object-cover object-center"
         />
         {row.original.name}
       </div>
@@ -83,7 +60,7 @@ export const columns: ColumnDef<Payment>[] = [
           className="pl-0"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          <p className="text-slate-500">USER ROLE</p>
+          <p className="text-[13px] text-slate-500">USER ROLE</p>
           <ArrowUpDown
             className={clsx("ml-2 h-4 w-4", {
               "text-blue-900": column.getIsSorted() === "asc",
@@ -93,9 +70,9 @@ export const columns: ColumnDef<Payment>[] = [
       );
     },
     cell: ({ row }) => {
-      const role = row.original.userRole;
+      const role = row.original.role;
       switch (role) {
-        case "Administrator":
+        case "Admin":
           return (
             <div className="flex items-center rounded-md py-1 px-2 bg-blue-100 w-fit">
               <ClipboardList className="text-blue-700 mr-1" size={14} />
@@ -109,11 +86,11 @@ export const columns: ColumnDef<Payment>[] = [
               <p className="text-purple-700 text-[13px] ">Specialist</p>
             </div>
           );
-        case "Nurse":
+        case "Charge Nurse":
           return (
             <div className="flex items-center rounded-md py-1 px-2 bg-cyan-100 w-fit">
               <UserPen className="text-cyan-700 mr-1" size={14} />
-              <p className="text-cyan-700 text-[13px] ">Nurse</p>
+              <p className="text-cyan-700 text-[13px] ">Charge Nurse</p>
             </div>
           );
         case "Residant":
@@ -129,43 +106,33 @@ export const columns: ColumnDef<Payment>[] = [
           return (
             <div className="flex items-center rounded-md py-1 px-2 bg-slate-100 w-fit">
               <Eye className="text-slate-700 mr-1" size={14} />
-              <p className="text-slate-700 text-[13px] ">User</p>
+              <p className="text-slate-700 text-[11px] ">User</p>
             </div>
           );
       }
     },
   },
   {
-    accessorKey:"email",
+    accessorKey: "email",
     header: () => <p className="text-slate-500">EMAIL</p>,
     cell: ({ row }) => {
-      return <p className="text-sm text-slate-600">{row.getValue("email")}</p>;
+      return <p className="text-slate-600">{row.getValue("email")}</p>;
     },
   },
   {
-    accessorKey: "status",
-    header: () => <p className="text-slate-500">STATUS</p>,
+    accessorKey: "birthDate",
+    header: () => <p className="text-slate-500">BIRTH</p>,
     cell: ({ row }) => {
-      const status = row.getValue("status");
-      switch (status) {
-        case "Active":
-          return (
-            <div className="flex items-center">
-              <span className="size-2 rounded-full bg-green-700"></span>
-              <p className="ml-2">Active</p>
-            </div>
-          );
-        case "Inactive":
-          return (
-            <div className="flex items-center">
-              <span className="size-2 rounded-full bg-red-700"></span>
-              <p className="ml-2">Inactive</p>
-            </div>
-          );
-
-        default:
-          return <div>Unknown</div>;
-      }
+      const BirthDate = format(row.original.birthDate as Date, "P");
+      return <p className="text-slate-500">{BirthDate}</p>;
+    },
+  },
+  {
+    accessorKey: "phone",
+    header: () => <p className="text-slate-500">CONTACT</p>,
+    cell: ({ row }) => {
+      const phoneNumber = row.original.phone;
+      return <p className="text-slate-500">{phoneNumber.split("+")}</p>;
     },
   },
   {
@@ -174,15 +141,20 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => {
       const verified = row.getValue("verified");
       return verified ? (
-        <CircleCheck className="text-green-700" />
+        <div className="flex items-center justify-between px-4">
+          <CheckCircleFilled className="text-green-700" />
+        </div>
       ) : (
-        <CircleX className="text-red-700" />
+        <div className="flex items-center justify-between px-4">
+          <CloseCircleFilled className="text-red-700" />
+        </div>
       );
     },
   },
   {
     id: "actions",
     cell: ({ row }) => {
+      const id = row.original._id;
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -191,11 +163,13 @@ export const columns: ColumnDef<Payment>[] = [
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="bg-slate-100">
-            <DropdownMenuItem className="cursor-pointer hover:bg-slate-200">
-              View
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer hover:bg-slate-200">
+          <DropdownMenuContent align="end" className="bg-slate-100 dark:bg-[var(--sidebar-accent)] p-0 border-0">
+            <Link href={`/dashboard/doctors/${id}`} >
+              <DropdownMenuItem className="cursor-pointer hover:bg-slate-200 dark:hover:bg-[var(--sidebar-background)]">
+                View
+              </DropdownMenuItem>
+            </Link>
+            <DropdownMenuItem className="cursor-pointer hover:bg-slate-200 dark:hover:bg-[var(--sidebar-background)]">
               Edit
             </DropdownMenuItem>
           </DropdownMenuContent>

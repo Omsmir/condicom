@@ -2,40 +2,88 @@ import { User } from "../db/schema/user.js";
 import jwt from "jsonwebtoken";
 import { codeSchema } from "../db/schema/code.js";
 import { MedicalStuffRegex } from "../lib/constants.js";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 import { storage } from "../db/firebase/firebase.js";
 import { Appointment } from "../db/schema/appointment.js";
+import crypto from "crypto";
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+import { Notifications } from "../db/schema/notification.js";
+import { io } from "../server.js";
+import mongoose from 'mongoose'
+dotenv.config();
+
+const generateRandomToken = () => {
+  const token = crypto.randomBytes(32).toString("hex");
+  return token;
+};
+
+export const sendVerificationEmail = async (to, verificationToken) => {
+  const transport = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "omarsamir232@gmail.com",
+      pass: process.env.APP_PASSWORD,
+    },
+  });
+  const verificationLink = `http://localhost:8080/emailVerification?token=${verificationToken}`;
+  const from = "HealthCare";
+  const subject = " HealthCare Email Verification";
+  const html = `
+    <p>Hello, ${to},</p>
+    <p>Please use This Link To Verify Yout Email</p>
+    <a href="${verificationLink}">Click Here</a>
+    <p>Thank you</p>
+    `;
+  return new Promise((resolve, reject) => {
+    transport.sendMail({ from, subject, to, html }, (err, info) => {
+      if (err) reject(err);
+      resolve(info);
+      console.log(info);
+    });
+  });
+};
 
 export const getAllUsers = async (req, res, next) => {
-  const users = await User.find({})
+  const users = await User.find({});
   try {
-
-    if(!users) {
-      return res.status(404).json({message:"There is No Users"})
-    }
-    
-     return res.status(200).json({users})
-  } catch (error) {
-    return next(error)
-  }
-}
-
-export const getUser =  async(req, res, next) => {
-  const { id } = req.params;
-
-  const existingUser = await User.findById(id);
-
-  try {
-
-    if(!existingUser){
-      return res.status(404).json({ message: "User Not Found" });
+    if (!users) {
+      return res.status(404).json({ message: "There is No Users" });
     }
 
-    return res.status(200).json({existingUser})
+    return res.status(200).json({ users });
   } catch (error) {
     return next(error);
   }
-}
+};
+
+
+
+export const getUser = async (req, res, next) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'Invalid ID format' });
+  }
+
+  const existingUser = await User.findById(id);
+  try {
+    if (!existingUser) {
+      return res.status(404).json({ message: "User Not Found" });
+    }
+
+    return res.status(200).json({ existingUser });
+  } catch (error) {
+    return next(error.message);
+  }
+};
 
 export const register = async (req, res, next) => {
   const {
@@ -48,34 +96,31 @@ export const register = async (req, res, next) => {
     birthDate,
     gender,
   } = req.body;
-  if (
-    !name ||
-    !email ||
-    !password ||
-    !confirmPassword ||
-    !gender ||
-    !code ||
-    !birthDate ||
-    !phone
-  ) {
-    const error = new Error("Some Fields Are Missing Out");
-    error.status = 404;
-    return next(error);
-  }
-  if (password !== confirmPassword) {
-    return res.status(403).json({ msg: "Passwords Must Match" });
-  }
+
+
+  const requiredFields = {name,email,password,confirmPassword,gender,code,birthDate,phone}
 
   try {
+    for(let [value,key] of Object.entries(requiredFields)){
+      if(!value){
+        return res.status(404).json({ msg: `Some Fields Are Missing Out` });
+
+      }
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(403).json({ msg: "Passwords Must Match" });
+    }
+  
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       return res.status(403).json({ msg: "user already exists" });
     }
 
-    const stateToDetermineRole = await codeSchema.findOne({ code });
+    const Code = await codeSchema.findOne({ code });
 
-    if (!stateToDetermineRole) {
+    if (!Code) {
       return res.status(404).json({ msg: "Invalid Code Supported" });
     }
 
@@ -84,6 +129,8 @@ export const register = async (req, res, next) => {
       return res.status(409).json({ msg: "This Code is Used" });
     }
 
+    Code.used = true
+
     const newUser = new User({
       name,
       email,
@@ -91,7 +138,7 @@ export const register = async (req, res, next) => {
       gender,
       phone,
       birthDate,
-      role: stateToDetermineRole.role,
+      role: Code.role,
       code: code,
       verified: false,
       profileImg: "",
@@ -102,6 +149,7 @@ export const register = async (req, res, next) => {
       occupation: "",
       address: "",
     });
+    await Code.save()
 
     await newUser.save();
 
@@ -113,7 +161,100 @@ export const register = async (req, res, next) => {
     return res.status(500).json({ msg: error.message });
   }
 };
+export const AddAddtionalInformation = async (req, res, next) => {
+  const { id } = req.params;
+  const { height, weight, occupation, country, address, bio, profileState } =
+    req.body;
 
+  const profileImg = req.file;
+  const nonToken = generateRandomToken();
+  const token = crypto.createHash("sha256").update(nonToken).digest("hex");
+  const expireToken = Date.now() + 1 * 24 * 60 * 60 * 1000;
+
+  const requiredInformation = {
+    profileState,
+    height,
+    weight,
+    occupation,
+    country,
+    token,
+    expireToken,
+  };
+
+  const optionalInformation = { bio, address };
+  const existingUser = await User.findById(id);
+
+  try {
+    if (!existingUser) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    for (const [key, value] of Object.entries(requiredInformation)) {
+      if (!value) {
+        return res.status(404).json({ msg: `Some Fields Are Missing Out` });
+      }
+    }
+
+    for (const [key, value] of Object.entries(optionalInformation)) {
+      if (value) {
+        existingUser[key] = value;
+      }
+    }
+
+
+    for (const [key, value] of Object.entries(requiredInformation)) {
+      existingUser[key] = value;
+    }
+
+    if (profileImg) {
+      const imageToUpload = async () => {
+        const StorageBucket = ref(
+          storage,
+          `Doctors/${existingUser._id}/${existingUser._id}`
+        );
+
+        const SnapShot = await uploadBytes(StorageBucket, profileImg.buffer, {
+          contentType: profileImg.mimetype,
+        });
+
+        const downloadUrl = await getDownloadURL(SnapShot.ref);
+
+        await existingUser.updateOne({
+          profileImg: {
+            filename: profileImg.originalname,
+            url: downloadUrl,
+            contentType: profileImg.mimetype,
+            path: StorageBucket.fullPath,
+          },
+        });
+      };
+
+      imageToUpload();
+    }
+
+    await existingUser.save();
+
+    await sendVerificationEmail(existingUser.email, nonToken);
+
+    return res.status(200).json({ msg: `Information Added Successfully`, existingUser });
+  } catch (error) {
+    const errMsg = error;
+    return next(errMsg);
+  }finally{
+    const Notification = {
+      type: "Email Verification",
+      description: "Please Verify Your Email",
+      title: "System Administration",
+      assignedTo: "All",
+      eventId: existingUser._id,
+    };
+   const systemNotification = new Notifications(Notification);
+
+    await systemNotification.save();
+
+    io.emit(`EmailVerification${existingUser._id}`, systemNotification);
+
+  }
+};
 export const Login = async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -170,7 +311,6 @@ export const codeGenerator = async (req, res, next) => {
   };
   const code = generateCode();
 
-  console.log(code);
   try {
     if (numbers.length < 1 && character.length < 1 && fiveNumbers.length < 1) {
       return res
@@ -206,100 +346,83 @@ export const codeGenerator = async (req, res, next) => {
   }
 };
 
-export const AddAddtionalInformation = async (req, res, next) => {
-  const { id } = req.params;
-  const { height, weight, occupation, country, address, bio ,profileState} = req.body;
 
-  const profileImg = req.file;
-  const requiredInformation = {
-    profileState,
-    height,
-    weight,
-    occupation,
-    country,
-  };
 
-  const optionalInformation = { bio, address };
-  const existingUser = await User.findById(id);
+export const verifyUser = async (req, res, next) => {
+  const { token } = req.query;
+
+  const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+  const existingUser = await User.findOne({
+    token: hashedToken,
+    expireToken: { $gt: Date.now() },
+  });
 
   try {
+   
     if (!existingUser) {
-      return res.status(404).json({ msg: "User not found" });
-    }
-    for (const [key, value] of Object.entries(requiredInformation)) {
-      if (!value) {
-        return res.status(404).json({ msg: `Some Fields Are Missing Out` });
-      }
+      return res.status(404).json({ message: "Invalid or expired token" });
     }
 
-    for (const [key, value] of Object.entries(optionalInformation)) {
-      if (value) {
-        existingUser[key] = value;
-      }
-    }
+    existingUser.verified = true;
+    existingUser.token = undefined;
+    existingUser.expireToken = undefined;
 
-    for (const [key, value] of Object.entries(requiredInformation)) {
-      existingUser[key] = value;
-    }
-
-    if (profileImg) {
-      const imageToUpload = async () => {
-        const StorageBucket = ref(
-          storage,
-          `Doctors/${existingUser.name}/${existingUser._id}`
-        );
-
-        const SnapShot = await uploadBytes(StorageBucket, profileImg.buffer, {
-          contentType: profileImg.mimetype,
-        });
-
-        const downloadUrl = await getDownloadURL(SnapShot.ref);
-
-      await  existingUser.updateOne({
-          profileImg: {
-            filename: profileImg.originalname,
-            url: downloadUrl,
-            contentType: profileImg.mimetype,
-            path: StorageBucket.fullPath,
-          },
-        });
-      };
-
-      imageToUpload();
-    }
-
-
+  
     await existingUser.save();
     return res
-      .status(200)
-      .json({ msg: `Information Added Successfully`, existingUser });
+      .status(201)
+      .json({ message: "User has been verified successfully" });
   } catch (error) {
-    const errMsg = error;
-    return next(errMsg);
+    return next(error);
+  }finally{
+
+    const Notification = {
+      type: "Email Verified",
+      description: "Email Verified Successfully",
+      title: "System Administration",
+      assignedTo: "All",
+      eventId: existingUser._id,
+    };
+   const systemNotification = new Notifications(Notification);
+
+    await systemNotification.save();
+
+    io.emit(`EmailVerification${existingUser._id}`, Notification);
+  }
+};
+export const deleteUser = async (req, res, next) => {
+  const { id } = req.params;
+  const existingUser = await User.findById(id);
+
+  const userAppointments = await Appointment.find({ user: id });
+  const userNotifications = await Notifications.find({$or:[{user:id},{eventId:id}]})
+  const userCode = await codeSchema.findOne({code:existingUser.code})
+  try {
+    if (!existingUser) {
+      return res.status(404).json({ message: "User Not Found" });
+    }
+
+    userAppointments.map(async (app) => await app.deleteOne());
+
+    userNotifications.map(async(notification) => await notification.deleteOne())
+
+    userCode.used = false
+
+    // const storageRef = ref(storage, existingUser.profileImg.path);
+    // if (storageRef) {
+    //   await deleteObject(storageRef);
+    // }
+
+    await userCode.save()
+    await existingUser.deleteOne();
+    
+
+    return res
+      .status(200)
+      .json({ message: "User deleted successfully", userAppointments });
+  } catch (error) {
+    return next(error);
   }
 };
 
 
-export const deleteUser = async (req, res,next) => {
-  const { id } = req.params;
-  const existingUser = await User.findById(id);
-
-   const userAppointments = await Appointment.find({user: id})
-  try {
-    
-    if(!existingUser){
-      return res.status(404).json({message: "User Not Found"})
-
-    }
-
-     userAppointments.map(async(app ) => await app.deleteOne())
-
-
-     await existingUser.deleteOne()
-
-    return res.status(200).json({message: "User deleted successfully",userAppointments})
-  } catch (error) {
-    
-    return next(error);
-  }
-}

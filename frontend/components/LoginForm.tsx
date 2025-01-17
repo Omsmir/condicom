@@ -112,8 +112,6 @@ const LoginForm = () => {
           fieldType={FormFieldType.PASSWORD}
           type={state ? "text" : "password"}
           error={form.formState.errors.password}
-          forget
-          state
           children={
             <>
               {state ? (

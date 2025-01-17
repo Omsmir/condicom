@@ -37,11 +37,6 @@ const AppSidebar = () => {
   const { open, setOpen, openMobile, setOpenMobile, isMobile } = useSidebar();
   const { data: session } = useSession();
 
-  const handleSidebar = () => {
-    if (!open) setOpen(true);
-    if (openMobile) setOpenMobile(false);
-  };
-
   const Item = ({ item }: { item: any;}) => {
     return (
       <SidebarMenuItem
@@ -56,7 +51,7 @@ const AppSidebar = () => {
             href={item.url}
             className={clsx("h-full rounded-xl transition-colors", {
               "bg-[var(--sidebar-accent)]  text-slate-50 dark:bg-[var(--sidebar-accent)]":
-                pathname === item.url,
+                pathname === item.url 
             })}
           >
             <item.icon />
@@ -70,12 +65,12 @@ const AppSidebar = () => {
   };
   return (
     <Dialog>
-      <Sidebar className="border-none h-screen" collapsible="icon">
+      <Sidebar className="border-r dark:border-slate-700 h-screen" collapsible="icon">
         {/* Header and Trigger */}
 
         <SidebarHeader
           onClick={() => setOpen(!open)}
-          className="my-4 mx-4 p-0 min-w-[25px]"
+          className="flex justify-center items-center h-14 px-4 border-b dark:border-slate-700 p-0 min-w-[25px]"
         >
           <span className={`flex justify-start items-center cursor-pointer`}>
             <Image
@@ -112,7 +107,7 @@ const AppSidebar = () => {
               <SidebarMenu className="h-full">
                 {sideItems.map((item,index) => {
                   if (item.private) {
-                    if (session?.user.role === "admin") {
+                    if (session?.user.role === "Admin") {
                       return <Item item={item} key={item.title} />;
                     }
                   } else if (item.title === "Pharmacy") {
@@ -147,7 +142,7 @@ const AppSidebar = () => {
               <SidebarMenuItem>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <SidebarMenuButton className="font-medium transition-colors hover:bg-slate-100 hover:text-dark-300 hover:dark:hover:bg-[var(--sidebar-accent)] hover:dark:text-slate-50">
+                    <SidebarMenuButton className="font-medium lowercase whitespace-nowrap transition-colors hover:bg-slate-100 hover:text-dark-300 hover:dark:hover:bg-[var(--sidebar-accent)] hover:dark:text-slate-50">
                       <User /> {session?.user.name}
                       <ChevronUp className="ml-auto" />
                     </SidebarMenuButton>

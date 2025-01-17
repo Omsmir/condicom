@@ -1,21 +1,37 @@
-import { Payment,columns } from "./relatedComponents/Columns"
-import { DataTable } from "./relatedComponents/Table"
-import { CustomerService } from "./service/Data"
+import { getAllUsers } from "@/actions/getUser";
+import { columns } from "./table/Columns";
+import { DataTable } from "./table/Table";
+import { CustomerService } from "./service/Data";
+import { UserInformation } from "@/types";
+import { medicalSpecialties } from "@/lib/constants";
+import { Suspense } from "react";
+import Loading from "@/app/loading";
+
 async function getData(): Promise<any> {
   // Fetch data from your API here.
-  const data =     CustomerService.getCustomersXLarge()
+  const data = CustomerService.getCustomersXLarge();
 
-  return (await data).map((ele) => ele)
-  
+  return (await data).map((ele) => ele);
 }
 
-export default async function Doctors() {
-  const data = await getData()
+const Doctors = async () => {
+  const data = await getAllUsers();
+
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
+  const primary = data.users as UserInformation[];
+
+  const doctorUsers = primary.filter((user) =>
+    medicalSpecialties.some(
+      (medicalrole) => medicalrole.specialty === user.occupation
+    )
+  );
+
+  console.log(doctorUsers);
 
   return (
-    <div className="">
-       <DataTable columns={columns} data={data} />
- 
-    </div>
-  )
-}
+      <DataTable columns={columns} data={data.users} />
+  );
+};
+
+export default Doctors;

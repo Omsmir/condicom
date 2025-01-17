@@ -122,6 +122,7 @@ declare interface Appointment {
   color:string;
   user:string;
   completed:boolean;
+  createdAt:Date;
 }
 
 
@@ -133,5 +134,58 @@ appointment:Appointment[]
 declare module 'jspdf' {
   interface jsPDF {
     autoTable: (options: any) => jsPDF;
+  }
+}
+
+
+declare interface Notification {
+  _id: string;
+  type: string;
+  title: string;
+  description: string;
+  user: string;
+  assignedBy:string;
+  assignedTo?:string;
+  eventId?: string;
+  updatedAt: Date;
+  seen: boolean;
+}
+declare interface Notifications {
+  notifications: Notification[]
+}
+
+
+
+declare interface UserInformation {
+  _id:string;
+  name:string;
+  weight:string;
+  height:string;
+  bio:string;
+  address:string;
+  phone:string;
+  birthDate:Date;
+  gender:string;
+  occupation:string;
+  role:string;
+  email:string;
+  profileImg:{
+    url:string
+  }
+  code:string;
+  country:string;
+  verified:boolean;
+  profileState?:boolean
+}
+
+
+declare interface ObjectType{
+  public:{
+    title:string;
+    tone:string
+  }
+  adminOnly:{
+    title:string;
+    tone:string
   }
 }

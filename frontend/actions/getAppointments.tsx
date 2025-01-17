@@ -1,3 +1,6 @@
+import { Appointment } from "@/types";
+import axios from "axios";
+
 export const getAppointments = async () => {
  try {
     const response = await fetch("http://localhost:8080/api/appointments/");
@@ -21,3 +24,19 @@ export const getAppointments = async () => {
     console.log(error);
  }
 };
+
+
+
+export const getUserAppointments = async (userId:string) => {
+   try {
+      const response = await axios.get(`http://localhost:8080/api/appointments/${userId}`)
+      if(response.status !== 200){
+         throw new Error(response.data.message)
+      }
+      const Appointments = await response.data.userAppointments as Appointment[]
+
+      return Appointments
+   } catch (error:any) {
+      console.log(error.message)
+   }
+}

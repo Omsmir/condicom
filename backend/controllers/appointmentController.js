@@ -1,11 +1,12 @@
-
+import { isBefore, isEqual, isSameDay, isAfter } from "date-fns";
 import { Appointment } from "../db/schema/appointment.js";
 import { User } from "../db/schema/user.js";
-import {Socket,Server} from "socket.io"
+import { Socket, Server } from "socket.io";
+import mongoose from "mongoose"
 export const CreateAppointment = async (req, res, next) => {
-
-  const { task, startDate, endDate, interval, color,userId ,description} = req.body;
-  const ArrayOfValues = [task, startDate, endDate, interval,userId];
+  const { task, startDate, endDate, interval, color, userId, description } =
+    req.body;
+  const ArrayOfValues = [task, startDate, endDate, interval, userId];
   try {
     ArrayOfValues.map((value) => {
       if (!value) {
@@ -14,7 +15,7 @@ export const CreateAppointment = async (req, res, next) => {
     });
 
     const reservedDates = await Appointment.find({
-      user:userId,
+      user: userId,
       $or: [
         {
           // Case 1: New startDate falls within an existing range
@@ -32,17 +33,48 @@ export const CreateAppointment = async (req, res, next) => {
           endDate: { $lte: endDate },
         },
       ],
-      
     });
+    const reservedFrontDates = () => {
+      let datesArrayState = false;
+      if (
+        isBefore(endDate, startDate) ||
+        isEqual(endDate, startDate) ||
+        !isSameDay(endDate, startDate)
+      ) {
+        datesArrayState = true;
+        if (isBefore(endDate, startDate)) {
+          return {
+            datesArrayState,
+            msg: "The end date is before the start date",
+          };
+        }
 
-      console.log(reservedDates)
+        if (isEqual(startDate, endDate)) {
+          return {
+            datesArrayState,
+            msg: "The start and end dates are the same",
+          };
+        }
+        if (!isSameDay(endDate, startDate)) {
+          return {
+            datesArrayState,
+            msg: "The Dates are not the on the same day",
+          };
+        }
+      }
+
+      return { datesArrayState };
+    };
+
+    if (reservedFrontDates().datesArrayState) {
+      return res.status(400).json({ message: reservedFrontDates().msg });
+    }
     if (reservedDates.length > 0) {
-      return res
-        .status(400)
-        .json({ message: "The new task conflicts with existing appointments." });
+      return res.status(400).json({
+        message: "The new task conflicts with existing appointments.",
+      });
     }
 
-   
     const Appointments = new Appointment({
       task,
       description,
@@ -50,8 +82,8 @@ export const CreateAppointment = async (req, res, next) => {
       endDate,
       interval,
       color,
-      user:userId,
-      completed:false
+      user: userId,
+      completed: false,
     });
 
     await Appointments.save();
@@ -63,6 +95,26 @@ export const CreateAppointment = async (req, res, next) => {
   }
 };
 
+export const getuserAppointments = async (req, res, next) => {
+  const { userId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    return res.status(400).json({ message: "Invalid user ID format" });
+  }
+  const userAppointments = await Appointment.find({ user: userId }).sort({
+    startDate: 1,
+  });
+
+  try {
+    if (!userAppointments) {
+      return res.status(404).json({ message: "User Don't Have Appointments" });
+    }
+
+    return res.status(200).json({ userAppointments });
+  } catch (error) {
+    return next(error);
+  }
+};
 export const getAppointment = async (req, res, next) => {
   try {
     const Appointments = await Appointment.find({});
@@ -94,27 +146,37 @@ export const deleteAppointment = async (req, res, next) => {
   }
 };
 
-
-export const editAppointment = async (req, res,next) => {
+export const editAppointment = async (req, res, next) => {
   const { id } = req.params;
-  const{task,description,color,startDate,endDate,interval,completed} = req.body
+  const { task, description, color, startDate, endDate, interval, completed } =
+    req.body;
   try {
-    const AppointmentToEdit = await Appointment.findById(id)
+    const AppointmentToEdit = await Appointment.findById(id);
 
     if (!AppointmentToEdit) {
       return res.status(404).json({ message: "Appointment not found" });
     }
-    
-    const updates = { task, description, color, startDate, endDate ,interval,completed};
+
+    const updates = {
+      task,
+      description,
+      color,
+      startDate,
+      endDate,
+      interval,
+      completed,
+    };
 
     for (const [key, value] of Object.entries(updates)) {
       if (value) {
         AppointmentToEdit[key] = value;
       }
     }
-    await AppointmentToEdit.save()
-     return res.status(200).json({ message: "Appointment edited successfully", AppointmentToEdit })
+    await AppointmentToEdit.save();
+    return res
+      .status(200)
+      .json({ message: "Appointment edited successfully", AppointmentToEdit });
   } catch (error) {
-     return next(error.message)
+    return next(error.message);
   }
-}
+};

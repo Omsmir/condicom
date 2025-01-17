@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import Loading from "@/app/loading";
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: "Health - Dashboard",
   description: "Welcome to dashboard",
 };
 

@@ -2,7 +2,7 @@
 import Calender from "@/components/Calender";
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Appointments",
+  title: "Health - Appointments",
   description: "Welcome to dashboard",
 };
 import { getAppointments } from "@/actions/getAppointments";
@@ -18,3 +18,6 @@ const page = async () => {
 };
 
 export default page;
+
+
+export const dynamic = 'force-dynamic'

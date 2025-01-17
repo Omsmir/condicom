@@ -19,6 +19,7 @@ import FileUploader from "../FileUploader";
 import { getSession, signIn, useSession } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DashboardHook } from "../context/Dashboardprovider";
+import { UserInformation } from "@/types";
 
 const Profile = () => {
   const router = useRouter();
@@ -53,7 +54,7 @@ const Profile = () => {
       },
       {
         title: "country",
-        value: values.country.label,
+        value: `${values.country.label}`,
       },
       {
         title: "bio",
@@ -71,15 +72,13 @@ const Profile = () => {
       }
     });
 
-    console.log(session?.user)
-
     try {
       const response = await axios.put(
         `http://localhost:8080/api/auth/${session?.user.id}`,
         formData
       );
-     
 
+      const user = await response.data.existingUser as UserInformation
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       if (response.status === 200) {
@@ -91,8 +90,27 @@ const Profile = () => {
         });
 
         const updatedSession = await getSession();
-        console.log("Updated session:", updatedSession);
 
+        const requiredData = {
+          notification:"newUserHasJoined",
+          user: user
+        }
+
+           
+        console.log(requiredData)
+        await axios.post(
+          "http://localhost:8080/api/notifications/system",
+          {
+            notification:"newUserHasJoined",
+            user:user
+          },
+          {
+            headers: {
+              "Content-Type": "application/json", // Ensures the server reads it as JSON
+            },
+          }
+
+        );
         router.push("/dashboard");
       }
     } catch (error: unknown) {

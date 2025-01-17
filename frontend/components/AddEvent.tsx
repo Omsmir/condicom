@@ -21,14 +21,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useSession } from "next-auth/react";
 import { DashboardHook } from "./context/Dashboardprovider";
 import { notification } from "antd";
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
+
 
 const AddEvent = ({ state }: { state: boolean }) => {
   const { data: session } = useSession();
@@ -50,6 +43,8 @@ const AddEvent = ({ state }: { state: boolean }) => {
   const onSubmit = async (values: Zod.infer<typeof AppointmentSchema>) => {
     setIsLoading(true);
 
+    const notificationData = new FormData();
+
     const formData = new FormData();
 
     const hoursInterval = differenceInMinutes(values.endDate, values.startDate);
@@ -67,22 +62,19 @@ const AddEvent = ({ state }: { state: boolean }) => {
     formData.append("userId", session?.user.id as string);
     formData.append("description", values.description as string);
 
-    try {
-      if (
-        isBefore(values.endDate, values.startDate) ||
-        isEqual(values.startDate, values.endDate) || //You Have To Refactor That Part In The Backend Not Here
-        !isSameDay(values.startDate, values.endDate)
-      ) {
-        setIsLoading(false);
+const userRole = () => {
+  if(session?.user.role === "Admin") return "Admin"
+  return ""
+}
+    //  Appointment Creation NotificationData
+    notificationData.append("type","appointment creation")
+    notificationData.append("title","Appointment Creation")
+    notificationData.append("description", `created a new appointment`)
+    notificationData.append("assignedBy",`${userRole()} ${session?.user.name}`)
+    notificationData.append("user",`${session?.user.id}`)
 
-        return api.error({
-          message:
-            "Whether the Dates Are Equal Or The End Date Is Earlier Than The Start Date",
-          description: "something went wrong",
-          showProgress: true,
-          pauseOnHover: false,
-        });
-      }
+    try {
+  
       const response = await axios.post(
         `http://localhost:8080/api/appointments`,
         formData
@@ -96,6 +88,7 @@ const AddEvent = ({ state }: { state: boolean }) => {
           pauseOnHover: false,
         });
 
+        await axios.post(`http://localhost:8080/api/notifications/create`,notificationData)
         setVisible(false);
 
         router.refresh();
@@ -145,12 +138,15 @@ const AddEvent = ({ state }: { state: boolean }) => {
     <React.Fragment>
       {contextHolder}
       <Button className="AppointmentCreate" onClick={handleClickOpen}>
-        Create
+        Add Event
       </Button>
-      <BootstrapDialog
+      <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={visible}
+        style={{zIndex: 1000}}
+        fullWidth
+        maxWidth="md"
       >
         <DialogTitle
           sx={{ fontSize: "18px", fontWeight: "bold" }}
@@ -234,7 +230,7 @@ const AddEvent = ({ state }: { state: boolean }) => {
             </form>
           </Form>
         </DialogContent>
-      </BootstrapDialog>
+      </Dialog>
     </React.Fragment>
   );
 };

@@ -9018,7 +9018,7 @@ export const CustomerService = {
     },
 
     getCustomersMedium() {
-        return Promise.resolve(this.getData().slice(0, 50));
+        return Promise.resolve(this.getData().slice(0, 500));
     },
 
     getCustomersLarge() {

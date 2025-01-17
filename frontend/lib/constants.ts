@@ -1,3 +1,5 @@
+import { ObjectType } from "@/types";
+import { BellOutlined } from "@ant-design/icons";
 import {
   Calendar,
   Home,
@@ -74,7 +76,8 @@ export const sideItems = [
    {
     title:"Doctors",
     url:"/dashboard/doctors",
-    icon: UserCheck
+    icon: UserCheck,
+    private:true
    },
    {
     title:"Patients",
@@ -97,6 +100,11 @@ export const sideItems = [
     url: "/dashboard/profile",
     icon: CircleUser,
   },
+  {
+    title: "Notifications",
+    url: "/dashboard/notifications",
+    icon: BellOutlined,
+  },
 
 ];
 export const gender = [
@@ -109,8 +117,8 @@ export const gender = [
     image: "/assets/icons/female.png",
   },
   {
-    title: "Other",
-    image: "/assets/icons/more.png",
+    title: "Transgender",
+    image: "/assets/icons/trans.png",
   },
 ];
 
@@ -326,3 +334,21 @@ export const heigths = [
   "195 cm (6 ft 5 in)",
   "200 cm (6 ft 7 in)"
 ]
+
+
+
+
+export const notificationSounds = (tone: keyof ObjectType): string | null => {
+const systemSounds: ObjectType =  {
+ adminOnly: {
+    title:"public",
+    tone: "/assets/audio/airport-call-157168.mp3"
+  },
+  public:{
+    title:"AdminOnly",
+    tone: "/assets/audio/appointment.mp3"
+  }
+} 
+  return systemSounds[tone].tone
+}
+

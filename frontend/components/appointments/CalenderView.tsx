@@ -15,8 +15,11 @@ import {
   isSameDay,
   eachMinuteOfInterval,
   getMinutes,
+  addMonths,
+  endOfMonth,
+  getDate,
 } from "date-fns";
-import { MotionComponent } from "./Motion";
+import { MotionComponent } from "../relatedComponents/Motion";
 import { useMediaQuery } from "react-responsive";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import "overlayscrollbars/overlayscrollbars.css";
@@ -36,6 +39,7 @@ const CalenderView = ({ appointment }: Appointments) => {
     DaysOfthePrevMonth,
     daysOfThisMonth,
     setState,
+    setCurrDate
   } = CalenderHook();
 
 
@@ -143,7 +147,16 @@ const CalenderView = ({ appointment }: Appointments) => {
   };
 
   const handleClickForDayMobile = (day: Date) => {
+
+    if(getDate(endOfMonth(state)) ==  getDate(day)){
+      const next = addMonths(currDate, 1);
+
+      setCurrDate(next);
+      setState(next);
+    }
     setState(day);
+
+   
   };
 
   switch (viewPort) {
@@ -177,7 +190,7 @@ const CalenderView = ({ appointment }: Appointments) => {
                     return (
                       <CalenderRow
                         day={day}
-                        className=" border-b border-r bg-[hsl(var(--sidebar-accent))] hover:bg-slate-200 dark:hover:bg-[var(--sidebar-accent)] cursor-pointer"
+                        className=" border-b border-r bg-[var(--sidebar-background)] hover:bg-slate-200 dark:hover:bg-[var(--sidebar-accent)] cursor-pointer"
                         classname="text-slate-500"
                         key={index}
                         appointment={appointment}
@@ -187,7 +200,7 @@ const CalenderView = ({ appointment }: Appointments) => {
                     return (
                       <CalenderRow
                         day={day}
-                        className="border-r hover:bg-slate-100 dark:hover:bg-[var(--sidebar-accent)]"
+                        className="border-r hover:bg-slate-100 dark:hover:bg-[var(--sidebar-background)]"
                         key={index}
                         appointment={appointment}
                       />
@@ -196,7 +209,7 @@ const CalenderView = ({ appointment }: Appointments) => {
                     return (
                       <CalenderRow
                         day={day}
-                        className="border-r hover:bg-slate-100 dark:hover:bg-[var(--sidebar-accent)]"
+                        className="border-r hover:bg-slate-100 dark:hover:bg-[var(--sidebar-background)]"
                         key={index}
                         appointment={appointment}
                       />
@@ -219,7 +232,7 @@ const CalenderView = ({ appointment }: Appointments) => {
                   className={clsx(
                     ` flex justify-center items-center sm:border-r ${inter.className} py-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800  dark:border-slate-700`,
                     {
-                      "bg-blue-200 dark:bg-slate-800": getDayOfYear(day) === getDayOfYear(state),
+                      "bg-blue-200 dark:bg-[var(--sidebar-background)]": getDayOfYear(day) === getDayOfYear(state),
                     }
                   )}
                   key={index}
@@ -244,7 +257,7 @@ const CalenderView = ({ appointment }: Appointments) => {
             <div className="sm:col-span-1"></div>
           </div>
           <OverlayScrollbarsComponent defer>
-            <div className="grid grid-cols-12">
+            <div className="grid grid-cols-12" >
               <div className="grid grid-rows col-span-2 sm:col-span-1 ">
                 {theHoursOfDay.map((hour, index) => (
                   <p
@@ -269,3 +282,5 @@ const CalenderView = ({ appointment }: Appointments) => {
 };
 
 export default CalenderView;
+
+

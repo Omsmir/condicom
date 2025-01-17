@@ -46,7 +46,7 @@ const BadgeAvatar = () => {
         variant="dot"
         className='mr-1'
       >
-        <Avatar alt="Remy Sharp" src={session?.user.image || "/assets/images/dr-cruz.png"} />
+        <Avatar alt="profile" src={session?.user.image || "/assets/images/dr-cruz.png"} />
       </StyledBadge>
       <div className="flex flex-col">
         <h1 className='font-medium text-sm capitalize'>{session?.user.name}</h1>

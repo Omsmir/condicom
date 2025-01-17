@@ -54,15 +54,49 @@ export const RegisterSchema = Yup.object({
   phone: Yup.string().min(10, "Phone number is required.").required("please enter your phone"),
   gender: Yup.string()
     .default("male")
-    .oneOf(["Male", "Female", "Other"], "please select a gender"),
-  birthDate: Yup.string().test(
-    "valid-date",
-    "Invalid date",
-    (value: any) => !isNaN(Date.parse(value))
-  ),
+    .oneOf(["Male", "Female", "Transgender"], "please select a gender"),
+    birthDate: Yup.string()
+    .test(
+      "valid-date",
+      "Invalid date",
+      (value: any) => value && !isNaN(Date.parse(value))
+    )
+    .test(
+      "logical-date",
+      "Date must be in the past",
+      (value:any) => value && new Date(value).getTime() < Date.now()
+    )
+    .required("BirthDate is required"),
+
   code: Yup.string().required("Support a code").matches(/B(1|2)[0-5](C|D|E)[0-9]{5}/g,"Code is Invaild"),
 });
 
+const validImageExtensions = ["jpg", "jpeg", "png", "gif", "bmp", "webp"];
+
+export const PostRegisterSchema = z.object({
+  profileImg: z.custom<File[]>((files) => {
+   return files && files.length > 0
+    
+  }, {
+    message: "Please select an Image",
+  }).refine((files) =>{
+    if (!Array.isArray(files) || files.length === 0) {
+      return false;
+    }
+    return files.every((file) => {
+      const fileName = file.name.toLowerCase();
+      const extension = fileName.split(".").pop();
+      return validImageExtensions.includes(extension || "");
+    });
+  },{message: "please select a valid image "}),
+  weight: z.string({message: "Please Select Weight"}),
+  height: z.string({message: "Please Select Height"}),
+  address: z.string().optional(),
+  bio:z.string().min(30,"Bio Must Exceed 30 characters").max(350,"Bio Can't Be More Than 350 characters").optional(),
+  occupation: z.string({message: "Please Select Occupation"}),
+  country: z.object({label: z.string({message: "Please Select"})},{message: "Please Select a Country"})
+
+})
 
 export const AppointmentSchema = z.object({
   Task:z.string({message:"Please Provide a Task"}).min(2,"min characters is 2").max(40,"max length is 20 characters"),
@@ -73,15 +107,3 @@ export const AppointmentSchema = z.object({
   
 })
 
-export const PostRegisterSchema = z.object({
-  profileImg:z.custom<File[]>((file) => file,{
-    message:"Please Select an Image"
-  }),
-  weight: z.string({message: "Please Select Weight"}),
-  height: z.string({message: "Please Select Height"}),
-  address: z.string().optional(),
-  bio:z.string().min(30,"Bio Must Exceed 30 characters").max(350,"Bio Can't Be More Than 350 characters").optional(),
-  occupation: z.string({message: "Please Select Occupation"}),
-  country: z.any().optional()
-
-})

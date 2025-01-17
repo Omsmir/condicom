@@ -10,6 +10,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 router.post("/register",storage.none(),register)
 
+ 
 router.post("/login",Login)
 
 router.post("/generate",storage.none(),codeGenerator)
@@ -20,5 +21,8 @@ router.get("/:id",getUser)
 
 router.get("/",getAllUsers)
 
+
 router.delete("/:id",deleteUser)
 export default router
+
+

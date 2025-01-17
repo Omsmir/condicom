@@ -27,6 +27,7 @@ import { CalenderHook } from "./context/CalenderProvider";
 import { ColorPicker } from "antd";
 import ReactCountryFlagsSelect from 'react-country-flags-select';
 import { cn } from "@/lib/utils";
+import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 
 
 
@@ -75,9 +76,9 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
   const ErrorComponent = () => {
     if (props.state) {
       if (props.error) {
-        return <XCircle className=" text-red-500" size={20} />;
+        return <CloseCircleFilled className=" text-red-500" size={20} />;
       } else if (field.value) {
-        return <CheckCircle className=" text-green-500" size={20} />;
+        return <CheckCircleFilled className=" text-green-500" size={20} />;
       }
     } else {
       return null;
@@ -133,11 +134,11 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
           </FormControl>
           <div className="flex justify-center items-center mx-2">
             {props.error ? (
-              <XCircle className=" text-red-500 mx-2" size={20} />
+              <CloseCircleFilled className=" text-red-500 mx-2" size={20} />
             ) : (
               field.value && (
                 <>
-                  <CheckCircle className=" text-green-500 mx-2" size={20} />
+                  <CheckCircleFilled className=" text-green-500 mx-2" size={20} />
                   {props.children}
                 </>
               )
@@ -201,7 +202,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
               className="date-picker pl-2 focus:shadow-none p-calender"
               placeholder="select a date"
               variant="filled"
-              dateFormat="mm/dd/yy"
+              dateFormat="mm/dd//yy"
               showTime={props.showTimeSelect || undefined}
               timeOnly={props.timeOnly || undefined}
               hourFormat="12"
@@ -209,7 +210,6 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
               stepMinute={30}
               disabled={props.disabled}
               touchUI
-
             />
           </FormControl>
         </div>

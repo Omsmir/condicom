@@ -79,7 +79,7 @@ export const productCreation = async (req, res, next) => {
     const imagesFromFirebase = files.map(async (file) => {
       const storageBucket = ref(
         storage,
-        `products_${product.length + 1}/${Date.now()}_${file.originalname}`
+        `products/products_${product.length + 1}/${Date.now()}_${file.originalname}`
       );
 
       const snapShot = await uploadBytes(storageBucket, file.buffer, {

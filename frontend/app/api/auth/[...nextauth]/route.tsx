@@ -3,10 +3,11 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { JWT } from "next-auth/jwt";
+import { cookies } from "next/headers";
+import { UserInformation } from "@/types";
 
+const authOptions: AuthOptions = {
 
-
- const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -38,12 +39,11 @@ import { JWT } from "next-auth/jwt";
               id: decodedToken.id,
               role: decodedToken.role,
               name: decodedToken.name,
-              profileImg:decodedToken.profileImg,
+              profileImg: decodedToken.profileImg,
               verified: decodedToken.verified,
-              expires:decodedToken.expires,
+              expires: decodedToken.expires,
               token,
             };
-
           }
           return null; // Return null if no token is found
         } catch (error: any) {
@@ -52,7 +52,8 @@ import { JWT } from "next-auth/jwt";
           if (error.response) {
             const { status, data } = error.response;
             if (status === 401) throw new Error("Invalid email or password.");
-            if (status === 403) throw new Error(data?.msg || "Access forbidden.");
+            if (status === 403)
+              throw new Error(data?.msg || "Access forbidden.");
             throw new Error(data?.msg || "An unexpected error occurred.");
           }
 
@@ -62,7 +63,7 @@ import { JWT } from "next-auth/jwt";
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: { token: JWT; user: any ;}) {
+    async jwt({ token, user }: { token: JWT; user: any }) {
       if (user) {
         token.id = user.id;
         token.role = user.role;
@@ -71,15 +72,24 @@ import { JWT } from "next-auth/jwt";
         token.profileImg = user.profileImg;
         token.verified = user.verified;
       }
-     
-      console.log(token);
+
       return token;
     },
     async session({ session, token }) {
+      // const response = await fetch(`http://localhost:8080/api/auth/${token.id}`)
+      // const data = await response.json() 
+      // const user = data.existingUser as UserInformation
       if (token) {
-        session.user = { ...session.user,id:token.id, role: token.role ,image: token.profileImg as string,name: token.name,verified: token.verified};
-        console.log(session)
+        session.user = {
+          ...session.user,
+          id: token.id,
+          role: token.role,
+          image: token.profileImg as string,
+          name: token.name,
+          verified: token.verified,
+        };
       }
+      console.log(session);
       return session;
     },
   },

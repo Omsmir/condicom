@@ -1,5 +1,5 @@
 import { CalenderProvider } from "@/components/context/CalenderProvider";
-import CalenderHeader from "@/components/relatedComponents/CalenderHeader";
+import CalenderHeader from "@/components/appointments/CalenderHeader";
 export default async function RootLayout({
   children,
 }: Readonly<{
