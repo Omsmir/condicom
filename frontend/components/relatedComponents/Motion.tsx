@@ -1,31 +1,28 @@
-"use client"
+"use client";
 import { motion } from "framer-motion";
 import React from "react";
 
 interface Props {
-    children:React.ReactNode;
-    className?:string
+  children: React.ReactNode;
+  className?: string;
 }
-export const MotionComponent:React.FC<Props> = ({ children,className }) => {
-  const visible = { opacity: 1, scale: 1, transition: { duration: 0.6 } };
+
+export const MotionComponent: React.FC<Props> = ({ children, className = "" }) => {
+  const variants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.7, staggerChildren: 0.3 } },
+    exit: { opacity: 0, transition: { duration: 1 } },
+  };
 
   return (
     <motion.section
       initial="hidden"
       animate="visible"
-    className={className}
-      exit={{ opacity: 0, transition: { duration: 1 } }}
-      variants={{ visible: { transition: { staggerChildren: 0.3 } } }}
+      exit="exit"
+      variants={variants}
+      className={className}
     >
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, scale: 0.9 },
-          visible,
-        }}
-     
-      >
-        {children}
-      </motion.div>
+      <motion.div variants={variants}>{children}</motion.div>
     </motion.section>
   );
 };

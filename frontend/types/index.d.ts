@@ -90,6 +90,7 @@ declare module "next-auth" {
       id: string;
       role: string;
       verified?:boolean;
+      code:string;
     } & DefaultSession["user"];
   }
 
@@ -109,6 +110,7 @@ declare module "next-auth/jwt" {
     verified?: boolean;
     trigger:any;
     session:any;
+    code:string;
   }
 }
 

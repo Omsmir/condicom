@@ -2,7 +2,33 @@ import { isBefore, isEqual, isSameDay, isAfter } from "date-fns";
 import { Appointment } from "../db/schema/appointment.js";
 import { User } from "../db/schema/user.js";
 import { Socket, Server } from "socket.io";
-import mongoose from "mongoose"
+import mongoose from "mongoose";
+import { differenceInMinutes } from "date-fns";
+const UpdateInterval = async () => {
+  try {
+    const Appointments = await Appointment.find({});
+
+    for (const appointment of Appointments) {
+      const newInterval =
+        (differenceInMinutes(appointment.endDate, appointment.startDate) / 30) *
+        100;
+
+      await appointment.updateOne({
+        $set: {
+          interval:newInterval
+        },
+      });
+
+      await appointment.save();
+    }
+    console.log("Intervals updated successfully!");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+// UpdateInterval();
 export const CreateAppointment = async (req, res, next) => {
   const { task, startDate, endDate, interval, color, userId, description } =
     req.body;

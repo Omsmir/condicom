@@ -53,7 +53,7 @@ const SingleAppointment = ({
       ?.map((appointment) => {
         if (isToday(appointment.startDate)) {
           return <DateStructure time="today" />;
-        } else if (isTomorrow(appointment.startDate)) {
+        } else if (isAfter(appointment.startDate,currDate)) {
           return <DateStructure time="Upcoming" />;
         }
 
@@ -62,10 +62,7 @@ const SingleAppointment = ({
       .slice(0, 1);
   };
 
-  const TodayAppointments = appointments?.filter((appointment) =>
-    isToday(appointment.startDate)
-  );
-  console.log(TodayAppointments);
+
   const AppointmentStructure = ({
     appointment,
     index,

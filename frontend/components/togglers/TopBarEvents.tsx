@@ -30,7 +30,6 @@ import { Days, notificationSounds } from "@/lib/constants";
 import { useMediaQuery } from "react-responsive";
 import AddEvent from "../AddEvent";
 import { Table } from "@tanstack/react-table";
-
 import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -40,11 +39,11 @@ import {
   DeleteFilled,
   ExclamationCircleFilled,
   InfoCircleFilled,
-  SwitcherOutlined,
+  PlusCircleFilled,
   UserAddOutlined,
 } from "@ant-design/icons";
 import * as Tone from "tone";
-import { io, Socket } from "socket.io-client";
+import {  Socket } from "socket.io-client";
 import { DefaultEventsMap } from "@socket.io/component-emitter";
 
 export function FadeMenu() {
@@ -199,7 +198,7 @@ export const SwitchDay = () => {
         setState(next);
       }
       default:
-        return;
+        setState(next)
     }
   };
 
@@ -345,7 +344,7 @@ export const notificationTime = (startDate: Date, endDate: Date) => {
 export const NotificationType = (notification: Notification) => {
   switch (notification.type) {
     case "appointment creation":
-      return <SwitcherOutlined />;
+      return <PlusCircleFilled className="text-green-800"/>;
     case "appointment deletion":
       return <DeleteFilled className="text-red-800" />;
     case "Email Verification":

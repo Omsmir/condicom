@@ -42,6 +42,7 @@ const authOptions: AuthOptions = {
               profileImg: decodedToken.profileImg,
               verified: decodedToken.verified,
               expires: decodedToken.expires,
+              code:decodedToken.code,
               token,
             };
           }
@@ -71,6 +72,7 @@ const authOptions: AuthOptions = {
         token.token = user.token;
         token.profileImg = user.profileImg;
         token.verified = user.verified;
+        token.code = user.code
       }
 
       return token;
@@ -87,6 +89,7 @@ const authOptions: AuthOptions = {
           image: token.profileImg as string,
           name: token.name,
           verified: token.verified,
+          code:token.code
         };
       }
       console.log(session);

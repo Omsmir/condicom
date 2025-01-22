@@ -278,6 +278,7 @@ export const Login = async (req, res, next) => {
         profileImg: user.profileImg.url,
         name: user.name,
         verified: user.verified,
+        code:user.code
       },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }

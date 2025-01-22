@@ -202,7 +202,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
               className="date-picker pl-2 focus:shadow-none p-calender"
               placeholder="select a date"
               variant="filled"
-              dateFormat="mm/dd//yy"
+              dateFormat="mm/dd/yy"
               showTime={props.showTimeSelect || undefined}
               timeOnly={props.timeOnly || undefined}
               hourFormat="12"

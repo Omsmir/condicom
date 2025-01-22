@@ -2,15 +2,11 @@
 import { Button } from "../ui/button";
 import { prop } from "@/types";
 import Swal from "sweetalert2";
-import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { DashboardHook } from "../context/Dashboardprovider";
 
 const LogoutButton = (props: prop) => {
-
   const {setTheme } = DashboardHook()
-  const router = useRouter();
-
   const handelLogOut = async () => {
     try {
       Swal.fire({
@@ -29,12 +25,7 @@ const LogoutButton = (props: prop) => {
             callbackUrl: "/",
             redirect: true,           
           });
-
-
-          setTheme("light")
-    
-
-
+          setTheme("light") 
         }
       });
     } catch (error: any) {

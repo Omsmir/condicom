@@ -3,9 +3,17 @@
 import {
   addMonths,
   eachDayOfInterval,
+  EachDayOfIntervalResult,
+  eachHourOfInterval,
+  EachHourOfIntervalResult,
+  eachMinuteOfInterval,
+  EachMinuteOfIntervalResult,
+  endOfDay,
   endOfMonth,
   getDay,
   getDayOfYear,
+  getMinutes,
+  startOfDay,
   startOfMonth,
   subMonths,
 } from "date-fns";
@@ -38,7 +46,23 @@ export interface CalendarContextType {
   setWeekView: Dispatch<SetStateAction<CheckedState | undefined>>;
   WeekView: CheckedState | undefined;
   setDayView: Dispatch<SetStateAction<CheckedState | undefined>>;
-  DayView: CheckedState | undefined
+  DayView: CheckedState | undefined;
+  WeeksInterval: EachDayOfIntervalResult<{
+    start: Date;
+    end: Date;
+}, undefined>;
+DaysOfWeekCalender: Date[];
+DaysOfWeekRows: Date[];
+DaysOfWeekCalenderForMobileView: Date[];
+ theHoursOfDay: EachHourOfIntervalResult<{
+  start: Date;
+  end: Date;
+}, undefined>;
+TheMinutesInterval: EachMinuteOfIntervalResult<{
+  start: Date;
+  end: Date;
+}, undefined>;
+theMinutes: Date[];
 }
 type CheckedState = boolean | "indeterminate";
 type Checked = DropdownMenuCheckboxItemProps["checked"];
@@ -62,7 +86,6 @@ export const CalenderProvider = ({
   const [DayView, setDayView] = useState<Checked>(false);
   const FirstDayOfTheMonth = startOfMonth(currDate); // The First Day Of The Month
   const TheLastDayOfTheMonth = endOfMonth(currDate); // The Last Day Of The Month
-  const Today = getDayOfYear(currDate);
 
   const prevMonth = subMonths(currDate, 1);
   const nextMonth = addMonths(currDate, 1);
@@ -70,10 +93,8 @@ export const CalenderProvider = ({
   // Get the starting day of the week for the first day of the current month (0 = Sunday, 6 = Saturday)
   const startDayOfWeek = getDay(FirstDayOfTheMonth); // e.g., 0 for Sunday, 1 for Monday, etc.
 
-  const endDayofWeek = getDay(TheLastDayOfTheMonth);
 
   const endOfPrevMonth = endOfMonth(prevMonth);
-  const StartOfNextMonth = startOfMonth(nextMonth);
 
   const DateOfPrev = new Date(
     endOfPrevMonth.setDate(endOfPrevMonth.getDate() - startDayOfWeek)
@@ -101,6 +122,39 @@ export const CalenderProvider = ({
   ];
 
   calendarDays.length = 42;
+
+
+  
+    const WeeksInterval = eachDayOfInterval({
+      start: state,
+      end: calendarDays[41],
+    });
+
+    const DaysOfWeekCalender = [...WeeksInterval];
+
+    const DaysOfWeekRows = [...WeeksInterval];
+
+
+    const DaysOfWeekCalenderForMobileView = [...DaysOfWeekCalender];
+
+    DaysOfWeekCalenderForMobileView.length = 1
+
+     const beginningOfDay = startOfDay(state);
+      const terminalOfDay = endOfDay(state);
+    
+      const theHoursOfDay = eachHourOfInterval({
+        start: beginningOfDay,
+        end: terminalOfDay,
+      });
+    
+      const TheMinutesInterval = eachMinuteOfInterval({
+        start: beginningOfDay,
+        end: terminalOfDay,
+      });
+    
+      const theMinutes = TheMinutesInterval.filter(
+        (time) => getMinutes(time) % 30 === 0
+      );
   return (
     <CalenderContext.Provider
       value={{
@@ -129,6 +183,13 @@ export const CalenderProvider = ({
         DaysOftheNextMonth,
         daysOfThisMonth,
         calendarDays,
+        theHoursOfDay,
+        theMinutes,
+        TheMinutesInterval,
+        WeeksInterval,
+        DaysOfWeekCalender,
+        DaysOfWeekCalenderForMobileView,
+        DaysOfWeekRows
       }}
     >
       {children}

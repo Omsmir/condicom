@@ -1,14 +1,8 @@
 import clsx from "clsx";
-import {
-  format,
-  isToday,
-  getYear,
-  getDayOfYear,
-  isSameDay,
-} from "date-fns";
+import { format, isToday, getYear, getDayOfYear, isSameDay } from "date-fns";
 import { useMediaQuery } from "react-responsive";
-import {  CalenderHook } from "../context/CalenderProvider";
-import { useCallback} from "react";
+import { CalenderHook } from "../context/CalenderProvider";
+import { useCallback } from "react";
 import { Appointment } from "@/types";
 
 import { useSession } from "next-auth/react";
@@ -16,7 +10,7 @@ interface Calender {
   day: Date;
   className?: string;
   classname?: string;
-  appointment?: Appointment[];
+  appointment: Appointment[] | undefined;
 }
 
 const CalenderRow: React.FC<Calender> = ({
@@ -26,7 +20,7 @@ const CalenderRow: React.FC<Calender> = ({
   appointment,
 }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-  const {data:session} = useSession()
+  const { data: session } = useSession();
 
   const {
     state,
@@ -100,7 +94,10 @@ const CalenderRow: React.FC<Calender> = ({
         {!isMobile ? (
           <div className="flex flex-col justify-between group ">
             {appointment?.map((task, index) => {
-              if (isSameDay(task.startDate, day) && session?.user.id === task.user) {
+              if (
+                isSameDay(task.startDate, day) &&
+                session?.user.id === task.user
+              ) {
                 return (
                   <div
                     onClick={() => handleClick(day)}
@@ -117,7 +114,10 @@ const CalenderRow: React.FC<Calender> = ({
         ) : (
           <div className="flex ">
             {appointment?.map((task, index) => {
-              if (isSameDay(task.startDate, day) && session?.user.id === task.user) {
+              if (
+                isSameDay(task.startDate, day) &&
+                session?.user.id === task.user
+              ) {
                 return (
                   <div
                     key={index}

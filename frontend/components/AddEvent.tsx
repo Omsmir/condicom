@@ -57,7 +57,7 @@ const AddEvent = ({ state }: { state: boolean }) => {
     formData.append("task", values.Task);
     formData.append("startDate", startDate.toString());
     formData.append("endDate", endDate.toString());
-    formData.append("interval", `${(hoursInterval / 30) * 100}%`);
+    formData.append("interval", `${(hoursInterval / 30) * 80}`);
     formData.append("color", `#${values.color}`);
     formData.append("userId", session?.user.id as string);
     formData.append("description", values.description as string);
