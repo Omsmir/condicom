@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 23,
+            "activePatchIndex": 24,
             "patches": [
                 {
                     "date": 1738510329364,
@@ -100,6 +100,10 @@
                 {
                     "date": 1738522442189,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n   return (\r\n     <PatientContext.Provider\r\n       value={{\r\n         drawerState,\r\n-        setDrawerState\r\n+        setDrawerState,\r\n       }}\r\n     >\r\n       {children}\r\n     </PatientContext.Provider>\r\n"
+                },
+                {
+                    "date": 1738523897634,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,55 @@\n+\"use client\";\r\n+import {\r\n+  Dispatch,\r\n+  JSXElementConstructor,\r\n+  ReactElement,\r\n+  SetStateAction,\r\n+} from \"react\";\r\n+\r\n+import { createContext, useContext, useState } from \"react\";\r\n+\r\n+interface PatientContextProps {\r\n+    drawerState: boolean\r\n+    setDrawerState: Dispatch<SetStateAction<boolean>>;\r\n+    loading: boolean;\r\n+    setLoading: Dispatch<SetStateAction<boolean>>;\r\n+}\r\n+\r\n+const PatientContext = createContext<PatientContextProps | null>(null);\r\n+\r\n+\r\n+export const PatientProvider = ({\r\n+  children,\r\n+}: {\r\n+  children: React.ReactNode;\r\n+}) => {\r\n+\r\n+\r\n+    const [drawerState,setDrawerState] = useState<boolean>(false)\r\n+    const[loading,setLoading] = useState<boolean>(true)\r\n+    const [activeLink, setActiveLink] = useState(\"#part-1\");\r\n+\r\n+  // Tables \r\n+  \r\n+  return (\r\n+    <PatientContext.Provider\r\n+      value={{\r\n+        drawerState,\r\n+        setDrawerState,\r\n+        loading,\r\n+        setLoading\r\n+      }}\r\n+    >\r\n+      {children}\r\n+    </PatientContext.Provider>\r\n+  );\r\n+};\r\n+\r\n+export const PatientHook = () => {\r\n+  const Context = useContext(PatientContext);\r\n+  if (!Context) {\r\n+    throw new Error(\"Patient Context Must Be within the PatientHook\");\r\n+  }\r\n+\r\n+  return Context;\r\n+};\r\n"
                 }
             ],
             "date": 1738510329364,

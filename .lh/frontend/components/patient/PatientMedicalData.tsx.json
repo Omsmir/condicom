@@ -1,0 +1,74 @@
+{
+    "sourceFile": "frontend/components/patient/PatientMedicalData.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 14,
+            "patches": [
+                {
+                    "date": 1738527561307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738527568530,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import SingleInformationRow from \"./SingleInformationRow\";\r\n import CustomSkeleton, { SkeletonType } from \"../CustomSkeleton\";\r\n import { PatientHook } from \"../context/PatientProvider\";\r\n \r\n-const PatientData = ({ patient }: { patient: patient | undefined }) => {\r\n+const Pat = ({ patient }: { patient: patient | undefined }) => {\r\n   const patientAge = differenceInCalendarYears(\r\n     new Date(),\r\n     patient?.birthDate as Date\r\n   );\r\n@@ -40,5 +40,5 @@\n     </div>\r\n   );\r\n };\r\n \r\n-export default PatientData;\n\\ No newline at end of file\n+export default Pat;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738527575331,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import SingleInformationRow from \"./SingleInformationRow\";\r\n import CustomSkeleton, { SkeletonType } from \"../CustomSkeleton\";\r\n import { PatientHook } from \"../context/PatientProvider\";\r\n \r\n-const Pat = ({ patient }: { patient: patient | undefined }) => {\r\n+const PatientMedicalData = ({ patient }: { patient: patient | undefined }) => {\r\n   const patientAge = differenceInCalendarYears(\r\n     new Date(),\r\n     patient?.birthDate as Date\r\n   );\r\n@@ -40,5 +40,5 @@\n     </div>\r\n   );\r\n };\r\n \r\n-export default Pat;\n\\ No newline at end of file\n+export default PatientMedicalData;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738527580571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,9 @@\n import CustomSkeleton, { SkeletonType } from \"../CustomSkeleton\";\r\n import { PatientHook } from \"../context/PatientProvider\";\r\n \r\n const PatientMedicalData = ({ patient }: { patient: patient | undefined }) => {\r\n-  const patientAge = differenceInCalendarYears(\r\n-    new Date(),\r\n-    patient?.birthDate as Date\r\n-  );\r\n+  \r\n   const { loading } = PatientHook();\r\n   const RowData = {\r\n     Age: `${patientAge} years old`,\r\n     gender: patient?.gender,\r\n"
+                },
+                {
+                    "date": 1738527585949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n   };\r\n   return (\r\n     <div className=\"flex flex-col py-2 items-start min-h-[225px]\">\r\n       <span className=\"flex border-black dark:border-slate-50 border-l-2\">\r\n-        <h1 className=\"font-medium uppercase mx-3 text-sm\">PATIENT DATA</h1>\r\n+        <h1 className=\"font-medium uppercase mx-3 text-sm\">Medic DATA</h1>\r\n       </span>\r\n       <div className=\"grid grid-cols-12 w-full\">\r\n         {Object.entries(RowData).map(([key, value], index) => (\r\n           <SingleInformationRow innerText={key} key={index} className={`text-sm  mt-8`}>\r\n"
+                },
+                {
+                    "date": 1738527609402,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,19 +9,14 @@\n const PatientMedicalData = ({ patient }: { patient: patient | undefined }) => {\r\n   \r\n   const { loading } = PatientHook();\r\n   const RowData = {\r\n-    Age: `${patientAge} years old`,\r\n-    gender: patient?.gender,\r\n-    \"email address\": patient?.email || \"not assigned\",\r\n-    \"mobile number\": patient?.phone,\r\n-    address: patient?.residentialAddress || \"not assigned\",\r\n-    \"insurance provider\": patient?.insuranceProvider || \"not assigned\",\r\n+    \"blood Type\"\r\n   };\r\n   return (\r\n     <div className=\"flex flex-col py-2 items-start min-h-[225px]\">\r\n       <span className=\"flex border-black dark:border-slate-50 border-l-2\">\r\n-        <h1 className=\"font-medium uppercase mx-3 text-sm\">Medic DATA</h1>\r\n+        <h1 className=\"font-medium uppercase mx-3 text-sm\">Medical DATA</h1>\r\n       </span>\r\n       <div className=\"grid grid-cols-12 w-full\">\r\n         {Object.entries(RowData).map(([key, value], index) => (\r\n           <SingleInformationRow innerText={key} key={index} className={`text-sm  mt-8`}>\r\n"
+                },
+                {
+                    "date": 1738527618284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,10 @@\n const PatientMedicalData = ({ patient }: { patient: patient | undefined }) => {\r\n   \r\n   const { loading } = PatientHook();\r\n   const RowData = {\r\n-    \"blood Type\"\r\n+    \"blood Type\":patient?.bloodType,\r\n+    \r\n   };\r\n   return (\r\n     <div className=\"flex flex-col py-2 items-start min-h-[225px]\">\r\n       <span className=\"flex border-black dark:border-slate-50 border-l-2\">\r\n"
+                },
+                {
+                    "date": 1738527638461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   \r\n   const { loading } = PatientHook();\r\n   const RowData = {\r\n     \"blood Type\":patient?.bloodType,\r\n-    \r\n+    \"weight\":patient?.weight || \"not assigned\"\r\n   };\r\n   return (\r\n     <div className=\"flex flex-col py-2 items-start min-h-[225px]\">\r\n       <span className=\"flex border-black dark:border-slate-50 border-l-2\">\r\n"
+                },
+                {
+                    "date": 1738527646004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,11 @@\n   \r\n   const { loading } = PatientHook();\r\n   const RowData = {\r\n     \"blood Type\":patient?.bloodType,\r\n-    \"weight\":patient?.weight || \"not assigned\"\r\n+    \"weight\":patient?.weight || \"not assigned\",\r\n+    \"height\":patient?.weight || \"not assigned\"\r\n+\r\n   };\r\n   return (\r\n     <div className=\"flex flex-col py-2 items-start min-h-[225px]\">\r\n       <span className=\"flex border-black dark:border-slate-50 border-l-2\">\r\n"
+                },
+                {
+                    "date": 1738527653695,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,10 @@\n   const { loading } = PatientHook();\r\n   const RowData = {\r\n     \"blood Type\":patient?.bloodType,\r\n     \"weight\":patient?.weight || \"not assigned\",\r\n-    \"height\":patient?.weight || \"not assigned\"\r\n+    \"height\":patient?.height || \"not assigned\",\r\n+    pas\r\n \r\n   };\r\n   return (\r\n     <div className=\"flex flex-col py-2 items-start min-h-[225px]\">\r\n"
+                },
+                {
+                    "date": 1738527661301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   const RowData = {\r\n     \"blood Type\":patient?.bloodType,\r\n     \"weight\":patient?.weight || \"not assigned\",\r\n     \"height\":patient?.height || \"not assigned\",\r\n-    pas\r\n+    \"past \"\r\n \r\n   };\r\n   return (\r\n     <div className=\"flex flex-col py-2 items-start min-h-[225px]\">\r\n"
+                },
+                {
+                    "date": 1738527666796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   const RowData = {\r\n     \"blood Type\":patient?.bloodType,\r\n     \"weight\":patient?.weight || \"not assigned\",\r\n     \"height\":patient?.height || \"not assigned\",\r\n-    \"past \"\r\n+    \"past surgeries\"\r\n \r\n   };\r\n   return (\r\n     <div className=\"flex flex-col py-2 items-start min-h-[225px]\">\r\n"
+                },
+                {
+                    "date": 1738527675489,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   const RowData = {\r\n     \"blood Type\":patient?.bloodType,\r\n     \"weight\":patient?.weight || \"not assigned\",\r\n     \"height\":patient?.height || \"not assigned\",\r\n-    \"past surgeries\"\r\n+    \"past surgeries\": patient?.pastSurgeries || \"not assigned\"\r\n \r\n   };\r\n   return (\r\n     <div className=\"flex flex-col py-2 items-start min-h-[225px]\">\r\n"
+                },
+                {
+                    "date": 1738527685819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     \"blood Type\":patient?.bloodType,\r\n     \"weight\":patient?.weight || \"not assigned\",\r\n     \"height\":patient?.height || \"not assigned\",\r\n     \"past surgeries\": patient?.pastSurgeries || \"not assigned\",\r\n-    \"medical con\"\r\n+    \"medical condi\"\r\n \r\n   };\r\n   return (\r\n     <div className=\"flex flex-col py-2 items-start min-h-[225px]\">\r\n"
+                },
+                {
+                    "date": 1738527700056,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     \"weight\":patient?.weight || \"not assigned\",\r\n     \"height\":patient?.height || \"not assigned\",\r\n     \"past surgeries\": patient?.pastSurgeries || \"not assigned\",\r\n     \"medical conditions\":patient?.medicalConditions,\r\n-    \"allerg\"\r\n+    \"alle\"\r\n \r\n   };\r\n   return (\r\n     <div className=\"flex flex-col py-2 items-start min-h-[225px]\">\r\n"
+                }
+            ],
+            "date": 1738527561307,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\nimport { patient } from \"@/types\";\r\nimport { differenceInCalendarYears } from \"date-fns\";\r\nimport React from \"react\";\r\nimport SingleInformationRow from \"./SingleInformationRow\";\r\nimport CustomSkeleton, { SkeletonType } from \"../CustomSkeleton\";\r\nimport { PatientHook } from \"../context/PatientProvider\";\r\n\r\nconst PatientData = ({ patient }: { patient: patient | undefined }) => {\r\n  const patientAge = differenceInCalendarYears(\r\n    new Date(),\r\n    patient?.birthDate as Date\r\n  );\r\n  const { loading } = PatientHook();\r\n  const RowData = {\r\n    Age: `${patientAge} years old`,\r\n    gender: patient?.gender,\r\n    \"email address\": patient?.email || \"not assigned\",\r\n    \"mobile number\": patient?.phone,\r\n    address: patient?.residentialAddress || \"not assigned\",\r\n    \"insurance provider\": patient?.insuranceProvider || \"not assigned\",\r\n  };\r\n  return (\r\n    <div className=\"flex flex-col py-2 items-start min-h-[225px]\">\r\n      <span className=\"flex border-black dark:border-slate-50 border-l-2\">\r\n        <h1 className=\"font-medium uppercase mx-3 text-sm\">PATIENT DATA</h1>\r\n      </span>\r\n      <div className=\"grid grid-cols-12 w-full\">\r\n        {Object.entries(RowData).map(([key, value], index) => (\r\n          <SingleInformationRow innerText={key} key={index} className={`text-sm  mt-8`}>\r\n            <CustomSkeleton\r\n              SkeletonType={SkeletonType.HEAD}\r\n              loading={loading}\r\n              innerText={value}\r\n              classname=\"w-32 min-h-[30px] lowercase text-[13px]\"\r\n            />\r\n          </SingleInformationRow>\r\n        ))}\r\n      </div>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default PatientData;"
+        }
+    ]
+}

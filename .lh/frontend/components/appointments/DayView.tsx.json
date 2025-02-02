@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/components/appointments/DayView.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1738531913699,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1738531913699,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\n\r\nimport { Appointment } from \"@/types\";\r\nimport { format } from \"date-fns\";\r\nimport React from \"react\";\r\nimport { CalenderHook } from \"../context/CalenderProvider\";\r\nimport { OverlayScrollbarsComponent } from \"overlayscrollbars-react\";\r\nimport \"overlayscrollbars/overlayscrollbars.css\";\r\nimport DayViewRows from \"./DayViewRows\";\r\nimport DayViewHeader from \"./DayViewHeader\";\r\nimport { MotionComponent } from \"../relatedComponents/Motion\";\r\n\r\nconst DayView = ({\r\n  appointments,\r\n}: {\r\n  appointments: Appointment[] | undefined;\r\n}) => {\r\n  const { theHoursOfDay } = CalenderHook();\r\n\r\n  return (\r\n    <div className=\"flex flex-col w-full h-full\">\r\n      <DayViewHeader />\r\n      <OverlayScrollbarsComponent defer>\r\n       <MotionComponent>\r\n       <div className=\"grid grid-cols-12 bg-[var(--sidebar-background)]\">\r\n          <div className=\"grid grid-rows col-span-2 sm:col-span-1 \">\r\n            {theHoursOfDay.map((hour, index) => (\r\n              <p\r\n                className=\"text-slate-500 font-md text-[13px] text-center mx-2 dark:text-slate-50\"\r\n                key={index}\r\n              >\r\n                {format(hour, \"ha\")}\r\n              </p>\r\n            ))}\r\n          </div>\r\n          <DayViewRows appointments={appointments} />\r\n          <div className=\"sm:col-span-1 \"></div>\r\n        </div>\r\n       </MotionComponent>\r\n      </OverlayScrollbarsComponent>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default DayView;\r\n"
+        }
+    ]
+}

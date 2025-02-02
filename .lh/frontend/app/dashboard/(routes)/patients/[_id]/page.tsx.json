@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1738521450571,
@@ -16,6 +16,10 @@
                 {
                     "date": 1738521467685,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import React from 'react'\r\n \r\n-const page = ({params}:{params: Promise<>}) => {\r\n+const page = ({params}:{params: Promise<{}>}) => {\r\n   return (\r\n     <div>\r\n       \r\n     </div>\r\n"
+                },
+                {
+                    "date": 1738525838513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     const id = (await params)._id\r\n \r\n     const patient = await getSpecficPatient(id)\r\n   return (\r\n-    <Pa\r\n+    <Pai\r\n   )\r\n }\r\n \r\n export default page\r\n"
                 }
             ],
             "date": 1738521450571,

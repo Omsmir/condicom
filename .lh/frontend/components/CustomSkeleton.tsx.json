@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/components/CustomSkeleton.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1738527934088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1738527934088,
+            "name": "Commit-0",
+            "content": "import { cn } from \"@/lib/utils\";\r\nimport { Image, Skeleton } from \"antd\";\r\nimport React from \"react\";\r\n\r\nexport enum SkeletonType {\r\n  HEAD = \"h1\",\r\n  PARAGRAPH = \"p\",\r\n  AVATAR = \"avatar\",\r\n  INPUT = \"input\",\r\n}\r\ninterface CustomSkeletonProps {\r\n  classname?: string;\r\n  innerText?: string | ;\r\n  SkeletonType: SkeletonType;\r\n  loading: boolean;\r\n  setLoading?: React.Dispatch<React.SetStateAction<boolean>>\r\n  src?:string\r\n  width?:number;\r\n  height?:number;\r\n  size?:number;\r\n  shape?: \"circle\" | \"square\";\r\n}\r\n\r\nconst RenderSkeleton = ({ props }: { props: CustomSkeletonProps }) => {\r\n    const {setLoading} = props\r\n\r\n    const setHandler = () => {\r\n       if(setLoading){\r\n        setLoading(false)\r\n       }\r\n    }\r\n  switch (props.SkeletonType) {\r\n    case SkeletonType.HEAD:\r\n      return (\r\n        <h1 className={cn(\"relative\", props.classname)}>\r\n          {props.loading && (\r\n            <Skeleton\r\n              active\r\n              title={{ width: \"100%\" }}\r\n              paragraph={{ rows: 0 }}\r\n              style={{ width: \"100%\" }}\r\n              className=\"absolute\"\r\n            />\r\n          )}\r\n          <span className={`relative block ${props.loading && \"hidden\"} w-full`}>\r\n\r\n            {props.innerText}\r\n          </span>\r\n        </h1>\r\n      );\r\n      case SkeletonType.AVATAR: return (\r\n        <span className={cn(\"relative border overflow-hidden cursor-pointer\",props.classname)}>\r\n        {props.loading && (\r\n          <Skeleton.Avatar active size={props.size} shape={props.shape} className=\"absolute inset-0\" />\r\n        )}\r\n        <Image\r\n          width={props.width}\r\n          height={props.height}\r\n          src={\r\n            props.src ||\r\n            \"/assets/images/dr-cameron.png\"\r\n          }\r\n          loading=\"lazy\"\r\n          onLoad={setHandler}\r\n          className=\"w-full h-full object-cover object-center \"\r\n        />\r\n      </span>\r\n      )\r\n\r\n    default:\r\n      return null;\r\n  }\r\n};\r\nconst CustomSkeleton = (props: CustomSkeletonProps) => {\r\n  return <RenderSkeleton props={props} />;\r\n};\r\n\r\nexport default CustomSkeleton;\r\n"
+        }
+    ]
+}

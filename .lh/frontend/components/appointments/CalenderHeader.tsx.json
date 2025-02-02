@@ -1,0 +1,46 @@
+{
+    "sourceFile": "frontend/components/appointments/CalenderHeader.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1738531204428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738531244927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n \"use client\"\r\n import { inter } from \"@/fonts/fonts\"\r\n-import { AddEventButton, FadeMenu, SwitchDay, SwitchMonth } from \"../togglers/TopBarEvents\"\r\n+import {, FadeMenu, SwitchDay, SwitchMonth } from \"../togglers/TopBarEvents\"\r\n import { CalenderHook } from \"../context/CalenderProvider\"\r\n const CalenderHeader = ({children}:{children:React.ReactNode}) => {\r\n \r\n     const {currDate} = CalenderHook()\r\n"
+                },
+                {
+                    "date": 1738531251646,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n \"use client\"\r\n import { inter } from \"@/fonts/fonts\"\r\n-import {, FadeMenu, SwitchDay, SwitchMonth } from \"../togglers/TopBarEvents\"\r\n+import {FadeMenu, SwitchDay, SwitchMonth } from \"../togglers/TopBarEvents\"\r\n import { CalenderHook } from \"../context/CalenderProvider\"\r\n+\r\n+import \r\n const CalenderHeader = ({children}:{children:React.ReactNode}) => {\r\n \r\n     const {currDate} = CalenderHook()\r\n   return (\r\n"
+                },
+                {
+                    "date": 1738531259573,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,10 @@\n import { inter } from \"@/fonts/fonts\"\r\n import {FadeMenu, SwitchDay, SwitchMonth } from \"../togglers/TopBarEvents\"\r\n import { CalenderHook } from \"../context/CalenderProvider\"\r\n \r\n-import \r\n+import dynamic from \"next/dynamic\"\r\n+const Appoin\r\n const CalenderHeader = ({children}:{children:React.ReactNode}) => {\r\n \r\n     const {currDate} = CalenderHook()\r\n   return (\r\n"
+                },
+                {
+                    "date": 1738531266798,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import {FadeMenu, SwitchDay, SwitchMonth } from \"../togglers/TopBarEvents\"\r\n import { CalenderHook } from \"../context/CalenderProvider\"\r\n \r\n import dynamic from \"next/dynamic\"\r\n-const Appoin\r\n+const AppointmentCreationButton = \r\n const CalenderHeader = ({children}:{children:React.ReactNode}) => {\r\n \r\n     const {currDate} = CalenderHook()\r\n   return (\r\n"
+                },
+                {
+                    "date": 1738531274602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import {FadeMenu, SwitchDay, SwitchMonth } from \"../togglers/TopBarEvents\"\r\n import { CalenderHook } from \"../context/CalenderProvider\"\r\n \r\n import dynamic from \"next/dynamic\"\r\n-const AppointmentCreationButton = \r\n+const AppointmentCreationButton = dynamic(() => import(\"\"))\r\n const CalenderHeader = ({children}:{children:React.ReactNode}) => {\r\n \r\n     const {currDate} = CalenderHook()\r\n   return (\r\n"
+                },
+                {
+                    "date": 1738531283064,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import {FadeMenu, SwitchDay, SwitchMonth } from \"../togglers/TopBarEvents\"\r\n import { CalenderHook } from \"../context/CalenderProvider\"\r\n \r\n import dynamic from \"next/dynamic\"\r\n-const AppointmentCreationButton = dynamic(() => import(\"\"))\r\n+const AppointmentCreationButton = dynamic(() => import(\"@/components/\"))\r\n const CalenderHeader = ({children}:{children:React.ReactNode}) => {\r\n \r\n     const {currDate} = CalenderHook()\r\n   return (\r\n"
+                },
+                {
+                    "date": 1738531291093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import {FadeMenu, SwitchDay, SwitchMonth } from \"../togglers/TopBarEvents\"\r\n import { CalenderHook } from \"../context/CalenderProvider\"\r\n \r\n import dynamic from \"next/dynamic\"\r\n-const AppointmentCreationButton = dynamic(() => import(\"@/components/\"))\r\n+const AppointmentCreationButton = dynamic(() => import(\"@/components/AddAppointment\"))\r\n const CalenderHeader = ({children}:{children:React.ReactNode}) => {\r\n \r\n     const {currDate} = CalenderHook()\r\n   return (\r\n@@ -19,9 +19,9 @@\n           <div className=\"flex\">\r\n             <SwitchDay />\r\n             <FadeMenu />\r\n             <div className=\"ml-8 border-l pl-4\">\r\n-              <\r\n+              <AppointmentCreationButton />\r\n             </div>\r\n           </div>\r\n         </div>\r\n         {children}\r\n"
+                }
+            ],
+            "date": 1738531204428,
+            "name": "Commit-0",
+            "content": "\"use client\"\r\nimport { inter } from \"@/fonts/fonts\"\r\nimport { AddEventButton, FadeMenu, SwitchDay, SwitchMonth } from \"../togglers/TopBarEvents\"\r\nimport { CalenderHook } from \"../context/CalenderProvider\"\r\nconst CalenderHeader = ({children}:{children:React.ReactNode}) => {\r\n\r\n    const {currDate} = CalenderHook()\r\n  return (\r\n    <div className={`flex h-screen pt-14 ${inter.className} `}>\r\n      <div className=\"flex flex-col w-full border border-l-0 border-t-0 dark:bg-[var(--sidebar-accent)] dark:border-slate-800\">\r\n        <div className=\"flex p-4 justify-between items-center bg-[var(--sidebar-background)] \">\r\n          <div className=\"flex items-center font-medium\">\r\n            <SwitchMonth />\r\n            <p className=\"mx-1\">{currDate.getFullYear()}</p>\r\n          </div>\r\n          <div className=\"flex\">\r\n            <SwitchDay />\r\n            <FadeMenu />\r\n            <div className=\"ml-8 border-l pl-4\">\r\n              <\r\n            </div>\r\n          </div>\r\n        </div>\r\n        {children}\r\n        </div>\r\n        </div>\r\n  )\r\n}\r\n\r\nexport default CalenderHeader\r\n"
+        }
+    ]
+}

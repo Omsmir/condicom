@@ -1,9 +1,9 @@
 {
-    "sourceFile": "frontend/components/Togglers/TopBarEvents.tsx",
+    "sourceFile": "frontend/components/togglers/TopBarEvents.tsx",
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1738505348242,
@@ -40,6 +40,10 @@
                 {
                     "date": 1738513919923,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -495,7 +495,7 @@\n export const userRole = (session:Session) => {\r\n   switch(session.user.role){\r\n     case \"Admin\":\r\n       return \"Admin\"\r\n-      default\r\n+      default: \r\n   }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738531193798,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -262,9 +262,8 @@\n   );\r\n };\r\n \r\n \r\n-\r\n // Tables Related Events\r\n export const ExportAsCSV = ({ table }: { table: Table<any> }) => {\r\n   const data = table.getRowModel().rows.map((row) => {\r\n     return [\r\n"
                 }
             ],
             "date": 1738505348242,

@@ -1,0 +1,26 @@
+{
+    "sourceFile": "frontend/components/patient/PatientEmergencyData.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1738528509482,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738528517783,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import SingleInformationRow from \"./SingleInformationRow\";\r\n import CustomSkeleton, { SkeletonType } from \"../CustomSkeleton\";\r\n import { PatientHook } from \"../context/PatientProvider\";\r\n \r\n-const PatientEme = ({ patient }: { patient: patient | undefined }) => {\r\n+const PatientEmerge = ({ patient }: { patient: patient | undefined }) => {\r\n   \r\n   const { loading } = PatientHook();\r\n   const RowData = {\r\n     \"blood Type\":patient?.bloodType,\r\n@@ -44,5 +44,5 @@\n     </div>\r\n   );\r\n };\r\n \r\n-export default PatientEme;\n\\ No newline at end of file\n+export default PatientEmerge;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738528570890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   \r\n   const { loading } = PatientHook();\r\n   const RowData = {\r\n     \"emergency contact number\":patient?.emergencyContactNumber,\r\n-    \"emergency contact person\": pa\r\n+    \"emergency contact person\": patient\r\n   };\r\n   return (\r\n     <div className=\"flex flex-col py-2 pt-8 items-start min-h-[225px] mt-4 border-t\">\r\n       <span className=\"flex border-black dark:border-slate-50 border-l-2 \">\r\n"
+                }
+            ],
+            "date": 1738528509482,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\nimport { patient } from \"@/types\";\r\nimport { differenceInCalendarYears } from \"date-fns\";\r\nimport React from \"react\";\r\nimport SingleInformationRow from \"./SingleInformationRow\";\r\nimport CustomSkeleton, { SkeletonType } from \"../CustomSkeleton\";\r\nimport { PatientHook } from \"../context/PatientProvider\";\r\n\r\nconst PatientMedicalData = ({ patient }: { patient: patient | undefined }) => {\r\n  \r\n  const { loading } = PatientHook();\r\n  const RowData = {\r\n    \"blood Type\":patient?.bloodType,\r\n    \"weight\":patient?.weight || \"not assigned\",\r\n    \"height\":patient?.height || \"not assigned\",\r\n    \"past surgeries\": patient?.pastSurgeries || \"not assigned\",\r\n    \"medical conditions\":patient?.medicalConditions,\r\n    \"allergies\":patient?.allergies,\r\n    \"family medical history\":patient?.familyMedicalHistory || \"not assigned\",\r\n    \"alcohol\":patient?.alcohol,\r\n    \"smoking\":patient?.smoking,\r\n    \"current medications\":patient?.currentMedications,\r\n    \"Alcohol frequency\":patient?.alcoholFrequency || \"not assigned\",\r\n    \"smoking frequency\":patient?.smokingFrequency || \"not assigned\"\r\n\r\n  };\r\n  return (\r\n    <div className=\"flex flex-col py-2 pt-8 items-start min-h-[225px] mt-4 border-t\">\r\n      <span className=\"flex border-black dark:border-slate-50 border-l-2 \">\r\n        <h1 className=\"font-medium uppercase mx-3 text-sm \">Medical DATA</h1>\r\n      </span>\r\n      <div className=\"grid grid-cols-12 w-full\">\r\n        {Object.entries(RowData).map(([key, value], index) => (\r\n          <SingleInformationRow innerText={key} key={index} className={`text-sm  mt-8`}>\r\n            <CustomSkeleton\r\n              SkeletonType={SkeletonType.HEAD}\r\n              loading={loading}\r\n              innerText={value as string}\r\n              classname=\"w-32 min-h-[30px] text-[13px]\"\r\n            />\r\n          </SingleInformationRow>\r\n        ))}\r\n      </div>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default PatientMedicalData;"
+        }
+    ]
+}
