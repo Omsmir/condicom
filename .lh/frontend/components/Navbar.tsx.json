@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/components/Navbar.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1738513007462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1738513007462,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\nimport { SidebarTrigger, useSidebar } from \"./ui/sidebar\";\r\nimport clsx from \"clsx\";\r\nimport BadgeAvatar from \"./profileMenu/Avatar\";\r\nimport NotificationContent from \"./profileMenu/NotificationContent\";\r\nimport { useSession } from \"next-auth/react\";\r\nconst Navbar = () => {\r\n  const { open, isMobile } = useSidebar();\r\n  const { data: session } = useSession();\r\n  return (\r\n    <nav className=\"fixed w-full h-14 dark:bg-[var(--sidebar-background)] z-10 border-b dark:border-slate-700\">\r\n      <div\r\n        className={clsx(\r\n          \" flex flex-row items-center justify-between h-full py-2 pl-14 transition-all pr-8 overflow-hidden\",\r\n          { \"pl-14 md:pl-[220px]\": open },{\"pl-8\":isMobile}\r\n        )}\r\n      >\r\n        <div className=\"flex flex-1\">\r\n          {isMobile && <SidebarTrigger />}\r\n          <div className=\"flex flex-col \">\r\n            <h1 className=\"text-sm font-medium capitalize hidden sm:block\">\r\n              Good Morning, {session?.user.role} {session?.user.name}!\r\n            </h1>\r\n            <p className=\"text-[12px] text-slate-500 capitalize hidden sm:block\">\r\n              i hope you're in a good mood because there're 52 tasks\r\n            </p>\r\n          </div>\r\n         \r\n        </div>\r\n\r\n        <div className=\"flex items-center\">\r\n          <NotificationContent />\r\n          <BadgeAvatar />\r\n        </div>\r\n      </div>\r\n    </nav>\r\n  );\r\n};\r\n\r\nexport default Navbar;\r\n"
+        }
+    ]
+}

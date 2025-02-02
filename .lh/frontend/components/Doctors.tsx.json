@@ -1,0 +1,46 @@
+{
+    "sourceFile": "frontend/components/Doctors.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1738511288193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738511296869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \r\n   console.log(doctorUsers);\r\n \r\n   return (\r\n-      <DataTable columns={columns} data={data.users} />\r\n+      <DataTable columns={doccolumns} data={data.users} />\r\n   );\r\n };\r\n \r\n export default Doctors;\r\n"
+                },
+                {
+                    "date": 1738511302577,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { getAllUsers } from \"@/actions/getUser\";\r\n-import { columns } from \"./table/DoctorColumns\";\r\n+import { columns, doctorColumns } from \"./table/DoctorColumns\";\r\n import { DataTable } from \"./table/Table\";\r\n import { CustomerService } from \"./service/Data\";\r\n import { UserInformation } from \"@/types\";\r\n import { medicalSpecialties } from \"@/lib/constants\";\r\n@@ -29,9 +29,9 @@\n \r\n   console.log(doctorUsers);\r\n \r\n   return (\r\n-      <DataTable columns={doccolumns} data={data.users} />\r\n+      <DataTable columns={doctorColumns} data={data.users} />\r\n   );\r\n };\r\n \r\n export default Doctors;\r\n"
+                },
+                {
+                    "date": 1738511326120,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { getAllUsers } from \"@/actions/getUser\";\r\n-import { columns, doctorColumns } from \"./table/DoctorColumns\";\r\n+import { doctorColumns } from \"./table/DoctorColumns\";\r\n import { DataTable } from \"./table/Table\";\r\n import { CustomerService } from \"./service/Data\";\r\n import { UserInformation } from \"@/types\";\r\n import { medicalSpecialties } from \"@/lib/constants\";\r\n@@ -29,9 +29,9 @@\n \r\n   console.log(doctorUsers);\r\n \r\n   return (\r\n-      <DataTable columns={doctorColumns} data={data.users} />\r\n+      <DataTable columns={doctorColumns} data={data.users} patientTableState= />\r\n   );\r\n };\r\n \r\n export default Doctors;\r\n"
+                },
+                {
+                    "date": 1738513353135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,20 +18,11 @@\n   const data = await getAllUsers();\r\n \r\n   await new Promise((resolve) => setTimeout(resolve, 500));\r\n \r\n-  const primary = data.users as UserInformation[];\r\n \r\n-  const doctorUsers = primary.filter((user) =>\r\n-    medicalSpecialties.some(\r\n-      (medicalrole) => medicalrole.specialty === user.occupation\r\n-    )\r\n-  );\r\n-\r\n-  console.log(doctorUsers);\r\n-\r\n   return (\r\n-      <DataTable columns={doctorColumns} data={data.users} patientTableState= />\r\n+      <DataTable columns={doctorColumns} data={data.users} patientTableState={false} />\r\n   );\r\n };\r\n \r\n export default Doctors;\r\n"
+                },
+                {
+                    "date": 1738513359293,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n   await new Promise((resolve) => setTimeout(resolve, 500));\r\n \r\n \r\n   return (\r\n-      <DataTable columns={doctorColumns} data={data.users} patientTableState={false} />\r\n+      <DataTable columns={doctorColumns} data={data.users} patientTableState={false} StatsIcon={}  />\r\n   );\r\n };\r\n \r\n export default Doctors;\r\n"
+                },
+                {
+                    "date": 1738513368343,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n   await new Promise((resolve) => setTimeout(resolve, 500));\r\n \r\n \r\n   return (\r\n-      <DataTable columns={doctorColumns} data={data.users} patientTableState={false} StatsIcon={<H}  />\r\n+      <DataTable columns={doctorColumns} data={data.users} patientTableState={false} StatsIcon={<He}  />\r\n   );\r\n };\r\n \r\n export default Doctors;\r\n"
+                },
+                {
+                    "date": 1738513402072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   await new Promise((resolve) => setTimeout(resolve, 500));\r\n \r\n \r\n   return (\r\n-      <DataTable columns={doctorColumns} data={data.users} patientTableState={false} StatsIcon={<EarbudsOutlined />} sta  />\r\n+      <DataTable columns={doctorColumns} data={data.users} patientTableState={false} StatsIcon={<EarbudsOutlined />} st  />\r\n   );\r\n };\r\n \r\n export default Doctors;\r\n"
+                }
+            ],
+            "date": 1738511288193,
+            "name": "Commit-0",
+            "content": "import { getAllUsers } from \"@/actions/getUser\";\r\nimport { columns } from \"./table/DoctorColumns\";\r\nimport { DataTable } from \"./table/Table\";\r\nimport { CustomerService } from \"./service/Data\";\r\nimport { UserInformation } from \"@/types\";\r\nimport { medicalSpecialties } from \"@/lib/constants\";\r\nimport { Suspense } from \"react\";\r\nimport Loading from \"@/app/loading\";\r\n\r\nasync function getData(): Promise<any> {\r\n  // Fetch data from your API here.\r\n  const data = CustomerService.getCustomersXLarge();\r\n\r\n  return (await data).map((ele) => ele);\r\n}\r\n\r\nconst Doctors = async () => {\r\n  const data = await getAllUsers();\r\n\r\n  await new Promise((resolve) => setTimeout(resolve, 500));\r\n\r\n  const primary = data.users as UserInformation[];\r\n\r\n  const doctorUsers = primary.filter((user) =>\r\n    medicalSpecialties.some(\r\n      (medicalrole) => medicalrole.specialty === user.occupation\r\n    )\r\n  );\r\n\r\n  console.log(doctorUsers);\r\n\r\n  return (\r\n      <DataTable columns={columns} data={data.users} />\r\n  );\r\n};\r\n\r\nexport default Doctors;\r\n"
+        }
+    ]
+}

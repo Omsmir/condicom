@@ -1,0 +1,26 @@
+{
+    "sourceFile": "frontend/components/patient/PatientHeader.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1738521694855,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738521752483,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { patient } from '@/types'\r\n import React from 'react'\r\n \r\n const PatientHeader = ({patient}:{patient:patient}) => {\r\n   return (\r\n"
+                },
+                {
+                    "date": 1738521767929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import React from 'react'\r\n \r\n const PatientHeader = ({patient}:{patient:patient | undefined}) => {\r\n   return (\r\n-    <div className='flex m'>\r\n+    <div className='flex m-2'>\r\n       \r\n     </div>\r\n   )\r\n }\r\n"
+                }
+            ],
+            "date": 1738521694855,
+            "name": "Commit-0",
+            "content": "import React from 'react'\r\n\r\nconst PatientHeader = () => {\r\n  return (\r\n    <div>\r\n      \r\n    </div>\r\n  )\r\n}\r\n\r\nexport default PatientHeader\r\n"
+        }
+    ]
+}

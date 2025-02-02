@@ -1,0 +1,46 @@
+{
+    "sourceFile": "frontend/components/appointments/DayViewRows.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1738513860605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738514141767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { Appointment } from \"@/types\";\r\n import clsx from \"clsx\";\r\n import { isSameDay, format } from \"date-fns\";\r\n import React from \"react\";\r\n-import { DeleteAppointmentButton, ToggleButton } from \"../Togglers/Handlers\";\r\n+import { DeleteAppointmentButton, ToggleButton } from \"../togglers/Handlers\";\r\n import { CalenderHook } from \"../context/CalenderProvider\";\r\n import { useSession } from \"next-auth/react\";\r\n \r\n const DayViewRows = ({\r\n"
+                },
+                {
+                    "date": 1738514180440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { Appointment } from \"@/types\";\r\n import clsx from \"clsx\";\r\n import { isSameDay, format } from \"date-fns\";\r\n import React from \"react\";\r\n-import { DeleteAppointmentButton, ToggleButton } from \"../togglers/Handlers\";\r\n+import { DeleteHandler, ToggleButton } from \"../togglers/Handlers\";\r\n import { CalenderHook } from \"../context/CalenderProvider\";\r\n import { useSession } from \"next-auth/react\";\r\n \r\n const DayViewRows = ({\r\n"
+                },
+                {
+                    "date": 1738514188625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,10 +56,11 @@\n                       <p className=\"text-[12px] text-slate-400\">\r\n                         {task.description}\r\n                       </p>\r\n                     </div>\r\n-                    <DeleteAppointmentButton\r\n+                    <DeleteHandler\r\n                       id={task._id}\r\n+                      apiString=\"\"\r\n                       className=\"absolute text-slate-50 right-0 hidden hover:text-red-800 transition-colors delete\"\r\n                       name=\"x\"\r\n                     />\r\n                   </div>\r\n"
+                },
+                {
+                    "date": 1738514194870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,10 @@\n                       </p>\r\n                     </div>\r\n                     <DeleteHandler\r\n                       id={task._id}\r\n-                      apiString=\"\"\r\n+                      apiString=\"appointment\"\r\n+                      \r\n                       className=\"absolute text-slate-50 right-0 hidden hover:text-red-800 transition-colors delete\"\r\n                       name=\"x\"\r\n                     />\r\n                   </div>\r\n"
+                },
+                {
+                    "date": 1738514201158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n                     </div>\r\n                     <DeleteHandler\r\n                       id={task._id}\r\n                       apiString=\"appointment\"\r\n-                      \r\n+                      messagePopup=\"do y\"\r\n                       className=\"absolute text-slate-50 right-0 hidden hover:text-red-800 transition-colors delete\"\r\n                       name=\"x\"\r\n                     />\r\n                   </div>\r\n"
+                },
+                {
+                    "date": 1738514209956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n                     </div>\r\n                     <DeleteHandler\r\n                       id={task._id}\r\n                       apiString=\"appointment\"\r\n-                      messagePopup=\"do y\"\r\n+                      messagePopup=\"do you want to delete the appointment\"\r\n                       className=\"absolute text-slate-50 right-0 hidden hover:text-red-800 transition-colors delete\"\r\n                       name=\"x\"\r\n                     />\r\n                   </div>\r\n"
+                },
+                {
+                    "date": 1738514474325,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n                       </p>\r\n                     </div>\r\n                     <DeleteHandler\r\n                       id={task._id}\r\n-                      apiString=\"appointment\"\r\n+                      apiString=\"appointments\"\r\n                       messagePopup=\"do you want to delete the appointment\"\r\n                       className=\"absolute text-slate-50 right-0 hidden hover:text-red-800 transition-colors delete\"\r\n                       name=\"x\"\r\n                     />\r\n"
+                }
+            ],
+            "date": 1738513860605,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\nimport { Appointment } from \"@/types\";\r\nimport clsx from \"clsx\";\r\nimport { isSameDay, format } from \"date-fns\";\r\nimport React from \"react\";\r\nimport { DeleteAppointmentButton, ToggleButton } from \"../Togglers/Handlers\";\r\nimport { CalenderHook } from \"../context/CalenderProvider\";\r\nimport { useSession } from \"next-auth/react\";\r\n\r\nconst DayViewRows = ({\r\n  appointments,\r\n}: {\r\n  appointments: Appointment[] | undefined;\r\n}) => {\r\n  const { DaysOfWeekCalenderForMobileView, theMinutes } = CalenderHook();\r\n  const { data: session } = useSession();\r\n\r\n  return (\r\n    <div className=\"grid grid-cols-1 border-l col-span-10 dark:border-slate-700\">\r\n      {DaysOfWeekCalenderForMobileView.map((day, index) => (\r\n        <div className=\"grid border-r py-4 dark:border-slate-700\" key={index}>\r\n          {theMinutes.map((halfHour, halfIndex) => {\r\n            const filteredTasks = appointments?.filter((task) => {\r\n              if (\r\n                isSameDay(task.startDate, day) &&\r\n                session?.user.id === task.user &&\r\n                format(task.startDate, \"h:mm a\") == format(halfHour, \"h:mm a\")\r\n              ) {\r\n                return task;\r\n              }\r\n            });\r\n            return (\r\n              <div\r\n                className=\"flex justify-center border-b h-20 relative dark:border-slate-700\"\r\n                key={halfIndex}\r\n              >\r\n                {filteredTasks?.map((task, taskIndex) => (\r\n                  <div\r\n                    key={taskIndex} // Ensure unique key for each task\r\n                    style={{\r\n                      height: task.interval,\r\n                      backgroundColor: task.color,\r\n                    }}\r\n                    className={clsx(\r\n                      `flex w-[98%] rounded-md cursor-pointer z-10 hover:opacity-85 relative main`,\r\n                      { \"opacity-40 hover:opacity-40 \": task.completed }\r\n                    )}\r\n                  >\r\n                    <ToggleButton id={task._id} state={!task.completed} />\r\n                    <div className=\"flex flex-col items-start text-slate-50 p-3 \">\r\n                      <p className=\"font-medium text-[13px]\">\r\n                        {format(task.startDate, \"h:mm a\")}\r\n                      </p>\r\n\r\n                      <p className=\"font-medium text-sm\">{task.task}</p>\r\n                      <p className=\"text-[12px] text-slate-400\">\r\n                        {task.description}\r\n                      </p>\r\n                    </div>\r\n                    <DeleteAppointmentButton\r\n                      id={task._id}\r\n                      className=\"absolute text-slate-50 right-0 hidden hover:text-red-800 transition-colors delete\"\r\n                      name=\"x\"\r\n                    />\r\n                  </div>\r\n                ))}\r\n              </div>\r\n            );\r\n          })}\r\n        </div>\r\n      ))}\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default DayViewRows;\r\n"
+        }
+    ]
+}

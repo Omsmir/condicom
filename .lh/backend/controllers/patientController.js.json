@@ -1,0 +1,134 @@
+{
+    "sourceFile": "backend/controllers/patientController.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 29,
+            "patches": [
+                {
+                    "date": 1738504262754,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738504481459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -163,8 +163,10 @@\n     }\r\n \r\n     await deleteImage(existingPatient?.profileImg?.path);\r\n \r\n+\r\n+    await dele\r\n   }\r\n   catch(error){\r\n     console.log(error)\r\n   }\r\n"
+                },
+                {
+                    "date": 1738504488619,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -164,9 +164,9 @@\n \r\n     await deleteImage(existingPatient?.profileImg?.path);\r\n \r\n \r\n-    await dele\r\n+    await exist\r\n   }\r\n   catch(error){\r\n     console.log(error)\r\n   }\r\n"
+                },
+                {
+                    "date": 1738504494391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -164,9 +164,12 @@\n \r\n     await deleteImage(existingPatient?.profileImg?.path);\r\n \r\n \r\n-    await exist\r\n+    await existingPatient.deleteOne()\r\n+\r\n+\r\n+    \r\n   }\r\n   catch(error){\r\n     console.log(error)\r\n   }\r\n"
+                },
+                {
+                    "date": 1738504501730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -167,9 +167,9 @@\n \r\n     await existingPatient.deleteOne()\r\n \r\n \r\n-    \r\n+    return res.status()\r\n   }\r\n   catch(error){\r\n     console.log(error)\r\n   }\r\n"
+                },
+                {
+                    "date": 1738504515995,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -167,9 +167,9 @@\n \r\n     await existingPatient.deleteOne()\r\n \r\n \r\n-    return res.status()\r\n+    return res.status(201).json({message:\"\"})\r\n   }\r\n   catch(error){\r\n     console.log(error)\r\n   }\r\n"
+                },
+                {
+                    "date": 1738504522211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -167,9 +167,9 @@\n \r\n     await existingPatient.deleteOne()\r\n \r\n \r\n-    return res.status(201).json({message:\"\"})\r\n+    return res.status(201).json({message:\"Patient \"})\r\n   }\r\n   catch(error){\r\n     console.log(error)\r\n   }\r\n"
+                },
+                {
+                    "date": 1738504530666,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -167,9 +167,9 @@\n \r\n     await existingPatient.deleteOne()\r\n \r\n \r\n-    return res.status(201).json({message:\"Patient \"})\r\n+    return res.status(201).json({message:\"Patient Deleted Successfully\"})\r\n   }\r\n   catch(error){\r\n     console.log(error)\r\n   }\r\n"
+                },
+                {
+                    "date": 1738504583551,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -140,8 +140,11 @@\n     return res.status(500).json({ message: error.message });\r\n   }\r\n };\r\n \r\n+\r\n+export const getSpe\r\n+\r\n export const deleteImage = async (filePath) => {\r\n   try {\r\n     if (!filePath) return;\r\n     const fileRef = ref(storage, filePath);\r\n"
+                },
+                {
+                    "date": 1738504594355,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -141,9 +141,9 @@\n   }\r\n };\r\n \r\n \r\n-export const getSpe\r\n+export const getSpecificPatient = async(req,res,next)\r\n \r\n export const deleteImage = async (filePath) => {\r\n   try {\r\n     if (!filePath) return;\r\n"
+                },
+                {
+                    "date": 1738504599615,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -141,9 +141,15 @@\n   }\r\n };\r\n \r\n \r\n-export const getSpecificPatient = async(req,res,next)\r\n+export const getSpecificPatient = async(req,res,next)=> {\r\n+  try {\r\n+    \r\n+  } catch (error) {\r\n+    \r\n+  }\r\n+}\r\n \r\n export const deleteImage = async (filePath) => {\r\n   try {\r\n     if (!filePath) return;\r\n"
+                },
+                {
+                    "date": 1738504606999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -142,8 +142,9 @@\n };\r\n \r\n \r\n export const getSpecificPatient = async(req,res,next)=> {\r\n+  const {id}\r\n   try {\r\n     \r\n   } catch (error) {\r\n     \r\n"
+                },
+                {
+                    "date": 1738504612030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -142,9 +142,9 @@\n };\r\n \r\n \r\n export const getSpecificPatient = async(req,res,next)=> {\r\n-  const {id}\r\n+  const {id} = req.params\r\n   try {\r\n     \r\n   } catch (error) {\r\n     \r\n"
+                },
+                {
+                    "date": 1738504619134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -144,9 +144,9 @@\n \r\n export const getSpecificPatient = async(req,res,next)=> {\r\n   const {id} = req.params\r\n   try {\r\n-    \r\n+    if(monn)\r\n   } catch (error) {\r\n     \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1738504625442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -144,9 +144,9 @@\n \r\n export const getSpecificPatient = async(req,res,next)=> {\r\n   const {id} = req.params\r\n   try {\r\n-    if(monn)\r\n+    if(mongoose.Types.o)\r\n   } catch (error) {\r\n     \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1738504630693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -144,9 +144,9 @@\n \r\n export const getSpecificPatient = async(req,res,next)=> {\r\n   const {id} = req.params\r\n   try {\r\n-    if(mongoose.Types.o)\r\n+    if(mongoose.Types.ObjectId.isValid(id))\r\n   } catch (error) {\r\n     \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1738504642540,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -144,9 +144,12 @@\n \r\n export const getSpecificPatient = async(req,res,next)=> {\r\n   const {id} = req.params\r\n   try {\r\n-    if(mongoose.Types.ObjectId.isValid(id))\r\n+    if(!mongoose.Types.ObjectId.isValid(id)){\r\n+      return res.status(404)\r\n+    }\r\n+\r\n   } catch (error) {\r\n     \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1738504649298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -145,9 +145,9 @@\n export const getSpecificPatient = async(req,res,next)=> {\r\n   const {id} = req.params\r\n   try {\r\n     if(!mongoose.Types.ObjectId.isValid(id)){\r\n-      return res.status(404)\r\n+      return res.status(404).json({message:\"\"})\r\n     }\r\n \r\n   } catch (error) {\r\n     \r\n"
+                },
+                {
+                    "date": 1738504669486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -145,9 +145,9 @@\n export const getSpecificPatient = async(req,res,next)=> {\r\n   const {id} = req.params\r\n   try {\r\n     if(!mongoose.Types.ObjectId.isValid(id)){\r\n-      return res.status(404).json({message:\"\"})\r\n+      return res.status(404).json({message:\"patientId is not a valid \"})\r\n     }\r\n \r\n   } catch (error) {\r\n     \r\n"
+                },
+                {
+                    "date": 1738504678885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -145,10 +145,11 @@\n export const getSpecificPatient = async(req,res,next)=> {\r\n   const {id} = req.params\r\n   try {\r\n     if(!mongoose.Types.ObjectId.isValid(id)){\r\n-      return res.status(404).json({message:\"patientId is not a valid \"})\r\n+      return res.status(404).json({message:\"patientId is not a valid mongooseId\"})\r\n     }\r\n+    const \r\n \r\n   } catch (error) {\r\n     \r\n   }\r\n"
+                },
+                {
+                    "date": 1738504688443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -147,9 +147,9 @@\n   try {\r\n     if(!mongoose.Types.ObjectId.isValid(id)){\r\n       return res.status(404).json({message:\"patientId is not a valid mongooseId\"})\r\n     }\r\n-    const \r\n+    const existingPatient = await \r\n \r\n   } catch (error) {\r\n     \r\n   }\r\n"
+                },
+                {
+                    "date": 1738504695795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -147,9 +147,9 @@\n   try {\r\n     if(!mongoose.Types.ObjectId.isValid(id)){\r\n       return res.status(404).json({message:\"patientId is not a valid mongooseId\"})\r\n     }\r\n-    const existingPatient = await \r\n+    const existingPatient = await PatientModel.findOne()\r\n \r\n   } catch (error) {\r\n     \r\n   }\r\n"
+                },
+                {
+                    "date": 1738504701508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -147,9 +147,9 @@\n   try {\r\n     if(!mongoose.Types.ObjectId.isValid(id)){\r\n       return res.status(404).json({message:\"patientId is not a valid mongooseId\"})\r\n     }\r\n-    const existingPatient = await PatientModel.findOne()\r\n+    const existingPatient = await PatientModel.findOne({_id:i})\r\n \r\n   } catch (error) {\r\n     \r\n   }\r\n"
+                },
+                {
+                    "date": 1738504722364,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -147,10 +147,15 @@\n   try {\r\n     if(!mongoose.Types.ObjectId.isValid(id)){\r\n       return res.status(404).json({message:\"patientId is not a valid mongooseId\"})\r\n     }\r\n-    const existingPatient = await PatientModel.findOne({_id:i})\r\n+    const existingPatient = await PatientModel.findOne({_id:id})\r\n \r\n+    if (!existingPatient) {\r\n+      return res\r\n+        .status(404)\r\n+        .json({ message: `Patient with id: ${id} doesn't exist` });\r\n+    }\r\n   } catch (error) {\r\n     \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1738504735594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -154,8 +154,11 @@\n       return res\r\n         .status(404)\r\n         .json({ message: `Patient with id: ${id} doesn't exist` });\r\n     }\r\n+\r\n+\r\n+    return res.status(200).json({})\r\n   } catch (error) {\r\n     \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1738504743104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -156,9 +156,9 @@\n         .json({ message: `Patient with id: ${id} doesn't exist` });\r\n     }\r\n \r\n \r\n-    return res.status(200).json({})\r\n+    return res.status(200).json({patient:existingPatient})\r\n   } catch (error) {\r\n     \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1738504751694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -156,9 +156,9 @@\n         .json({ message: `Patient with id: ${id} doesn't exist` });\r\n     }\r\n \r\n \r\n-    return res.status(200).json({patient:existingPatient})\r\n+    return res.status(200).json({patient:existingPatient,message:\"success\"})\r\n   } catch (error) {\r\n     \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1738504758308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -158,9 +158,9 @@\n \r\n \r\n     return res.status(200).json({patient:existingPatient,message:\"success\"})\r\n   } catch (error) {\r\n-    \r\n+    next()\r\n   }\r\n }\r\n \r\n export const deleteImage = async (filePath) => {\r\n"
+                },
+                {
+                    "date": 1738504777575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -158,9 +158,10 @@\n \r\n \r\n     return res.status(200).json({patient:existingPatient,message:\"success\"})\r\n   } catch (error) {\r\n-    next()\r\n+    next(error.message)\r\n+    return res.status(500).json({message:})\r\n   }\r\n }\r\n \r\n export const deleteImage = async (filePath) => {\r\n"
+                },
+                {
+                    "date": 1738504783679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -159,9 +159,9 @@\n \r\n     return res.status(200).json({patient:existingPatient,message:\"success\"})\r\n   } catch (error) {\r\n     next(error.message)\r\n-    return res.status(500).json({message:})\r\n+    return res.status(500).json({message:error.message})\r\n   }\r\n }\r\n \r\n export const deleteImage = async (filePath) => {\r\n"
+                }
+            ],
+            "date": 1738504262753,
+            "name": "Commit-0",
+            "content": "import {\r\n  deleteObject,\r\n  getDownloadURL,\r\n  ref,\r\n  uploadBytes,\r\n} from \"firebase/storage\";\r\nimport { storage } from \"../db/firebase/firebase.js\";\r\nimport dotenv from \"dotenv\";\r\nimport { Notifications } from \"../db/schema/notification.js\";\r\nimport { io } from \"../server.js\";\r\nimport { PatientModel } from \"../db/schema/patient.js\";\r\nimport mongoose from \"mongoose\"\r\nexport const createPatient = async (req, res, next) => {\r\n  const {\r\n    userId,\r\n    firstName,\r\n    lastName,\r\n    gender,\r\n    birthDate,\r\n    phone,\r\n    bloodType,\r\n    country,\r\n    height,\r\n    weight,\r\n    email,\r\n    emergencyContactPerson,\r\n    emergencyContactRelationship,\r\n    emergencyContactNumber,\r\n    residentialAddress,\r\n    insuranceProvider,\r\n    medicalConditions,\r\n    allergies,\r\n    pastSurgeries,\r\n    familyMedicalHistory,\r\n    currentMedications,\r\n    smoking,\r\n    smokingFrequency,\r\n    alcohol,\r\n    alcoholFrequency,\r\n  } = req.body;\r\n  const profileImg = req.file;\r\n  const requiredInformation = {\r\n    firstName,\r\n    lastName,\r\n    gender,\r\n    birthDate,\r\n    phone,\r\n    bloodType,\r\n    country,\r\n    emergencyContactNumber,\r\n    medicalConditions,\r\n    allergies,\r\n    currentMedications,\r\n    smoking,\r\n    alcohol\r\n  };\r\n  const optionalInformation = {\r\n    height,\r\n    weight,\r\n    email,\r\n    emergencyContactPerson,\r\n    emergencyContactRelationship,\r\n    residentialAddress,\r\n    insuranceProvider,\r\n    pastSurgeries,\r\n    familyMedicalHistory,\r\n    smokingFrequency,\r\n    alcoholFrequency,\r\n  };\r\n  let Patient = {};\r\n\r\n  try {\r\n    for (const [key, value] of Object.entries(requiredInformation)) {\r\n      if (!value) {\r\n        return res.status(404).json({ message: `${key} is required` });\r\n      }\r\n      Patient[key] = value;\r\n    }\r\n\r\n    for (const [key, value] of Object.entries(optionalInformation)) {\r\n      if (value) {\r\n        Patient[key] = value;\r\n      }\r\n    }\r\n    if (profileImg) {\r\n      const StorageBucket = ref(\r\n        storage,\r\n        `patients/${firstName}-${lastName}/${Date.now()}`\r\n      );\r\n\r\n      const snapShot = await uploadBytes(StorageBucket, profileImg.buffer, {\r\n        contentType: profileImg.mimetype,\r\n      });\r\n\r\n      const downloadUrl = await getDownloadURL(snapShot.ref);\r\n\r\n      Patient.profileImg = {\r\n        url: downloadUrl,\r\n        filename: profileImg.originalname,\r\n        path: StorageBucket.fullPath,\r\n      };\r\n    }\r\n\r\n    const newPatient = new PatientModel(Patient);\r\n\r\n    await newPatient.save();\r\n\r\n    const updatePatient =  await PatientModel.findByIdAndUpdate(\r\n      newPatient._id,\r\n      { $addToSet: { assignedBy: userId } },\r\n      { new: true, runValidators: true }\r\n    );\r\n\r\n    return res.status(201).json({\r\n      patient: updatePatient,\r\n      message: \"New Patient Created Successfully\",\r\n    });\r\n  } catch (error) {\r\n    next(error);\r\n\r\n    return res.status(500).json({ message: error.message });\r\n  }\r\n};\r\n\r\nexport const GetPatients = async (req, res, next) => {\r\n  const Patients = await PatientModel.find({});\r\n  try {\r\n    if (!Patients) {\r\n      return res.status(404).json({ message: \"No Patients Exists\" });\r\n    }\r\n\r\n    if (Patients.length === 0) {\r\n      return res.status(200).json({ Patients, message: \"No Patients\" });\r\n    }\r\n\r\n    console.log(Patients.length);\r\n    return res.status(200).json({ Patients, message: \"Success\" });\r\n  } catch (error) {\r\n    next(error);\r\n    return res.status(500).json({ message: error.message });\r\n  }\r\n};\r\n\r\nexport const deleteImage = async (filePath) => {\r\n  try {\r\n    if (!filePath) return;\r\n    const fileRef = ref(storage, filePath);\r\n\r\n    await deleteObject(fileRef);\r\n  } catch (error) {\r\n    console.log(error.message);\r\n  }\r\n};\r\n\r\nexport const DeletePatient = async (req, res, next) => {\r\n  const { id } = req.params;\r\n  const existingPatient = await PatientModel.findOne({ _id: id });\r\n  try {\r\n    if (!existingPatient) {\r\n      return res\r\n        .status(404)\r\n        .json({ message: `Patient with id: ${id} doesn't exist` });\r\n    }\r\n\r\n    await deleteImage(existingPatient?.profileImg?.path);\r\n\r\n  }\r\n  catch(error){\r\n    console.log(error)\r\n  }\r\n}"
+        }
+    ]
+}

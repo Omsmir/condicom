@@ -1,0 +1,16 @@
+import { patient } from '@/types'
+import React from 'react'
+import CustomSkeleton from '../CustomSkeleton'
+
+const PatientHeader = ({patient}:{patient:patient | undefined}) => {
+    const {} = Patien
+  return (
+    <div className='flex pt-14  m-2 '>
+      <div className="flex justify-between items-center w-full bg-[var(--sidebar-background)] p-4 rounded-md">
+        <CustomSkeleton src={patient?.profileImg?.url || "/assets/images/female-doctor.jpg"} />
+      </div>
+    </div>
+  )
+}
+
+export default PatientHeader

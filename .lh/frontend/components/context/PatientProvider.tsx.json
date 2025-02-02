@@ -1,0 +1,110 @@
+{
+    "sourceFile": "frontend/components/context/PatientProvider.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 23,
+            "patches": [
+                {
+                    "date": 1738510329364,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738510334981,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,12 +82,12 @@\n     </DashboardContext.Provider>\r\n   );\r\n };\r\n \r\n-export const DashboardHook = () => {\r\n+export const PatientHook = () => {\r\n   const Context = useContext(DashboardContext);\r\n   if (!Context) {\r\n-    throw new Error(\"Dashboard Context Must Be within the DashboardHook\");\r\n+    throw new Error(\"Dashboard Context Must Be within the PatientHook\");\r\n   }\r\n \r\n   return Context;\r\n };\r\n"
+                },
+                {
+                    "date": 1738510341206,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,39 +43,17 @@\n }: {\r\n   children: React.ReactNode;\r\n }) => {\r\n \r\n-  const [api, contextHolder] = notification.useNotification();\r\n-  const [state, setState] = useState<boolean>(false);\r\n-  const [open, setOpen] = useState<boolean>(false);\r\n-  const { theme, setTheme } = useTheme();\r\n-  const [allFilter, setAllFilter] = useState<boolean>(true);\r\n-  const [todayFilter, setTodayFilter] = useState<boolean>(false);\r\n-  const [yesterdayFilter, setYesterdayFilter] = useState<boolean>(false);\r\n \r\n   const socket = io(\"http://localhost:8080\");\r\n \r\n   // Tables \r\n   \r\n   return (\r\n     <DashboardContext.Provider\r\n       value={{\r\n-        theme,\r\n-        setTheme,\r\n-        api,\r\n-        contextHolder,\r\n-        state,\r\n-        setState,\r\n-        NProgress,\r\n-        open,\r\n-        setOpen,\r\n-        setAllFilter,\r\n-        setTodayFilter,\r\n-        setYesterdayFilter,\r\n-        allFilter,\r\n-        todayFilter,\r\n-        yesterdayFilter,\r\n-        socket\r\n+        \r\n  \r\n       }}\r\n     >\r\n       {children}\r\n"
+                },
+                {
+                    "date": 1738510349606,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,26 +15,10 @@\n import { io, Socket } from \"socket.io-client\";\r\n import { Notification } from \"@/types\";\r\n import { DefaultEventsMap } from \"@socket.io/component-emitter\";\r\n \r\n-NProgress.configure({ showSpinner: false, speed: 500 });\r\n interface DashboardContextProps {\r\n-  api: NotificationInstance;\r\n-  contextHolder: ReactElement<any, string | JSXElementConstructor<any>>;\r\n-  state: boolean;\r\n-  setState: Dispatch<SetStateAction<boolean>>;\r\n-  NProgress: NProgress.NProgress;\r\n-  open: boolean;\r\n-  setOpen: Dispatch<SetStateAction<boolean>>;\r\n-  theme: string | undefined;\r\n-  setTheme: Dispatch<SetStateAction<string>>;\r\n-  allFilter: boolean;\r\n-  todayFilter: boolean;\r\n-  yesterdayFilter: boolean;\r\n-  setAllFilter: Dispatch<SetStateAction<boolean>>;\r\n-  setTodayFilter: Dispatch<SetStateAction<boolean>>;\r\n-  setYesterdayFilter: Dispatch<SetStateAction<boolean>>;\r\n-  socket: Socket<DefaultEventsMap, DefaultEventsMap>\r\n+\r\n }\r\n \r\n const DashboardContext = createContext<DashboardContextProps | null>(null);\r\n \r\n"
+                },
+                {
+                    "date": 1738510361294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,22 +15,21 @@\n import { io, Socket } from \"socket.io-client\";\r\n import { Notification } from \"@/types\";\r\n import { DefaultEventsMap } from \"@socket.io/component-emitter\";\r\n \r\n-interface DashboardContextProps {\r\n+interface PatientHook {\r\n \r\n }\r\n \r\n-const DashboardContext = createContext<DashboardContextProps | null>(null);\r\n+const DashboardContext = createContext<PatientHook | null>(null);\r\n \r\n export const DashboardProvider = ({\r\n   children,\r\n }: {\r\n   children: React.ReactNode;\r\n }) => {\r\n \r\n \r\n-  const socket = io(\"http://localhost:8080\");\r\n \r\n   // Tables \r\n   \r\n   return (\r\n"
+                },
+                {
+                    "date": 1738510368310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,13 +15,13 @@\n import { io, Socket } from \"socket.io-client\";\r\n import { Notification } from \"@/types\";\r\n import { DefaultEventsMap } from \"@socket.io/component-emitter\";\r\n \r\n-interface PatientHook {\r\n+interface PatientContextProps {\r\n \r\n }\r\n \r\n-const DashboardContext = createContext<PatientHook | null>(null);\r\n+const DashboardContext = createContext<PatientContextProps | null>(null);\r\n \r\n export const DashboardProvider = ({\r\n   children,\r\n }: {\r\n"
+                },
+                {
+                    "date": 1738510380169,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n }\r\n \r\n const DashboardContext = createContext<PatientContextProps | null>(null);\r\n \r\n-export const DashboardProvider = ({\r\n+export const PatientPro = ({\r\n   children,\r\n }: {\r\n   children: React.ReactNode;\r\n }) => {\r\n"
+                },
+                {
+                    "date": 1738510388792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,9 @@\n \r\n import { createContext, useContext, useState } from \"react\";\r\n import { notification } from \"antd\";\r\n import { NotificationInstance } from \"antd/es/notification/interface\";\r\n-import NProgress from \"nprogress\";\r\n-import \"nprogress/nprogress.css\";\r\n+\r\n import { useTheme } from \"next-themes\";\r\n import { io, Socket } from \"socket.io-client\";\r\n import { Notification } from \"@/types\";\r\n import { DefaultEventsMap } from \"@socket.io/component-emitter\";\r\n"
+                },
+                {
+                    "date": 1738510394069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,23 +6,20 @@\n   SetStateAction,\r\n } from \"react\";\r\n \r\n import { createContext, useContext, useState } from \"react\";\r\n-import { notification } from \"antd\";\r\n-import { NotificationInstance } from \"antd/es/notification/interface\";\r\n \r\n-import { useTheme } from \"next-themes\";\r\n-import { io, Socket } from \"socket.io-client\";\r\n-import { Notification } from \"@/types\";\r\n+\r\n+\r\n import { DefaultEventsMap } from \"@socket.io/component-emitter\";\r\n \r\n interface PatientContextProps {\r\n \r\n }\r\n \r\n const DashboardContext = createContext<PatientContextProps | null>(null);\r\n \r\n-export const PatientPro = ({\r\n+export const PatientProvider = ({\r\n   children,\r\n }: {\r\n   children: React.ReactNode;\r\n }) => {\r\n"
+                },
+                {
+                    "date": 1738510411299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,18 +7,15 @@\n } from \"react\";\r\n \r\n import { createContext, useContext, useState } from \"react\";\r\n \r\n-\r\n-\r\n-import { DefaultEventsMap } from \"@socket.io/component-emitter\";\r\n-\r\n interface PatientContextProps {\r\n \r\n }\r\n \r\n const DashboardContext = createContext<PatientContextProps | null>(null);\r\n \r\n+\r\n export const PatientProvider = ({\r\n   children,\r\n }: {\r\n   children: React.ReactNode;\r\n"
+                },
+                {
+                    "date": 1738510420365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n   children: React.ReactNode;\r\n }) => {\r\n \r\n \r\n+    const [drawerState,set]\r\n \r\n   // Tables \r\n   \r\n   return (\r\n"
+                },
+                {
+                    "date": 1738510426970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   children: React.ReactNode;\r\n }) => {\r\n \r\n \r\n-    const [drawerState,set]\r\n+    const [drawerState,setDrawerState] = useState(false)\r\n \r\n   // Tables \r\n   \r\n   return (\r\n"
+                },
+                {
+                    "date": 1738510437789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \r\n import { createContext, useContext, useState } from \"react\";\r\n \r\n interface PatientContextProps {\r\n-\r\n+    drawerState: boolean\r\n }\r\n \r\n const DashboardContext = createContext<PatientContextProps | null>(null);\r\n \r\n@@ -21,9 +21,9 @@\n   children: React.ReactNode;\r\n }) => {\r\n \r\n \r\n-    const [drawerState,setDrawerState] = useState(false)\r\n+    const [drawerState,setDrawerState] = useState<boolean>(false)\r\n \r\n   // Tables \r\n   \r\n   return (\r\n"
+                },
+                {
+                    "date": 1738510444569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n import { createContext, useContext, useState } from \"react\";\r\n \r\n interface PatientContextProps {\r\n     drawerState: boolean\r\n+    setDrawerState: Dispatch<SetStateAction<boolean>>\r\n }\r\n \r\n const DashboardContext = createContext<PatientContextProps | null>(null);\r\n \r\n"
+                },
+                {
+                    "date": 1738510451236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,10 @@\n   \r\n   return (\r\n     <DashboardContext.Provider\r\n       value={{\r\n-        \r\n+        drawerState,\r\n+        setDrawerState\r\n  \r\n       }}\r\n     >\r\n       {children}\r\n"
+                },
+                {
+                    "date": 1738512523154,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,50 @@\n+\"use client\";\r\n+import {\r\n+  Dispatch,\r\n+  JSXElementConstructor,\r\n+  ReactElement,\r\n+  SetStateAction,\r\n+} from \"react\";\r\n+\r\n+import { createContext, useContext, useState } from \"react\";\r\n+\r\n+interface PatientContextProps {\r\n+    drawerState: boolean\r\n+    setDrawerState: Dispatch<SetStateAction<boolean>>\r\n+}\r\n+\r\n+const DashboardContext = createContext<PatientContextProps | null>(null);\r\n+\r\n+\r\n+export const PatientProvider = ({\r\n+  children,\r\n+}: {\r\n+  children: React.ReactNode;\r\n+}) => {\r\n+\r\n+\r\n+    const [drawerState,setDrawerState] = useState<boolean>(false)\r\n+\r\n+  // Tables \r\n+  \r\n+  return (\r\n+    <DashboardContext.Provider\r\n+      value={{\r\n+        drawerState,\r\n+        setDrawerState\r\n+ \r\n+      }}\r\n+    >\r\n+      {children}\r\n+    </DashboardContext.Provider>\r\n+  );\r\n+};\r\n+\r\n+export const PatientHook = () => {\r\n+  const Context = useContext(DashboardContext);\r\n+  if (!Context) {\r\n+    throw new Error(\" Context Must Be within the PatientHook\");\r\n+  }\r\n+\r\n+  return Context;\r\n+};\r\n"
+                },
+                {
+                    "date": 1738512530999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,61 +40,11 @@\n   );\r\n };\r\n \r\n export const PatientHook = () => {\r\n-  const Context = useContext(DashboardContext);\r\n+  const Context = useContext(Pat);\r\n   if (!Context) {\r\n-    throw new Error(\" Context Must Be within the PatientHook\");\r\n+    throw new Error(\"Patient Context Must Be within the PatientHook\");\r\n   }\r\n \r\n   return Context;\r\n };\r\n-\"use client\";\r\n-import {\r\n-  Dispatch,\r\n-  JSXElementConstructor,\r\n-  ReactElement,\r\n-  SetStateAction,\r\n-} from \"react\";\r\n-\r\n-import { createContext, useContext, useState } from \"react\";\r\n-\r\n-interface PatientContextProps {\r\n-    drawerState: boolean\r\n-    setDrawerState: Dispatch<SetStateAction<boolean>>\r\n-}\r\n-\r\n-const DashboardContext = createContext<PatientContextProps | null>(null);\r\n-\r\n-\r\n-export const PatientProvider = ({\r\n-  children,\r\n-}: {\r\n-  children: React.ReactNode;\r\n-}) => {\r\n-\r\n-\r\n-    const [drawerState,setDrawerState] = useState<boolean>(false)\r\n-\r\n-  // Tables \r\n-  \r\n-  return (\r\n-    <DashboardContext.Provider\r\n-      value={{\r\n-        drawerState,\r\n-        setDrawerState\r\n- \r\n-      }}\r\n-    >\r\n-      {children}\r\n-    </DashboardContext.Provider>\r\n-  );\r\n-};\r\n-\r\n-export const PatientHook = () => {\r\n-  const Context = useContext(DashboardContext);\r\n-  if (!Context) {\r\n-    throw new Error(\"Dashboard Context Must Be within the PatientHook\");\r\n-  }\r\n-\r\n-  return Context;\r\n-};\r\n"
+                },
+                {
+                    "date": 1738512538663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     drawerState: boolean\r\n     setDrawerState: Dispatch<SetStateAction<boolean>>\r\n }\r\n \r\n-const DashboardContext = createContext<PatientContextProps | null>(null);\r\n+const Patient = createContext<PatientContextProps | null>(null);\r\n \r\n \r\n export const PatientProvider = ({\r\n   children,\r\n@@ -27,17 +27,17 @@\n \r\n   // Tables \r\n   \r\n   return (\r\n-    <DashboardContext.Provider\r\n+    <Patient.Provider\r\n       value={{\r\n         drawerState,\r\n         setDrawerState\r\n  \r\n       }}\r\n     >\r\n       {children}\r\n-    </DashboardContext.Provider>\r\n+    </Patient.Provider>\r\n   );\r\n };\r\n \r\n export const PatientHook = () => {\r\n"
+                },
+                {
+                    "date": 1738512548897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     drawerState: boolean\r\n     setDrawerState: Dispatch<SetStateAction<boolean>>\r\n }\r\n \r\n-const Patient = createContext<PatientContextProps | null>(null);\r\n+const PatientContext = createContext<PatientContextProps | null>(null);\r\n \r\n \r\n export const PatientProvider = ({\r\n   children,\r\n@@ -27,22 +27,22 @@\n \r\n   // Tables \r\n   \r\n   return (\r\n-    <Patient.Provider\r\n+    <PatientContext.Provider\r\n       value={{\r\n         drawerState,\r\n         setDrawerState\r\n  \r\n       }}\r\n     >\r\n       {children}\r\n-    </Patient.Provider>\r\n+    </PatientContext.Provider>\r\n   );\r\n };\r\n \r\n export const PatientHook = () => {\r\n-  const Context = useContext(Pat);\r\n+  const Context = useContext(PatientContext);\r\n   if (!Context) {\r\n     throw new Error(\"Patient Context Must Be within the PatientHook\");\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1738522377027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,9 @@\n }) => {\r\n \r\n \r\n     const [drawerState,setDrawerState] = useState<boolean>(false)\r\n+    const[loading,setLoading] = usetsta\r\n \r\n   // Tables \r\n   \r\n   return (\r\n"
+                },
+                {
+                    "date": 1738522385595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n }) => {\r\n \r\n \r\n     const [drawerState,setDrawerState] = useState<boolean>(false)\r\n-    const[loading,setLoading] = usetsta\r\n+    const[loading,setLoading] = useState(true)\r\n \r\n   // Tables \r\n   \r\n   return (\r\n"
+                },
+                {
+                    "date": 1738522396166,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,10 @@\n import { createContext, useContext, useState } from \"react\";\r\n \r\n interface PatientContextProps {\r\n     drawerState: boolean\r\n-    setDrawerState: Dispatch<SetStateAction<boolean>>\r\n+    setDrawerState: Dispatch<SetStateAction<boolean>>;\r\n+    loading: boolean\r\n }\r\n \r\n const PatientContext = createContext<PatientContextProps | null>(null);\r\n \r\n@@ -23,9 +24,9 @@\n }) => {\r\n \r\n \r\n     const [drawerState,setDrawerState] = useState<boolean>(false)\r\n-    const[loading,setLoading] = useState(true)\r\n+    const[loading,setLoading] = useState<boolean>(true)\r\n \r\n   // Tables \r\n   \r\n   return (\r\n"
+                },
+                {
+                    "date": 1738522402904,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,10 @@\n \r\n interface PatientContextProps {\r\n     drawerState: boolean\r\n     setDrawerState: Dispatch<SetStateAction<boolean>>;\r\n-    loading: boolean\r\n+    loading: boolean;\r\n+    setLoading: Dispatch<SetStateAction<boolean>>;\r\n }\r\n \r\n const PatientContext = createContext<PatientContextProps | null>(null);\r\n \r\n"
+                },
+                {
+                    "date": 1738522442189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n   return (\r\n     <PatientContext.Provider\r\n       value={{\r\n         drawerState,\r\n-        setDrawerState\r\n+        setDrawerState,\r\n       }}\r\n     >\r\n       {children}\r\n     </PatientContext.Provider>\r\n"
+                }
+            ],
+            "date": 1738510329364,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\nimport {\r\n  Dispatch,\r\n  JSXElementConstructor,\r\n  ReactElement,\r\n  SetStateAction,\r\n} from \"react\";\r\n\r\nimport { createContext, useContext, useState } from \"react\";\r\nimport { notification } from \"antd\";\r\nimport { NotificationInstance } from \"antd/es/notification/interface\";\r\nimport NProgress from \"nprogress\";\r\nimport \"nprogress/nprogress.css\";\r\nimport { useTheme } from \"next-themes\";\r\nimport { io, Socket } from \"socket.io-client\";\r\nimport { Notification } from \"@/types\";\r\nimport { DefaultEventsMap } from \"@socket.io/component-emitter\";\r\n\r\nNProgress.configure({ showSpinner: false, speed: 500 });\r\ninterface DashboardContextProps {\r\n  api: NotificationInstance;\r\n  contextHolder: ReactElement<any, string | JSXElementConstructor<any>>;\r\n  state: boolean;\r\n  setState: Dispatch<SetStateAction<boolean>>;\r\n  NProgress: NProgress.NProgress;\r\n  open: boolean;\r\n  setOpen: Dispatch<SetStateAction<boolean>>;\r\n  theme: string | undefined;\r\n  setTheme: Dispatch<SetStateAction<string>>;\r\n  allFilter: boolean;\r\n  todayFilter: boolean;\r\n  yesterdayFilter: boolean;\r\n  setAllFilter: Dispatch<SetStateAction<boolean>>;\r\n  setTodayFilter: Dispatch<SetStateAction<boolean>>;\r\n  setYesterdayFilter: Dispatch<SetStateAction<boolean>>;\r\n  socket: Socket<DefaultEventsMap, DefaultEventsMap>\r\n}\r\n\r\nconst DashboardContext = createContext<DashboardContextProps | null>(null);\r\n\r\nexport const DashboardProvider = ({\r\n  children,\r\n}: {\r\n  children: React.ReactNode;\r\n}) => {\r\n\r\n  const [api, contextHolder] = notification.useNotification();\r\n  const [state, setState] = useState<boolean>(false);\r\n  const [open, setOpen] = useState<boolean>(false);\r\n  const { theme, setTheme } = useTheme();\r\n  const [allFilter, setAllFilter] = useState<boolean>(true);\r\n  const [todayFilter, setTodayFilter] = useState<boolean>(false);\r\n  const [yesterdayFilter, setYesterdayFilter] = useState<boolean>(false);\r\n\r\n  const socket = io(\"http://localhost:8080\");\r\n\r\n  // Tables \r\n  \r\n  return (\r\n    <DashboardContext.Provider\r\n      value={{\r\n        theme,\r\n        setTheme,\r\n        api,\r\n        contextHolder,\r\n        state,\r\n        setState,\r\n        NProgress,\r\n        open,\r\n        setOpen,\r\n        setAllFilter,\r\n        setTodayFilter,\r\n        setYesterdayFilter,\r\n        allFilter,\r\n        todayFilter,\r\n        yesterdayFilter,\r\n        socket\r\n \r\n      }}\r\n    >\r\n      {children}\r\n    </DashboardContext.Provider>\r\n  );\r\n};\r\n\r\nexport const DashboardHook = () => {\r\n  const Context = useContext(DashboardContext);\r\n  if (!Context) {\r\n    throw new Error(\"Dashboard Context Must Be within the DashboardHook\");\r\n  }\r\n\r\n  return Context;\r\n};\r\n"
+        }
+    ]
+}
