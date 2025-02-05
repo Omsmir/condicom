@@ -1,0 +1,30 @@
+{
+    "sourceFile": "frontend/app/dashboard/(routes)/pharmacy/layout.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1738707282981,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738707288524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import BreadCrumb from \"@/components/doctorProfile/BreadCrumb\";\r\n import { Metadata } from \"next\";\r\n \r\n export const metadata: Metadata = {\r\n-  title: \"Dashboard - Patients\",\r\n+  title: \"Dashboard - Pharmacy\",\r\n };\r\n const RootLayout = ({ children }: { children: React.ReactNode }) => {\r\n   return (\r\n     <DashboardProvider>\r\n"
+                },
+                {
+                    "date": 1738707300278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,15 @@\n import { DashboardProvider } from \"@/components/context/Dashboardprovider\";\r\n import { PatientProvider } from \"@/components/context/PatientProvider\";\r\n-import BreadCrumb from \"@/components/doctorProfile/BreadCrumb\";\r\n import { Metadata } from \"next\";\r\n \r\n export const metadata: Metadata = {\r\n   title: \"Dashboard - Pharmacy\",\r\n };\r\n const RootLayout = ({ children }: { children: React.ReactNode }) => {\r\n   return (\r\n     <DashboardProvider>\r\n-      <PatientProvider>{children}</PatientProvider>\r\n+{children}</PatientProvider>\r\n     </DashboardProvider>\r\n   );\r\n };\r\n \r\n"
+                },
+                {
+                    "date": 1738715679125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,11 @@\n import { DashboardProvider } from \"@/components/context/Dashboardprovider\";\r\n-import { PatientProvider } from \"@/components/context/PatientProvider\";\r\n import { Metadata } from \"next\";\r\n \r\n export const metadata: Metadata = {\r\n   title: \"Dashboard - Pharmacy\",\r\n };\r\n const RootLayout = ({ children }: { children: React.ReactNode }) => {\r\n-  return (\r\n-    <DashboardProvider>\r\n-{children}</PatientProvider>\r\n-    </DashboardProvider>\r\n-  );\r\n+  return <DashboardProvider>{children}</DashboardProvider>;\r\n };\r\n \r\n export default RootLayout;\r\n"
+                }
+            ],
+            "date": 1738707282981,
+            "name": "Commit-0",
+            "content": "import { DashboardProvider } from \"@/components/context/Dashboardprovider\";\r\nimport { PatientProvider } from \"@/components/context/PatientProvider\";\r\nimport BreadCrumb from \"@/components/doctorProfile/BreadCrumb\";\r\nimport { Metadata } from \"next\";\r\n\r\nexport const metadata: Metadata = {\r\n  title: \"Dashboard - Patients\",\r\n};\r\nconst RootLayout = ({ children }: { children: React.ReactNode }) => {\r\n  return (\r\n    <DashboardProvider>\r\n      <PatientProvider>{children}</PatientProvider>\r\n    </DashboardProvider>\r\n  );\r\n};\r\n\r\nexport default RootLayout;\r\n"
+        }
+    ]
+}

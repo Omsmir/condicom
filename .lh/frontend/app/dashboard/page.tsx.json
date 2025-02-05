@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/app/dashboard/page.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1738730279031,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738730285839,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   \r\n \r\n   return (\r\n       <Suspense fallback={<Loading />}>\r\n-     <Over\r\n+     <Overv\r\n      </Suspense>\r\n   \r\n   );\r\n };\r\n"
+                }
+            ],
+            "date": 1738730279031,
+            "name": "Commit-0",
+            "content": "import { getproducts } from \"@/actions/getProducts\";\r\nimport Products from \"@/components/Products\";\r\nimport { Suspense } from \"react\";\r\nimport Loading from \"@/app/loading\";\r\nimport { Metadata } from \"next\";\r\nexport const metadata: Metadata = {\r\n  title: \"Health - Dashboard\",\r\n  description: \"Welcome to dashboard\",\r\n};\r\n\r\nconst Home = async () => {\r\n  \r\n\r\n  return (\r\n      <Suspense fallback={<Loading />}>\r\n     <Products product={products.data} />\r\n     </Suspense>\r\n  \r\n  );\r\n};\r\nexport default Home;\r\n\r\nexport const dynamic = 'force-dynamic'"
+        }
+    ]
+}

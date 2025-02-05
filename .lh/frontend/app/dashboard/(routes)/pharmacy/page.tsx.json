@@ -1,0 +1,46 @@
+{
+    "sourceFile": "frontend/app/dashboard/(routes)/pharmacy/page.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1738707173459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738707187241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,13 @@\n-rafce\n\\ No newline at end of file\n+import React, { Suspense } from \"react\";\r\n+import dynamic from \"next/dynamic\";\r\n+import Loading from \"./loading\";\r\n+\r\n+const page = () => {\r\n+  return (\r\n+    <div>\r\n+      \r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default page\r\n"
+                },
+                {
+                    "date": 1738707194012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React, { Suspense } from \"react\";\r\n import dynamic from \"next/dynamic\";\r\n-import Loading from \"./loading\";\r\n \r\n+\r\n const page = () => {\r\n   return (\r\n     <div>\r\n       \r\n"
+                },
+                {
+                    "date": 1738707222580,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React, { Suspense } from \"react\";\r\n import dynamic from \"next/dynamic\";\r\n \r\n-\r\n+const PharmacyDynamic = dynami(())\r\n const page = () => {\r\n   return (\r\n     <div>\r\n       \r\n"
+                },
+                {
+                    "date": 1738707227908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React, { Suspense } from \"react\";\r\n import dynamic from \"next/dynamic\";\r\n \r\n-const PharmacyDynamic = dynami(())\r\n+const PharmacyDynamic = dynamic(() => impo)\r\n const page = () => {\r\n   return (\r\n     <div>\r\n       \r\n"
+                },
+                {
+                    "date": 1738707235131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React, { Suspense } from \"react\";\r\n import dynamic from \"next/dynamic\";\r\n \r\n-const PharmacyDynamic = dynamic(() => impo)\r\n+const PharmacyDynamic = dynamic(() => import(\"@/components/pa\"))\r\n const page = () => {\r\n   return (\r\n     <div>\r\n       \r\n"
+                },
+                {
+                    "date": 1738707242408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n import React, { Suspense } from \"react\";\r\n import dynamic from \"next/dynamic\";\r\n \r\n-const PharmacyDynamic = dynamic(() => import(\"@/components/pa\"))\r\n+const PharmacyDynamic = dynamic(() => import(\"@/components/Pharmacy\"))\r\n const page = () => {\r\n   return (\r\n-    <div>\r\n+    <Suspense>\r\n       \r\n-    </div>\r\n+    </s>\r\n   )\r\n }\r\n \r\n export default page\r\n"
+                },
+                {
+                    "date": 1738707249908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \r\n const PharmacyDynamic = dynamic(() => import(\"@/components/Pharmacy\"))\r\n const page = () => {\r\n   return (\r\n-    <Suspense fallback={}>\r\n+    <Suspense fallback={<}>\r\n       \r\n     </Suspense>\r\n   )\r\n }\r\n"
+                }
+            ],
+            "date": 1738707173459,
+            "name": "Commit-0",
+            "content": "rafce"
+        }
+    ]
+}

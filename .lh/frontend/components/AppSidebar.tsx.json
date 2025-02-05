@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1738528303799,
@@ -24,6 +24,38 @@
                 {
                     "date": 1738528390958,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n         <SidebarHeader\r\n           onClick={() => setOpen(!open)}\r\n           className=\"flex  justify-center items-center h-14 px-4 border-b dark:border-slate-700 p-0 min-w-[25px] \"\r\n         >\r\n-          <span className={`flex justify-start items-center cursor-pointer z-30`}>\r\n+          <span className={`flex justify-start items-center cursor-pointer `}>\r\n             <Image\r\n               src=\"/assets/icons/mark.svg\"\r\n               alt=\"Logo\"\r\n               width={25}\r\n"
+                },
+                {
+                    "date": 1738534574457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,9 +64,9 @@\n     );\r\n   };\r\n   return (\r\n     <Dialog>\r\n-      <Sidebar className=\"border-r dark:border-slate-700 h-screen\" collapsible=\"icon\">\r\n+      <Sidebar className=\"border-r dark:border-slate-700 h-screen z-30\" collapsible=\"icon\">\r\n         {/* Header and Trigger */}\r\n \r\n         <SidebarHeader\r\n           onClick={() => setOpen(!open)}\r\n@@ -92,9 +92,9 @@\n         <SidebarContent className=\"flex-1\">\r\n           <SidebarGroup className=\"flex-1 p-0\">\r\n             {/* Body */}\r\n             <SidebarGroupContent\r\n-              className={clsx(\"flex-1 w-full pt-10 overflow-hidden\", {\r\n+              className={clsx(\"flex-1 w-full pt-10 sm:overflow-hidden\", {\r\n                 \"pt-0\": open && !isMobile,\r\n               })}\r\n             >\r\n               <SidebarGroupLabel className=\" text-slate-500  pl-[1.25rem]\">\r\n"
+                },
+                {
+                    "date": 1738534590466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n         <SidebarContent className=\"flex-1\">\r\n           <SidebarGroup className=\"flex-1 p-0\">\r\n             {/* Body */}\r\n             <SidebarGroupContent\r\n-              className={clsx(\"flex-1 w-full pt-10 sm:overflow-hidden\", {\r\n+              className={clsx(\"flex-1 w-full pt-10 over sm:overflow-hidden\", {\r\n                 \"pt-0\": open && !isMobile,\r\n               })}\r\n             >\r\n               <SidebarGroupLabel className=\" text-slate-500  pl-[1.25rem]\">\r\n"
+                },
+                {
+                    "date": 1738534601605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n         <SidebarContent className=\"flex-1\">\r\n           <SidebarGroup className=\"flex-1 p-0\">\r\n             {/* Body */}\r\n             <SidebarGroupContent\r\n-              className={clsx(\"flex-1 w-full pt-10 over sm:overflow-hidden\", {\r\n+              className={clsx(\"flex-1 w-full pt-10 overflow-y-auto \", {\r\n                 \"pt-0\": open && !isMobile,\r\n               })}\r\n             >\r\n               <SidebarGroupLabel className=\" text-slate-500  pl-[1.25rem]\">\r\n"
+                },
+                {
+                    "date": 1738534607639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n         <SidebarContent className=\"flex-1\">\r\n           <SidebarGroup className=\"flex-1 p-0\">\r\n             {/* Body */}\r\n             <SidebarGroupContent\r\n-              className={clsx(\"flex-1 w-full pt-10 overflow-y-auto \", {\r\n+              className={clsx(\"flex-1 w-full pt-10 overflow-y-auto sm:overflow-hidden\", {\r\n                 \"pt-0\": open && !isMobile,\r\n               })}\r\n             >\r\n               <SidebarGroupLabel className=\" text-slate-500  pl-[1.25rem]\">\r\n"
+                },
+                {
+                    "date": 1738721395406,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n           <Link\r\n             href={item.url}\r\n             className={clsx(\"h-full rounded-xl transition-colors\", {\r\n               \"bg-[var(--sidebar-accent)]  text-slate-50 dark:bg-[var(--sidebar-accent)]\":\r\n-                pathname === item.url \r\n+                pathname=== item.url  \r\n             })}\r\n           >\r\n             <item.icon />\r\n             <span className={`font-medium ${inter.className}`}>\r\n"
+                },
+                {
+                    "date": 1738721411270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n           <Link\r\n             href={item.url}\r\n             className={clsx(\"h-full rounded-xl transition-colors\", {\r\n               \"bg-[var(--sidebar-accent)]  text-slate-50 dark:bg-[var(--sidebar-accent)]\":\r\n-                pathname=== item.url  \r\n+                pathname.startsWith(item.url)  \r\n             })}\r\n           >\r\n             <item.icon />\r\n             <span className={`font-medium ${inter.className}`}>\r\n"
+                },
+                {
+                    "date": 1738730826199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -107,9 +107,9 @@\n               <SidebarMenu className=\"h-full\">\r\n                 {sideItems.map((item,index) => {\r\n                   if (item.private) {\r\n                     if (session?.user.role === \"Admin\") {\r\n-                      return <Item item={item} key={item.title} />;\r\n+                      return <Item item={item} key={item.title} key />;\r\n                     }\r\n                   } else if (item.title === \"Pharmacy\") {\r\n                     return (\r\n                       <>\r\n"
+                },
+                {
+                    "date": 1738730834783,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -107,9 +107,9 @@\n               <SidebarMenu className=\"h-full\">\r\n                 {sideItems.map((item,index) => {\r\n                   if (item.private) {\r\n                     if (session?.user.role === \"Admin\") {\r\n-                      return <Item item={item} key={item.title} key />;\r\n+                      return <Item item={item} key={index}  />;\r\n                     }\r\n                   } else if (item.title === \"Pharmacy\") {\r\n                     return (\r\n                       <>\r\n"
                 }
             ],
             "date": 1738528303799,

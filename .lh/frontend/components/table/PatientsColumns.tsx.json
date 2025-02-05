@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 14,
             "patches": [
                 {
                     "date": 1738507405894,
@@ -44,6 +44,26 @@
                 {
                     "date": 1738521626126,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,12 +12,12 @@\n } from \"../ui/dropdown-menu\";\r\n import { Button } from \"../ui/button\";\r\n \r\n import { format } from \"date-fns\";\r\n-import { PatientData } from \"@/types\";\r\n+import { patient } from \"@/types\";\r\n import { DeleteHandler } from \"../togglers/Handlers\";\r\n \r\n-export const patientsColumns: ColumnDef<PatientData>[] = [\r\n+export const patientsColumns: ColumnDef<patient>[] = [\r\n   {\r\n     accessorKey: \"firstName\",\r\n     header: () => <p className=\"text-slate-500 uppercase\">Patient</p>,\r\n     cell: ({ row }) => {\r\n"
+                },
+                {
+                    "date": 1738532281719,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,20 @@\n import { format } from \"date-fns\";\r\n import { patient } from \"@/types\";\r\n import { DeleteHandler } from \"../togglers/Handlers\";\r\n \r\n+const fullNameFilter: FilterFn<any> = (row, columnId, filterValue) => {\r\n+  const firstName = row.original.firstName.toLowerCase();\r\n+  const lastName = row.original.lastName.toLowerCase();\r\n+  const fullName = `${firstName} ${lastName}`;\r\n+\r\n+  return (\r\n+    firstName.includes(filterValue.toLowerCase()) ||\r\n+    lastName.includes(filterValue.toLowerCase()) ||\r\n+    fullName.includes(filterValue.toLowerCase())\r\n+  );\r\n+};\r\n+\r\n export const patientsColumns: ColumnDef<patient>[] = [\r\n   {\r\n     accessorKey: \"firstName\",\r\n     header: () => <p className=\"text-slate-500 uppercase\">Patient</p>,\r\n"
+                },
+                {
+                    "date": 1738532289441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n \"use client\";\r\n \r\n-import { ColumnDef } from \"@tanstack/react-table\";\r\n+import { ColumnDef, FilterFn } from \"@tanstack/react-table\";\r\n import Link from \"next/link\";\r\n import { MoreHorizontal } from \"lucide-react\";\r\n import Image from \"next/image\";\r\n import {\r\n@@ -15,9 +15,9 @@\n import { format } from \"date-fns\";\r\n import { patient } from \"@/types\";\r\n import { DeleteHandler } from \"../togglers/Handlers\";\r\n \r\n-const fullNameFilter: FilterFn<any> = (row, columnId, filterValue) => {\r\n+const fullNameFilter: FilterFn<string> = (row, columnId, filterValue) => {\r\n   const firstName = row.original.firstName.toLowerCase();\r\n   const lastName = row.original.lastName.toLowerCase();\r\n   const fullName = `${firstName} ${lastName}`;\r\n \r\n"
+                },
+                {
+                    "date": 1738532302732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n import { format } from \"date-fns\";\r\n import { patient } from \"@/types\";\r\n import { DeleteHandler } from \"../togglers/Handlers\";\r\n \r\n-const fullNameFilter: FilterFn<string> = (row, columnId, filterValue) => {\r\n+const fullNameFilter: FilterFn<any> = (row, columnId, filterValue) => {\r\n   const firstName = row.original.firstName.toLowerCase();\r\n   const lastName = row.original.lastName.toLowerCase();\r\n   const fullName = `${firstName} ${lastName}`;\r\n \r\n@@ -54,8 +54,9 @@\n           <p className=\"font-medium capitalize\">{name}</p>\r\n         </div>\r\n       );\r\n     },\r\n+    \r\n   },\r\n   {\r\n     accessorKey: \"birthDate\",\r\n     header: () => <p className=\"text-slate-500\">BIRTH</p>,\r\n"
+                },
+                {
+                    "date": 1738532312287,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n           <p className=\"font-medium capitalize\">{name}</p>\r\n         </div>\r\n       );\r\n     },\r\n-    filterFn:Full\r\n+    filterFn:Fullna\r\n   },\r\n   {\r\n     accessorKey: \"birthDate\",\r\n     header: () => <p className=\"text-slate-500\">BIRTH</p>,\r\n"
+                },
+                {
+                    "date": 1738534806987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -122,9 +122,9 @@\n       return <p className=\"text-slate-600 dark:text-slate-50\">{createdAt}</p>;\r\n     },\r\n   },\r\n   {\r\n-    accessorKey: \"updated\",\r\n+    accessorKey: \"updatedAt\",\r\n     header: () => <p className=\"text-slate-500\">CREATED AT</p>,\r\n     cell: ({ row }) => {\r\n       const createdAt = format(row.original.createdAt, \"P\");\r\n       return <p className=\"text-slate-600 dark:text-slate-50\">{createdAt}</p>;\r\n"
                 }
             ],
             "date": 1738507405894,

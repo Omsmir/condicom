@@ -1,0 +1,34 @@
+{
+    "sourceFile": "frontend/components/Charts.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1738730065870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738730115042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { useEffect, useRef } from \"react\";\r\n import Highcharts from \"highcharts\";\r\n \r\n const AreaChart = () => {\r\n-  const chartRef = useRef<HTMLDivElement>(null);\r\n+  const chartRef = useRef<HTMLDivElement | null>(null);\r\n \r\n   useEffect(() => {\r\n     if (!chartRef.current) return;\r\n \r\n"
+                },
+                {
+                    "date": 1738730162295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,17 +6,14 @@\n const AreaChart = () => {\r\n   const chartRef = useRef<HTMLDivElement | null>(null);\r\n \r\n   useEffect(() => {\r\n-    if (!chartRef.current) return;\r\n+    if (!chartRef.current) return; // Ensure the ref is set\r\n \r\n-    Highcharts.chart(chartRef.current, {\r\n+    const chart = Highcharts.chart(chartRef.current, {\r\n       chart: {\r\n         type: \"area\",\r\n       },\r\n-      accessibility: {\r\n-        description: \"\",\r\n-      },\r\n       title: {\r\n         text: \"US and USSR nuclear stockpiles\",\r\n       },\r\n       xAxis: {\r\n@@ -80,13 +77,11 @@\n         },\r\n       ],\r\n     });\r\n \r\n-    // Cleanup function to prevent memory leaks\r\n+    // Cleanup function to destroy the chart when unmounting\r\n     return () => {\r\n-      if (chartRef.current) {\r\n-        Highcharts.chart(chartRef.current, {}).destroy();\r\n-      }\r\n+      if (chart) chart.destroy();\r\n     };\r\n   }, []);\r\n \r\n   return <div ref={chartRef} className=\"w-full h-[500px]\" />;\r\n"
+                },
+                {
+                    "date": 1738730194009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \r\n   useEffect(() => {\r\n     if (!chartRef.current) return; // Ensure the ref is set\r\n \r\n-    const chart = Highcharts.chart(chartRef.current, {\r\n+    const chart = Highcharts.chart(chartRef.current as html, {\r\n       chart: {\r\n         type: \"area\",\r\n       },\r\n       title: {\r\n"
+                },
+                {
+                    "date": 1738730203239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \r\n   useEffect(() => {\r\n     if (!chartRef.current) return; // Ensure the ref is set\r\n \r\n-    const chart = Highcharts.chart(chartRef.current as html, {\r\n+    const chart = Highcharts.chart(chartRef.current as any, {\r\n       chart: {\r\n         type: \"area\",\r\n       },\r\n       title: {\r\n"
+                }
+            ],
+            "date": 1738730065870,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\n\r\nimport { useEffect, useRef } from \"react\";\r\nimport Highcharts from \"highcharts\";\r\n\r\nconst AreaChart = () => {\r\n  const chartRef = useRef<HTMLDivElement>(null);\r\n\r\n  useEffect(() => {\r\n    if (!chartRef.current) return;\r\n\r\n    Highcharts.chart(chartRef.current, {\r\n      chart: {\r\n        type: \"area\",\r\n      },\r\n      accessibility: {\r\n        description: \"\",\r\n      },\r\n      title: {\r\n        text: \"US and USSR nuclear stockpiles\",\r\n      },\r\n      xAxis: {\r\n        allowDecimals: false,\r\n        accessibility: {\r\n          rangeDescription: \"Range: 1940 to 2024.\",\r\n        },\r\n      },\r\n      yAxis: {\r\n        title: {\r\n          text: \"Nuclear weapon states\",\r\n        },\r\n      },\r\n      tooltip: {\r\n        pointFormat:\r\n          \"{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}\",\r\n      },\r\n      plotOptions: {\r\n        area: {\r\n          pointStart: 1940,\r\n          marker: {\r\n            enabled: false,\r\n            symbol: \"circle\",\r\n            radius: 2,\r\n            states: {\r\n              hover: {\r\n                enabled: true,\r\n              },\r\n            },\r\n          },\r\n        },\r\n      },\r\n      series: [\r\n        {\r\n          name: \"USA\",\r\n          data: [\r\n            null, null, null, null, null, 2, 9, 13, 50, 170, 299, 438, 841,\r\n            1169, 1703, 2422, 3692, 5543, 7345, 12298, 18638, 22229, 25540,\r\n            28133, 29463, 31139, 31175, 31255, 29561, 27552, 26008, 25830,\r\n            26516, 27835, 28537, 27519, 25914, 25542, 24418, 24138, 24104,\r\n            23208, 22886, 23305, 23459, 23368, 23317, 23575, 23205, 22217,\r\n            21392, 19008, 13708, 11511, 10979, 10904, 11011, 10903, 10732,\r\n            10685, 10577, 10526, 10457, 10027, 8570, 8360, 7853, 5709, 5273,\r\n            5113, 5066, 4897, 4881, 4804, 4717, 4571, 4018, 3822, 3785, 3805,\r\n            3750, 3708, 3708, 3708, 3708,\r\n          ],\r\n        },\r\n        {\r\n          name: \"USSR/Russia\",\r\n          data: [\r\n            null, null, null, null, null, null, null, null, null, 1, 5, 25, 50,\r\n            120, 150, 200, 426, 660, 863, 1048, 1627, 2492, 3346, 4259, 5242,\r\n            6144, 7091, 8400, 9490, 10671, 11736, 13279, 14600, 15878, 17286,\r\n            19235, 22165, 24281, 26169, 28258, 30665, 32146, 33486, 35130,\r\n            36825, 38582, 40159, 38107, 36538, 35078, 32980, 29154, 26734,\r\n            24403, 21339, 18179, 15942, 15442, 14368, 13188, 12188, 11152,\r\n            10114, 9076, 8038, 7000, 6643, 6286, 5929, 5527, 5215, 4858, 4750,\r\n            4650, 4600, 4500, 4490, 4300, 4350, 4330, 4310, 4495, 4477, 4489,\r\n            4380,\r\n          ],\r\n        },\r\n      ],\r\n    });\r\n\r\n    // Cleanup function to prevent memory leaks\r\n    return () => {\r\n      if (chartRef.current) {\r\n        Highcharts.chart(chartRef.current, {}).destroy();\r\n      }\r\n    };\r\n  }, []);\r\n\r\n  return <div ref={chartRef} className=\"w-full h-[500px]\" />;\r\n};\r\n\r\nexport default AreaChart;\r\n"
+        }
+    ]
+}

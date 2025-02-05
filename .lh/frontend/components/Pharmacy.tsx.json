@@ -1,0 +1,38 @@
+{
+    "sourceFile": "frontend/components/Pharmacy.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1738696561166,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738707121799,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,11 @@\n-r\n\\ No newline at end of file\n+import React from 'react'\r\n+\r\n+const Pharmacy = async() => {\r\n+  return (\r\n+    <div>\r\n+      \r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default Pharmacy\r\n"
+                },
+                {
+                    "date": 1738707138684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,8 @@\n-import React from 'react'\r\n+import { DataTable } from \"./table/Table\";\r\n+import { patientsColumns } from \"./table/PatientsColumns\";\r\n+import { getAllPatients } from \"@/actions/getPatients\";\r\n+import { AccessibleForward } from \"@mui/icons-material\";\r\n \r\n const Pharmacy = async() => {\r\n   return (\r\n     <div>\r\n"
+                },
+                {
+                    "date": 1738707153802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,12 @@\n import { getAllPatients } from \"@/actions/getPatients\";\r\n import { AccessibleForward } from \"@mui/icons-material\";\r\n \r\n const Pharmacy = async() => {\r\n+    \r\n   return (\r\n-    <div>\r\n-      \r\n-    </div>\r\n+    <DataTable columns={patientsColumns} data={data.Patients} renderSwitchState=\"patient\" breadCrumbString=\"Patients\" StatsIcon={<AccessibleForward />} />\r\n+\r\n   )\r\n }\r\n \r\n export default Pharmacy\r\n"
+                },
+                {
+                    "date": 1738707392577,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,16 @@\n import { DataTable } from \"./table/Table\";\r\n import { patientsColumns } from \"./table/PatientsColumns\";\r\n import { getAllPatients } from \"@/actions/getPatients\";\r\n import { AccessibleForward } from \"@mui/icons-material\";\r\n+import { doctorColumns } from \"./table/DoctorColumns\";\r\n \r\n const Pharmacy = async() => {\r\n     const data = await getAllPatients()\r\n \r\n     await new Promise((resolve) => setTimeout(resolve, 500));\r\n   return (\r\n-    <DataTable columns={doctors} data={data.Patients} renderSwitchState=\"patient\" breadCrumbString=\"Patients\" StatsIcon={<AccessibleForward />} />\r\n+    <DataTable columns={doctorColumns} data={data.Patients} renderSwitchState=\"patient\" breadCrumbString=\"Patients\" StatsIcon={<AccessibleForward />} />\r\n \r\n   )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1738707402434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,12 @@\n import { patientsColumns } from \"./table/PatientsColumns\";\r\n import { getAllPatients } from \"@/actions/getPatients\";\r\n import { AccessibleForward } from \"@mui/icons-material\";\r\n import { doctorColumns } from \"./table/DoctorColumns\";\r\n+import { getAllUsers } from \"@/actions/getUser\";\r\n \r\n const Pharmacy = async() => {\r\n-    const data = await getall()\r\n+    const data = await getAllUsers()\r\n \r\n     await new Promise((resolve) => setTimeout(resolve, 500));\r\n   return (\r\n     <DataTable columns={doctorColumns} data={} renderSwitchState=\"patient\" breadCrumbString=\"Patients\" StatsIcon={<AccessibleForward />} />\r\n"
+                }
+            ],
+            "date": 1738696561166,
+            "name": "Commit-0",
+            "content": "r"
+        }
+    ]
+}

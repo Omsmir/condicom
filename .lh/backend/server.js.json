@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1738503934767,
@@ -20,6 +20,30 @@
                 {
                     "date": 1738503964795,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n import appointmentRoute from \"./routes/AppointmentRoute.js\"\r\n \r\n import notificationRoute from \"./routes/notificationsRoute.js\"\r\n \r\n-import patientRoute from \"./routes/\"\r\n+import patientRoute from \"./routes/patientRoute.js\"\r\n import { notFound, errorHandler } from \"./middleware/errorHandler.js\";\r\n const PORT = process.env.PORT || 8080;\r\n import { mongodbConnection } from \"./db/index.js\";\r\n import cors from \"cors\";\r\n@@ -57,9 +57,9 @@\n app.use(\"/api/appointments\",appointmentRoute)\r\n \r\n app.use(\"/api/notifications\",notificationRoute)\r\n \r\n-app.use(\"/api/patient\")\r\n+app.use(\"/api/patient\",patientRoute)\r\n \r\n app.use(notFound);\r\n \r\n app.use(errorHandler);\r\n"
+                },
+                {
+                    "date": 1738712654595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,8 +59,10 @@\n app.use(\"/api/notifications\",notificationRoute)\r\n \r\n app.use(\"/api/patient\",patientRoute)\r\n \r\n+app.use(\"/api/patient\",patientRoute)\r\n+\r\n app.use(notFound);\r\n \r\n app.use(errorHandler);\r\n \r\n"
+                },
+                {
+                    "date": 1738712661144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n app.use(\"/api/notifications\",notificationRoute)\r\n \r\n app.use(\"/api/patient\",patientRoute)\r\n \r\n-app.use(\"/api/patient\",patientRoute)\r\n+app.use(\"/api/medications/\",patientRoute)\r\n \r\n app.use(notFound);\r\n \r\n app.use(errorHandler);\r\n"
+                },
+                {
+                    "date": 1738712667543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n import { mongodbConnection } from \"./db/index.js\";\r\n import cors from \"cors\";\r\n import http from \"http\";\r\n import {Server} from \"socket.io\"\r\n-import { verifyUser } from \"./controllers/userController.js\";\r\n \r\n \r\n dotenv.config();\r\n \r\n@@ -59,9 +58,9 @@\n app.use(\"/api/notifications\",notificationRoute)\r\n \r\n app.use(\"/api/patient\",patientRoute)\r\n \r\n-app.use(\"/api/medications/\",patientRoute)\r\n+app.use(\"/api/medications\",patientRoute)\r\n \r\n app.use(notFound);\r\n \r\n app.use(errorHandler);\r\n"
+                },
+                {
+                    "date": 1738712672829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n \r\n import appointmentRoute from \"./routes/AppointmentRoute.js\"\r\n \r\n import notificationRoute from \"./routes/notificationsRoute.js\"\r\n-\r\n+import medication\r\n import patientRoute from \"./routes/patientRoute.js\"\r\n import { notFound, errorHandler } from \"./middleware/errorHandler.js\";\r\n const PORT = process.env.PORT || 8080;\r\n import { mongodbConnection } from \"./db/index.js\";\r\n"
+                },
+                {
+                    "date": 1738712679588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n \r\n import appointmentRoute from \"./routes/AppointmentRoute.js\"\r\n \r\n import notificationRoute from \"./routes/notificationsRoute.js\"\r\n-import medication\r\n+import medicationRoute from \"./ro\"\r\n import patientRoute from \"./routes/patientRoute.js\"\r\n import { notFound, errorHandler } from \"./middleware/errorHandler.js\";\r\n const PORT = process.env.PORT || 8080;\r\n import { mongodbConnection } from \"./db/index.js\";\r\n"
+                },
+                {
+                    "date": 1738712844714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n \r\n import appointmentRoute from \"./routes/AppointmentRoute.js\"\r\n \r\n import notificationRoute from \"./routes/notificationsRoute.js\"\r\n-import medicationRoute from \"./ro\"\r\n+import medicationRoute from \"./routes/medicationRoute.js\"\r\n import patientRoute from \"./routes/patientRoute.js\"\r\n import { notFound, errorHandler } from \"./middleware/errorHandler.js\";\r\n const PORT = process.env.PORT || 8080;\r\n import { mongodbConnection } from \"./db/index.js\";\r\n@@ -58,9 +58,9 @@\n app.use(\"/api/notifications\",notificationRoute)\r\n \r\n app.use(\"/api/patient\",patientRoute)\r\n \r\n-app.use(\"/api/medications\",patientRoute)\r\n+app.use(\"/api/medications\",medic)\r\n \r\n app.use(notFound);\r\n \r\n app.use(errorHandler);\r\n"
                 }
             ],
             "date": 1738503934767,

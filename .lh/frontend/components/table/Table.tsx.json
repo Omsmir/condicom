@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 11,
             "patches": [
                 {
                     "date": 1738510243252,
@@ -28,6 +28,30 @@
                 {
                     "date": 1738513288610,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n import UpperTableEvents from \"./UpperTableEvents\";\r\n import BreadCrumb from \"../doctorProfile/BreadCrumb\";\r\n import dynamic from \"next/dynamic\";\r\n \r\n-// const DynamicStats = dynamic(() => import(\"./Stats\"))\r\n+const DynamicStats = dynamic(() => import(\"./Stats\"))\r\n interface DataTableProps<TData, TValue> {\r\n   columns: ColumnDef<TData, TValue>[];\r\n   data: TData[];\r\n   patientTableState?: boolean;\r\n"
+                },
+                {
+                    "date": 1738532440380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,8 +55,10 @@\n     data,\r\n     columns,\r\n     state: { pagination, sorting, globalFilter, columnVisibility },\r\n     onPaginationChange: setPagination,\r\n+    globalFilterFn: (row, columnId, filterValue) =>\r\n+      columns[0].filterFn(row, columnId, filterValue),\r\n     getCoreRowModel: getCoreRowModel(),\r\n     onSortingChange: setSorting,\r\n     onColumnVisibilityChange: setColumnVisibility,\r\n     getSortedRowModel: getSortedRowModel(),\r\n@@ -88,13 +90,13 @@\n   return (\r\n     <div className=\"pt-14 min-h-screen w-full px-2 sm:px-0\">\r\n     {/* Table Wrapper */}\r\n     <div className=\"flex flex-col sm:flex-row justify-between items-start\">\r\n-      {/* <DynamicStats\r\n+      <DynamicStats\r\n         StatsSection={breadCrumbString}\r\n         StatsIcon={StatsIcon}\r\n         data={data}\r\n-      /> */}\r\n+      />\r\n     </div>\r\n   \r\n     {/* Table Controls */}\r\n     <UpperTableEvents\r\n"
+                },
+                {
+                    "date": 1738532449918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n     columns,\r\n     state: { pagination, sorting, globalFilter, columnVisibility },\r\n     onPaginationChange: setPagination,\r\n     globalFilterFn: (row, columnId, filterValue) =>\r\n-      columns[0].filterFn(row, columnId, filterValue),\r\n+      columns[0]?.filterFn(row, columnId, filterValue),\r\n     getCoreRowModel: getCoreRowModel(),\r\n     onSortingChange: setSorting,\r\n     onColumnVisibilityChange: setColumnVisibility,\r\n     getSortedRowModel: getSortedRowModel(),\r\n"
+                },
+                {
+                    "date": 1738532455488,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n     columns,\r\n     state: { pagination, sorting, globalFilter, columnVisibility },\r\n     onPaginationChange: setPagination,\r\n     globalFilterFn: (row, columnId, filterValue) =>\r\n-      columns[0]?.filterFn(row, columnId, filterValue),\r\n+      columns?[0].filterFn(row, columnId, filterValue),\r\n     getCoreRowModel: getCoreRowModel(),\r\n     onSortingChange: setSorting,\r\n     onColumnVisibilityChange: setColumnVisibility,\r\n     getSortedRowModel: getSortedRowModel(),\r\n"
+                },
+                {
+                    "date": 1738534407344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,10 +55,8 @@\n     data,\r\n     columns,\r\n     state: { pagination, sorting, globalFilter, columnVisibility },\r\n     onPaginationChange: setPagination,\r\n-    globalFilterFn: (row, columnId, filterValue) =>\r\n-      columns?[0].filterFn(row, columnId, filterValue),\r\n     getCoreRowModel: getCoreRowModel(),\r\n     onSortingChange: setSorting,\r\n     onColumnVisibilityChange: setColumnVisibility,\r\n     getSortedRowModel: getSortedRowModel(),\r\n"
+                },
+                {
+                    "date": 1738603088119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,11 +64,9 @@\n     onGlobalFilterChange: setGlobalFilter,\r\n     getFilteredRowModel: getFilteredRowModel(),\r\n   });\r\n \r\n-  const isTablet = useMediaQuery({ query: \"(min-width: 997px)\" });\r\n \r\n-  \r\n   return (\r\n     <div className=\"pt-14 min-h-screen w-full px-2 sm:px-0\">\r\n     {/* Table Wrapper */}\r\n     <div className=\"flex flex-col sm:flex-row justify-between items-start\">\r\n"
+                },
+                {
+                    "date": 1738603226554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n     pageSize: 8,\r\n   });\r\n   const [sorting, setSorting] = useState<SortingState>([]);\r\n   const [globalFilter, setGlobalFilter] = useState<string>(\"\");\r\n-  const[filterColumns,set]\r\n+  const[filterColumns,setF]\r\n \r\n \r\n   const table = useReactTable({\r\n     data,\r\n"
                 }
             ],
             "date": 1738510243252,

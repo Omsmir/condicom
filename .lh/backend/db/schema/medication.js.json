@@ -1,0 +1,38 @@
+{
+    "sourceFile": "backend/db/schema/medication.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1738712024091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738712032943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n import mongoose from \"mongoose\"\r\n \r\n \r\n-const \n\\ No newline at end of file\n+const medicationSchema = \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738712042575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n import mongoose from \"mongoose\"\r\n \r\n \r\n-const medicationSchema = \n\\ No newline at end of file\n+const medicationSchema = new mon\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738712063718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,6 @@\n+import mongoose from \"mongoose\"\r\n+\r\n+\r\n+const medicationSchema = new mongoose.Schema({\r\n+    \r\n+})\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738712074575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import mongoose from \"mongoose\"\r\n \r\n \r\n const medicationSchema = new mongoose.Schema({\r\n-    name:{type:String,r}\r\n+    name:{type:String,re}\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738712112310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,7 +3,7 @@\n \r\n const medicationSchema = new mongoose.Schema({\r\n     name:{type:String,required:true},\r\n     generic_name:{type:String,required:true},\r\n-    description:{type:String}\r\n+    description:{type:String},\r\n \r\n })\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1738712024091,
+            "name": "Commit-0",
+            "content": "import mongoose from \"mongoose\"\r\n\r\n\r\nconst "
+        }
+    ]
+}

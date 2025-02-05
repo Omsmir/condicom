@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1738510264150,
@@ -52,6 +52,14 @@
                 {
                     "date": 1738512933698,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n         <DropdownMenu>\r\n           <DropdownMenuTrigger asChild className=\"my-1\">\r\n             <Button\r\n               variant=\"outline\"\r\n-              className=\"bg-blue-700 text-slate-50 border-0\"\r\n+              className=\"bg-blue-700 text-slate-50 border-0 AppointmentCreate\"\r\n             >\r\n               Export\r\n             </Button>\r\n           </DropdownMenuTrigger>\r\n@@ -58,9 +58,9 @@\n             </DropdownMenuItem>\r\n           </DropdownMenuContent>\r\n         </DropdownMenu>\r\n         {patientButtonState && (\r\n-          <div className=\"ml-8 border-l pl-4\">\r\n+          <div className=\"ml-4 border-l pl-4\">\r\n            \r\n             <AddPatient />\r\n           </div>\r\n         )}\r\n"
+                },
+                {
+                    "date": 1738534471328,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n         <Input\r\n           placeholder=\"Search by name\"\r\n           value={globalFilter}\r\n           onChange={(e) => setGlobalFilter(e.target.value)}\r\n-          className=\" focus:outline-0  shad-input max-h-\"\r\n+          className=\" focus:outline-0  shad-input max-h-[]\"\r\n         />\r\n       </div>\r\n       <div className=\"flex justify-between items-center\">\r\n         <DropdownMenu>\r\n"
+                },
+                {
+                    "date": 1738690981926,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n           value={globalFilter}\r\n           onChange={(e) => setGlobalFilter(e.target.value)}\r\n           className=\" focus:outline-0  shad-input max-h-[30px]\"\r\n         />\r\n-        <Column\r\n+        <Columnfi\r\n       </div>\r\n       <div className=\"flex justify-between items-center\">\r\n         <DropdownMenu>\r\n           <DropdownMenuTrigger asChild className=\"my-1\">\r\n"
                 }
             ],
             "date": 1738510264150,

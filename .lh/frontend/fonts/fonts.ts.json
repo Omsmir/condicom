@@ -1,0 +1,62 @@
+{
+    "sourceFile": "frontend/fonts/fonts.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1738600461271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738600468842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \r\n })\r\n \r\n \r\n-export const inter = Inter({\r\n+export const lato = lato({\r\n     weight:[\"100\",\"300\",\"400\",\"500\",\"600\",\"700\"],\r\n     display:\"swap\",\r\n     subsets:[\"latin\"],\r\n \r\n"
+                },
+                {
+                    "date": 1738600487838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { Inter } from \"next/font/google\";\r\n+import { Inter, Lato } from \"next/font/google\";\r\n \r\n export const inter = Inter({\r\n     weight:[\"100\",\"300\",\"400\",\"500\",\"600\",\"700\"],\r\n     display:\"swap\",\r\n@@ -7,10 +7,10 @@\n \r\n })\r\n \r\n \r\n-export const lato = lato({\r\n-    weight:[\"100\",\"300\",\"400\",\"500\",\"600\",\"700\"],\r\n+export const lato = Lato({\r\n+    weight:[\"100\",\"300\",\"400\",\"700\"],\r\n     display:\"swap\",\r\n     subsets:[\"latin\"],\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738600939283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { Inter, Lato } from \"next/font/google\";\r\n \r\n export const inter = Inter({\r\n-    weight:[\"100\",\"300\",\"400\",\"500\",\"600\",\"700\"],\r\n+    weight:[\"300\",\"400\",\"500\",\"600\",\"700\"],\r\n     display:\"swap\",\r\n     subsets:[\"latin\"],\r\n \r\n })\r\n"
+                },
+                {
+                    "date": 1738601104671,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n export const inter = Inter({\r\n     weight:[\"300\",\"400\",\"500\",\"600\",\"700\"],\r\n     display:\"swap\",\r\n     subsets:[\"latin\"],\r\n-\r\n+    preload:true\r\n })\r\n \r\n \r\n export const lato = Lato({\r\n"
+                },
+                {
+                    "date": 1738601111121,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,6 +11,6 @@\n export const lato = Lato({\r\n     weight:[\"100\",\"300\",\"400\",\"700\"],\r\n     display:\"swap\",\r\n     subsets:[\"latin\"],\r\n-\r\n+    preload:true\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738601313450,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,11 @@\n })\r\n \r\n \r\n export const lato = Lato({\r\n-    weight:[\"100\",\"300\",\"400\",\"700\"],\r\n+    weight:[\"300\",\"400\",\"700\"],\r\n     display:\"swap\",\r\n     subsets:[\"latin\"],\r\n     preload:true\r\n\\ No newline at end of file\n-})\n+})\r\n+\r\n+export \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738601328319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,5 +14,9 @@\n     subsets:[\"latin\"],\r\n     preload:true\r\n })\r\n \r\n-export \n\\ No newline at end of file\n+export \r\n+const poppins = Poppins({\r\n+  weight: [\"100\", \"200\", \"300\", \"400\", \"500\", \"900\"],\r\n+  subsets: [\"latin\"],\r\n+});\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738601334800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     subsets:[\"latin\"],\r\n     preload:true\r\n })\r\n \r\n-export \r\n-const poppins = Poppins({\r\n+export const poppins = Poppins({\r\n   weight: [\"100\", \"200\", \"300\", \"400\", \"500\", \"900\"],\r\n   subsets: [\"latin\"],\r\n+  prel\r\n });\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738601344518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,6 +17,6 @@\n \r\n export const poppins = Poppins({\r\n   weight: [\"100\", \"200\", \"300\", \"400\", \"500\", \"900\"],\r\n   subsets: [\"latin\"],\r\n-  prel\r\n+  displ\r\n });\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738601367352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,6 +17,6 @@\n \r\n export const poppins = Poppins({\r\n   weight: [\"100\", \"200\", \"300\", \"400\", \"500\", \"900\"],\r\n   subsets: [\"latin\"],\r\n-  display:\"\"\r\n+  display:\"fa\"\r\n });\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738601379475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,6 +17,6 @@\n \r\n export const poppins = Poppins({\r\n   weight: [\"100\", \"200\", \"300\", \"400\", \"500\", \"900\"],\r\n   subsets: [\"latin\"],\r\n-  display:[]\r\n+  display:\"fallback\"\r\n });\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1738600461271,
+            "name": "Commit-0",
+            "content": "import { Inter } from \"next/font/google\";\r\n\r\nexport const inter = Inter({\r\n    weight:[\"100\",\"300\",\"400\",\"500\",\"600\",\"700\"],\r\n    display:\"swap\",\r\n    subsets:[\"latin\"],\r\n\r\n})\r\n\r\n\r\nexport const inter = Inter({\r\n    weight:[\"100\",\"300\",\"400\",\"500\",\"600\",\"700\"],\r\n    display:\"swap\",\r\n    subsets:[\"latin\"],\r\n\r\n})"
+        }
+    ]
+}

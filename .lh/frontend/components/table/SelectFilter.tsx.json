@@ -1,0 +1,54 @@
+{
+    "sourceFile": "frontend/components/table/SelectFilter.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1738693512657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738693612509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,46 @@\n import React from 'react'\r\n \r\n const SelectFilter = () => {\r\n   return (\r\n-    <div>\r\n-      \r\n-    </div>\r\n+    <Select\r\n+    key={value}\r\n+    onValueChange={(e) => {\r\n+      setColumnFilterForRows({\r\n+        e,\r\n+        columnId,\r\n+        switchValue: \"gender\",\r\n+      });\r\n+    }}\r\n+    value={value ?? undefined}\r\n+  >\r\n+    <SelectTrigger className=\"shad-select-trigger text-dark-500  max-h-[30px]\">\r\n+      <SelectValue placeholder={\"gender filter\"} />\r\n+    </SelectTrigger>\r\n+    <SelectContent\r\n+      className={cn(\"shad-select-content max-h-[250px]\")}\r\n+    >\r\n+      <SelectItem\r\n+        value=\"clear\"\r\n+        className=\"cursor-pointer transition-colors hover:bg-slate-200\"\r\n+      >\r\n+        <div className=\"flex justify-center items-center\">\r\n+          <p className=\"text-md text-gray-500 mx-2\">Clear</p>\r\n+        </div>\r\n+      </SelectItem>\r\n+      {genders.map((value, index) => (\r\n+        <SelectItem\r\n+          key={index}\r\n+          value={value}\r\n+          className=\"cursor-pointer transition-colors hover:bg-slate-200 \"\r\n+        >\r\n+          <div className=\"flex justify-center items-center\">\r\n+            <p className=\"text-md text-black mx-2\">{value}</p>\r\n+          </div>\r\n+        </SelectItem>\r\n+      ))}\r\n+    </SelectContent>\r\n+  </Select>\r\n   )\r\n }\r\n \r\n export default SelectFilter\r\n"
+                },
+                {
+                    "date": 1738693622322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,12 @@\n import React from 'react'\r\n-\r\n+import {\r\n+    Select,\r\n+    SelectContent,\r\n+    SelectItem,\r\n+    SelectTrigger,\r\n+    SelectValue,\r\n+  } from \"../ui/select\";\r\n const SelectFilter = () => {\r\n   return (\r\n     <Select\r\n     key={value}\r\n"
+                },
+                {
+                    "date": 1738693632226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,10 @@\n     SelectItem,\r\n     SelectTrigger,\r\n     SelectValue,\r\n   } from \"../ui/select\";\r\n+\r\n+  interface \r\n const SelectFilter = () => {\r\n   return (\r\n     <Select\r\n     key={value}\r\n"
+                },
+                {
+                    "date": 1738693640206,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     SelectTrigger,\r\n     SelectValue,\r\n   } from \"../ui/select\";\r\n \r\n-  interface \r\n+  interface SelectFilter\r\n const SelectFilter = () => {\r\n   return (\r\n     <Select\r\n     key={value}\r\n"
+                },
+                {
+                    "date": 1738693657482,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,11 @@\n     SelectTrigger,\r\n     SelectValue,\r\n   } from \"../ui/select\";\r\n \r\n-  interface SelectFilter\r\n+  interface SelectFilterProps {\r\n+\r\n+  }\r\n const SelectFilter = () => {\r\n   return (\r\n     <Select\r\n     key={value}\r\n@@ -24,9 +26,9 @@\n     <SelectTrigger className=\"shad-select-trigger text-dark-500  max-h-[30px]\">\r\n       <SelectValue placeholder={\"gender filter\"} />\r\n     </SelectTrigger>\r\n     <SelectContent\r\n-      className={cn(\"shad-select-content max-h-[250px]\")}\r\n+      className={cv(\"shad-select-content max-h-[250px]\")}\r\n     >\r\n       <SelectItem\r\n         value=\"clear\"\r\n         className=\"cursor-pointer transition-colors hover:bg-slate-200\"\r\n"
+                },
+                {
+                    "date": 1738693663712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     <SelectTrigger className=\"shad-select-trigger text-dark-500  max-h-[30px]\">\r\n       <SelectValue placeholder={\"gender filter\"} />\r\n     </SelectTrigger>\r\n     <SelectContent\r\n-      className={cv(\"shad-select-content max-h-[250px]\")}\r\n+      className=\"shad-select-content max-h-[250px]\")}\r\n     >\r\n       <SelectItem\r\n         value=\"clear\"\r\n         className=\"cursor-pointer transition-colors hover:bg-slate-200\"\r\n"
+                },
+                {
+                    "date": 1738693674743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     SelectValue,\r\n   } from \"../ui/select\";\r\n \r\n   interface SelectFilterProps {\r\n-\r\n+    value:string\r\n   }\r\n const SelectFilter = () => {\r\n   return (\r\n     <Select\r\n@@ -26,9 +26,9 @@\n     <SelectTrigger className=\"shad-select-trigger text-dark-500  max-h-[30px]\">\r\n       <SelectValue placeholder={\"gender filter\"} />\r\n     </SelectTrigger>\r\n     <SelectContent\r\n-      className=\"shad-select-content max-h-[250px]\")}\r\n+      className=\"shad-select-content max-h-[250px]\"\r\n     >\r\n       <SelectItem\r\n         value=\"clear\"\r\n         className=\"cursor-pointer transition-colors hover:bg-slate-200\"\r\n"
+                },
+                {
+                    "date": 1738693682969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   } from \"../ui/select\";\r\n \r\n   interface SelectFilterProps {\r\n     value:string;\r\n-    column\r\n+    columnId\r\n   }\r\n const SelectFilter = () => {\r\n   return (\r\n     <Select\r\n"
+                },
+                {
+                    "date": 1738694144609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n       });\r\n     }}\r\n     value={value ?? undefined}\r\n   >\r\n-    <SelectTrigger className=\"shad-select-trigger text-slate  max-h-[30px] mr-1\">\r\n+    <SelectTrigger className=\"shad-select-trigger text-slate-500  max-h-[30px] mr-1\">\r\n       <SelectValue placeholder={`${columnId} Filter`} />\r\n     </SelectTrigger>\r\n     <SelectContent\r\n       className=\"shad-select-content max-h-[250px]\"\r\n"
+                }
+            ],
+            "date": 1738693512657,
+            "name": "Commit-0",
+            "content": "import React from 'react'\r\n\r\nconst SelectFilter = () => {\r\n  return (\r\n    <div>\r\n      \r\n    </div>\r\n  )\r\n}\r\n\r\nexport default SelectFilter\r\n"
+        }
+    ]
+}

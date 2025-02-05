@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1738531228408,
@@ -12,6 +12,14 @@
                 {
                     "date": 1738531234475,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n import { DashboardHook } from \"./context/Dashboardprovider\";\r\n import { CreateNotification, userRole } from \"./togglers/TopBarEvents\";\r\n \r\n \r\n-const A = () => {\r\n+const AddAppointment = () => {\r\n   const { data: session } = useSession();\r\n   const router = useRouter();\r\n \r\n   const [isLoading, setIsLoading] = useState(false);\r\n@@ -230,7 +230,7 @@\n     </React.Fragment>\r\n   );\r\n };\r\n \r\n-export default A;\r\n+export default AddAppointment;\r\n \r\n export const dynamic = \"force-dynamic\";\r\n"
+                },
+                {
+                    "date": 1738711949552,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -110,9 +110,9 @@\n       } else if (error instanceof Error) {\r\n         api.error({\r\n           message: \"Unexpected Error\",\r\n           description: error.message,\r\n-          showProgress: true,\r\n+          showProgress: false,\r\n           pauseOnHover: false,\r\n         });\r\n       }\r\n     }\r\n@@ -232,5 +232,5 @@\n };\r\n \r\n export default AddAppointment;\r\n \r\n-export const dynamic = \"force-dynamic\";\r\n+\r\n"
+                },
+                {
+                    "date": 1738711960047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -110,9 +110,9 @@\n       } else if (error instanceof Error) {\r\n         api.error({\r\n           message: \"Unexpected Error\",\r\n           description: error.message,\r\n-          showProgress: false,\r\n+          showProgress: true,\r\n           pauseOnHover: false,\r\n         });\r\n       }\r\n     }\r\n"
                 }
             ],
             "date": 1738531228408,
