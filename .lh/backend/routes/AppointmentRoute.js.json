@@ -1,0 +1,102 @@
+{
+    "sourceFile": "backend/routes/AppointmentRoute.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 21,
+            "patches": [
+                {
+                    "date": 1738950544066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738950552125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n const router = express.Router()\r\n \r\n const storage = multer()\r\n \r\n-router.get(\"\")\r\n+router.get(\"/tasks\",getta)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n \r\n router.get(\"/\",getAppointment)\r\n \r\n"
+                },
+                {
+                    "date": 1738950562810,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,13 @@\n import express from \"express\"\r\n import multer from \"multer\"\r\n-import { CreateAppointment, deleteAppointment, editAppointment, getAppointment, getuserAppointments } from \"../controllers/appointmentController.js\"\r\n+import { CreateAppointment, deleteAppointment, editAppointment, getAppointment, getTask, getuserAppointments } from \"../controllers/appointmentController.js\"\r\n const router = express.Router()\r\n \r\n const storage = multer()\r\n \r\n-router.get(\"/tasks\",getta)\r\n+router.get(\"/tasks\",getTask)\r\n+router.get()\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n \r\n router.get(\"/\",getAppointment)\r\n \r\n"
+                },
+                {
+                    "date": 1738950570434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n const storage = multer()\r\n \r\n router.get(\"/tasks\",getTask)\r\n-router.get()\r\n+router.get(\"/tasks/:id\")\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n \r\n router.get(\"/\",getAppointment)\r\n \r\n"
+                },
+                {
+                    "date": 1738950584762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,14 @@\n import express from \"express\"\r\n import multer from \"multer\"\r\n-import { CreateAppointment, deleteAppointment, editAppointment, getAppointment, getTask, getuserAppointments } from \"../controllers/appointmentController.js\"\r\n+import { CreateAppointment, deleteAppointment, editAppointment, getAppointment, getSpecificTask, getTask, getuserAppointments } from \"../controllers/appointmentController.js\"\r\n const router = express.Router()\r\n \r\n const storage = multer()\r\n \r\n router.get(\"/tasks\",getTask)\r\n-router.get(\"/tasks/:id\")\r\n+router.get(\"/tasks/:id\",getSpecificTask)\r\n+router.post(\"/tasks/create\")\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n \r\n router.get(\"/\",getAppointment)\r\n \r\n"
+                },
+                {
+                    "date": 1738950591401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,14 @@\n import express from \"express\"\r\n import multer from \"multer\"\r\n-import { CreateAppointment, deleteAppointment, editAppointment, getAppointment, getSpecificTask, getTask, getuserAppointments } from \"../controllers/appointmentController.js\"\r\n+import { CreateAppointment, createTask, deleteAppointment, editAppointment, getAppointment, getSpecificTask, getTask, getuserAppointments } from \"../controllers/appointmentController.js\"\r\n const router = express.Router()\r\n \r\n const storage = multer()\r\n \r\n router.get(\"/tasks\",getTask)\r\n router.get(\"/tasks/:id\",getSpecificTask)\r\n-router.post(\"/tasks/create\")\r\n+router.post(\"/tasks\",createTask)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n \r\n router.get(\"/\",getAppointment)\r\n \r\n"
+                },
+                {
+                    "date": 1738950620632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n const storage = multer()\r\n \r\n router.get(\"/tasks\",getTask)\r\n router.get(\"/tasks/:id\",getSpecificTask)\r\n-router.post(\"/tasks\",createTask)\r\n+router.post(\"/tasks\",storage.none(),createTask)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n \r\n router.get(\"/\",getAppointment)\r\n \r\n"
+                },
+                {
+                    "date": 1738955116682,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n router.get(\"/tasks\",getTask)\r\n router.get(\"/tasks/:id\",getSpecificTask)\r\n router.post(\"/tasks\",storage.none(),createTask)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n-\r\n+router.p\r\n router.get(\"/\",getAppointment)\r\n \r\n router.get(\"/:userId\",getuserAppointments)\r\n router.delete(\"/:id\",deleteAppointment)\r\n"
+                },
+                {
+                    "date": 1738955123130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n router.get(\"/tasks\",getTask)\r\n router.get(\"/tasks/:id\",getSpecificTask)\r\n router.post(\"/tasks\",storage.none(),createTask)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n-router.p\r\n+router.put(\"/tasks\")\r\n router.get(\"/\",getAppointment)\r\n \r\n router.get(\"/:userId\",getuserAppointments)\r\n router.delete(\"/:id\",deleteAppointment)\r\n"
+                },
+                {
+                    "date": 1738955129179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n router.get(\"/tasks\",getTask)\r\n router.get(\"/tasks/:id\",getSpecificTask)\r\n router.post(\"/tasks\",storage.none(),createTask)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n-router.put(\"/tasks\")\r\n+router.put(\"/tasks/:id\")\r\n router.get(\"/\",getAppointment)\r\n \r\n router.get(\"/:userId\",getuserAppointments)\r\n router.delete(\"/:id\",deleteAppointment)\r\n"
+                },
+                {
+                    "date": 1738955134421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n router.get(\"/tasks\",getTask)\r\n router.get(\"/tasks/:id\",getSpecificTask)\r\n router.post(\"/tasks\",storage.none(),createTask)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n-router.put(\"/tasks/:id\")\r\n+router.put(\"/tasks/:id\",stora)\r\n router.get(\"/\",getAppointment)\r\n \r\n router.get(\"/:userId\",getuserAppointments)\r\n router.delete(\"/:id\",deleteAppointment)\r\n"
+                },
+                {
+                    "date": 1738955142459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n import express from \"express\"\r\n import multer from \"multer\"\r\n-import { CreateAppointment, createTask, deleteAppointment, editAppointment, getAppointment, getSpecificTask, getTask, getuserAppointments } from \"../controllers/appointmentController.js\"\r\n+import { CreateAppointment, createTask, deleteAppointment, editAppointment, getAppointment, getSpecificTask, getTask, getuserAppointments, updateTask } from \"../controllers/appointmentController.js\"\r\n const router = express.Router()\r\n \r\n const storage = multer()\r\n \r\n router.get(\"/tasks\",getTask)\r\n router.get(\"/tasks/:id\",getSpecificTask)\r\n router.post(\"/tasks\",storage.none(),createTask)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n-router.put(\"/tasks/:id\",stora)\r\n+router.put(\"/tasks/:id\",storage.none(),updateTask)\r\n router.get(\"/\",getAppointment)\r\n \r\n router.get(\"/:userId\",getuserAppointments)\r\n router.delete(\"/:id\",deleteAppointment)\r\n"
+                },
+                {
+                    "date": 1738956852952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,11 @@\n router.get(\"/tasks/:id\",getSpecificTask)\r\n router.post(\"/tasks\",storage.none(),createTask)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n router.put(\"/tasks/:id\",storage.none(),updateTask)\r\n+\r\n+\r\n+\r\n router.get(\"/\",getAppointment)\r\n \r\n router.get(\"/:userId\",getuserAppointments)\r\n router.delete(\"/:id\",deleteAppointment)\r\n"
+                },
+                {
+                    "date": 1738956858067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n \r\n router.get(\"/tasks\",getTask)\r\n router.get(\"/tasks/:id\",getSpecificTask)\r\n router.post(\"/tasks\",storage.none(),createTask)\r\n-router.post(\"/\",storage.none(),CreateAppointment)\r\n router.put(\"/tasks/:id\",storage.none(),updateTask)\r\n \r\n \r\n \r\n"
+                },
+                {
+                    "date": 1739022578889,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,12 +8,13 @@\n router.get(\"/tasks\",getTask)\r\n router.get(\"/tasks/:id\",getSpecificTask)\r\n router.post(\"/tasks\",storage.none(),createTask)\r\n router.put(\"/tasks/:id\",storage.none(),updateTask)\r\n+router.delete\r\n \r\n \r\n-\r\n router.get(\"/\",getAppointment)\r\n+router.post(\"/\",storage.none(),CreateAppointment)\r\n \r\n router.get(\"/:userId\",getuserAppointments)\r\n router.delete(\"/:id\",deleteAppointment)\r\n \r\n"
+                },
+                {
+                    "date": 1739022584221,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n router.get(\"/tasks\",getTask)\r\n router.get(\"/tasks/:id\",getSpecificTask)\r\n router.post(\"/tasks\",storage.none(),createTask)\r\n router.put(\"/tasks/:id\",storage.none(),updateTask)\r\n-router.delete\r\n+router.delete(\"/tasks\")\r\n \r\n \r\n router.get(\"/\",getAppointment)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n"
+                },
+                {
+                    "date": 1739022591312,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n router.get(\"/tasks\",getTask)\r\n router.get(\"/tasks/:id\",getSpecificTask)\r\n router.post(\"/tasks\",storage.none(),createTask)\r\n router.put(\"/tasks/:id\",storage.none(),updateTask)\r\n-router.delete(\"/tasks\")\r\n+router.delete(\"/tasks/:id\",delete)\r\n \r\n \r\n router.get(\"/\",getAppointment)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n"
+                },
+                {
+                    "date": 1739022596662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n import express from \"express\"\r\n import multer from \"multer\"\r\n-import { CreateAppointment, createTask, deleteAppointment, editAppointment, getAppointment, getSpecificTask, getTask, getuserAppointments, updateTask } from \"../controllers/appointmentController.js\"\r\n+import { CreateAppointment, createTask, deleteAppointment, deleteTask, editAppointment, getAppointment, getSpecificTask, getTask, getuserAppointments, updateTask } from \"../controllers/appointmentController.js\"\r\n const router = express.Router()\r\n \r\n const storage = multer()\r\n \r\n router.get(\"/tasks\",getTask)\r\n router.get(\"/tasks/:id\",getSpecificTask)\r\n router.post(\"/tasks\",storage.none(),createTask)\r\n router.put(\"/tasks/:id\",storage.none(),updateTask)\r\n-router.delete(\"/tasks/:id\",delete)\r\n+router.delete(\"/tasks/:id\",deleteTask)\r\n \r\n \r\n router.get(\"/\",getAppointment)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n"
+                },
+                {
+                    "date": 1739080590199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,13 +4,8 @@\n const router = express.Router()\r\n \r\n const storage = multer()\r\n \r\n-router.get(\"/tasks\",getTask)\r\n-router.get(\"/tasks/:id\",getSpecificTask)\r\n-router.post(\"/tasks\",storage.none(),createTask)\r\n-router.put(\"/tasks/:id\",storage.none(),updateTask)\r\n-router.delete(\"/tasks/:id\",deleteTask)\r\n \r\n \r\n router.get(\"/\",getAppointment)\r\n router.post(\"/\",storage.none(),CreateAppointment)\r\n"
+                },
+                {
+                    "date": 1739080599022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import express from \"express\"\r\n import multer from \"multer\"\r\n-import { CreateAppointment, createTask, deleteAppointment, deleteTask, editAppointment, getAppointment, getSpecificTask, getTask, getuserAppointments, updateTask } from \"../controllers/appointmentController.js\"\r\n+import { CreateAppointment, createTask, deleteAppointment, editAppointment, getAppointment, getSpecificTask, getTask, getuserAppointments, updateTask } from \"../controllers/appointmentController.js\"\r\n const router = express.Router()\r\n \r\n const storage = multer()\r\n \r\n"
+                },
+                {
+                    "date": 1739080604721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import express from \"express\"\r\n import multer from \"multer\"\r\n-import { CreateAppointment, createTask, deleteAppointment, editAppointment, getAppointment, getSpecificTask, getTask, getuserAppointments, updateTask } from \"../controllers/appointmentController.js\"\r\n+import { CreateAppointment, createTask, deleteAppointment, editAppointment, getAppointment, getuserAppointments } from \"../controllers/appointmentController.js\"\r\n const router = express.Router()\r\n \r\n const storage = multer()\r\n \r\n"
+                },
+                {
+                    "date": 1739080612339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import express from \"express\"\r\n import multer from \"multer\"\r\n-import { CreateAppointment, createTask, deleteAppointment, editAppointment, getAppointment, getuserAppointments } from \"../controllers/appointmentController.js\"\r\n+import { CreateAppointment,  deleteAppointment, editAppointment, getAppointment, getuserAppointments } from \"../controllers/appointmentController.js\"\r\n const router = express.Router()\r\n \r\n const storage = multer()\r\n \r\n"
+                }
+            ],
+            "date": 1738950544066,
+            "name": "Commit-0",
+            "content": "import express from \"express\"\r\nimport multer from \"multer\"\r\nimport { CreateAppointment, deleteAppointment, editAppointment, getAppointment, getuserAppointments } from \"../controllers/appointmentController.js\"\r\nconst router = express.Router()\r\n\r\nconst storage = multer()\r\n\r\nrouter.get(\"\")\r\nrouter.post(\"/\",storage.none(),CreateAppointment)\r\n\r\nrouter.get(\"/\",getAppointment)\r\n\r\nrouter.get(\"/:userId\",getuserAppointments)\r\nrouter.delete(\"/:id\",deleteAppointment)\r\n\r\nrouter.put(\"/:id\",storage.none(),editAppointment)\r\nexport default router"
+        }
+    ]
+}

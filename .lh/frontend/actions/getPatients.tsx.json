@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 32,
+            "activePatchIndex": 33,
             "patches": [
                 {
                     "date": 1738511585070,
@@ -136,6 +136,10 @@
                 {
                     "date": 1738521665980,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n export const getSpecficPatient = async (id:string) => {\r\n     try {\r\n         const response = await axios.get(`${baseUrl}/patient/${id}`)\r\n \r\n-        const data = await response.data.patient as patient\r\n+        const data = await response.data.patient as patient | undefined\r\n \r\n         return data\r\n     } catch (error) {\r\n         if (axios.isAxiosError(error)) {\r\n"
+                },
+                {
+                    "date": 1739032065915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n \r\n const baseUrl = process.env.NEXT_API\r\n \r\n export const getAllPatients = async () => {\r\n-  console.log(baseUrl)\r\n     try {\r\n         const response = await axios.get(`${baseUrl}/patient/`)\r\n \r\n         const data = await response.data\r\n"
                 }
             ],
             "date": 1738511585070,

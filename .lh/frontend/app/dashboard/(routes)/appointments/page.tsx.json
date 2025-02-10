@@ -1,0 +1,26 @@
+{
+    "sourceFile": "frontend/app/dashboard/(routes)/appointments/page.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1739080419238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1739080443065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-\r\n+\"\"\r\n import Calender from \"@/components/Calender\";\r\n import { getAppointments } from \"@/actions/getAppointments\";\r\n import { Suspense } from \"react\";\r\n import Loading from \"./loading\";\r\n"
+                },
+                {
+                    "date": 1739080462439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \r\n const page = async () => {\r\n   const Appointments = await getAppointments()\r\n   const {data:session} = useSession()\r\n-  const {}= UseUserAppointments(session.us)\r\n+  const {}= UseUserAppointments(session?.user.)\r\n   return (\r\n     <Suspense fallback={<Loading />}>\r\n       <Calender appointments={Appointments}/>\r\n     </Suspense>\r\n"
+                }
+            ],
+            "date": 1739080419238,
+            "name": "Commit-0",
+            "content": "import Calender from \"@/components/Calender\";\r\nimport { getAppointments } from \"@/actions/getAppointments\";\r\nimport { Suspense } from \"react\";\r\nimport Loading from \"./loading\";\r\n\r\n\r\nconst page = async () => {\r\n  const Appointments = await getAppointments()\r\n  const {}= use\r\n  return (\r\n    <Suspense fallback={<Loading />}>\r\n      <Calender appointments={Appointments}/>\r\n    </Suspense>\r\n  );\r\n};\r\n\r\nexport default page;\r\n\r\n\r\nexport const dynamic = 'force-dynamic'"
+        }
+    ]
+}

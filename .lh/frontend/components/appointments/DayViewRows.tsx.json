@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 14,
             "patches": [
                 {
                     "date": 1738513860605,
@@ -56,6 +56,14 @@
                 {
                     "date": 1738531906269,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   const { DaysOfWeekCalenderForMobileView, theMinutes } = CalenderHook();\r\n   const { data: session } = useSession();\r\n \r\n   return (\r\n-    <div className=\"grid grid-cols-1 border-l col-span-10 dark:border-slate-700 bg-[var(--sidebar-background)]\">\r\n+    <div className=\"grid grid-cols-1 border-l col-span-10 dark:border-slate-700 \">\r\n       {DaysOfWeekCalenderForMobileView.map((day, index) => (\r\n         <div className=\"grid border-r py-4 dark:border-slate-700\" key={index}>\r\n           {theMinutes.map((halfHour, halfIndex) => {\r\n             const filteredTasks = appointments?.filter((task) => {\r\n"
+                },
+                {
+                    "date": 1739139921989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n           {theMinutes.map((halfHour, halfIndex) => {\r\n             const filteredTasks = appointments?.filter((task) => {\r\n               if (\r\n                 isSameDay(task.startDate, day) &&\r\n-                session?.user.id === task.user &&\r\n+              \r\n                 format(task.startDate, \"h:mm a\") == format(halfHour, \"h:mm a\")\r\n               ) {\r\n                 return task;\r\n               }\r\n"
+                },
+                {
+                    "date": 1739139949197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,8 @@\n }: {\r\n   appointments: Appointment[] | undefined;\r\n }) => {\r\n   const { DaysOfWeekCalenderForMobileView, theMinutes } = CalenderHook();\r\n-  const { data: session } = useSession();\r\n \r\n   return (\r\n     <div className=\"grid grid-cols-1 border-l col-span-10 dark:border-slate-700 \">\r\n       {DaysOfWeekCalenderForMobileView.map((day, index) => (\r\n@@ -22,9 +21,8 @@\n           {theMinutes.map((halfHour, halfIndex) => {\r\n             const filteredTasks = appointments?.filter((task) => {\r\n               if (\r\n                 isSameDay(task.startDate, day) &&\r\n-              \r\n                 format(task.startDate, \"h:mm a\") == format(halfHour, \"h:mm a\")\r\n               ) {\r\n                 return task;\r\n               }\r\n"
                 }
             ],
             "date": 1738513860605,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1738601199077,
@@ -24,6 +24,10 @@
                 {
                     "date": 1738601881296,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \r\n export const metadata: Metadata = {\r\n   title: \"Sign in\",\r\n   description: \"Sign In To Dashboard\",\r\n-  ic\r\n+  icons\r\n };\r\n \r\n export default function RootLayout({\r\n   children,\r\n"
+                },
+                {
+                    "date": 1739029049025,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n import \"./globals.css\";\r\n import { CalenderProvider } from \"@/components/context/CalenderProvider\";\r\n import { DashboardProvider } from \"@/components/context/Dashboardprovider\";\r\n import { poppins } from \"@/fonts/fonts\";\r\n-import queryClientPro\r\n+import queryClientPr\r\n \r\n export const metadata: Metadata = {\r\n   title: \"Sign in\",\r\n   description: \"Sign In To Dashboard\",\r\n"
                 }
             ],
             "date": 1738601199077,

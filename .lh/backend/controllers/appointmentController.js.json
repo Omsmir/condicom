@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1738530366153,
@@ -24,6 +24,30 @@
                 {
                     "date": 1738530541049,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n           endDate: { $gt: endDate },\r\n         },\r\n         {\r\n           // Case 3: The new range entirely overlaps an existing range\r\n-          startDate: { $gt: startDate },\r\n+          startDate: { $gte: startDate },\r\n           endDate: { $lte: endDate },\r\n         },\r\n       ],\r\n     });\r\n"
+                },
+                {
+                    "date": 1738947118339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n // UpdateInterval();\r\n export const CreateAppointment = async (req, res, next) => {\r\n   const { task, startDate, endDate, interval, color, userId, description } =\r\n     req.body;\r\n-  const ArrayOfValues = [task, startDate, endDate, interval, userId];\r\n+  const ArrayOfValues = {task, startDate, endDate, interval, userId];\r\n   try {\r\n     ArrayOfValues.map((value) => {\r\n       if (!value) {\r\n         return res.status(404).json({ message: \"Some Fields Are Missing Out\" });\r\n"
+                },
+                {
+                    "date": 1738947131760,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,11 +31,11 @@\n // UpdateInterval();\r\n export const CreateAppointment = async (req, res, next) => {\r\n   const { task, startDate, endDate, interval, color, userId, description } =\r\n     req.body;\r\n-  const ArrayOfValues = {task, startDate, endDate, interval, userId];\r\n+  const requiredValues = {task, startDate, endDate, interval, userId}\r\n   try {\r\n-    ArrayOfValues.map((value) => {\r\n+    requiredValues.map((value) => {\r\n       if (!value) {\r\n         return res.status(404).json({ message: \"Some Fields Are Missing Out\" });\r\n       }\r\n     });\r\n"
+                },
+                {
+                    "date": 1738947139257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,13 +33,12 @@\n   const { task, startDate, endDate, interval, color, userId, description } =\r\n     req.body;\r\n   const requiredValues = {task, startDate, endDate, interval, userId}\r\n   try {\r\n-    requiredValues.map((value) => {\r\n-      if (!value) {\r\n-        return res.status(404).json({ message: \"Some Fields Are Missing Out\" });\r\n-      }\r\n-    });\r\n+    \r\n+    for(){\r\n+      \r\n+    }\r\n \r\n     const reservedDates = await Appointment.find({\r\n       user: userId,\r\n       $or: [\r\n"
+                },
+                {
+                    "date": 1738947151786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,10 +34,10 @@\n     req.body;\r\n   const requiredValues = {task, startDate, endDate, interval, userId}\r\n   try {\r\n     \r\n-    for(){\r\n-      \r\n+    for(const [key,value] of Object.en){\r\n+\r\n     }\r\n \r\n     const reservedDates = await Appointment.find({\r\n       user: userId,\r\n"
+                },
+                {
+                    "date": 1738947165238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n     req.body;\r\n   const requiredValues = {task, startDate, endDate, interval, userId}\r\n   try {\r\n     \r\n-    for(const [key,value] of ){\r\n+    for(const [key,value] of o){\r\n \r\n     }\r\n \r\n     const reservedDates = await Appointment.find({\r\n"
+                },
+                {
+                    "date": 1738949134677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n   }\r\n };\r\n \r\n \r\n-export const createTest = async ()\r\n+export const createTest = async (r)\r\n \r\n // UpdateInterval();\r\n export const CreateAppointment = async (req, res, next) => {\r\n   const { task, startDate, endDate, interval, color, userId, description } =\r\n"
                 }
             ],
             "date": 1738530366153,

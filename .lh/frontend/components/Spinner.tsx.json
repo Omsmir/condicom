@@ -1,0 +1,34 @@
+{
+    "sourceFile": "frontend/components/Spinner.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1739217253355,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1739217259733,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,11 @@\n-rafce\n\\ No newline at end of file\n+import React from 'react'\r\n+spin\r\n+const Spinner = () => {\r\n+  return (\r\n+    <div>\r\n+      \r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default Spinner\r\n"
+                },
+                {
+                    "date": 1739217283890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n+import { Spin } from 'antd'\r\n import React from 'react'\r\n-spin\r\n-const Spinner = () => {\r\n+\r\n+const Spinner = ({}) => {\r\n   return (\r\n     <div>\r\n       \r\n     </div>\r\n"
+                },
+                {
+                    "date": 1739217291254,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { Spin } from 'antd'\r\n import React from 'react'\r\n \r\n-const Spinner = ({text}:{text:string}) => {\r\n+const Spinner = ({text}:{text:string |}) => {\r\n   return (\r\n     <div>\r\n       \r\n     </div>\r\n"
+                },
+                {
+                    "date": 1739217304326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { Spin } from 'antd'\r\n import React from 'react'\r\n \r\n-interfcae \r\n+interfcae Sp\r\n const Spinner = ({tex}:{text?:string }) => {\r\n   return (\r\n     <div>\r\n       \r\n"
+                }
+            ],
+            "date": 1739217253355,
+            "name": "Commit-0",
+            "content": "rafce"
+        }
+    ]
+}

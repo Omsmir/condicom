@@ -1,0 +1,82 @@
+{
+    "sourceFile": "frontend/components/appointments/CalenderView.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 16,
+            "patches": [
+                {
+                    "date": 1739080815131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1739080821268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,10 @@\n   appointments: Appointment[] | undefined;\r\n }) => {\r\n   const { viewPort } = CalenderHook();\r\n \r\n-  \r\n+  const {data}= UseUserAppointments(session?.user.id)\r\n+\r\n   switch (viewPort) {\r\n     case 1:\r\n       return <MonthView appointments={appointments} />;\r\n     case 2:\r\n"
+                },
+                {
+                    "date": 1739080832617,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,16 +4,18 @@\n import React from \"react\";\r\n import WeekView from \"./WeekView\";\r\n import MonthView from \"./MonthView\";\r\n import DayView from \"./DayView\";\r\n+import { UseUserAppointments } from \"@/actions/queries\";\r\n \r\n const CalenderView = ({\r\n   appointments,\r\n }: {\r\n   appointments: Appointment[] | undefined;\r\n }) => {\r\n   const { viewPort } = CalenderHook();\r\n \r\n+  const { data:session} = usesse\r\n   const {data}= UseUserAppointments(session?.user.id)\r\n \r\n   switch (viewPort) {\r\n     case 1:\r\n"
+                },
+                {
+                    "date": 1739080838556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,17 +5,18 @@\n import WeekView from \"./WeekView\";\r\n import MonthView from \"./MonthView\";\r\n import DayView from \"./DayView\";\r\n import { UseUserAppointments } from \"@/actions/queries\";\r\n+import { useSession } from \"next-auth/react\";\r\n \r\n const CalenderView = ({\r\n   appointments,\r\n }: {\r\n   appointments: Appointment[] | undefined;\r\n }) => {\r\n   const { viewPort } = CalenderHook();\r\n \r\n-  const { data:session} = usesse\r\n+  const { data:session} = useSession()\r\n   const {data}= UseUserAppointments(session?.user.id)\r\n \r\n   switch (viewPort) {\r\n     case 1:\r\n"
+                },
+                {
+                    "date": 1739080853502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n \r\n   const { data:session} = useSession()\r\n   const {data}= UseUserAppointments(session?.user.id)\r\n \r\n+  console.log(data)\r\n   switch (viewPort) {\r\n     case 1:\r\n       return <MonthView appointments={appointments} />;\r\n     case 2:\r\n"
+                },
+                {
+                    "date": 1739081350805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n \r\n   const { data:session} = useSession()\r\n   const {data}= UseUserAppointments(session?.user.id)\r\n \r\n+  if(data)\r\n   console.log(data)\r\n   switch (viewPort) {\r\n     case 1:\r\n       return <MonthView appointments={appointments} />;\r\n"
+                },
+                {
+                    "date": 1739081635783,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n \r\n   const { data:session} = useSession()\r\n   const {data}= UseUserAppointments(session?.user.id)\r\n \r\n-  if(data)\r\n+  if(data.use)\r\n   console.log(data)\r\n   switch (viewPort) {\r\n     case 1:\r\n       return <MonthView appointments={appointments} />;\r\n"
+                },
+                {
+                    "date": 1739081643426,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n \r\n   const { data:session} = useSession()\r\n   const {data}= UseUserAppointments(session?.user.id)\r\n \r\n-  if(data.use)\r\n+  if(data)\r\n   console.log(data)\r\n   switch (viewPort) {\r\n     case 1:\r\n       return <MonthView appointments={appointments} />;\r\n"
+                },
+                {
+                    "date": 1739081651090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   const { data:session} = useSession()\r\n   const {data}= UseUserAppointments(session?.user.id)\r\n \r\n   if(data)\r\n-  console.log(data)\r\n+  console.log(data.userAppointments)\r\n   switch (viewPort) {\r\n     case 1:\r\n       return <MonthView appointments={appointments} />;\r\n     case 2:\r\n"
+                },
+                {
+                    "date": 1739139772339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,35 @@\n+\"use client\";\r\n+import { CalenderHook } from \"../context/CalenderProvider\";\r\n+import { Appointment } from \"@/types\";\r\n+import React from \"react\";\r\n+import WeekView from \"./WeekView\";\r\n+import MonthView from \"./MonthView\";\r\n+import DayView from \"./DayView\";\r\n+import { UseUserAppointments } from \"@/actions/queries\";\r\n+import { useSession } from \"next-auth/react\";\r\n+\r\n+const CalenderView = ({\r\n+  appointments,\r\n+}: {\r\n+  appointments: Appointment[] | undefined;\r\n+}) => {\r\n+  const { viewPort } = CalenderHook();\r\n+\r\n+  const { data:session} = useSession()\r\n+  const {data}= UseUserAppointments(session?.user.id)\r\n+\r\n+  if(data)\r\n+  console.log(data.userAppointments.)\r\n+  switch (viewPort) {\r\n+    case 1:\r\n+      return <MonthView appointments={appointments} />;\r\n+    case 2:\r\n+      return <WeekView appointments={appointments} />;\r\n+      case 3: \r\n+      return <DayView appointments={appointments} />\r\n+    default:\r\n+      return null;\r\n+  }\r\n+};\r\n+\r\n+export default CalenderView;\r\n"
+                },
+                {
+                    "date": 1739139792430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,47 +18,12 @@\n   const { data:session} = useSession()\r\n   const {data}= UseUserAppointments(session?.user.id)\r\n \r\n   if(data)\r\n-  console.log(data.userAppointments.)\r\n-  switch (viewPort) {\r\n-    case 1:\r\n-      return <MonthView appointments={appointments} />;\r\n-    case 2:\r\n-      return <WeekView appointments={appointments} />;\r\n-      case 3: \r\n-      return <DayView appointments={appointments} />\r\n-    default:\r\n-      return null;\r\n-  }\r\n-};\r\n-\r\n-export default CalenderView;\r\n-\"use client\";\r\n-import { CalenderHook } from \"../context/CalenderProvider\";\r\n-import { Appointment } from \"@/types\";\r\n-import React from \"react\";\r\n-import WeekView from \"./WeekView\";\r\n-import MonthView from \"./MonthView\";\r\n-import DayView from \"./DayView\";\r\n-import { UseUserAppointments } from \"@/actions/queries\";\r\n-import { useSession } from \"next-auth/react\";\r\n-\r\n-const CalenderView = ({\r\n-  appointments,\r\n-}: {\r\n-  appointments: Appointment[] | undefined;\r\n-}) => {\r\n-  const { viewPort } = CalenderHook();\r\n-\r\n-  const { data:session} = useSession()\r\n-  const {data}= UseUserAppointments(session?.user.id)\r\n-\r\n-  if(data)\r\n   console.log(data.userAppointments)\r\n   switch (viewPort) {\r\n     case 1:\r\n-      return <MonthView appointments={appointments} />;\r\n+      return <MonthView appointments={data?.userAppointments} />;\r\n     case 2:\r\n       return <WeekView appointments={appointments} />;\r\n       case 3: \r\n       return <DayView appointments={appointments} />\r\n"
+                },
+                {
+                    "date": 1739139861946,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n   const { data:session} = useSession()\r\n   const {data}= UseUserAppointments(session?.user.id)\r\n \r\n   if(data)\r\n-  console.log(data.userAppointments)\r\n   switch (viewPort) {\r\n     case 1:\r\n       return <MonthView appointments={data?.userAppointments} />;\r\n     case 2:\r\n"
+                },
+                {
+                    "date": 1739139868717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n   switch (viewPort) {\r\n     case 1:\r\n       return <MonthView appointments={data?.userAppointments} />;\r\n     case 2:\r\n-      return <WeekView appointments={appointments} />;\r\n+      return <WeekView appointments={data?.userAppointments} />;\r\n       case 3: \r\n       return <DayView appointments={appointments} />\r\n     default:\r\n       return null;\r\n"
+                },
+                {
+                    "date": 1739139989273,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,12 +8,9 @@\n import { UseUserAppointments } from \"@/actions/queries\";\r\n import { useSession } from \"next-auth/react\";\r\n \r\n const CalenderView = ({\r\n-  appointments,\r\n-}: {\r\n-  appointments: Appointment[] | undefined;\r\n-}) => {\r\n+ ) => {\r\n   const { viewPort } = CalenderHook();\r\n \r\n   const { data:session} = useSession()\r\n   const {data}= UseUserAppointments(session?.user.id)\r\n@@ -24,9 +21,9 @@\n       return <MonthView appointments={data?.userAppointments} />;\r\n     case 2:\r\n       return <WeekView appointments={data?.userAppointments} />;\r\n       case 3: \r\n-      return <DayView appointments={appointments} />\r\n+      return <DayView appointments={data?.userAppointments} />\r\n     default:\r\n       return null;\r\n   }\r\n };\r\n"
+                },
+                {
+                    "date": 1739140071089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,31 +1,29 @@\n \"use client\";\r\n import { CalenderHook } from \"../context/CalenderProvider\";\r\n-import { Appointment } from \"@/types\";\r\n import React from \"react\";\r\n import WeekView from \"./WeekView\";\r\n import MonthView from \"./MonthView\";\r\n import DayView from \"./DayView\";\r\n import { UseUserAppointments } from \"@/actions/queries\";\r\n import { useSession } from \"next-auth/react\";\r\n \r\n-const CalenderView = ({\r\n- ) => {\r\n+const CalenderView = () => {\r\n   const { viewPort } = CalenderHook();\r\n \r\n-  const { data:session} = useSession()\r\n-  const {data}= UseUserAppointments(session?.user.id)\r\n+  const { data: session } = useSession();\r\n+  const { data } = UseUserAppointments(session?.user.id);\r\n \r\n-  if(data)\r\n-  switch (viewPort) {\r\n-    case 1:\r\n-      return <MonthView appointments={data?.userAppointments} />;\r\n-    case 2:\r\n-      return <WeekView appointments={data?.userAppointments} />;\r\n-      case 3: \r\n-      return <DayView appointments={data?.userAppointments} />\r\n-    default:\r\n-      return null;\r\n-  }\r\n+  if (data)\r\n+    switch (viewPort) {\r\n+      case 1:\r\n+        return <MonthView appointments={data?.userAppointments} />;\r\n+      case 2:\r\n+        return <WeekView appointments={data?.userAppointments} />;\r\n+      case 3:\r\n+        return <DayView appointments={data?.userAppointments} />;\r\n+      default:\r\n+        return null;\r\n+    }\r\n };\r\n \r\n export default CalenderView;\r\n"
+                },
+                {
+                    "date": 1739140081415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n import DayView from \"./DayView\";\r\n import { UseUserAppointments } from \"@/actions/queries\";\r\n import { useSession } from \"next-auth/react\";\r\n \r\n-const CalenderView = () => {\r\n+const CalenderVi = () => {\r\n   const { viewPort } = CalenderHook();\r\n \r\n   const { data: session } = useSession();\r\n   const { data } = UseUserAppointments(session?.user.id);\r\n"
+                },
+                {
+                    "date": 1739140088811,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n import DayView from \"./DayView\";\r\n import { UseUserAppointments } from \"@/actions/queries\";\r\n import { useSession } from \"next-auth/react\";\r\n \r\n-const CalenderVi = () => {\r\n+const Calender = () => {\r\n   const { viewPort } = CalenderHook();\r\n \r\n   const { data: session } = useSession();\r\n   const { data } = UseUserAppointments(session?.user.id);\r\n@@ -22,8 +22,8 @@\n       case 3:\r\n         return <DayView appointments={data?.userAppointments} />;\r\n       default:\r\n         return null;\r\n-    }\r\n+    \r\n };\r\n \r\n-export default CalenderView;\r\n+export default Calender;\r\n"
+                }
+            ],
+            "date": 1739080815131,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\nimport { CalenderHook } from \"../context/CalenderProvider\";\r\nimport { Appointment } from \"@/types\";\r\nimport React from \"react\";\r\nimport WeekView from \"./WeekView\";\r\nimport MonthView from \"./MonthView\";\r\nimport DayView from \"./DayView\";\r\n\r\nconst CalenderView = ({\r\n  appointments,\r\n}: {\r\n  appointments: Appointment[] | undefined;\r\n}) => {\r\n  const { viewPort } = CalenderHook();\r\n\r\n  \r\n  switch (viewPort) {\r\n    case 1:\r\n      return <MonthView appointments={appointments} />;\r\n    case 2:\r\n      return <WeekView appointments={appointments} />;\r\n      case 3: \r\n      return <DayView appointments={appointments} />\r\n    default:\r\n      return null;\r\n  }\r\n};\r\n\r\nexport default CalenderView;\r\n"
+        }
+    ]
+}

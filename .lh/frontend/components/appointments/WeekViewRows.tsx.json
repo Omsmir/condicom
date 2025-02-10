@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 26,
+            "activePatchIndex": 29,
             "patches": [
                 {
                     "date": 1738513860604,
@@ -112,6 +112,18 @@
                 {
                     "date": 1738531866662,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n             });\r\n \r\n             return (\r\n               <div\r\n-                className=\"flex justify-center cursor-pointer border-b h-20 relative dark:border-slate-700 hover:bg-[var(--sidebar-background)]  dark:hover:bg-[var(--sidebar-accent)]\"\r\n+                className=\"flex justify-center cursor-pointer border-b h-20 relative dark:border-slate-700 hover:bg-slate-50  dark:hover:bg-[var(--sidebar-accent)]\"\r\n                 key={hourIndex}\r\n               >\r\n                 {filteredTasks &&\r\n                   filteredTasks.length > 0 &&\r\n"
+                },
+                {
+                    "date": 1739079949739,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,10 +54,9 @@\n                     <div\r\n                       key={taskIndex} // Ensure unique key for each task\r\n                       style={{\r\n                         height: `${task.interval}%`,\r\n-                        backgroundColor: task.color\r\n-                \r\n+                        backgroundColor: task.color,\r\n                       }}\r\n                       className={clsx(\r\n                         `flex  w-[95%] rounded-md cursor-pointer z-10 hover:opacity-85 relative main`,\r\n                         { \"opacity-40 hover:opacity-40 \": task.completed }\r\n@@ -74,14 +73,14 @@\n                           {task.description}\r\n                         </p>\r\n                       </div>\r\n                       <DeleteHandler\r\n-                      id={task._id}\r\n-                      apiString=\"appointments\"\r\n-                      messagePopup=\"do you want to delete the appointment\"\r\n-                      className=\"absolute text-slate-50 right-0 hidden hover:text-red-800 transition-colors delete\"\r\n-                      name=\"x\"\r\n-                    />\r\n+                        id={task._id}\r\n+                        apiString=\"appointments\"\r\n+                        messagePopup=\"do you want to delete the appointment\"\r\n+                        className=\"absolute text-slate-50 right-0 hidden hover:text-red-800 transition-colors delete\"\r\n+                        name=\"x\"\r\n+                      />\r\n                     </div>\r\n                   ))}\r\n               </div>\r\n             );\r\n"
+                },
+                {
+                    "date": 1739139914609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,10 +35,9 @@\n             // Filter tasks for the specific day and hour\r\n             const filteredTasks = appointment?.filter((task) => {\r\n               if (\r\n                 isSameDay(task.startDate, day) &&\r\n-                format(task.startDate, \"h:mm a\") === format(hour, \"h:mm a\") &&\r\n-                session?.user.id === task.user\r\n+                format(task.startDate, \"h:mm a\") === format(hour, \"h:mm a\") \r\n               ) {\r\n                 return task;\r\n               }\r\n             });\r\n"
+                },
+                {
+                    "date": 1739139956331,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,8 @@\n   appointment,\r\n }: {\r\n   appointment: Appointment[] | undefined;\r\n }) => {\r\n-  const { data: session } = useSession();\r\n   const isMobile = useMediaQuery({ query: \"(min-width: 640px)\" });\r\n \r\n   const { DaysOfWeekCalender, DaysOfWeekCalenderForMobileView, theMinutes } =\r\n     CalenderHook();\r\n"
                 }
             ],
             "date": 1738513860604,

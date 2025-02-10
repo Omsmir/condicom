@@ -1,0 +1,26 @@
+{
+    "sourceFile": "frontend/components/doctorProfile/DoctorAppointments.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1739213160044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1739213167056,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         <h1 className=\"dark:text-slate-500 font-medium\">Appointments</h1>\r\n       </div>\r\n       <Divider className=\" dark:bg-slate-500 m-0\" />\r\n       <div className=\"flex flex-col min-h-[365px] max-h-[365px] overflow-y-scroll\">\r\n-        <SingleAppointment appointments={appointments} key={appointments} />\r\n+        <SingleAppointment appointments={appointments} key={appointments />\r\n       </div>\r\n     </div>\r\n   );\r\n };\r\n"
+                },
+                {
+                    "date": 1739216630594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n       <div className=\"flex p-4 items-center\">\r\n         <h1 className=\"dark:text-slate-500 font-medium\">Appointments</h1>\r\n       </div>\r\n       <Divider className=\" dark:bg-slate-500 m-0\" />\r\n-      <div className=\"flex flex-col min-h-[365px] max-h-[365px]  overflow-y-scroll\">\r\n+      <div className=\"flex flex-col min-h-[365px] max-h-[365px] overflow-y-scroll\">\r\n         <SingleAppointment appointments={appointments}  />\r\n       </div>\r\n     </div>\r\n   );\r\n"
+                }
+            ],
+            "date": 1739213160043,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\nimport { Appointment, UserInformation } from \"@/types\";\r\nimport { Divider } from \"@mui/material\";\r\nimport { format, isToday } from \"date-fns\";\r\nimport React from \"react\";\r\nimport SingleAppointment from \"./SingleAppointment\";\r\n\r\nconst DoctorAppointments = ({\r\n  user,\r\n  appointments,\r\n}: {\r\n  user: UserInformation | undefined;\r\n  appointments: Appointment[] | undefined;\r\n}) => {\r\n \r\n  return (\r\n    <div className=\"flex flex-1 flex-col bg-[var(--sidebar-background)] rounded-md \">\r\n      <div className=\"flex p-4 items-center\">\r\n        <h1 className=\"dark:text-slate-500 font-medium\">Appointments</h1>\r\n      </div>\r\n      <Divider className=\" dark:bg-slate-500 m-0\" />\r\n      <div className=\"flex flex-col min-h-[365px] max-h-[365px] overflow-y-scroll\">\r\n        <SingleAppointment appointments={appointments} key={} />\r\n      </div>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default DoctorAppointments;\r\n"
+        }
+    ]
+}

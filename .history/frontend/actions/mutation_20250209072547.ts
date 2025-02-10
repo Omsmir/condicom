@@ -1,0 +1,75 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { CreateMedication, DeleteMedication } from "./getMedications"
+import axios from "axios"
+import { NotificationInstance } from "antd/es/notification/interface"
+
+export const UseCreateMedication = () => {
+    const queryClient = useQueryClient()
+    return useMutation({
+        mutationFn: async (data: FormData) => await CreateMedication(data),
+        onSettled: async (_,error) => {
+            if(error){
+                throw new Error(error.message)
+            }
+
+            await queryClient.invalidateQueries({queryKey:["medications"]})
+        }
+    })
+}
+
+export const UseDeleteMedication = (api:NotificationInstance) => {
+    const queryClient = useQueryClient()
+    return useMutation({
+        mutationFn: async (id:string | undefined) => DeleteMedication(id),
+       
+        onError:async(error) => {
+            if (axios.isAxiosError(error)) {
+                if (!error.response) {
+                  api.error({
+                    message: "Network Error",
+                    description:
+                      "Failed to connect to the server. Please check your internet.",
+                  });
+                } else {
+                  api.error({
+                    message: "Validation Error",
+                    description:
+                      error.response.data?.message || "Some fields are incorrect.",
+                  });
+                }
+              } else {
+                api.error({
+                  message: "Unexpected Error",
+                  description: "Something went wrong. Please try again.",
+                });
+              }
+        },
+ 
+          onSettled: async (data,error) => {
+            if(error){
+                throw new Error(error.message)
+            }
+            const key = "deleteMessage";
+
+            // Show loading message before deletion
+            api.open({
+              key,
+              message: "Deleting...",
+              description: "Please wait while we remove the item.",
+              duration: 0, // Keep it persistent
+            });
+            await queryClient.invalidateQueries({queryKey:["medications"]})
+
+            setTimeout(() => {
+                api.open({
+                  key,
+                  message: data?.data.message || "Deleted successfully!",
+                  description: "The item has been successfully removed.",
+                  type: "success",
+                  duration: 3, // Show for 3 seconds
+                });
+              }, 500); // Delay to ensure persistence
+        },
+    })
+}
+

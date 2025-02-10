@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1738529133075,
@@ -16,6 +16,10 @@
                 {
                     "date": 1738529149403,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n             dayToCompare(day).day === stateTocompare().day,\r\n         },\r\n         className\r\n       )}\r\n-      onc\r\n+      onClick={setCurrentDay}\r\n     >\r\n       <div className=\"flex justify-end md:justify-start mb-2\">\r\n         <div\r\n           className={clsx(\r\n"
+                },
+                {
+                    "date": 1739139835847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -99,10 +99,9 @@\n         {!isMobile ? (\r\n           <div className=\"flex flex-col justify-between group \">\r\n             {appointment?.map((task, index) => {\r\n               if (\r\n-                isSameDay(task.startDate, day) &&\r\n-                session?.user.id === task.user\r\n+                isSameDay(task.startDate, day)\r\n               ) {\r\n                 return (\r\n                   <div\r\n                     onClick={() => handleClick(day)}\r\n"
                 }
             ],
             "date": 1738529133075,

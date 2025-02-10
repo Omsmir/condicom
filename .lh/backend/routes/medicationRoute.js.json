@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 10,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1738712609014,
@@ -48,6 +48,26 @@
                 {
                     "date": 1738714878908,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n import express from \"express\"\r\n import multer from \"multer\"\r\n-import { createMedication } from \"../controllers/medicationController.js\"\r\n+import { createMedication, GetAllMedications } from \"../controllers/medicationController.js\"\r\n const router = express.Router()\r\n \r\n const storage = multer()\r\n \r\n \r\n router.post(\"/create\",storage.none(),createMedication)\r\n \r\n-router.get(\"/\",)\r\n+router.get(\"/\",GetAllMedications)\r\n \r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738768723550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,5 +9,7 @@\n router.post(\"/create\",storage.none(),createMedication)\r\n \r\n router.get(\"/\",GetAllMedications)\r\n \r\n+ro\r\n+\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738768731067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,7 +9,7 @@\n router.post(\"/create\",storage.none(),createMedication)\r\n \r\n router.get(\"/\",GetAllMedications)\r\n \r\n-ro\r\n+router.get(\"/:id\",)\r\n \r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738768737276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import express from \"express\"\r\n import multer from \"multer\"\r\n-import { createMedication, GetAllMedications } from \"../controllers/medicationController.js\"\r\n+import { createMedication, GetAllMedications, GetSpecificMedication } from \"../controllers/medicationController.js\"\r\n const router = express.Router()\r\n \r\n const storage = multer()\r\n \r\n@@ -9,7 +9,7 @@\n router.post(\"/create\",storage.none(),createMedication)\r\n \r\n router.get(\"/\",GetAllMedications)\r\n \r\n-router.get(\"/:id\",)\r\n+router.get(\"/:id\",GetSpecificMedication)\r\n \r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1739054413776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,5 +11,7 @@\n router.get(\"/\",GetAllMedications)\r\n \r\n router.get(\"/:id\",GetSpecificMedication)\r\n \r\n+router.delete(\"\")\r\n+\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1739054420164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,7 +11,7 @@\n router.get(\"/\",GetAllMedications)\r\n \r\n router.get(\"/:id\",GetSpecificMedication)\r\n \r\n-router.delete(\"\")\r\n+router.delete(\"/:id\",Deleteme)\r\n \r\n export default router\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1738712609014,

@@ -9,7 +9,7 @@ const RootLayout = async ({ children,params}: { children: React.ReactNode,params
     const patient = await getSpecficPatient(id)
   return (
       <PatientProvider>
-        <PatientHeader patient={pa} />
+        <PatientHeader patient={patient} />
         {children}
         </PatientProvider>
   );

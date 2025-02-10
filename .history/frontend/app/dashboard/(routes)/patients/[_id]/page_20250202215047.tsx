@@ -7,7 +7,7 @@ const page = async ({params}:{params: Promise<{_id:string}>}) => {
 
     const patient = await getSpecficPatient(id)
   return (
-    <PatientLayout patient={pat} />
+    <PatientLayout patient={patient} />
   )
 }
 

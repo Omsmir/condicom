@@ -1,9 +1,9 @@
 {
-    "sourceFile": "frontend/components/Togglers/Handlers.tsx",
+    "sourceFile": "frontend/components/togglers/Handlers.tsx",
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1738513934241,
@@ -36,6 +36,14 @@
                 {
                     "date": 1738514166895,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n import { DashboardHook } from \"../context/Dashboardprovider\";\r\n import { useSession } from \"next-auth/react\";\r\n import { DropdownMenuItem } from \"../ui/dropdown-menu\";\r\n import React from \"react\";\r\n-import Create\r\n+import { CreateNotification,userRole } from \"./TopBarEvents\";\r\n \r\n export const MyHandler = ({ id, name, className, state }: prop) => {\r\n   const router = useRouter();\r\n \r\n"
+                },
+                {
+                    "date": 1738767761543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,8 +87,17 @@\n   let notificationData: any;\r\n \r\n   const handleDelete = async () => {\r\n \r\n+    notificationData = CreateNotification({\r\n+      type: \"patient deletion\",\r\n+      title: \"Patient Deletion\",\r\n+      description: \"deleted patient with id\",\r\n+      assignedBy: `${userRole(session)} ${session?.user.name}`,\r\n+      user: `${session?.user.id}`,\r\n+      eventType: \"deletion\",\r\n+      eventId: `${id}`,\r\n+    });\r\n     if (apiString === \"patient\") {\r\n       \r\n     } else {\r\n       notificationData = CreateNotification({\r\n"
+                },
+                {
+                    "date": 1738767786380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -107,9 +107,9 @@\n       eventId: `${id}`,\r\n     });\r\n     \r\n     switch(apiString){\r\n-      case \"patient\"\r\n+      case \"patient\":\r\n     }\r\n     try {\r\n       Swal.fire({\r\n         title: messagePopup,\r\n"
                 }
             ],
             "date": 1738513934241,

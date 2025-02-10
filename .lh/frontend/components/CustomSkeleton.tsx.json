@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1738527934088,
@@ -32,6 +32,22 @@
                 {
                     "date": 1738602561610,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n               style={{ width: \"100%\" }}\r\n               className=\"absolute\"\r\n             />\r\n           )}\r\n-          <span className={`relative block ${props.loading && \"hidden\"} w-full ${inter.className} font-med`}>\r\n+          <span className={`relative block ${props.loading && \"hidden\"} w-full `}>\r\n \r\n             {props.innerText}\r\n           </span>\r\n         </h1>\r\n"
+                },
+                {
+                    "date": 1739215200911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n               active\r\n               title={{ width: \"100%\" }}\r\n               paragraph={{ rows: 0 }}\r\n               style={{ width: \"100%\" }}\r\n-              className=\"absolute\"\r\n+              \r\n             />\r\n           )}\r\n           <span className={`relative block ${props.loading && \"hidden\"} w-full `}>\r\n \r\n"
+                },
+                {
+                    "date": 1739215215451,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n               active\r\n               title={{ width: \"100%\" }}\r\n               paragraph={{ rows: 0 }}\r\n               style={{ width: \"100%\" }}\r\n-              \r\n+              className=\"absolute\"\r\n             />\r\n           )}\r\n           <span className={`relative block ${props.loading && \"hidden\"} w-full `}>\r\n \r\n"
+                },
+                {
+                    "date": 1739215511201,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n               active\r\n               title={{ width: \"100%\" }}\r\n               paragraph={{ rows: 0 }}\r\n               style={{ width: \"100%\" }}\r\n-              className=\"absolute\"\r\n+              className=\"relative\"\r\n             />\r\n           )}\r\n           <span className={`relative block ${props.loading && \"hidden\"} w-full `}>\r\n \r\n"
+                },
+                {
+                    "date": 1739215528303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n               active\r\n               title={{ width: \"100%\" }}\r\n               paragraph={{ rows: 0 }}\r\n               style={{ width: \"100%\" }}\r\n-              className=\"relative\"\r\n+              className=\"absolute\"\r\n             />\r\n           )}\r\n           <span className={`relative block ${props.loading && \"hidden\"} w-full `}>\r\n \r\n"
                 }
             ],
             "date": 1738527934088,

@@ -1,0 +1,46 @@
+{
+    "sourceFile": "frontend/components/doctorProfile/DoctorLayout.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1739209191677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1739209197776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+\"use client\"\r\n import Patients from \"./Patients\";\r\n import DoctorInformation from \"./DoctorInformation\";\r\n import React from \"react\";\r\n import { Appointment, UserInformation } from \"@/types\";\r\n"
+                },
+                {
+                    "date": 1739209203569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,13 @@\n }: {\r\n   user: UserInformation | undefined;\r\n   appointments: Appointment[] | undefined;\r\n }) => {\r\n+\r\n+  \r\n+  const { data: session } = useSession();\r\n+  const { data } = UseUserAppointments(session?.user.id);\r\n+\r\n   return (\r\n     <React.Fragment>\r\n       {/* Doctor Information Section */}\r\n       <DoctorInformation user={user} />\r\n"
+                },
+                {
+                    "date": 1739209209679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import React from \"react\";\r\n import { Appointment, UserInformation } from \"@/types\";\r\n import DoctorAppointments from \"./DoctorAppointments\";\r\n import Prescriptions from \"./Prescriptions\";\r\n+import { useSession } from \"next-auth/react\";\r\n const DoctorLayout = async ({\r\n   user,\r\n   appointments,\r\n }: {\r\n"
+                },
+                {
+                    "date": 1739209215971,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import { Appointment, UserInformation } from \"@/types\";\r\n import DoctorAppointments from \"./DoctorAppointments\";\r\n import Prescriptions from \"./Prescriptions\";\r\n import { useSession } from \"next-auth/react\";\r\n+import { UseUserAppointments } from \"@/actions/queries\";\r\n const DoctorLayout = async ({\r\n   user,\r\n   appointments,\r\n }: {\r\n"
+                },
+                {
+                    "date": 1739209254565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n import { useSession } from \"next-auth/react\";\r\n import { UseUserAppointments } from \"@/actions/queries\";\r\n const DoctorLayout = async ({\r\n   user,\r\n-  appointments,\r\n+\r\n }: {\r\n   user: UserInformation | undefined;\r\n   appointments: Appointment[] | undefined;\r\n }) => {\r\n"
+                },
+                {
+                    "date": 1739209263392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   user,\r\n id\r\n }: {\r\n   user: UserInformation | undefined;\r\n-id: string\r\n+id: string |\r\n }) => {\r\n \r\n   \r\n   const { data: session } = useSession();\r\n"
+                },
+                {
+                    "date": 1739209432834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   \r\n   const { data: session } = useSession();\r\n   const { data } = UseUserAppointments(session?.user.id);\r\n \r\n-  const {data:patients.} = UsePatientQuery()\r\n+  const {data:patients} = UsePatientQuery()\r\n   return (\r\n     <React.Fragment>\r\n       {/* Doctor Information Section */}\r\n       <DoctorInformation user={user} />\r\n"
+                }
+            ],
+            "date": 1739209191677,
+            "name": "Commit-0",
+            "content": "import Patients from \"./Patients\";\r\nimport DoctorInformation from \"./DoctorInformation\";\r\nimport React from \"react\";\r\nimport { Appointment, UserInformation } from \"@/types\";\r\nimport DoctorAppointments from \"./DoctorAppointments\";\r\nimport Prescriptions from \"./Prescriptions\";\r\nconst DoctorLayout = async ({\r\n  user,\r\n  appointments,\r\n}: {\r\n  user: UserInformation | undefined;\r\n  appointments: Appointment[] | undefined;\r\n}) => {\r\n  return (\r\n    <React.Fragment>\r\n      {/* Doctor Information Section */}\r\n      <DoctorInformation user={user} />\r\n      <section className=\"flex flex-col lg:flex-row \">\r\n        <section className=\"flex flex-col flex-1 lg:flex-grow-0 mb-4 sm:mb-0  sm:mr-4\">\r\n          {/* Map On The Real Data When It Comes To It */}\r\n          <Patients user={user} />\r\n          <Prescriptions user={user} />\r\n        </section>\r\n        <section className=\"flex flex-1   sm:mt-4\">\r\n          <DoctorAppointments user={user} appointments={appointments} />\r\n        </section>\r\n      </section>\r\n    </React.Fragment>\r\n  );\r\n};\r\n\r\nexport default DoctorLayout;\r\n"
+        }
+    ]
+}
