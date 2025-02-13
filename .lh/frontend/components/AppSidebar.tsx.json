@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1738528303799,
@@ -56,6 +56,30 @@
                 {
                     "date": 1738730834783,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -107,9 +107,9 @@\n               <SidebarMenu className=\"h-full\">\r\n                 {sideItems.map((item,index) => {\r\n                   if (item.private) {\r\n                     if (session?.user.role === \"Admin\") {\r\n-                      return <Item item={item} key={item.title} key />;\r\n+                      return <Item item={item} key={index}  />;\r\n                     }\r\n                   } else if (item.title === \"Pharmacy\") {\r\n                     return (\r\n                       <>\r\n"
+                },
+                {
+                    "date": 1739370168053,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,95 @@\n import { ChevronUp, User } from \"lucide-react\";\r\n import LogoutButton from \"./togglers/LogoutButton\";\r\n import Image from \"next/image\";\r\n import ThemeToggle from \"./togglers/ToggleTheme\";\r\n-\r\n+navMain: [\r\n+  {\r\n+    title: \"Playground\",\r\n+    url: \"#\",\r\n+    icon: SquareTerminal,\r\n+    isActive: true,\r\n+    items: [\r\n+      {\r\n+        title: \"History\",\r\n+        url: \"#\",\r\n+      },\r\n+      {\r\n+        title: \"Starred\",\r\n+        url: \"#\",\r\n+      },\r\n+      {\r\n+        title: \"Settings\",\r\n+        url: \"#\",\r\n+      },\r\n+    ],\r\n+  },\r\n+  {\r\n+    title: \"Models\",\r\n+    url: \"#\",\r\n+    icon: Bot,\r\n+    items: [\r\n+      {\r\n+        title: \"Genesis\",\r\n+        url: \"#\",\r\n+      },\r\n+      {\r\n+        title: \"Explorer\",\r\n+        url: \"#\",\r\n+      },\r\n+      {\r\n+        title: \"Quantum\",\r\n+        url: \"#\",\r\n+      },\r\n+    ],\r\n+  },\r\n+  {\r\n+    title: \"Documentation\",\r\n+    url: \"#\",\r\n+    icon: BookOpen,\r\n+    items: [\r\n+      {\r\n+        title: \"Introduction\",\r\n+        url: \"#\",\r\n+      },\r\n+      {\r\n+        title: \"Get Started\",\r\n+        url: \"#\",\r\n+      },\r\n+      {\r\n+        title: \"Tutorials\",\r\n+        url: \"#\",\r\n+      },\r\n+      {\r\n+        title: \"Changelog\",\r\n+        url: \"#\",\r\n+      },\r\n+    ],\r\n+  },\r\n+  {\r\n+    title: \"Settings\",\r\n+    url: \"#\",\r\n+    icon: Settings2,\r\n+    items: [\r\n+      {\r\n+        title: \"General\",\r\n+        url: \"#\",\r\n+      },\r\n+      {\r\n+        title: \"Team\",\r\n+        url: \"#\",\r\n+      },\r\n+      {\r\n+        title: \"Billing\",\r\n+        url: \"#\",\r\n+      },\r\n+      {\r\n+        title: \"Limits\",\r\n+        url: \"#\",\r\n+      },\r\n+    ],\r\n+  },\r\n+],\r\n const AppSidebar = () => {\r\n   const pathname = usePathname();\r\n   const { open, setOpen, openMobile, setOpenMobile, isMobile } = useSidebar();\r\n   const { data: session } = useSession();\r\n"
+                },
+                {
+                    "date": 1739370174865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n import { ChevronUp, User } from \"lucide-react\";\r\n import LogoutButton from \"./togglers/LogoutButton\";\r\n import Image from \"next/image\";\r\n import ThemeToggle from \"./togglers/ToggleTheme\";\r\n-navMain: [\r\n+const navMain: [\r\n   {\r\n     title: \"Playground\",\r\n     url: \"#\",\r\n     icon: SquareTerminal,\r\n"
+                },
+                {
+                    "date": 1739370182469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n import { ChevronUp, User } from \"lucide-react\";\r\n import LogoutButton from \"./togglers/LogoutButton\";\r\n import Image from \"next/image\";\r\n import ThemeToggle from \"./togglers/ToggleTheme\";\r\n-const navMain: [\r\n+const navMain =[\r\n   {\r\n     title: \"Playground\",\r\n     url: \"#\",\r\n     icon: SquareTerminal,\r\n"
+                },
+                {
+                    "date": 1739370188216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   DropdownMenuItem,\r\n   DropdownMenu,\r\n   DropdownMenuTrigger,\r\n } from \"./ui/dropdown-menu\";\r\n-import { ChevronUp, User } from \"lucide-react\";\r\n+import { ChevronUp, SquareTerminal, User } from \"lucide-react\";\r\n import LogoutButton from \"./togglers/LogoutButton\";\r\n import Image from \"next/image\";\r\n import ThemeToggle from \"./togglers/ToggleTheme\";\r\n const navMain =[\r\n"
+                },
+                {
+                    "date": 1739370197695,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   DropdownMenuItem,\r\n   DropdownMenu,\r\n   DropdownMenuTrigger,\r\n } from \"./ui/dropdown-menu\";\r\n-import { Bot, ChevronUp, SquareTerminal, User } from \"lucide-react\";\r\n+import { BookOpen, Bot, ChevronUp, SquareTerminal, User } from \"lucide-react\";\r\n import LogoutButton from \"./togglers/LogoutButton\";\r\n import Image from \"next/image\";\r\n import ThemeToggle from \"./togglers/ToggleTheme\";\r\n const navMain =[\r\n"
+                },
+                {
+                    "date": 1739370235827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -175,9 +175,9 @@\n             </h1>\r\n           </span>\r\n         </SidebarHeader>\r\n         <SidebarContent className=\"flex-1\">\r\n-          \r\n+          <\r\n           <SidebarGroup className=\"flex-1 p-0\">\r\n             {/* Body */}\r\n             <SidebarGroupContent\r\n               className={clsx(\"flex-1 w-full pt-10 overflow-y-auto sm:overflow-hidden\", {\r\n"
                 }
             ],
             "date": 1738528303799,

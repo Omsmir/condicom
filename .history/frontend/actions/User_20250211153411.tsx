@@ -1,0 +1,62 @@
+import { UserInformation } from "@/types"
+import axios from "axios"
+import { signIn } from "next-auth/react"
+
+export const getUser = async (userId:string | undefined) => {
+    try {
+        const response = await fetch(`http://localhost:8080/api/auth/${userId}`)
+
+        if(!response.ok){
+            throw new Error("Failed To Get user Data")
+        }
+
+        const data = await response.json() 
+
+        const user = await data.existingUser as UserInformation
+
+        return user
+
+    } catch (error: any) {
+        console.log(error)
+    }
+ 
+}
+
+
+export const getAllUsers = async () => {
+    try {
+        const response = await fetch("http://localhost:8080/api/auth")
+
+        if(!response.ok){
+            throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        const data = await response.json()
+
+
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
+const axiosInstace = axios.create({baseURL:"http://localhost:8080/api/auth/"})
+
+export type LoginApiProps = {
+email:string | undefined;
+password: string | undefined
+}
+
+const LoginApi = async ({ email, password }: { email: string; password: string }) => {
+    const result = await signIn("credentials", {
+      redirect: false, // Prevents automatic redirection
+      email,
+      password,
+    });
+  
+    if (!result || result.error) {
+      throw new Error(result?.error || "Authentication failed");
+    }
+  
+    return result;
+  };

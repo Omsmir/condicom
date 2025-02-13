@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/app/dashboard/(routes)/notifications/page.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1739467701340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1739467701340,
+            "name": "Commit-0",
+            "content": "import Notification from '@/components/notificationsCenter/Notification'\r\nimport React, { Suspense } from 'react'\r\nconst page = async () => {\r\n\r\n  return (\r\n <div className=\"h-screen py-14\">\r\n      <Notification />\r\n\r\n </div>\r\n  )\r\n}\r\n\r\nexport default page\r\n"
+        }
+    ]
+}

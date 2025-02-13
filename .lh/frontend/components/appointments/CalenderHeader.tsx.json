@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 11,
             "patches": [
                 {
                     "date": 1738531204428,
@@ -44,6 +44,14 @@
                 {
                     "date": 1739205269085,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import {FadeMenu, SwitchDay, SwitchMonth } from \"../togglers/TopBarEvents\"\r\n import { CalenderHook } from \"../context/CalenderProvider\"\r\n \r\n import dynamic from \"next/dynamic\"\r\n+import AddPatient from \"../AddPatient\"\r\n const AppointmentCreationButton = dynamic(() => import(\"@/components/AddAppointment\"))\r\n const CalenderHeader = ({children}:{children:React.ReactNode}) => {\r\n \r\n     const {currDate} = CalenderHook()\r\n@@ -20,9 +21,8 @@\n             <SwitchDay />\r\n             <FadeMenu />\r\n             <div className=\"ml-8 border-l pl-4\">\r\n               <AppointmentCreationButton />\r\n-              <Add\r\n             </div>\r\n           </div>\r\n         </div>\r\n         {children}\r\n"
+                },
+                {
+                    "date": 1739461969478,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n             <p className=\"mx-1\">{currDate.getFullYear()}</p>\r\n           </div>\r\n           <div className=\"flex\">\r\n             <SwitchDay />\r\n-            <FadeMenu />\r\n+            {/* <FadeMenu /> */}\r\n             <div className=\"ml-8 border-l pl-4\">\r\n               <AppointmentCreationButton />\r\n             </div>\r\n           </div>\r\n"
+                },
+                {
+                    "date": 1739461979627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n             <p className=\"mx-1\">{currDate.getFullYear()}</p>\r\n           </div>\r\n           <div className=\"flex\">\r\n             <SwitchDay />\r\n-            {/* <FadeMenu /> */}\r\n+            <FadeMenu />\r\n             <div className=\"ml-8 border-l pl-4\">\r\n               <AppointmentCreationButton />\r\n             </div>\r\n           </div>\r\n"
                 }
             ],
             "date": 1738531204428,

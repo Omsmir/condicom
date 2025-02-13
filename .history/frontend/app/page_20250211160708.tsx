@@ -1,0 +1,32 @@
+import LoginForm from "@/components/LoginForm";
+import Image from "next/image";
+export const metadata: Metadata = {
+  title: "Sign in",
+  description: "Sign In To Dashboard",
+  icons:{
+    
+  }
+};
+
+
+import { DashboardHook } from "@/components/context/Dashboardprovider";
+import { Metadata } from "next";
+
+const Login = () => {
+  return (
+    <main className=" min-h-screen h-screen flex justify-center items-center ">
+      <div className="sub-container max-w-[550px] ">
+        <LoginForm />
+      </div>
+      <Image
+        src="/assets/images/doctor-nurse.jpg"
+        loading="lazy"
+        alt="Cover"
+        height={1000}
+        width={1000}
+        className="side-img max-w-[60%]"
+      />
+    </main>
+  );
+};
+export default Login;

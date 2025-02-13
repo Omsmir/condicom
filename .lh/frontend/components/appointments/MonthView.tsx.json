@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/components/appointments/MonthView.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1739460143959,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1739460190377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     \r\n     \r\n   return (\r\n     <>\r\n-    <div className=\"grid grid-cols-7 border-y dark:border-slate-700\" id='month'>\r\n+    <div className=\"grid grid-cols-7 border-y dark:border-slate-700\" id='monthv'>\r\n       {Days.map((day, index) => (\r\n         <div\r\n           className={clsx(\r\n             `flex justify-center items-center border-r dark:border-slate-700 flex-1 last-of-type:border-r-0 ${inter.className}`\r\n"
+                }
+            ],
+            "date": 1739460143959,
+            "name": "Commit-0",
+            "content": "\"use client\"\r\nimport React from 'react'\r\nimport CalenderRow from \"./CalenderRow\";\r\nimport { CalenderHook } from \"../context/CalenderProvider\";\r\nimport { Days } from \"@/lib/constants\";\r\nimport clsx from \"clsx\";\r\nimport { inter } from \"@/fonts/fonts\";\r\nimport { MotionComponent } from \"../relatedComponents/Motion\";\r\nimport { useMediaQuery } from \"react-responsive\";\r\nimport { OverlayScrollbarsComponent } from \"overlayscrollbars-react\";\r\nimport \"overlayscrollbars/overlayscrollbars.css\";\r\nimport { Appointment } from \"@/types\";\r\n\r\nconst MonthView = ({appointments}:{appointments: Appointment[] | undefined}) => {\r\n      const isMobile = useMediaQuery({ query: \"(min-width: 640px)\" });\r\n      const {\r\n        calendarDays,\r\n        DaysOfthePrevMonth,\r\n        daysOfThisMonth,\r\n      } = CalenderHook();\r\n    \r\n    \r\n  return (\r\n    <>\r\n    <div className=\"grid grid-cols-7 border-y dark:border-slate-700\" id=''>\r\n      {Days.map((day, index) => (\r\n        <div\r\n          className={clsx(\r\n            `flex justify-center items-center border-r dark:border-slate-700 flex-1 last-of-type:border-r-0 ${inter.className}`\r\n          )}\r\n          key={index}\r\n        >\r\n          <p className=\"text-slate-600 text-[13px] font-semibold p-2 \">\r\n            {isMobile ? day : day.at(0)}\r\n          </p>\r\n        </div>\r\n      ))}\r\n    </div>\r\n    <OverlayScrollbarsComponent defer>\r\n      <MotionComponent>\r\n        <div className=\"grid grid-cols-7 grid-rows-6 max-w-[100%]\">\r\n          {calendarDays.map((day, index) => {\r\n            if (\r\n              !(\r\n                index >= DaysOfthePrevMonth.length &&\r\n                index < daysOfThisMonth.length + DaysOfthePrevMonth.length\r\n              )\r\n            ) {\r\n              return (\r\n                <CalenderRow\r\n                  day={day}\r\n                  className=\" border-b border-r bg-[var(--sidebar-background)] hover:bg-slate-200 dark:hover:bg-[var(--sidebar-accent)] cursor-pointer\"\r\n                  classname=\"text-slate-500\"\r\n                  key={index}\r\n                  appointment={appointments}\r\n                />\r\n              );\r\n            } else if (index % 7 === 0) {\r\n              return (\r\n                <CalenderRow\r\n                  day={day}\r\n                  className=\"border-r hover:bg-slate-100 dark:hover:bg-[var(--sidebar-background)]\"\r\n                  key={index}\r\n                  appointment={appointments}\r\n                />\r\n              );\r\n            } else {\r\n              return (\r\n                <CalenderRow\r\n                  day={day}\r\n                  className=\"border-r hover:bg-slate-100 dark:hover:bg-[var(--sidebar-background)]\"\r\n                  key={index}\r\n                  appointment={appointments}\r\n                />\r\n              );\r\n            }\r\n          })}\r\n        </div>\r\n      </MotionComponent>\r\n    </OverlayScrollbarsComponent>\r\n  </>\r\n  )\r\n}\r\n\r\nexport default MonthView\r\n"
+        }
+    ]
+}

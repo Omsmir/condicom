@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1739140529575,
@@ -16,6 +16,18 @@
                 {
                     "date": 1739209249340,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,14 +7,13 @@\n \r\n const page = async ({ params }: { params: Promise<{ _id: string }> }) => {\r\n   const id = (await params)._id;\r\n   const user = await getUser(id)\r\n-  const userAppointments = await getUserAppointments(id)\r\n   await new Promise((resolve) => setTimeout(resolve, 500));\r\n \r\n   return (\r\n     <Suspense fallback={<Loading />}>\r\n-      <DoctorDynamic user={user} appointments={userAppointments} />\r\n+      <DoctorDynamic user={user} id={id} />\r\n     </Suspense>\r\n   );\r\n };\r\n \r\n"
+                },
+                {
+                    "date": 1739231739663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React, { Suspense } from \"react\";\r\n import Loading from \"./loading\";\r\n import dynamic from \"next/dynamic\";\r\n-import { getUser } from \"@/actions/getUser\";\r\n+import { getUser } from \"@/actions/User\";\r\n \r\n const DoctorDynamic = dynamic(() => import(\"@/components/doctorProfile/DoctorLayout\"));\r\n \r\n const page = async ({ params }: { params: Promise<{ _id: string }> }) => {\r\n"
+                },
+                {
+                    "date": 1739289508921,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   await new Promise((resolve) => setTimeout(resolve, 500));\r\n \r\n   return (\r\n     <Suspense fallback={<Loading />}>\r\n-      <DoctorDynamic user={user.} id={id} />\r\n+      <DoctorDynamic user={user.existingUser} id={id} />\r\n     </Suspense>\r\n   );\r\n };\r\n \r\n"
+                },
+                {
+                    "date": 1739289569670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n const DoctorDynamic = dynamic(() => import(\"@/components/doctorProfile/DoctorLayout\"));\r\n \r\n const page = async ({ params }: { params: Promise<{ _id: string }> }) => {\r\n   const id = (await params)._id;\r\n-  const user = usegetu\r\n+  const user = usege\r\n   await new Promise((resolve) => setTimeout(resolve, 500));\r\n \r\n   return (\r\n     <Suspense fallback={<Loading />}>\r\n"
                 }
             ],
             "date": 1739140529575,

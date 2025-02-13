@@ -1,0 +1,30 @@
+{
+    "sourceFile": "frontend/components/NavMenu.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1739369933548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1739369940259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,73 @@\n-<SidebarMenu>\r\n-  <Collapsible defaultOpen className=\"group/collapsible\">\r\n-    <SidebarMenuItem>\r\n-      <CollapsibleTrigger asChild>\r\n-        <SidebarMenuButton />\r\n-      </CollapsibleTrigger>\r\n-      <CollapsibleContent>\r\n-        <SidebarMenuSub>\r\n-          <SidebarMenuSubItem />\r\n-        </SidebarMenuSub>\r\n-      </CollapsibleContent>\r\n-    </SidebarMenuItem>\r\n-  </Collapsible>\r\n-</SidebarMenu>\r\n+\"use client\"\r\n+\r\n+import { ChevronRight, type LucideIcon } from \"lucide-react\"\r\n+\r\n+import {\r\n+  Collapsible,\r\n+  CollapsibleContent,\r\n+  CollapsibleTrigger,\r\n+} from \"@/components/ui/collapsible\"\r\n+import {\r\n+  SidebarGroup,\r\n+  SidebarGroupLabel,\r\n+  SidebarMenu,\r\n+  SidebarMenuButton,\r\n+  SidebarMenuItem,\r\n+  SidebarMenuSub,\r\n+  SidebarMenuSubButton,\r\n+  SidebarMenuSubItem,\r\n+} from \"@/components/ui/sidebar\"\r\n+\r\n+export function NavMain({\r\n+  items,\r\n+}: {\r\n+  items: {\r\n+    title: string\r\n+    url: string\r\n+    icon?: LucideIcon\r\n+    isActive?: boolean\r\n+    items?: {\r\n+      title: string\r\n+      url: string\r\n+    }[]\r\n+  }[]\r\n+}) {\r\n+  return (\r\n+    <SidebarGroup>\r\n+      <SidebarGroupLabel>Platform</SidebarGroupLabel>\r\n+      <SidebarMenu>\r\n+        {items.map((item) => (\r\n+          <Collapsible\r\n+            key={item.title}\r\n+            asChild\r\n+            defaultOpen={item.isActive}\r\n+            className=\"group/collapsible\"\r\n+          >\r\n+            <SidebarMenuItem>\r\n+              <CollapsibleTrigger asChild>\r\n+                <SidebarMenuButton tooltip={item.title}>\r\n+                  {item.icon && <item.icon />}\r\n+                  <span>{item.title}</span>\r\n+                  <ChevronRight className=\"ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90\" />\r\n+                </SidebarMenuButton>\r\n+              </CollapsibleTrigger>\r\n+              <CollapsibleContent>\r\n+                <SidebarMenuSub>\r\n+                  {item.items?.map((subItem) => (\r\n+                    <SidebarMenuSubItem key={subItem.title}>\r\n+                      <SidebarMenuSubButton asChild>\r\n+                        <a href={subItem.url}>\r\n+                          <span>{subItem.title}</span>\r\n+                        </a>\r\n+                      </SidebarMenuSubButton>\r\n+                    </SidebarMenuSubItem>\r\n+                  ))}\r\n+                </SidebarMenuSub>\r\n+              </CollapsibleContent>\r\n+            </SidebarMenuItem>\r\n+          </Collapsible>\r\n+        ))}\r\n+      </SidebarMenu>\r\n+    </SidebarGroup>\r\n+  )\r\n+}\r\n"
+                },
+                {
+                    "date": 1739373816963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n                 <SidebarMenuSub>\r\n                   {item.items?.map((subItem) => (\r\n                     <SidebarMenuSubItem key={subItem.title}>\r\n                       <SidebarMenuSubButton asChild>\r\n-                        < href={subItem.url}>\r\n+                        <Lin href={subItem.url}>\r\n                           <span>{subItem.title}</span>\r\n                         </>\r\n                       </SidebarMenuSubButton>\r\n                     </SidebarMenuSubItem>\r\n"
+                },
+                {
+                    "date": 1739390460446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   items: {\r\n     title: string\r\n     url: string\r\n     icon?: LucideIcon\r\n-    private?:boo\r\n+    private?:boolean\r\n     isActive?: boolean\r\n     items?: {\r\n       title: string\r\n       url: string\r\n"
+                }
+            ],
+            "date": 1739369933548,
+            "name": "Commit-0",
+            "content": "<SidebarMenu>\r\n  <Collapsible defaultOpen className=\"group/collapsible\">\r\n    <SidebarMenuItem>\r\n      <CollapsibleTrigger asChild>\r\n        <SidebarMenuButton />\r\n      </CollapsibleTrigger>\r\n      <CollapsibleContent>\r\n        <SidebarMenuSub>\r\n          <SidebarMenuSubItem />\r\n        </SidebarMenuSub>\r\n      </CollapsibleContent>\r\n    </SidebarMenuItem>\r\n  </Collapsible>\r\n</SidebarMenu>\r\n"
+        }
+    ]
+}

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1738769837254,
@@ -32,6 +32,10 @@
                 {
                     "date": 1738769942661,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n   }, []);\r\n \r\n   return (\r\n     <div className=\"custom\">\r\n-      <DropdownMenu pa>\r\n+      <DropdownMenu >\r\n         <DropdownMenuTrigger asChild>\r\n           <div className=\"flex cursor-pointer mr-6\">\r\n             <Badge\r\n               count={NotSeen.length}\r\n"
+                },
+                {
+                    "date": 1739302355980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     (notification) => notification.seen === false\r\n   );\r\n   const { data: session } = useSession();\r\n \r\n-  const {data} = usegetuser\r\n+  const {data} = useGetUserNotifications()\r\n   useEffect(() => {\r\n     const fetchData = async () => {\r\n       try {\r\n         const response = await fetch(\r\n"
                 }
             ],
             "date": 1738769837254,

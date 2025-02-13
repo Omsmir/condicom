@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1738503859499,
@@ -44,6 +44,10 @@
                 {
                     "date": 1738512137025,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { assignedNotifications, getUserNotifications } from \"../lib/backEvents.js\";\r\n import { systemNotifications } from \"../lib/backEvents.js\";\r\n import { io } from \"../server.js\";\r\n import cron from \"node-cron\";\r\n-import mongo\r\n+import mongoose from \"mongoose\"\r\n export const getAllNotifications = async (req, res, next) => {\r\n   const { id } = req.params;\r\n \r\n   try {\r\n"
+                },
+                {
+                    "date": 1739364311955,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,8 @@\n   const { notification ,user} = req.body;\r\n   try {\r\n     const AdminUsers = await User.find({ role: \"Admin\"  });\r\n \r\n-    console.log(AdminUsers)\r\n     if (!notification || ! user) {\r\n       return res.status(404).json({ message: \"Support a Notification\" });\r\n     }\r\n \r\n"
                 }
             ],
             "date": 1738503859499,

@@ -1,0 +1,62 @@
+{
+    "sourceFile": "frontend/components/Login.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1739282812197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1739282820470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,12 @@\n-rafce\n\\ No newline at end of file\n+\"use client\"\r\n+import React from 'react'\r\n+\r\n+const Login = () => {\r\n+  return (\r\n+    <div>\r\n+      \r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default Login\r\n"
+                },
+                {
+                    "date": 1739282836653,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,21 @@\n import React from 'react'\r\n \r\n const Login = () => {\r\n   return (\r\n-    <div>\r\n-      \r\n+    <main className=\" min-h-screen h-screen flex justify-center items-center \">\r\n+    <div className=\"sub-container max-w-[550px] \">\r\n+      <LoginForm />\r\n     </div>\r\n+    <Image\r\n+      src=\"/assets/images/doctor-nurse.jpg\"\r\n+      loading=\"lazy\"\r\n+      alt=\"Cover\"\r\n+      height={1000}\r\n+      width={1000}\r\n+      className=\"side-img max-w-[60%]\"\r\n+    />\r\n+  </main>\r\n   )\r\n }\r\n \r\n export default Login\r\n"
+                },
+                {
+                    "date": 1739282841933,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n \"use client\"\r\n import React from 'react'\r\n-\r\n+import dy\r\n const Login = () => {\r\n   return (\r\n     <main className=\" min-h-screen h-screen flex justify-center items-center \">\r\n     <div className=\"sub-container max-w-[550px] \">\r\n"
+                },
+                {
+                    "date": 1739282852823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n \"use client\"\r\n import React from 'react'\r\n-import dy\r\n+import dynamic from 'next/dynamic'\r\n+\r\n+const LoginForm  = \r\n const Login = () => {\r\n   return (\r\n     <main className=\" min-h-screen h-screen flex justify-center items-center \">\r\n     <div className=\"sub-container max-w-[550px] \">\r\n"
+                },
+                {
+                    "date": 1739282860203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n \"use client\"\r\n import React from 'react'\r\n import dynamic from 'next/dynamic'\r\n \r\n-const LoginForm  = \r\n+const LoginForm  = dynamic(() => umport)\r\n const Login = () => {\r\n   return (\r\n     <main className=\" min-h-screen h-screen flex justify-center items-center \">\r\n     <div className=\"sub-container max-w-[550px] \">\r\n"
+                },
+                {
+                    "date": 1739282867475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n \"use client\"\r\n import React from 'react'\r\n import dynamic from 'next/dynamic'\r\n \r\n-const LoginForm  = dynamic(() => umport)\r\n+const LoginForm  = dynamic(() => import(\"/\"))\r\n const Login = () => {\r\n   return (\r\n     <main className=\" min-h-screen h-screen flex justify-center items-center \">\r\n     <div className=\"sub-container max-w-[550px] \">\r\n"
+                },
+                {
+                    "date": 1739282875269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n \"use client\"\r\n import React from 'react'\r\n import dynamic from 'next/dynamic'\r\n \r\n-const LoginForm  = dynamic(() => import(\"/\"))\r\n+const LoginForm  = dynamic(() => import(\"./LoginForm\"))\r\n const Login = () => {\r\n   return (\r\n     <main className=\" min-h-screen h-screen flex justify-center items-center \">\r\n     <div className=\"sub-container max-w-[550px] \">\r\n"
+                },
+                {
+                    "date": 1739282881385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n \"use client\"\r\n import React from 'react'\r\n import dynamic from 'next/dynamic'\r\n+import Image from 'next/image'\r\n \r\n const LoginForm  = dynamic(() => import(\"./LoginForm\"))\r\n const Login = () => {\r\n   return (\r\n"
+                },
+                {
+                    "date": 1739282895804,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n \"use client\"\r\n import React from 'react'\r\n import dynamic from 'next/dynamic'\r\n import Image from 'next/image'\r\n-\r\n+import { MotionComponent } from './relatedComponents/Motion'\r\n const LoginForm  = dynamic(() => import(\"./LoginForm\"))\r\n const Login = () => {\r\n   return (\r\n     <main className=\" min-h-screen h-screen flex justify-center items-center \">\r\n"
+                },
+                {
+                    "date": 1739282901192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import { MotionComponent } from './relatedComponents/Motion'\r\n const LoginForm  = dynamic(() => import(\"./LoginForm\"))\r\n const Login = () => {\r\n   return (\r\n+    <MotionComponent></MotionComponent>\r\n     <main className=\" min-h-screen h-screen flex justify-center items-center \">\r\n     <div className=\"sub-container max-w-[550px] \">\r\n       <LoginForm />\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1739282917913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import Image from 'next/image'\r\n import { MotionComponent } from './relatedComponents/Motion'\r\n const LoginForm  = dynamic(() => import(\"./LoginForm\"))\r\n \r\n+import { DashboardHook } from \"@/components/context/Dashboardprovider\";\r\n \r\n const Login = () => {\r\n   return (\r\n     <MotionComponent>\r\n"
+                }
+            ],
+            "date": 1739282812197,
+            "name": "Commit-0",
+            "content": "rafce"
+        }
+    ]
+}

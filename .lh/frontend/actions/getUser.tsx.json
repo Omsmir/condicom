@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/actions/getUser.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1739467559654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1739467559654,
+            "name": "Commit-0",
+            "content": "export const getUser = async (userId: string | undefined) => {\r\n    try {\r\n      const response = await fetch(`http://localhost:8080/api/auth/${userId}`);\r\n  \r\n      if (!response.ok) {\r\n        throw new Error(\"Failed To Get user Data\");\r\n      }\r\n  \r\n      const data = await response.json();\r\n  \r\n      const user = (await data.existingUser) as UserInformation;\r\n  \r\n      return user;\r\n    } catch (error: any) {\r\n      console.log(error);\r\n    }\r\n  };"
+        }
+    ]
+}

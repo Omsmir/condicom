@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1739212898319,
@@ -20,6 +20,18 @@
                 {
                     "date": 1739213046689,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,12 @@\n import { DashboardProvider } from \"@/components/context/Dashboardprovider\";\r\n-import { PatientProvider } from \"@/components/context/PatientProvider\";\r\n import { Metadata } from \"next\";\r\n \r\n export const metadata: Metadata = {\r\n   title: \"Health - Doctors\",\r\n };\r\n \r\n const RootLayout = async ({ children }: { children: React.ReactNode }) => {\r\n-  return (\r\n-    <DashboardProvider>\r\n-      <PatientProvider>{children}</PatientProvider>\r\n-    </DashboardProvider>\r\n-  );\r\n+  return <DashboardProvider>{children}</DashboardProvider>;\r\n };\r\n \r\n export default RootLayout;\r\n"
+                },
+                {
+                    "date": 1739300060687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,8 @@\n   title: \"Health - Doctors\",\r\n };\r\n \r\n const RootLayout = async ({ children }: { children: React.ReactNode }) => {\r\n-  return <DashboardProvider>{children}</DashboardProvider>;\r\n+  return {children}</DashboardProvider>;\r\n };\r\n \r\n export default RootLayout;\r\n"
+                },
+                {
+                    "date": 1739300066788,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,11 @@\n-import { DashboardProvider } from \"@/components/context/Dashboardprovider\";\r\n import { Metadata } from \"next\";\r\n \r\n export const metadata: Metadata = {\r\n   title: \"Health - Doctors\",\r\n };\r\n \r\n const RootLayout = async ({ children }: { children: React.ReactNode }) => {\r\n-  return {children}</DashboardProvider>;\r\n+  return { children };\r\n };\r\n \r\n export default RootLayout;\r\n"
+                },
+                {
+                    "date": 1739300081855,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,8 @@\n   title: \"Health - Doctors\",\r\n };\r\n \r\n const RootLayout = async ({ children }: { children: React.ReactNode }) => {\r\n-  return children };\r\n+  return children ;\r\n };\r\n \r\n export default RootLayout;\r\n"
                 }
             ],
             "date": 1739212898319,
