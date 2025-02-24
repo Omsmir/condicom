@@ -70,6 +70,7 @@
     "react-image-lightbox": "^5.1.4",
     "react-phone-number-input": "^3.4.9",
     "react-responsive": "^10.0.0",
+    "recharts": "^2.15.1",
     "socket.io-client": "^4.8.1",
     "sweetalert2": "^11.6.13",
     "swr": "^2.2.5",

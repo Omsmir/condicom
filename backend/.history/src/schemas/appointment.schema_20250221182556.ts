@@ -1,0 +1,23 @@
+import { z } from "zod";
+
+
+
+
+export const Appointe = z.object({
+    body:z.object({
+        task:z.string({message:"task is required"}).min(2,"min characters is 2").max(40,'max characters is 40'),
+    })
+})
+
+
+
+export type AppointeInterface = z.infer<typeof Appointe>
+
+
+
+task: { type: String, required: true },
+description: { type: String },
+startDate: { type: Date, required: true },
+endDate: { type: Date, required: true },
+interval: { type: String, required: true },
+color: { type: String, required: true },

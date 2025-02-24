@@ -1,0 +1,30 @@
+{
+    "sourceFile": "frontend/components/ThemeProvider.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1739667540212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1739667554356,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n \"use client\";\r\n \r\n import * as React from \"react\";\r\n-import { UseThemeProps, ThemeProviderProps } from \"./types.js\";\r\n+import { UseThemeProps, ThemeProviderProps\r\n \r\n const useTheme = (): UseThemeProps => {\r\n   // Implement your theme logic here\r\n   return {\r\n"
+                },
+                {
+                    "date": 1739667562209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n \"use client\";\r\n \r\n import * as React from \"react\";\r\n-import useThem\r\n+import { UseThemeProps } from \"next-themes/dist/types\";\r\n \r\n const useTheme = (): UseThemeProps => {\r\n   // Implement your theme logic here\r\n   return {\r\n"
+                },
+                {
+                    "date": 1739667630842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n \"use client\";\r\n \r\n import * as React from \"react\";\r\n-import { UseThemeProps } from \"next-themes/dist/types\";\r\n+import { UseThemeProps, } from \"next-themes/dist/types\";\r\n \r\n // Create a ThemeContext with a default value\r\n const ThemeContext = React.createContext<UseThemeProps | null>(null);\r\n \r\n"
+                }
+            ],
+            "date": 1739667540212,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\n\r\nimport * as React from \"react\";\r\nimport { UseThemeProps, ThemeProviderProps } from \"./types.js\";\r\n\r\nconst useTheme = (): UseThemeProps => {\r\n  // Implement your theme logic here\r\n  return {\r\n    theme: \"light\", // Example default theme\r\n    setTheme: (theme: string) => {\r\n      console.log(`Theme changed to: ${theme}`);\r\n    },\r\n  };\r\n};\r\n\r\nconst ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {\r\n  const [theme, setTheme] = React.useState(\"light\");\r\n\r\n  return (\r\n    <ThemeContext.Provider value={{ theme, setTheme }}>\r\n      {children}\r\n    </ThemeContext.Provider>\r\n  );\r\n};\r\n\r\n// Create a ThemeContext\r\nconst ThemeContext = React.createContext<UseThemeProps | null>(null);\r\n\r\n// Export functions\r\nexport { ThemeProvider, useTheme };\r\n"
+        }
+    ]
+}

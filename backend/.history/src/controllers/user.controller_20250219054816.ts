@@ -1,0 +1,48 @@
+import { NextFunction, Request, Response } from "express";
+import { CreateUserInterface } from "../schemas/user.schema";
+import { uploadImageToFirebase } from "../utils/getPresignedUrl";
+import { createUser, findUser } from "../services/user.service";
+import { findCode } from "../services/code.service";
+
+export const createUserHandler = async (
+  req: Request<{}, {}, CreateUserInterface["body"]>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const email = req.body.email;
+
+    const existingUser = await findUser({ email: email });
+
+    if (existingUser) {
+      res.status(403).json({ message: "user already exists" });
+      
+    }
+    const code = req.body.code;
+
+    const usedCode = await findUser({ code: code });
+
+    if (usedCode) {
+       res.status(409).json({ message: "This Code is Used" });
+       return
+    }
+    const preCode = await findCode({ code: code });
+
+    if (!preCode) {
+      res.status(404).json({ message: "Invalid Code Supported" });
+      return;
+    }
+
+
+
+    preCode.used = true
+
+    
+    const user = await createUser({...req.body,role:preCode.role});
+
+    res.status(201).json({ message: "user registered successfully", user });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+    next(error);
+  }
+};

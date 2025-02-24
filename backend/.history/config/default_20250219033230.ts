@@ -1,0 +1,27 @@
+import dotenv from 'dotenv'
+
+
+dotenv.config()
+
+export default {
+    port:1336,
+    dbUri:"mongodb://localhost:27017/",
+    mongoUser:process.env.MONGO_AUTH_USER,
+    mongoPasswd:process.env.MONGO_PASSWD,
+    mainDB:process.env.MONOG_MAIN_DATABASE,
+    saltWorkFactor:10,
+    accessTokenTtl:"2m",
+    refreshTokenTtl:"1y",
+    accessTokenPublicKey:process.env.ACCESS_TOKEN_PUBLIC_KEY,
+    accessTokenPrivateKey:process.env.ACCESS_TOKEN_PRIVATE_KEY,
+    refreshTokenPrivateKey:process.env.REFRESH_PRIVATE_KEY,
+    refreshTokenPublicKey:process.env.REFRESH_PUBLIC_KEY,
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+    meFIREBASE_MESURMENTID
+}

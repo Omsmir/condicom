@@ -1,0 +1,25 @@
+import { Express } from "express"
+import upload from "./middleware/multer"
+import { validate } from "./middleware/validateResource"
+import { codeSchema } from "./schemas/code.schema"
+import { createCodeHandler } from "./controllers/code.controller"
+import userRouter from "./routes/user.routes"
+import codeRouter from "./routes/code.routes"
+import appointmentRouter from "./routes/appointment.routes"
+import patientRouter from "./routes/patient.routes"
+import medicationRouter from "./routes/medication.routes"
+const routes = (app:Express) => {
+// code router
+app.use('/api/code',codeRouter)
+// user router
+app.use("/api/auth",userRouter)
+
+app.use("/api/appointments",appointmentRouter)
+
+app.use("/api/patient",patientRouter)
+
+app.use("/api/medications",router)
+}
+
+
+export default routes

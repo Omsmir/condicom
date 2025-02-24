@@ -1,0 +1,17 @@
+import { getSession } from "next-auth/react";
+import { useEffect } from "react";
+
+const RefreshSession =  (stat) => {
+ 
+  const UpdateSession = async () => {
+    await getSession()
+  }
+
+  useEffect(() => {
+   
+  },[])
+
+  return null;
+};
+
+export default RefreshSession;

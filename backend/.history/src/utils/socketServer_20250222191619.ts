@@ -1,0 +1,13 @@
+import { Server } from "socket.io";
+import {S} from 'http'
+
+
+export const SocketServer =  async(server:Ser) => {
+
+  return  new Server (server,{
+        cors: {
+            origin: "*",
+            methods: ["GET", "POST"]
+        }
+    })
+}

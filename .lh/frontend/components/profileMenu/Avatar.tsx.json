@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/components/profileMenu/Avatar.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1739986952480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1739987223602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}\r\n         variant=\"dot\"\r\n         className='mr-1'\r\n       >\r\n-        <Avatar alt=\"profile\" src={session?.user.image.url || \"/assets/images/dr-cruz.png\"} />\r\n+        <Avatar alt=\"profile\" src={session?.user.image || \"/assets/images/dr-cruz.png\"} />\r\n       </StyledBadge>\r\n       <div className=\"flex flex-col\">\r\n         <h1 className='font-medium text-sm capitalize'>{session?.user.name}</h1>\r\n         <p className='text-[10px] text-slate-500 capitalize'>{session?.user.role}</p>\r\n"
+                }
+            ],
+            "date": 1739986952480,
+            "name": "Commit-0",
+            "content": "\"use client\"\r\nimport * as React from 'react';\r\nimport { styled } from '@mui/material/styles';\r\nimport Badge from '@mui/material/Badge';\r\nimport Avatar from '@mui/material/Avatar';\r\nimport { useSession } from 'next-auth/react';\r\n\r\nconst StyledBadge = styled(Badge)(({ theme }) => ({\r\n  '& .MuiBadge-badge': {\r\n    backgroundColor: '#44b700',\r\n    color: '#44b700',\r\n    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,\r\n    '&::after': {\r\n      position: 'absolute',\r\n      top: 0,\r\n      left: 0,\r\n      width: '100%',\r\n      height: '100%',\r\n      borderRadius: '50%',\r\n      animation: 'ripple 1.2s infinite ease-in-out',\r\n      border: '1px solid currentColor',\r\n      content: '\"\"',\r\n    },\r\n  },\r\n  '@keyframes ripple': {\r\n    '0%': {\r\n      transform: 'scale(.8)',\r\n      opacity: 1,\r\n    },\r\n    '100%': {\r\n      transform: 'scale(2.4)',\r\n      opacity: 0,\r\n    },\r\n  },\r\n}));\r\n\r\n\r\n\r\nconst BadgeAvatar = () => {\r\n    const {data:session} = useSession()\r\n  return (\r\n    <div className=\"flex items-center cursor-pointer p-2 \">\r\n          <StyledBadge\r\n        overlap=\"circular\"\r\n        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}\r\n        variant=\"dot\"\r\n        className='mr-1'\r\n      >\r\n        <Avatar alt=\"profile\" src={session?.user.image.url || \"/assets/images/dr-cruz.png\"} />\r\n      </StyledBadge>\r\n      <div className=\"flex flex-col\">\r\n        <h1 className='font-medium text-sm capitalize'>{session?.user.name}</h1>\r\n        <p className='text-[10px] text-slate-500 capitalize'>{session?.user.role}</p>\r\n      </div>\r\n    </div>\r\n    \r\n  );\r\n}\r\n\r\n\r\nexport default BadgeAvatar;"
+        }
+    ]
+}
