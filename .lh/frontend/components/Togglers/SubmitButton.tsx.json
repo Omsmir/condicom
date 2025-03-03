@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1738510981968,
@@ -24,6 +24,14 @@
                 {
                     "date": 1738511011712,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     <Button\r\n       type=\"submit\"\r\n       disabled={isLoading}\r\n       className={className ?? \"shad-primary-btn w-full\"}\r\n-      on\r\n+      onClick={onclick}\r\n     >\r\n       {isLoading ? (\r\n         <div className=\"flex items-center gap-4\">\r\n           <Image\r\n"
+                },
+                {
+                    "date": 1740879226166,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n   isLoading?: boolean;\r\n   className?: string;\r\n   children: React.ReactNode;\r\n   onclick?:() => void\r\n+  innerText:\r\n }\r\n \r\n const SubmitButton = ({ isLoading, className, children,onclick }: ButtonProps) => {\r\n   return (\r\n"
+                },
+                {
+                    "date": 1740879233052,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   onclick?:() => void\r\n   innerText?:string\r\n }\r\n \r\n-const SubmitButton = ({ isLoading, className, children,onclick,ine }: ButtonProps) => {\r\n+const SubmitButton = ({ isLoading, className, children,onclick,innerText }: ButtonProps) => {\r\n   return (\r\n     <Button\r\n       type=\"submit\"\r\n       disabled={isLoading}\r\n"
                 }
             ],
             "date": 1738510981968,

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/components/settings/Profile/ReusebleHeader.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1741034051622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1741034057645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n }\r\n const AccountReusebleHeader = ({\r\n   innerText,\r\n   showMenu,\r\n-  edit\r\n+  editState\r\n }: AccountReusebleHeaderProps) => {\r\n   const { ProfileEdit, setProfileEdit } = AccountHook();\r\n \r\n   const setEditTrue = () => {\r\n"
+                }
+            ],
+            "date": 1741034051622,
+            "name": "Commit-0",
+            "content": "\"use client\"\r\nimport React from 'react'\r\nimport { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from \"@/components/ui/dropdown-menu\";\r\nimport { MoreHorizontal } from \"lucide-react\";\r\nimport { Button } from '@/components/ui/button';\r\nimport { AccountHook } from '@/components/context/AccountProvider';\r\n\r\n\r\n\r\ninterface AccountReusebleHeaderProps {\r\n  innerText:string;\r\n  showMenu?:boolean;\r\n    editState:boolean;\r\n    setEditState: React.Dispatch<React.SetStateAction<boolean>>\r\n}\r\nconst AccountReusebleHeader = ({innerText,showMenu}:AccountReusebleHeaderProps) => {\r\n  const {ProfileEdit,setProfileEdit} = AccountHook()\r\n\r\n  const setEditTrue = () => {\r\n    setProfileEdit(true)\r\n  }\r\n  return (\r\n    <div className=\"flex justify-between items-center p-4 w-full\">\r\n    <h1 className=\"text-lg font-semibold capitalize\">{innerText}</h1>\r\n   {showMenu &&  <DropdownMenu>\r\n        <DropdownMenuTrigger asChild>\r\n          <Button variant=\"ghost\" className=\"h-8 w-8 p-0 focus:outline-none\">\r\n            <span className=\"sr-only\">Open menu</span>\r\n            <MoreHorizontal className=\"h-4 w-4\" />\r\n          </Button>\r\n        </DropdownMenuTrigger>\r\n        <DropdownMenuContent\r\n          align=\"end\"\r\n          className=\"bg-slate-100 dark:bg-[var(--sidebar-accent)] p-0 border-0\"\r\n        >\r\n          <DropdownMenuItem\r\n            className=\"cursor-pointer hover:bg-slate-200 dark:hover:bg-[var(--sidebar-background)]\"\r\n            onClick={setEditTrue}\r\n            disabled={ProfileEdit}\r\n          >\r\n            Edit\r\n          </DropdownMenuItem>\r\n         \r\n        </DropdownMenuContent>\r\n      </DropdownMenu>}\r\n  </div>\r\n  )\r\n}\r\n\r\nexport default AccountReusebleHeader\r\n"
+        }
+    ]
+}

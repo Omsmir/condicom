@@ -1,0 +1,46 @@
+{
+    "sourceFile": "frontend/components/settings/SettingsLayout.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1740789314085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1740789393218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n+\r\n import React from 'react'\r\n \r\n const SettingsLayout = () => {\r\n   return (\r\n-    <div>\r\n+    <div className='flex '>\r\n       \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1740789403031,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import React from 'react'\r\n \r\n const SettingsLayout = () => {\r\n   return (\r\n-    <div className='flex '>\r\n+    <div className='flex h-screen jus'>\r\n       \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1740789408372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import React from 'react'\r\n \r\n const SettingsLayout = () => {\r\n   return (\r\n-    <div className='flex h-screen jus'>\r\n+    <div className='flex h-screen justify-start items-start '>\r\n       \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1740789416265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import React from 'react'\r\n \r\n const SettingsLayout = () => {\r\n   return (\r\n-    <div className='flex h-screen justify-start items-start '>\r\n+    <div className='flex h-screen max-h-screen justify-start items-start '>\r\n       \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1740789426764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-\r\n+\"use client\"\r\n import React from 'react'\r\n \r\n const SettingsLayout = () => {\r\n   return (\r\n"
+                },
+                {
+                    "date": 1740789432814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import React from 'react'\r\n \r\n const SettingsLayout = () => {\r\n   return (\r\n-    <div className='flex h-screen max-h-screen justify-start items-start p'>\r\n+    <div className='flex h-screen max-h-screen justify-start items-start px-'>\r\n       \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1740789485990,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import React from 'react'\r\n \r\n const SettingsLayout = ({children}:{children:React.ReactNode}) => {\r\n   return (\r\n-    <div className={`flex h-screen max-h-screen justify-start items-start px-4>\r\n+    <div className={`flex h-screen max-h-screen justify-start items-start px-4``>\r\n       {children}\r\n     </div>\r\n   )\r\n }\r\n"
+                }
+            ],
+            "date": 1740789314085,
+            "name": "Commit-0",
+            "content": "import React from 'react'\r\n\r\nconst SettingsLayout = () => {\r\n  return (\r\n    <div>\r\n      \r\n    </div>\r\n  )\r\n}\r\n\r\nexport default SettingsLayout\r\n"
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+"use client";
+
+import { AccountSettingMenuItems } from "@/lib/constants";
+import clsx from "clsx";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const NavigationMenu = () => {
+  const pathname = usePathname();
+  return (
+    <div className="flex justify-center items-start">
+      <ul className="flex list-inside justify-center items-start transition-all">
+        {AccountSettingMenuItems.map((item) => (
+          <Link
+            href={item.url}
+            key={item.title}
+            className=" px-4 first-of-type:px-0 "
+          >
+            <li
+              className={clsx(
+                "text-sm font-medium text-slate-600 capitalize transition-all",
+                {
+                  "border-b-2 border-b-blue-800 !text-blue-800":
+                    pathname === item.url,
+                }
+              )}
+            >
+              {item.title}
+            </li>
+          </Link>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default NavigationMenu;

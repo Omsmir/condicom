@@ -1,0 +1,30 @@
+{
+    "sourceFile": "backend/src/server.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1741040365100,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1741040385590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,8 @@\n \r\n app.use(express.urlencoded({ extended: true }));\r\n app.use(cookieParser());\r\n // app.use(errorHandler)\r\n-app.use(notFound)\r\n \r\n app.use(\r\n   cors({\r\n     origin: \"*\",\r\n"
+                },
+                {
+                    "date": 1741040393842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,5 +39,8 @@\n   await SocketInitiator(initiator);\r\n   await connect();\r\n \r\n   routes(app);\r\n+\r\n+  app.use(notFound)\r\n+\r\n });\r\n"
+                },
+                {
+                    "date": 1741040418814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n app.use(express.json());\r\n \r\n app.use(express.urlencoded({ extended: true }));\r\n app.use(cookieParser());\r\n-// app.use(errorHandler)\r\n \r\n app.use(\r\n   cors({\r\n     origin: \"*\",\r\n"
+                }
+            ],
+            "date": 1741040365100,
+            "name": "Commit-0",
+            "content": "import express from \"express\";\r\nimport routes from \"./routes\";\r\nimport config from \"config\";\r\nimport connect from \"./utils/connect\";\r\nimport log from \"./utils/logger\";\r\nimport { errorHandler, notFound } from \"./middleware/errorHandler\";\r\nimport { deserializeUser } from \"./middleware/deserializeUser\";\r\nimport cors from \"cors\";\r\nimport cookieParser from \"cookie-parser\";\r\nimport http from \"http\";\r\nimport { Server } from \"socket.io\";\r\nimport { io, SocketInitiator } from \"./utils/socketServer\";\r\nconst port = config.get<string>(\"port\");\r\nconst app = express();\r\n\r\nconst server = http.createServer(app);\r\n\r\napp.use(express.json());\r\n\r\napp.use(express.urlencoded({ extended: true }));\r\napp.use(cookieParser());\r\n// app.use(errorHandler)\r\napp.use(notFound)\r\n\r\napp.use(\r\n  cors({\r\n    origin: \"*\",\r\n    credentials: true,\r\n    methods: [\"GET\", \"POST\", \"PUT\", \"DELETE\"],\r\n  })\r\n);\r\n\r\napp.use(deserializeUser);\r\n\r\nexport const initiator = io(server);\r\n\r\nserver.listen(port, async () => {\r\n  log.info(`server is connected to port: ${port}`);\r\n\r\n  await SocketInitiator(initiator);\r\n  await connect();\r\n\r\n  routes(app);\r\n});\r\n"
+        }
+    ]
+}

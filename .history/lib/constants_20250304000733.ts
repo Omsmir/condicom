@@ -1,0 +1,1 @@
+export const FirstNumber = ["1"] as const

@@ -1,0 +1,30 @@
+{
+    "sourceFile": "frontend/components/settings/code/code.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1741035934651,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1741035943338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,12 @@\n-rafce\n\\ No newline at end of file\n+\"use client\"\r\n+import React from 'react'\r\n+\r\n+const code = () => {\r\n+  return (\r\n+    <div>\r\n+      \r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default code\r\n"
+                },
+                {
+                    "date": 1741035952244,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import React from 'react'\r\n \r\n const code = () => {\r\n   return (\r\n-    <div>\r\n+    <div className=\"grid grid-cols-12 w-full pt-0 p-6\">\r\n       \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1741036399496,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n \"use client\"\r\n import React from 'react'\r\n+import CodeGeneration from './codeGeneration'\r\n \r\n const code = () => {\r\n   return (\r\n     <div className=\"grid grid-cols-12 w-full pt-0 p-6\">\r\n-      \r\n+      <CodeGeneration />\r\n     </div>\r\n   )\r\n }\r\n \r\n"
+                }
+            ],
+            "date": 1741035934651,
+            "name": "Commit-0",
+            "content": "rafce"
+        }
+    ]
+}

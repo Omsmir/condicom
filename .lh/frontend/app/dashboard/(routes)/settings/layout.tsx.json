@@ -1,0 +1,26 @@
+{
+    "sourceFile": "frontend/app/dashboard/(routes)/settings/layout.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1740789184999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1740789600335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \r\n   \r\n   return  (\r\n     <DashboardProvider>\r\n-      <\r\n+      <S\r\n         {children}\r\n     </DashboardProvider>\r\n   ) ;\r\n }\r\n"
+                },
+                {
+                    "date": 1740789610243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n   return  (\r\n     <DashboardProvider>\r\n       <SettingsLayout>\r\n         {children}\r\n+        </SettingsLayout>\r\n     </DashboardProvider>\r\n   ) ;\r\n }\r\n \r\n"
+                }
+            ],
+            "date": 1740789184998,
+            "name": "Commit-0",
+            "content": "import { DashboardProvider } from \"@/components/context/Dashboardprovider\";\r\n\r\nimport { Metadata } from \"next\";\r\n\r\n\r\nexport const metadata:Metadata = {\r\n    title: \"settings\",\r\n    description: \"User Profile\",\r\n  };\r\n\r\nconst RootLayout = ({\r\n  children,\r\n}: Readonly<{\r\n  children: React.ReactNode;\r\n}>) => {\r\n\r\n  \r\n  return  (\r\n    <DashboardProvider>\r\n        {children}\r\n    </DashboardProvider>\r\n  ) ;\r\n}\r\n\r\n\r\nexport default RootLayout;\r\n"
+        }
+    ]
+}

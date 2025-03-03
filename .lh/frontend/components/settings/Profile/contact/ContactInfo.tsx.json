@@ -1,0 +1,42 @@
+{
+    "sourceFile": "frontend/components/settings/Profile/contact/ContactInfo.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1741010216238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1741010402057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,13 +3,13 @@\n import SingleInformationRow from '@/components/patient/SingleInformationRow'\r\n import { UserInformation } from '@/types'\r\n import React from 'react'\r\n \r\n-const C = ({user,isFetching}:{user:UserInformation | undefined,isFetching:boolean}) => {\r\n+const ContactInfo = ({user,isFetching}:{user:UserInformation | undefined,isFetching:boolean}) => {\r\n \r\n \r\n     const data = {\r\n-        role\r\n+        \r\n     }\r\n   return (\r\n     <SingleInformationRow\r\n     innerText={element.title}\r\n@@ -25,5 +25,5 @@\n   </SingleInformationRow>\r\n   )\r\n }\r\n \r\n-export default C\r\n+export default ContactInfo\r\n"
+                },
+                {
+                    "date": 1741010412909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n const ContactInfo = ({user,isFetching}:{user:UserInformation | undefined,isFetching:boolean}) => {\r\n \r\n \r\n     const data = {\r\n-        \r\n+        \"email\"\r\n     }\r\n   return (\r\n     <SingleInformationRow\r\n     innerText={element.title}\r\n"
+                },
+                {
+                    "date": 1741010418218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n const ContactInfo = ({user,isFetching}:{user:UserInformation | undefined,isFetching:boolean}) => {\r\n \r\n \r\n     const data = {\r\n-        \"email\"\r\n+        \"email address\":\r\n     }\r\n   return (\r\n     <SingleInformationRow\r\n     innerText={element.title}\r\n"
+                },
+                {
+                    "date": 1741010424730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,10 @@\n const ContactInfo = ({user,isFetching}:{user:UserInformation | undefined,isFetching:boolean}) => {\r\n \r\n \r\n     const data = {\r\n-        \"email address\":\r\n+        \"email address\":user?.email,\r\n+        \"\"\r\n     }\r\n   return (\r\n     <SingleInformationRow\r\n     innerText={element.title}\r\n"
+                },
+                {
+                    "date": 1741010438666,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \r\n \r\n     const data = {\r\n         \"email address\":user?.email,\r\n-        \"contact number\":user.num\r\n+        \"contact number\":user.\r\n     }\r\n   return (\r\n     <SingleInformationRow\r\n     innerText={element.title}\r\n"
+                },
+                {
+                    "date": 1741010454251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \r\n     const data = {\r\n         \"email address\":user?.email,\r\n         \"contact number\":user?.phone,\r\n-        \"role\":us\r\n+        \"role\":user.\r\n     }\r\n   return (\r\n     <SingleInformationRow\r\n     innerText={element.title}\r\n"
+                }
+            ],
+            "date": 1741010216238,
+            "name": "Commit-0",
+            "content": "\"use client\"\r\nimport CustomSkeleton, { SkeletonType } from '@/components/CustomSkeleton'\r\nimport SingleInformationRow from '@/components/patient/SingleInformationRow'\r\nimport { UserInformation } from '@/types'\r\nimport React from 'react'\r\n\r\nconst C = ({user,isFetching}:{user:UserInformation | undefined,isFetching:boolean}) => {\r\n\r\n\r\n    const data = {\r\n        role\r\n    }\r\n  return (\r\n    <SingleInformationRow\r\n    innerText={element.title}\r\n    key={element.title}\r\n    className={`text-sm md:col-span-4 lg:col-span-3 mt-8`}\r\n  >\r\n    <CustomSkeleton\r\n      SkeletonType={SkeletonType.HEAD}\r\n      innerText={element.value}\r\n      loading={isFetching}\r\n      classname=\"min-w-32 text-sm\"\r\n    />\r\n  </SingleInformationRow>\r\n  )\r\n}\r\n\r\nexport default C\r\n"
+        }
+    ]
+}

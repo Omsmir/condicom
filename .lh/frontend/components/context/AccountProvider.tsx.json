@@ -1,0 +1,114 @@
+{
+    "sourceFile": "frontend/components/context/AccountProvider.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 24,
+            "patches": [
+                {
+                    "date": 1740849112510,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1740849124109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,10 @@\n+\"use client\"\r\n import React from 'react'\r\n \r\n+\r\n+\r\n+\r\n const AccountProvider = () => {\r\n   return (\r\n     <div>\r\n       \r\n"
+                },
+                {
+                    "date": 1740849141569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n \"use client\"\r\n import React from 'react'\r\n \r\n \r\n+const AccountContext = \r\n \r\n-\r\n const AccountProvider = () => {\r\n   return (\r\n     <div>\r\n       \r\n"
+                },
+                {
+                    "date": 1740849148611,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n \"use client\"\r\n import React from 'react'\r\n \r\n \r\n-const AccountContext = \r\n+const AccountContext = createconte\r\n \r\n const AccountProvider = () => {\r\n   return (\r\n     <div>\r\n"
+                },
+                {
+                    "date": 1740849156030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,13 @@\n \"use client\"\r\n-import React from 'react'\r\n+import React, { createContext } from 'react'\r\n \r\n \r\n-const AccountContext = createconte\r\n \r\n+\r\n+\r\n+const AccountContext = createContext(null)\r\n+\r\n const AccountProvider = () => {\r\n   return (\r\n     <div>\r\n       \r\n"
+                },
+                {
+                    "date": 1740849168500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n \"use client\"\r\n import React, { createContext } from 'react'\r\n \r\n \r\n+interface AccountContextProps {\r\n+    \r\n+}\r\n \r\n \r\n-\r\n const AccountContext = createContext(null)\r\n \r\n const AccountProvider = () => {\r\n   return (\r\n"
+                },
+                {
+                    "date": 1740849176296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,13 @@\n import React, { createContext } from 'react'\r\n \r\n \r\n interface AccountContextProps {\r\n-    \r\n+\r\n }\r\n \r\n \r\n-const AccountContext = createContext(null)\r\n+const AccountContext = createContext<AccountContextProps | null>(null)\r\n \r\n const AccountProvider = () => {\r\n   return (\r\n     <div>\r\n"
+                },
+                {
+                    "date": 1740849185236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \r\n \r\n const AccountContext = createContext<AccountContextProps | null>(null)\r\n \r\n-const AccountProvider = () => {\r\n+const AccountProvider = ({children:}) => {\r\n   return (\r\n     <div>\r\n       \r\n     </div>\r\n"
+                },
+                {
+                    "date": 1740849195311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \r\n \r\n const AccountContext = createContext<AccountContextProps | null>(null)\r\n \r\n-const AccountProvider = ({children:}) => {\r\n+const AccountProvider = ({children}:{children:React.ReactNode}) => {\r\n   return (\r\n     <div>\r\n       \r\n     </div>\r\n"
+                },
+                {
+                    "date": 1740849204121,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,11 @@\n const AccountContext = createContext<AccountContextProps | null>(null)\r\n \r\n const AccountProvider = ({children}:{children:React.ReactNode}) => {\r\n   return (\r\n-    <div>\r\n-      \r\n-    </div>\r\n+  <AccountContext>\r\n+    \r\n+  </AccountContext>\r\n   )\r\n }\r\n \r\n export default AccountProvider\r\n"
+                },
+                {
+                    "date": 1740849213041,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,10 @@\n const AccountContext = createContext<AccountContextProps | null>(null)\r\n \r\n const AccountProvider = ({children}:{children:React.ReactNode}) => {\r\n   return (\r\n-  <AccountContext>\r\n-    \r\n+  <AccountContext.Provider value={}>\r\n+{children}\r\n   </AccountContext>\r\n   )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1740849222280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n const AccountProvider = ({children}:{children:React.ReactNode}) => {\r\n   return (\r\n   <AccountContext.Provider value={}>\r\n {children}\r\n-  </AccountContext>\r\n+  </AccountContext.Provider>\r\n   )\r\n }\r\n \r\n export default AccountProvider\r\n"
+                },
+                {
+                    "date": 1740849232849,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n \r\n const AccountContext = createContext<AccountContextProps | null>(null)\r\n \r\n const AccountProvider = ({children}:{children:React.ReactNode}) => {\r\n+    const []\r\n   return (\r\n   <AccountContext.Provider value={}>\r\n {children}\r\n   </AccountContext.Provider>\r\n"
+                },
+                {
+                    "date": 1740849241101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \r\n const AccountContext = createContext<AccountContextProps | null>(null)\r\n \r\n const AccountProvider = ({children}:{children:React.ReactNode}) => {\r\n-    const []\r\n+    const [ProfileEdit,]\r\n   return (\r\n   <AccountContext.Provider value={}>\r\n {children}\r\n   </AccountContext.Provider>\r\n"
+                },
+                {
+                    "date": 1740849255856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n \"use client\"\r\n-import React, { createContext } from 'react'\r\n+import React, { createContext, useState } from 'react'\r\n \r\n \r\n interface AccountContextProps {\r\n \r\n@@ -9,9 +9,9 @@\n \r\n const AccountContext = createContext<AccountContextProps | null>(null)\r\n \r\n const AccountProvider = ({children}:{children:React.ReactNode}) => {\r\n-    const [ProfileEdit,]\r\n+    const [ProfileEdit,setProfileEdit] = useState(false)\r\n   return (\r\n   <AccountContext.Provider value={}>\r\n {children}\r\n   </AccountContext.Provider>\r\n"
+                },
+                {
+                    "date": 1740849261869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \r\n const AccountContext = createContext<AccountContextProps | null>(null)\r\n \r\n const AccountProvider = ({children}:{children:React.ReactNode}) => {\r\n-    const [ProfileEdit,setProfileEdit] = useState(false)\r\n+    const [ProfileEdit,setProfileEdit] = useState<boolean>(false)\r\n   return (\r\n   <AccountContext.Provider value={}>\r\n {children}\r\n   </AccountContext.Provider>\r\n"
+                },
+                {
+                    "date": 1740849268515,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import React, { createContext, useState } from 'react'\r\n \r\n \r\n interface AccountContextProps {\r\n-\r\n+    ProfileEdit: boolean\r\n }\r\n \r\n \r\n const AccountContext = createContext<AccountContextProps | null>(null)\r\n"
+                },
+                {
+                    "date": 1740849276474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,10 @@\n import React, { createContext, useState } from 'react'\r\n \r\n \r\n interface AccountContextProps {\r\n-    ProfileEdit: boolean\r\n+    ProfileEdit: boolean;\r\n+    setProfileEdit: React.Dispatch<React.SetStateAction<boolean>>;\r\n }\r\n \r\n \r\n const AccountContext = createContext<AccountContextProps | null>(null)\r\n"
+                },
+                {
+                    "date": 1740849285103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \r\n const AccountProvider = ({children}:{children:React.ReactNode}) => {\r\n     const [ProfileEdit,setProfileEdit] = useState<boolean>(false)\r\n   return (\r\n-  <AccountContext.Provider value={}>\r\n+  <AccountContext.Provider value={{pro}}>\r\n {children}\r\n   </AccountContext.Provider>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1740849292437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,23 @@\n-\"use client\"\r\n-import React, { createContext, useState } from 'react'\r\n+\"use client\";\r\n+import React, { createContext, useState } from \"react\";\r\n \r\n-\r\n interface AccountContextProps {\r\n-    ProfileEdit: boolean;\r\n-    setProfileEdit: React.Dispatch<React.SetStateAction<boolean>>;\r\n+  ProfileEdit: boolean;\r\n+  setProfileEdit: React.Dispatch<React.SetStateAction<boolean>>;\r\n }\r\n \r\n+const AccountContext = createContext<AccountContextProps | null>(null);\r\n \r\n-const AccountContext = createContext<AccountContextProps | null>(null)\r\n-\r\n-const AccountProvider = ({children}:{children:React.ReactNode}) => {\r\n-    const [ProfileEdit,setProfileEdit] = useState<boolean>(false)\r\n+const AccountProvider = ({ children }: { children: React.ReactNode }) => {\r\n+  const [ProfileEdit, setProfileEdit] = useState<boolean>(false);\r\n   return (\r\n-  <AccountContext.Provider value={{pro}}>\r\n-{children}\r\n-  </AccountContext.Provider>\r\n-  )\r\n-}\r\n+    <AccountContext.Provider value={{ ProfileEdit, setProfileEdit }}>\r\n+      {children}\r\n+    </AccountContext.Provider>\r\n+  );\r\n+};\r\n \r\n-export default AccountProvider\r\n+export default AccountProvider;\r\n+\r\n+\r\n+\r\n"
+                },
+                {
+                    "date": 1740849309080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,17 +7,20 @@\n }\r\n \r\n const AccountContext = createContext<AccountContextProps | null>(null);\r\n \r\n-const AccountProvider = ({ children }: { children: React.ReactNode }) => {\r\n+export const AccountProvider = ({ children }: { children: React.ReactNode }) => {\r\n   const [ProfileEdit, setProfileEdit] = useState<boolean>(false);\r\n   return (\r\n     <AccountContext.Provider value={{ ProfileEdit, setProfileEdit }}>\r\n       {children}\r\n     </AccountContext.Provider>\r\n   );\r\n };\r\n \r\n-export default AccountProvider;\r\n \r\n \r\n \r\n+export const AccountHook = () => {\r\n+    \r\n+}\r\n+\r\n"
+                },
+                {
+                    "date": 1740849317183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,7 +20,7 @@\n \r\n \r\n \r\n export const AccountHook = () => {\r\n-    \r\n+    if(!ac)\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1740849324220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,7 +20,7 @@\n \r\n \r\n \r\n export const AccountHook = () => {\r\n-    if(!ac)\r\n+    const co\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1740849331091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,7 +20,7 @@\n \r\n \r\n \r\n export const AccountHook = () => {\r\n-    const context = usetcon\r\n+    const context = usetcont\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1740849339786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,6 +21,7 @@\n \r\n \r\n export const AccountHook = () => {\r\n     const context = useContext(AccountContext)\r\n+    \r\n }\r\n \r\n"
+                }
+            ],
+            "date": 1740849112510,
+            "name": "Commit-0",
+            "content": "import React from 'react'\r\n\r\nconst AccountProvider = () => {\r\n  return (\r\n    <div>\r\n      \r\n    </div>\r\n  )\r\n}\r\n\r\nexport default AccountProvider\r\n"
+        }
+    ]
+}

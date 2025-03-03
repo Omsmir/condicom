@@ -1,0 +1,94 @@
+{
+    "sourceFile": "frontend/components/settings/EditableInformation.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 19,
+            "patches": [
+                {
+                    "date": 1740838542188,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1740838554062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,64 @@\n import React from 'react'\r\n \r\n const EditableInformation = () => {\r\n   return (\r\n-    <div>\r\n-      \r\n-    </div>\r\n+    <Form {...form}>\r\n+    <form\r\n+      onSubmit={form.handleSubmit(onSubmit)}\r\n+      className=\"flex-1 space-y-8 my-auto dark:bg-[var(--sidebar-background)] p-4 rounded-md\"\r\n+    >\r\n+      <section className=\"grid grid-cols-12\">\r\n+        <div className=\"mr-2 col-span-6 sm:col-span-8\">\r\n+          <CustomFormField\r\n+            control={form.control}\r\n+            Lucide={<User className=\"dark:text-dark-600\" />}\r\n+            placeholder=\"product name\"\r\n+            label=\"product name\"\r\n+            fieldType={FormFieldType.INPUT}\r\n+            name=\"name\"\r\n+          />\r\n+        </div>\r\n+        <div className=\"col-span-6 sm:col-span-4 \">\r\n+          <CustomFormField\r\n+            fieldType={FormFieldType.NUMBER}\r\n+            control={form.control}\r\n+            placeholder=\"50$\"\r\n+            label=\"price\"\r\n+            name=\"price\"\r\n+            Lucide={<DollarSign className=\"dark:text-slate-600\" />}\r\n+            min={1}\r\n+            max={999}\r\n+          />\r\n+        </div>\r\n+      </section>\r\n+      <CustomFormField\r\n+        control={form.control}\r\n+        fieldType={FormFieldType.TEXTAREA}\r\n+        name=\"description\"\r\n+        placeholder=\"product description\"\r\n+        label=\"description\"\r\n+      />\r\n+\r\n+      <CustomFormField\r\n+        fieldType={FormFieldType.SKELETON}\r\n+        control={form.control}\r\n+        name=\"image\"\r\n+        label=\"Product Image\"\r\n+        renderSkeleton={(field) => (\r\n+          <FormControl>\r\n+            <FileUploader\r\n+              files={field.value}\r\n+              onChange={field.onChange}\r\n+              className=\"flex flex-1 bg-slate-100 rounded-md p-4 file-upload\"\r\n+            />\r\n+          </FormControl>\r\n+        )}\r\n+      />\r\n+\r\n+      <SubmitButton isLoading={isLoading}>Add Product</SubmitButton>\r\n+    </form>\r\n+  </Form>\r\n   )\r\n }\r\n \r\n export default EditableInformation\r\n"
+                },
+                {
+                    "date": 1740838560963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+\"use client\"\r\n import React from 'react'\r\n \r\n const EditableInformation = () => {\r\n   return (\r\n"
+                },
+                {
+                    "date": 1740838570851,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,19 @@\n \"use client\"\r\n import React from 'react'\r\n+import { zodResolver } from \"@hookform/resolvers/zod\";\r\n+import { useForm } from \"react-hook-form\";\r\n+import { z } from \"zod\";\r\n+import { Form, FormControl } from \"@/components/ui/form\";\r\n+import CustomFormField from \"./CustomFormField\";\r\n+import { FormFieldType } from \"./CustomFormField\";\r\n+import FileUploader from \"./FileUploader\";\r\n+import { useState } from \"react\";\r\n+import { User, DollarSign } from \"lucide-react\";\r\n+import SubmitButton from \"./togglers/SubmitButton\";\r\n+import { formSchema } from \"@/lib/vaildation\";\r\n+import Swal from \"sweetalert2\";\r\n+import { useRouter } from \"next/navigation\";\r\n \r\n const EditableInformation = () => {\r\n   return (\r\n     <Form {...form}>\r\n"
+                },
+                {
+                    "date": 1740838590775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n import Swal from \"sweetalert2\";\r\n import { useRouter } from \"next/navigation\";\r\n \r\n const EditableInformation = () => {\r\n+    \r\n   return (\r\n     <Form {...form}>\r\n     <form\r\n       onSubmit={form.handleSubmit(onSubmit)}\r\n"
+                },
+                {
+                    "date": 1740838600231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { zodResolver } from \"@hookform/resolvers/zod\";\r\n import { useForm } from \"react-hook-form\";\r\n import { z } from \"zod\";\r\n import { Form, FormControl } from \"@/components/ui/form\";\r\n-import CustomFormField from \"./CustomFormField\";\r\n+import CustomFormField from '../CustomFormField';\r\n import { FormFieldType } from \"./CustomFormField\";\r\n import FileUploader from \"./FileUploader\";\r\n import { useState } from \"react\";\r\n import { User, DollarSign } from \"lucide-react\";\r\n@@ -14,9 +14,17 @@\n import Swal from \"sweetalert2\";\r\n import { useRouter } from \"next/navigation\";\r\n \r\n const EditableInformation = () => {\r\n-    \r\n+    const form = useForm<z.infer<typeof formSchema>>({\r\n+        resolver: zodResolver(formSchema),\r\n+        defaultValues: {\r\n+          name:  \"\",\r\n+          description: \"\",\r\n+          price:1,\r\n+          \r\n+        },\r\n+      });\r\n   return (\r\n     <Form {...form}>\r\n     <form\r\n       onSubmit={form.handleSubmit(onSubmit)}\r\n"
+                },
+                {
+                    "date": 1740838609404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,9 @@\n import { useForm } from \"react-hook-form\";\r\n import { z } from \"zod\";\r\n import { Form, FormControl } from \"@/components/ui/form\";\r\n import CustomFormField from '../CustomFormField';\r\n-import { FormFieldType } from \"./CustomFormField\";\r\n-import FileUploader from \"./FileUploader\";\r\n+import { FormFieldType } from \"../CustomFormField\";\r\n import { useState } from \"react\";\r\n import { User, DollarSign } from \"lucide-react\";\r\n import SubmitButton from \"./togglers/SubmitButton\";\r\n import { formSchema } from \"@/lib/vaildation\";\r\n"
+                },
+                {
+                    "date": 1740838624573,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n import CustomFormField from '../CustomFormField';\r\n import { FormFieldType } from \"../CustomFormField\";\r\n import { useState } from \"react\";\r\n import { User, DollarSign } from \"lucide-react\";\r\n-import SubmitButton from \"./togglers/SubmitButton\";\r\n+import SubmitButton from \"../togglers/SubmitButton\";\r\n import { formSchema } from \"@/lib/vaildation\";\r\n import Swal from \"sweetalert2\";\r\n import { useRouter } from \"next/navigation\";\r\n \r\n@@ -60,24 +60,8 @@\n         placeholder=\"product description\"\r\n         label=\"description\"\r\n       />\r\n \r\n-      <CustomFormField\r\n-        fieldType={FormFieldType.SKELETON}\r\n-        control={form.control}\r\n-        name=\"image\"\r\n-        label=\"Product Image\"\r\n-        renderSkeleton={(field) => (\r\n-          <FormControl>\r\n-            <FileUploader\r\n-              files={field.value}\r\n-              onChange={field.onChange}\r\n-              className=\"flex flex-1 bg-slate-100 rounded-md p-4 file-upload\"\r\n-            />\r\n-          </FormControl>\r\n-        )}\r\n-      />\r\n-\r\n       <SubmitButton isLoading={isLoading}>Add Product</SubmitButton>\r\n     </form>\r\n   </Form>\r\n   )\r\n"
+                },
+                {
+                    "date": 1740838631873,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,10 @@\n import Swal from \"sweetalert2\";\r\n import { useRouter } from \"next/navigation\";\r\n \r\n const EditableInformation = () => {\r\n+\r\n+    const {} = dash\r\n     const form = useForm<z.infer<typeof formSchema>>({\r\n         resolver: zodResolver(formSchema),\r\n         defaultValues: {\r\n           name:  \"\",\r\n"
+                },
+                {
+                    "date": 1740838639755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,12 +11,13 @@\n import SubmitButton from \"../togglers/SubmitButton\";\r\n import { formSchema } from \"@/lib/vaildation\";\r\n import Swal from \"sweetalert2\";\r\n import { useRouter } from \"next/navigation\";\r\n+import { DashboardHook } from '../context/Dashboardprovider';\r\n \r\n const EditableInformation = () => {\r\n \r\n-    const {} = dash\r\n+    const {isLoading} = DashboardHook()\r\n     const form = useForm<z.infer<typeof formSchema>>({\r\n         resolver: zodResolver(formSchema),\r\n         defaultValues: {\r\n           name:  \"\",\r\n"
+                },
+                {
+                    "date": 1740838648276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,10 @@\n \r\n const EditableInformation = () => {\r\n \r\n     const {isLoading} = DashboardHook()\r\n+\r\n+    const onSubmit = ()\r\n     const form = useForm<z.infer<typeof formSchema>>({\r\n         resolver: zodResolver(formSchema),\r\n         defaultValues: {\r\n           name:  \"\",\r\n"
+                },
+                {
+                    "date": 1740838654827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,11 @@\n const EditableInformation = () => {\r\n \r\n     const {isLoading} = DashboardHook()\r\n \r\n-    const onSubmit = ()\r\n+    const onSubmit = (z.in) => {\r\n+\r\n+    }\r\n     const form = useForm<z.infer<typeof formSchema>>({\r\n         resolver: zodResolver(formSchema),\r\n         defaultValues: {\r\n           name:  \"\",\r\n"
+                },
+                {
+                    "date": 1740838661037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n const EditableInformation = () => {\r\n \r\n     const {isLoading} = DashboardHook()\r\n \r\n-    const onSubmit = (z.in) => {\r\n+    const onSubmit = (values:z.in) => {\r\n \r\n     }\r\n     const form = useForm<z.infer<typeof formSchema>>({\r\n         resolver: zodResolver(formSchema),\r\n"
+                },
+                {
+                    "date": 1740838667136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n const EditableInformation = () => {\r\n \r\n     const {isLoading} = DashboardHook()\r\n \r\n-    const onSubmit = (values:z.in) => {\r\n+    const onSubmit = (values:z.infer<typeof >) => {\r\n \r\n     }\r\n     const form = useForm<z.infer<typeof formSchema>>({\r\n         resolver: zodResolver(formSchema),\r\n"
+                },
+                {
+                    "date": 1740838672998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n const EditableInformation = () => {\r\n \r\n     const {isLoading} = DashboardHook()\r\n \r\n-    const onSubmit = (values:z.infer<typeof >) => {\r\n+    const onSubmit = (values:z.infer<typeof formSchema>) => {\r\n \r\n     }\r\n     const form = useForm<z.infer<typeof formSchema>>({\r\n         resolver: zodResolver(formSchema),\r\n"
+                },
+                {
+                    "date": 1740838685373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,8 @@\n import { useState } from \"react\";\r\n import { User, DollarSign } from \"lucide-react\";\r\n import SubmitButton from \"../togglers/SubmitButton\";\r\n import { formSchema } from \"@/lib/vaildation\";\r\n-import Swal from \"sweetalert2\";\r\n-import { useRouter } from \"next/navigation\";\r\n import { DashboardHook } from '../context/Dashboardprovider';\r\n \r\n const EditableInformation = () => {\r\n \r\n"
+                },
+                {
+                    "date": 1740838698668,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,40 +33,9 @@\n     <form\r\n       onSubmit={form.handleSubmit(onSubmit)}\r\n       className=\"flex-1 space-y-8 my-auto dark:bg-[var(--sidebar-background)] p-4 rounded-md\"\r\n     >\r\n-      <section className=\"grid grid-cols-12\">\r\n-        <div className=\"mr-2 col-span-6 sm:col-span-8\">\r\n-          <CustomFormField\r\n-            control={form.control}\r\n-            Lucide={<User className=\"dark:text-dark-600\" />}\r\n-            placeholder=\"product name\"\r\n-            label=\"product name\"\r\n-            fieldType={FormFieldType.INPUT}\r\n-            name=\"name\"\r\n-          />\r\n-        </div>\r\n-        <div className=\"col-span-6 sm:col-span-4 \">\r\n-          <CustomFormField\r\n-            fieldType={FormFieldType.NUMBER}\r\n-            control={form.control}\r\n-            placeholder=\"50$\"\r\n-            label=\"price\"\r\n-            name=\"price\"\r\n-            Lucide={<DollarSign className=\"dark:text-slate-600\" />}\r\n-            min={1}\r\n-            max={999}\r\n-          />\r\n-        </div>\r\n-      </section>\r\n-      <CustomFormField\r\n-        control={form.control}\r\n-        fieldType={FormFieldType.TEXTAREA}\r\n-        name=\"description\"\r\n-        placeholder=\"product description\"\r\n-        label=\"description\"\r\n-      />\r\n-\r\n+   \r\n       <SubmitButton isLoading={isLoading}>Add Product</SubmitButton>\r\n     </form>\r\n   </Form>\r\n   )\r\n"
+                },
+                {
+                    "date": 1740840342143,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,20 +8,20 @@\n import { FormFieldType } from \"../CustomFormField\";\r\n import { useState } from \"react\";\r\n import { User, DollarSign } from \"lucide-react\";\r\n import SubmitButton from \"../togglers/SubmitButton\";\r\n-import { formSchema } from \"@/lib/vaildation\";\r\n+import { AccountS, AccountSchemachema } from \"@/lib/vaildation\";\r\n import { DashboardHook } from '../context/Dashboardprovider';\r\n \r\n const EditableInformation = () => {\r\n \r\n     const {isLoading} = DashboardHook()\r\n \r\n-    const onSubmit = (values:z.infer<typeof formSchema>) => {\r\n+    const onSubmit = (values:z.infer<typeof AccountSchema>) => {\r\n \r\n     }\r\n-    const form = useForm<z.infer<typeof formSchema>>({\r\n-        resolver: zodResolver(formSchema),\r\n+    const form = useForm<z.infer<typeof AccountSchema>>({\r\n+        resolver: zodResolver(AccountSchema),\r\n         defaultValues: {\r\n           name:  \"\",\r\n           description: \"\",\r\n           price:1,\r\n"
+                },
+                {
+                    "date": 1740840350584,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n import { FormFieldType } from \"../CustomFormField\";\r\n import { useState } from \"react\";\r\n import { User, DollarSign } from \"lucide-react\";\r\n import SubmitButton from \"../togglers/SubmitButton\";\r\n-import { AccountS, AccountSchemachema } from \"@/lib/vaildation\";\r\n+import {AccountSchema} from \"@/lib/vaildation\";\r\n import { DashboardHook } from '../context/Dashboardprovider';\r\n \r\n const EditableInformation = () => {\r\n \r\n@@ -22,11 +22,10 @@\n     const form = useForm<z.infer<typeof AccountSchema>>({\r\n         resolver: zodResolver(AccountSchema),\r\n         defaultValues: {\r\n           name:  \"\",\r\n-          description: \"\",\r\n-          price:1,\r\n           \r\n+          \r\n         },\r\n       });\r\n   return (\r\n     <Form {...form}>\r\n"
+                },
+                {
+                    "date": 1740840356403,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,10 +22,10 @@\n     const form = useForm<z.infer<typeof AccountSchema>>({\r\n         resolver: zodResolver(AccountSchema),\r\n         defaultValues: {\r\n           name:  \"\",\r\n+          occuaption\r\n           \r\n-          \r\n         },\r\n       });\r\n   return (\r\n     <Form {...form}>\r\n"
+                }
+            ],
+            "date": 1740838542188,
+            "name": "Commit-0",
+            "content": "import React from 'react'\r\n\r\nconst EditableInformation = () => {\r\n  return (\r\n    <div>\r\n      \r\n    </div>\r\n  )\r\n}\r\n\r\nexport default EditableInformation\r\n"
+        }
+    ]
+}

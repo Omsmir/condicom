@@ -1,0 +1,34 @@
+{
+    "sourceFile": "frontend/components/settings/Profile/department/DepartmentInfo.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1741009965560,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1741009972852,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,12 @@\n-rafce\n\\ No newline at end of file\n+\"use client\"\r\n+import React from 'react'\r\n+\r\n+const DepartmentInfo = () => {\r\n+  return (\r\n+    <div>\r\n+      \r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default DepartmentInfo\r\n"
+                },
+                {
+                    "date": 1741010014767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,20 @@\n import React from 'react'\r\n \r\n const DepartmentInfo = () => {\r\n   return (\r\n-    <div>\r\n-      \r\n-    </div>\r\n+    <SingleInformationRow\r\n+    innerText={element.title}\r\n+    key={element.title}\r\n+    className={`text-sm md:col-span-4 lg:col-span-3 mt-8`}\r\n+  >\r\n+    <CustomSkeleton\r\n+      SkeletonType={SkeletonType.HEAD}\r\n+      innerText={element.value}\r\n+      loading={isFetching}\r\n+      classname=\"min-w-32 text-sm\"\r\n+    />\r\n+  </SingleInformationRow>\r\n   )\r\n }\r\n \r\n export default DepartmentInfo\r\n"
+                },
+                {
+                    "date": 1741010021466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n \"use client\"\r\n+import SingleInformationRow from '@/components/patient/SingleInformationRow'\r\n import React from 'react'\r\n \r\n const DepartmentInfo = () => {\r\n   return (\r\n"
+                },
+                {
+                    "date": 1741010027253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n \"use client\"\r\n-import CustomSkeleton from '@/components/CustomSkeleton'\r\n+import CustomSkeleton, { SkeletonType } from '@/components/CustomSkeleton'\r\n import SingleInformationRow from '@/components/patient/SingleInformationRow'\r\n import React from 'react'\r\n \r\n const DepartmentInfo = () => {\r\n"
+                }
+            ],
+            "date": 1741009965560,
+            "name": "Commit-0",
+            "content": "rafce"
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "sourceFile": "frontend/components/settings/FieldEnumeration.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1741031762647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1741031781045,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,51 @@\n-rafce\n\\ No newline at end of file\n+import React from 'react'\r\n+\r\n+const FieldEnumeration = () => {\r\n+  return (\r\n+    <div>\r\n+      const FieldEnumration = ({\r\n+  name,\r\n+  value,\r\n+  form,\r\n+}: {\r\n+  name: string;\r\n+  value: string;\r\n+  form: any;\r\n+}) => {\r\n+  switch (name) {\r\n+    case \"Account Name\":\r\n+      return (\r\n+        <CustomFormField\r\n+          fieldType={FormFieldType.INPUT}\r\n+          control={form.control}\r\n+          name=\"name\"\r\n+          placeholder={value}\r\n+          className=\"max-h-[25px] w-32 overflow-hidden rounded-sm\"\r\n+        />\r\n+      );\r\n+    case \"occupation\":\r\n+      return (\r\n+        <CustomFormField\r\n+        fieldType={FormFieldType.SELECT}\r\n+        control={form.control}\r\n+        name=\"occupation\"\r\n+        placeholder={value}        \r\n+      >\r\n+        {medicalSpecialties.map((medicalValue, index) => (\r\n+          <SelectItem  key={index} value={medicalValue.specialty}>\r\n+            <div className=\"flex cursor-pointer justify-center items-center\">\r\n+              <p className=\"text-md mx-2\">{medicalValue.specialty}</p>\r\n+            </div>\r\n+          </SelectItem>\r\n+        ))}\r\n+      </CustomFormField>\r\n+      );\r\n+    default:\r\n+      return null;\r\n+  }\r\n+};\r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default FieldEnumeration\r\n"
+                },
+                {
+                    "date": 1741031786516,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import React from 'react'\r\n \r\n const FieldEnumeration = () => {\r\n+    \r\n   return (\r\n    \r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1741031860424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import CustomFormField, { FormFieldType } from \"../CustomFormField\";\r\n import { SelectItem } from \"../ui/select\";\r\n \r\n \r\n-interface \r\n+interface Field\r\n \r\n const FieldEnumeration = ({\r\n   name,\r\n   value,\r\n"
+                }
+            ],
+            "date": 1741031762647,
+            "name": "Commit-0",
+            "content": "rafce"
+        }
+    ]
+}
