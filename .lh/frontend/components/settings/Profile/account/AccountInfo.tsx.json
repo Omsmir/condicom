@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1741036034131,
@@ -16,6 +16,14 @@
                 {
                     "date": 1741039130876,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import SingleInformationRow from \"@/components/patient/SingleInformationRow\";\r\n import CustomSkeleton, { SkeletonType } from \"@/components/CustomSkeleton\";\r\n import { AccountHook } from \"@/components/context/AccountProvider\";\r\n import { EditFilled } from \"@ant-design/icons\";\r\n-import FieldEnumeration\r\n+import FieldEnumeration from \"@/components/FieldEnumeration\";\r\n import { UseFormReturn } from \"react-hook-form\";\r\n import { z } from \"zod\";\r\n import { AccountSchema } from \"@/lib/vaildation\";\r\n \r\n@@ -58,9 +58,9 @@\n           {ProfileEdit ? (\r\n             <FieldEnumeration\r\n               form={form}\r\n               name={element.title}\r\n-              value={element.value as string}\r\n+              placeHolder={element.value as string}\r\n             />\r\n           ) : (\r\n             <CustomSkeleton\r\n               SkeletonType={SkeletonType.HEAD}\r\n"
+                },
+                {
+                    "date": 1742779765418,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n     {\r\n       value: user?.updatedAt && format(user?.updatedAt as Date, \"PPpp\"),\r\n       title: \"Last Modified\",\r\n     },\r\n-    { value: user?.occupation, editable: true, title: \"occupation\", },\r\n+    { value: user?.occupation, editable: true, title: \"occupation\",name },\r\n   ];\r\n   return userData.map((element) => {\r\n     if (element.editable) {\r\n       return (\r\n"
+                },
+                {
+                    "date": 1742779774833,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n     {\r\n       value: user?.updatedAt && format(user?.updatedAt as Date, \"PPpp\"),\r\n       title: \"Last Modified\",\r\n     },\r\n-    { value: user?.occupation, editable: true, title: \"occupation\",Array:medicalsep },\r\n+    { value: user?.occupation, editable: true, title: \"occupation\",Array:medicalse },\r\n   ];\r\n   return userData.map((element) => {\r\n     if (element.editable) {\r\n       return (\r\n"
                 }
             ],
             "date": 1741036034131,

@@ -1,0 +1,50 @@
+{
+    "sourceFile": "frontend/components/settings/code/Filters.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1742837814536,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742837830892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,40 @@\n-rafce\n\\ No newline at end of file\n+import React from 'react'\r\n+import { Input } from \"@/components/ui/input\";\r\n+import {\r\n+  Select,\r\n+  SelectContent,\r\n+  SelectItem,\r\n+  SelectTrigger,\r\n+  SelectValue,\r\n+} from \"@/components/ui/select\";\r\n+const Filters = () => {\r\n+  return (\r\n+    <div className=\"flex w-full justify-between items-center\">\r\n+    <Input\r\n+      name={name}\r\n+      onChange={(e) => setName(e.target.value)}\r\n+      className=\"shad-input max-w-[220px] max-h-[35px]\"\r\n+      placeholder=\"role\"\r\n+    />\r\n+\r\n+    <div className=\"flex justify-center items-center\">\r\n+      <Select>\r\n+        <SelectTrigger className=\"shad-select-trigger text-slate-500 max-h-[35px]\">\r\n+          <SelectValue placeholder=\"state\" />\r\n+        </SelectTrigger>\r\n+        <SelectContent className=\"shad-select-content \">\r\n+          {[\"used\",\"Not used\"].map((value) => (\r\n+            <SelectItem value={value} className=\"transition-all cursor-pointer hover:bg-slate-200 w-full\">\r\n+              <div className=\"flex\">\r\n+                <p className=\"text-black lowercase\">{value}</p>\r\n+              </div>\r\n+            </SelectItem>\r\n+          ))}\r\n+        </SelectContent>\r\n+      </Select>\r\n+    </div>\r\n+  </div>\r\n+  )\r\n+}\r\n+\r\n+export default Filters\r\n"
+                },
+                {
+                    "date": 1742837845174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+\"use client\"\r\n import React from 'react'\r\n import { Input } from \"@/components/ui/input\";\r\n import {\r\n   Select,\r\n@@ -6,8 +7,12 @@\n   SelectItem,\r\n   SelectTrigger,\r\n   SelectValue,\r\n } from \"@/components/ui/select\";\r\n+\r\n+interface FiltersProps {\r\n+    \r\n+}\r\n const Filters = () => {\r\n   return (\r\n     <div className=\"flex w-full justify-between items-center\">\r\n     <Input\r\n"
+                },
+                {
+                    "date": 1742837850667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   SelectValue,\r\n } from \"@/components/ui/select\";\r\n \r\n interface FiltersProps {\r\n-    \r\n+    name:string\r\n }\r\n const Filters = () => {\r\n   return (\r\n     <div className=\"flex w-full justify-between items-center\">\r\n"
+                },
+                {
+                    "date": 1742837856133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n } from \"@/components/ui/select\";\r\n \r\n interface FiltersProps {\r\n     name:string\r\n+    setName:\r\n }\r\n const Filters = () => {\r\n   return (\r\n     <div className=\"flex w-full justify-between items-center\">\r\n"
+                },
+                {
+                    "date": 1742837861734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n } from \"@/components/ui/select\";\r\n \r\n interface FiltersProps {\r\n     name:string\r\n-    setName:\r\n+    setName:React.SetStateAction<>\r\n }\r\n const Filters = () => {\r\n   return (\r\n     <div className=\"flex w-full justify-between items-center\">\r\n"
+                },
+                {
+                    "date": 1742837867398,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n } from \"@/components/ui/select\";\r\n \r\n interface FiltersProps {\r\n     name:string\r\n-    setName:React.SetStateAction<>\r\n+    setName:React.SetStateAction<React.dispa>\r\n }\r\n const Filters = () => {\r\n   return (\r\n     <div className=\"flex w-full justify-between items-center\">\r\n"
+                },
+                {
+                    "date": 1742837876977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n interface FiltersProps {\r\n     name:string\r\n     setName:React.SetStateAction<React.Dispatch<string>>\r\n }\r\n-const Filters = ({}) => {\r\n+const Filters = ({}:) => {\r\n   return (\r\n     <div className=\"flex w-full justify-between items-center\">\r\n     <Input\r\n       name={name}\r\n"
+                },
+                {
+                    "date": 1742845585396,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n           <SelectValue placeholder=\"state\" />\r\n         </SelectTrigger>\r\n         <SelectContent className=\"shad-select-content \">\r\n           {[\"used\",\"Not used\"].map((value) => (\r\n-            <SelectItem value={value} key={} className=\"transition-all cursor-pointer hover:bg-slate-200 w-full\">\r\n+            <SelectItem value={value} key={val} className=\"transition-all cursor-pointer hover:bg-slate-200 w-full\">\r\n               <div className=\"flex\">\r\n                 <p className=\"text-black lowercase\">{value}</p>\r\n               </div>\r\n             </SelectItem>\r\n"
+                }
+            ],
+            "date": 1742837814535,
+            "name": "Commit-0",
+            "content": "rafce"
+        }
+    ]
+}

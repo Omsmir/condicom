@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1741035934651,
@@ -20,6 +20,22 @@
                 {
                     "date": 1741036399496,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n \"use client\"\r\n import React from 'react'\r\n+import CodeGeneration from './codeGeneration'\r\n \r\n const code = () => {\r\n   return (\r\n     <div className=\"grid grid-cols-12 w-full pt-0 p-6\">\r\n-      \r\n+      <CodeGeneration />\r\n     </div>\r\n   )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1742805399176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n const code = () => {\r\n   return (\r\n     <div className=\"grid grid-cols-12 w-full pt-0 p-6\">\r\n       <CodeGeneration />\r\n+      <Codela\r\n     </div>\r\n   )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1742805417409,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n const code = () => {\r\n   return (\r\n     <div className=\"grid grid-cols-12 w-full pt-0 p-6\">\r\n       <CodeGeneration />\r\n-      <Codela\r\n+      <Codelayou\r\n     </div>\r\n   )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1742922808012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import CodeGeneration from './codeGeneration'\r\n import CodeLayout from './codeLayout'\r\n \r\n const code = () => {\r\n-  const {con}\r\n+  const {con} = \r\n   return (\r\n     <div className=\"grid grid-cols-12 w-full pt-0 p-6\">\r\n       <CodeGeneration />\r\n       <CodeLayout />\r\n"
+                },
+                {
+                    "date": 1742922819200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n \"use client\"\r\n import React from 'react'\r\n import CodeGeneration from './codeGeneration'\r\n import CodeLayout from './codeLayout'\r\n+import { DashboardHook } from '@/components/context/Dashboardprovider'\r\n \r\n const code = () => {\r\n   const {con} = DashboardHook()\r\n   return (\r\n"
                 }
             ],
             "date": 1741035934651,

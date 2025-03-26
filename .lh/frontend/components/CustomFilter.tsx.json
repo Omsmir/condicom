@@ -1,0 +1,46 @@
+{
+    "sourceFile": "frontend/components/CustomFilter.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1742863818863,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742863827726,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,13 @@\n-rafce\n\\ No newline at end of file\n+\"use client\"\r\n+\r\n+import React from 'react'\r\n+\r\n+const CustomFilter = () => {\r\n+  return (\r\n+    <div>\r\n+      \r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default CustomFilter\r\n"
+                },
+                {
+                    "date": 1742863848957,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n \"use client\"\r\n \r\n import React from 'react'\r\n \r\n+\r\n+\r\n+enum \r\n const CustomFilter = () => {\r\n   return (\r\n     <div>\r\n       \r\n"
+                },
+                {
+                    "date": 1742863856476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,18 @@\n+\"use client\"\r\n+\r\n+import React from 'react'\r\n+\r\n+\r\n+\r\n+enum FilterTypes {\r\n+    \r\n+}\r\n+const CustomFilter = () => {\r\n+  return (\r\n+    <div>\r\n+      \r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default CustomFilter\r\n"
+                },
+                {
+                    "date": 1742863866717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n \r\n \r\n \r\n enum FilterTypes {\r\n+    SELECT = \"select\"\r\n     \r\n }\r\n const CustomFilter = () => {\r\n   return (\r\n@@ -15,20 +16,4 @@\n   )\r\n }\r\n \r\n export default CustomFilter\r\n-\"use client\"\r\n-\r\n-import React from 'react'\r\n-\r\n-\r\n-\r\n-enum \r\n-const CustomFilter = () => {\r\n-  return (\r\n-    <div>\r\n-      \r\n-    </div>\r\n-  )\r\n-}\r\n-\r\n-export default CustomFilter\r\n"
+                },
+                {
+                    "date": 1742863878657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n \r\n enum FilterTypes {\r\n     SELECT = \"select\"\r\n-    \r\n+    SEARCH = \"search\"\r\n }\r\n const CustomFilter = () => {\r\n   return (\r\n     <div>\r\n"
+                },
+                {
+                    "date": 1742863893081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n \r\n enum FilterTypes {\r\n     SELECT = \"select\",\r\n-    SEARCH = \"search\";\r\n+    SEARCH = \"search\"\r\n }\r\n const CustomFilter = () => {\r\n   return (\r\n     <div>\r\n"
+                },
+                {
+                    "date": 1742863922130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     SELECT = \"select\",\r\n     SEARCH = \"search\"\r\n }\r\n \r\n-interface \r\n+interface Cus\r\n const CustomFilter = () => {\r\n   return (\r\n     <div>\r\n       \r\n"
+                }
+            ],
+            "date": 1742863818863,
+            "name": "Commit-0",
+            "content": "rafce"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/Docker-compose.yml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1742773191252,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1742773191252,
+            "name": "Commit-0",
+            "content": "version: '3.8'\r\n\r\nservices:\r\n\r\n  backend:\r\n    build: ./backend\r\n    ports:\r\n      - \"8080:8080\"\r\n    environment:\r\n      - MONGO_URI=mongodb://mongo:27017/mydatabase\r\n    depends_on:\r\n      - mongo\r\n    volumes:\r\n      - ./backend:/app\r\n      - /app/node_modules\r\n\r\n  frontend:\r\n    build: ./frontend\r\n    ports:\r\n      - \"3000:3000\"\r\n    depends_on:\r\n      - backend\r\n    volumes:\r\n      - ./frontend:/app\r\n      - /app/node_modules\r\n\r\n  mongo:\r\n    image: mongo:7.0\r\n    container_name: mongodb\r\n    ports:\r\n      - \"27017:27017\"\r\n    volumes:\r\n      - mongodb_data:/data/db\r\n\r\nvolumes:\r\n  mongodb_data:\r\n"
+        }
+    ]
+}

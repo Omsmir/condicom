@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1739986952480,
@@ -12,6 +12,14 @@
                 {
                     "date": 1739987223602,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}\r\n         variant=\"dot\"\r\n         className='mr-1'\r\n       >\r\n-        <Avatar alt=\"profile\" src={session?.user.image.url || \"/assets/images/dr-cruz.png\"} />\r\n+        <Avatar alt=\"profile\" src={session?.user.image || \"/assets/images/dr-cruz.png\"} />\r\n       </StyledBadge>\r\n       <div className=\"flex flex-col\">\r\n         <h1 className='font-medium text-sm capitalize'>{session?.user.name}</h1>\r\n         <p className='text-[10px] text-slate-500 capitalize'>{session?.user.role}</p>\r\n"
+                },
+                {
+                    "date": 1741097224728,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n \r\n const BadgeAvatar = () => {\r\n     const {data:session} = useSession()\r\n   return (\r\n-    <div className=\"flex items-center cursor-pointer p-2 \">\r\n+    <div className=\"flex items-center cursor-pointer p-2 min-w-[125px]\">\r\n           <StyledBadge\r\n         overlap=\"circular\"\r\n         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}\r\n         variant=\"dot\"\r\n"
+                },
+                {
+                    "date": 1741097250361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n \r\n const BadgeAvatar = () => {\r\n     const {data:session} = useSession()\r\n   return (\r\n-    <div className=\"flex items-center cursor-pointer p-2 min-w-[125px]\">\r\n+    <div className=\"flex items-center cursor-pointer p-2 min-w-[160px]\">\r\n           <StyledBadge\r\n         overlap=\"circular\"\r\n         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}\r\n         variant=\"dot\"\r\n"
                 }
             ],
             "date": 1739986952480,

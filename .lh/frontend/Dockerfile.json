@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/Dockerfile",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1742773174075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742774720110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n # Copy package.json and package-lock.json first (for caching dependencies)\r\n COPY package.json package-lock.json ./\r\n \r\n # Install dependencies\r\n-RUN npm install --omit=dev\r\n+RUN npm install --omit=dev -legacy-peer-deps\r\n \r\n # Copy the entire frontend source code\r\n COPY . .\r\n \r\n"
+                }
+            ],
+            "date": 1742773174075,
+            "name": "Commit-0",
+            "content": "# Use official Node.js image\r\nFROM node:20-alpine AS base\r\n\r\n# Set working directory\r\nWORKDIR /app\r\n\r\n# Copy package.json and package-lock.json first (for caching dependencies)\r\nCOPY package.json package-lock.json ./\r\n\r\n# Install dependencies\r\nRUN npm install --omit=dev\r\n\r\n# Copy the entire frontend source code\r\nCOPY . .\r\n\r\n# Build the Next.js application\r\nRUN npm run build\r\n\r\n# Expose the frontend port (3000)\r\nEXPOSE 3000\r\n\r\n# Command to start Next.js in production mode\r\nCMD [\"npm\", \"start\"]\r\n"
+        }
+    ]
+}

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1741039602200,
@@ -56,6 +56,10 @@
                 {
                     "date": 1741040174090,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n }\r\n \r\n \r\n export const params = {\r\n-    params:z.ob\r\n+    params:z.object\r\n }\r\n \r\n \r\n export const codeSchema = z.object({\r\n"
+                },
+                {
+                    "date": 1742807587441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,6 +30,6 @@\n     ...params\r\n })\r\n \r\n export const GetCodeSchema\r\n-\r\n+ \r\n export type codeSchemaInterface = z.infer<typeof codeSchema>\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1741039602200,

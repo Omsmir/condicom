@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/src/middleware/deserializeUser.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1741091586907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1741091586907,
+            "name": "Commit-0",
+            "content": "import { NextFunction, Request, Response } from \"express\";\r\nimport { get } from \"lodash\";\r\nimport { verifyJwt } from \"../utils/jwt.sign\";\r\nimport { reIssueAccessToken } from \"../services/session.service\";\r\n\r\nexport const deserializeUser = async (\r\n  req: Request,\r\n  res: Response,\r\n  next: NextFunction\r\n) => {\r\n \r\n    const accessToken = get(req,\"headers.authorization\",'')?.replace(\r\n        /^Bearer\\s/,\r\n        \"\"\r\n      );\r\n\r\n      const refreshToken =  get(req,\"headers.x-refresh\") as string\r\n\r\n\r\n      if(!accessToken){\r\n        return next()\r\n      }\r\n\r\n\r\n\r\n      const {decoded,valid} = await verifyJwt(accessToken,'accessTokenPublicKey')\r\n\r\n      if(decoded){\r\n        res.locals.user = decoded\r\n\r\n        return next()\r\n      }\r\n\r\n\r\n      if(!valid && refreshToken){\r\n\r\n        const newAccessToken = await reIssueAccessToken(refreshToken) \r\n\r\n        if(newAccessToken){\r\n            res.setHeader('Authorization',`${newAccessToken}`)\r\n        }\r\n\r\n        const {decoded} = await verifyJwt(newAccessToken as string,'accessTokenPublicKey')\r\n\r\n        res.locals.user = decoded\r\n\r\n        return  next()\r\n    }\r\n\r\n     \r\n    console.log(\"n\")\r\n\r\n    return next()\r\n\r\n};\r\n"
+        }
+    ]
+}

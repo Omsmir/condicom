@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1738510981968,
@@ -32,6 +32,10 @@
                 {
                     "date": 1740879233052,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   onclick?:() => void\r\n   innerText?:string\r\n }\r\n \r\n-const SubmitButton = ({ isLoading, className, children,onclick,ine }: ButtonProps) => {\r\n+const SubmitButton = ({ isLoading, className, children,onclick,innerText }: ButtonProps) => {\r\n   return (\r\n     <Button\r\n       type=\"submit\"\r\n       disabled={isLoading}\r\n"
+                },
+                {
+                    "date": 1742927675067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n const SubmitButton = ({ isLoading, className, children,onclick,innerText,disabled }: ButtonProps) => {\r\n   return (\r\n     <Button\r\n       type=\"submit\"\r\n-      disabled={disabled ?? is}\r\n+      disabled={disabled ?? isloa}\r\n       className={className ?? \"shad-primary-btn w-full\"}\r\n       onClick={onclick}\r\n     >\r\n       {isLoading ? (\r\n"
                 }
             ],
             "date": 1738510981968,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1739294478457,
@@ -24,6 +24,18 @@
                 {
                     "date": 1739464636135,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n const nextConfig: NextConfig = {\n   /* config options here */\n   experimental:{\n     turbo: {},\n-    authInterrupts:true\n   },\n   images: {\n     remotePatterns: [\n       {\n"
+                },
+                {
+                    "date": 1742778032159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,11 @@\n       {\n         hostname:\"picsum.photos\"\n       }\n     ],\n-  }\n+  },\n+  env: {\n+    NEXT_PUBLIC_API_URL: isProd ? \"https://your-production-api.com\" : \"http://localhost:8080\",\n+  },\n };\n \n export default nextConfig;\n"
+                },
+                {
+                    "date": 1742778039157,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import type { NextConfig } from \"next\";\n+const isProd = process.env.NODE_ENV === \"production\";\n \n const nextConfig: NextConfig = {\n   /* config options here */\n   experimental:{\n"
+                },
+                {
+                    "date": 1742778058116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       }\n     ],\n   },\n   env: {\n-    NEXT_PUBLIC_API_URL: isProd ? \"http:backend\" : \"http://localhost:8080\",\n+    NEXT_PUBLIC_API_URL: isProd ? \"http:backend:\" : \"http://localhost:8080\",\n   },\n };\n \n export default nextConfig;\n"
                 }
             ],
             "date": 1739294478457,

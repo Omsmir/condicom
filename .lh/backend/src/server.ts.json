@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1741040365100,
@@ -20,6 +20,22 @@
                 {
                     "date": 1741040418814,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n app.use(express.json());\r\n \r\n app.use(express.urlencoded({ extended: true }));\r\n app.use(cookieParser());\r\n-// app.use(errorHandler)\r\n \r\n app.use(\r\n   cors({\r\n     origin: \"*\",\r\n"
+                },
+                {
+                    "date": 1741090439227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,10 @@\n );\r\n \r\n app.use(deserializeUser);\r\n \r\n+app.use(deser)\r\n+\r\n export const initiator = io(server);\r\n \r\n server.listen(port, async () => {\r\n   log.info(`server is connected to port: ${port}`);\r\n@@ -39,7 +41,8 @@\n   await connect();\r\n \r\n   routes(app);\r\n \r\n-  app.use(notFound)\r\n+  app.use(notFound);\r\n \r\n+  app.use(errorHandler);\r\n });\r\n"
+                },
+                {
+                    "date": 1741090908998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n import cookieParser from \"cookie-parser\";\r\n import http from \"http\";\r\n import { Server } from \"socket.io\";\r\n import { io, SocketInitiator } from \"./utils/socketServer\";\r\n+import { deserializeCode } from \"./middleware/deserializeCode\";\r\n const port = config.get<string>(\"port\");\r\n const app = express();\r\n \r\n const server = http.createServer(app);\r\n@@ -29,9 +30,8 @@\n );\r\n \r\n app.use(deserializeUser);\r\n \r\n-app.use(deser)\r\n \r\n export const initiator = io(server);\r\n \r\n server.listen(port, async () => {\r\n"
+                },
+                {
+                    "date": 1741090920554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,9 @@\n );\r\n \r\n app.use(deserializeUser);\r\n \r\n+app.use(deserializeCode)\r\n \r\n export const initiator = io(server);\r\n \r\n server.listen(port, async () => {\r\n"
+                },
+                {
+                    "date": 1741093793820,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n );\r\n \r\n app.use(deserializeUser);\r\n \r\n-app.use(deserializeCode)\r\n+// app.use(deserializeCode)\r\n \r\n export const initiator = io(server);\r\n \r\n server.listen(port, async () => {\r\n"
                 }
             ],
             "date": 1741040365100,

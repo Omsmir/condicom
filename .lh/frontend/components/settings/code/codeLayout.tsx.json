@@ -1,0 +1,70 @@
+{
+    "sourceFile": "frontend/components/settings/code/codeLayout.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 13,
+            "patches": [
+                {
+                    "date": 1742805319242,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742805326230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,11 @@\n-rafce\n\\ No newline at end of file\n+import React from 'react'\r\n+\r\n+const codeLayout = () => {\r\n+  return (\r\n+    <div className=''>\r\n+      \r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default codeLayout\r\n"
+                },
+                {
+                    "date": 1742805331670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React from 'react'\r\n \r\n const codeLayout = () => {\r\n   return (\r\n-    <div className=''>\r\n+    <div className='col-span-12'>\r\n       \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1742805337113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React from 'react'\r\n \r\n const codeLayout = () => {\r\n   return (\r\n-    <div className='col-span-12'>\r\n+    <div className='flex flex-col col-span-12'>\r\n       \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1742805343992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React from 'react'\r\n \r\n const codeLayout = () => {\r\n   return (\r\n-    <div className='flex flex-col col-span-12'>\r\n+    <div className='flex flex-col justify-start col-span-12'>\r\n       \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1742805373449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React from 'react'\r\n \r\n const codeLayout = () => {\r\n   return (\r\n-    <div className='flex flex-col justify-start col-span-12'>\r\n+    <div className='flex flex-col justify-center items-start col-span-12'>\r\n       \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1742805379690,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+\"use client\"\r\n import React from 'react'\r\n \r\n const codeLayout = () => {\r\n   return (\r\n"
+                },
+                {
+                    "date": 1742805391064,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import React from 'react'\r\n \r\n const codeLayout = () => {\r\n   return (\r\n-    <div className='flex flex-col justify-center items-start col-span-12'>\r\n+    <div className='flex flex-col justify-center items-start col-span-12 mt-6'>\r\n       \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1742805405218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n \"use client\"\r\n import React from 'react'\r\n \r\n-const codeLayout = () => {\r\n+const CodeLayout = () => {\r\n   return (\r\n     <div className='flex flex-col justify-center items-start col-span-12 mt-6'>\r\n       \r\n     </div>\r\n"
+                },
+                {
+                    "date": 1742805465519,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,14 @@\n \"use client\"\r\n+import { useSession } from 'next-auth/react'\r\n import React from 'react'\r\n \r\n const CodeLayout = () => {\r\n+    const {data:session} = useSession()\r\n   return (\r\n     <div className='flex flex-col justify-center items-start col-span-12 mt-6'>\r\n       \r\n     </div>\r\n   )\r\n }\r\n \r\n-export default codeLayout\r\n+export default CodeLayout\r\n"
+                },
+                {
+                    "date": 1742805471616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import React from 'react'\r\n \r\n const CodeLayout = () => {\r\n     const {data:session} = useSession()\r\n+    const \r\n   return (\r\n     <div className='flex flex-col justify-center items-start col-span-12 mt-6'>\r\n       \r\n     </div>\r\n"
+                },
+                {
+                    "date": 1742805486652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import React from 'react'\r\n \r\n const CodeLayout = () => {\r\n     const {data:session} = useSession()\r\n+    \r\n     const \r\n   return (\r\n     <div className='flex flex-col justify-center items-start col-span-12 mt-6'>\r\n       \r\n"
+                },
+                {
+                    "date": 1742805493194,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \r\n const CodeLayout = () => {\r\n     const {data:session} = useSession()\r\n     \r\n-    const {data} = \r\n+    const {data} = get\r\n   return (\r\n     <div className='flex flex-col justify-center items-start col-span-12 mt-6'>\r\n       \r\n     </div>\r\n"
+                },
+                {
+                    "date": 1742837080700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,10 @@\n     const codes = useGetCodes(session?.user.id)\r\n \r\n   return (\r\n     <div className='flex flex-col justify-center items-start col-span-12 mt-6'>\r\n-      <div className=\"flex\">\r\n-        \r\n+      <div className=\"flex \">\r\n+\r\n       </div>\r\n     </div>\r\n   )\r\n }\r\n"
+                }
+            ],
+            "date": 1742805319242,
+            "name": "Commit-0",
+            "content": "rafce"
+        }
+    ]
+}

@@ -1,0 +1,66 @@
+{
+    "sourceFile": "backend/src/services/code.service.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 12,
+            "patches": [
+                {
+                    "date": 1741088807070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1741088814263,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,5 +10,5 @@\n }\r\n \r\n \r\n \r\n-export const updateCode = async ()\n\\ No newline at end of file\n+export const updateCode = async (query:FilterQuery<>)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1741088822858,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,5 +10,5 @@\n }\r\n \r\n \r\n \r\n-export const updateCode = async (query:FilterQuery<>)\n\\ No newline at end of file\n+export const updateCode = async (query:FilterQuery<CodeDocument>,update:)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1741088828359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { FilterQuery } from \"mongoose\";\r\n+import { FilterQuery, UpdateQuery } from \"mongoose\";\r\n import { CodeDocument, CodeInput, CodeModel } from \"../models/code.model\";\r\n \r\n export const createCode = async(input:CodeInput) => {\r\n return await CodeModel.create(input)\r\n@@ -10,5 +10,5 @@\n }\r\n \r\n \r\n \r\n-export const updateCode = async (query:FilterQuery<CodeDocument>,update:)\n\\ No newline at end of file\n+export const updateCode = async (query:FilterQuery<CodeDocument>,update:UpdateQuery)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1741088836050,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,5 +10,5 @@\n }\r\n \r\n \r\n \r\n-export const updateCode = async (query:FilterQuery<CodeDocument>,update:UpdateQuery)\n\\ No newline at end of file\n+export const updateCode = async (query:FilterQuery<CodeDocument>,update:UpdateQuery<CodeDocument>,options?:)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1741088843630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { FilterQuery, UpdateQuery } from \"mongoose\";\r\n+import { FilterQuery, QueryOptions, UpdateQuery } from \"mongoose\";\r\n import { CodeDocument, CodeInput, CodeModel } from \"../models/code.model\";\r\n \r\n export const createCode = async(input:CodeInput) => {\r\n return await CodeModel.create(input)\r\n@@ -10,5 +10,7 @@\n }\r\n \r\n \r\n \r\n-export const updateCode = async (query:FilterQuery<CodeDocument>,update:UpdateQuery<CodeDocument>,options?:)\n\\ No newline at end of file\n+export const updateCode = async (query:FilterQuery<CodeDocument>,update:UpdateQuery<CodeDocument>,options?:QueryOptions){\r\n+    \r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1741088849476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n import { FilterQuery, QueryOptions, UpdateQuery } from \"mongoose\";\r\n import { CodeDocument, CodeInput, CodeModel } from \"../models/code.model\";\r\n \r\n-export const createCode = async(input:CodeInput) => {\r\n-return await CodeModel.create(input)\r\n-}\r\n+export const createCode = async (input: CodeInput) => {\r\n+  return await CodeModel.create(input);\r\n+};\r\n \r\n-export const findCode = async (query:FilterQuery<CodeDocument>) => {\r\n-    return await CodeModel.findOne(query)\r\n-}\r\n+export const findCode = async (query: FilterQuery<CodeDocument>) => {\r\n+  return await CodeModel.findOne(query);\r\n+};\r\n\\ No newline at end of file\n \r\n-\r\n-\r\n-export const updateCode = async (query:FilterQuery<CodeDocument>,update:UpdateQuery<CodeDocument>,options?:QueryOptions){\r\n-    \r\n-}\n+export const updateCode = async (\r\n+  query: FilterQuery<CodeDocument>,\r\n+  update: UpdateQuery<CodeDocument>,\r\n+  options?: QueryOptions\r\n+) => {};\r\n"
+                },
+                {
+                    "date": 1741088860343,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,5 +12,7 @@\n export const updateCode = async (\r\n   query: FilterQuery<CodeDocument>,\r\n   update: UpdateQuery<CodeDocument>,\r\n   options?: QueryOptions\r\n-) => {};\n\\ No newline at end of file\n+) => {\r\n+    return await CodeModel.find\r\n+};\r\n"
+                },
+                {
+                    "date": 1741088870879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,6 +13,6 @@\n   query: FilterQuery<CodeDocument>,\r\n   update: UpdateQuery<CodeDocument>,\r\n   options?: QueryOptions\r\n ) => {\r\n-    return await CodeModel.find\r\n+    return await CodeModel.findOneAndUpdate(query,update,options)\r\n };\r\n"
+                },
+                {
+                    "date": 1742805779609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n export const findCode = async (query: FilterQuery<CodeDocument>) => {\r\n   return await CodeModel.findOne(query);\r\n };\r\n \r\n+export const \r\n export const updateCode = async (\r\n   query: FilterQuery<CodeDocument>,\r\n   update: UpdateQuery<CodeDocument>,\r\n   options?: QueryOptions\r\n"
+                },
+                {
+                    "date": 1742805792312,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,11 @@\n export const findCode = async (query: FilterQuery<CodeDocument>) => {\r\n   return await CodeModel.findOne(query);\r\n };\r\n \r\n-export const \r\n+export const getCodes = async () {\r\n+  \r\n+}\r\n export const updateCode = async (\r\n   query: FilterQuery<CodeDocument>,\r\n   update: UpdateQuery<CodeDocument>,\r\n   options?: QueryOptions\r\n"
+                },
+                {
+                    "date": 1742805804722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n export const findCode = async (query: FilterQuery<CodeDocument>) => {\r\n   return await CodeModel.findOne(query);\r\n };\r\n \r\n-export const getCodes = async (query) => {\r\n+export const getCodes = async (queryL) => {\r\n \r\n }\r\n export const updateCode = async (\r\n   query: FilterQuery<CodeDocument>,\r\n"
+                },
+                {
+                    "date": 1742805835497,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   return await CodeModel.findOne(query);\r\n };\r\n \r\n export const getCodes = async (query:FilterQuery<CodeDocument>) => {\r\n-return await CodeModel.find(queryObjects)\r\n+return await CodeModel.find(query)\r\n }\r\n export const updateCode = async (\r\n   query: FilterQuery<CodeDocument>,\r\n   update: UpdateQuery<CodeDocument>,\r\n"
+                }
+            ],
+            "date": 1741088807070,
+            "name": "Commit-0",
+            "content": "import { FilterQuery } from \"mongoose\";\r\nimport { CodeDocument, CodeInput, CodeModel } from \"../models/code.model\";\r\n\r\nexport const createCode = async(input:CodeInput) => {\r\nreturn await CodeModel.create(input)\r\n}\r\n\r\nexport const findCode = async (query:FilterQuery<CodeDocument>) => {\r\n    return await CodeModel.findOne(query)\r\n}\r\n\r\n\r\n\r\nexport const updateCode = async ()"
+        }
+    ]
+}

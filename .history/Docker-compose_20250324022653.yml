@@ -1,0 +1,41 @@
+
+services:
+
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      MONGO_URI: "mongodb://omar:omarsamir1@mongodb:27017/Health?authSource=admin"
+      PORT: "8080"  
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb1_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: omar
+      MONGO_INITDB_ROOT_PASSWORD: omarsamir1
+      MONGO_INITDB_DATABASE: Health
+
+
+volumes:
+  mongodb1_data:
