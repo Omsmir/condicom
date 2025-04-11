@@ -20,6 +20,8 @@ interface AccountContextProps {
 }, any, undefined>
 open: boolean
 setOpen: React.Dispatch<React.SetStateAction<boolean>>
+ResetState: boolean;
+setResetState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AccountContext = createContext<AccountContextProps | null>(null);
@@ -30,6 +32,7 @@ export const AccountProvider = ({ children }: { children: React.ReactNode }) => 
 
   const [isLoading,setIsLoading] = useState<boolean>(false)
   const [isDeleteLoading,setIsDeleteLoading] = useState<boolean>(false)
+  const [ResetState,setResetState] = useState<boolean>(false)
   const [open, setOpen] = React.useState(false);
 
   const session = useSession()
@@ -41,7 +44,7 @@ export const AccountProvider = ({ children }: { children: React.ReactNode }) => 
     },
   });
   return (
-    <AccountContext.Provider value={{ ProfileEdit,AccountEdit,isLoading,isDeleteLoading,open,setOpen,setIsDeleteLoading, setProfileEdit,setAccountEdit,setIsLoading ,form}}>
+    <AccountContext.Provider value={{ ProfileEdit,AccountEdit,isLoading,isDeleteLoading,open,ResetState,setResetState,setOpen,setIsDeleteLoading, setProfileEdit,setAccountEdit,setIsLoading ,form}}>
       {children}
     </AccountContext.Provider>
   );

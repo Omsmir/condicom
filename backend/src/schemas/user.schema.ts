@@ -52,17 +52,52 @@ const secondPayload = {
           return validImageExtensions.includes(extension || "");
         },
         { message: "Invalid image extension" }
-      )
+      ),
   }),
 };
 
 const ChangePayload = {
+  body: z.object({
+    name: z.string().optional(),
+    occupation: z.string().optional(),
+    gender: z.string().optional(),
+    height: z.string().optional(),
+    weight: z.string().optional(),
+  }),
+};
+const ChangePasswordPayload = {
+  body: z
+    .object({
+      password: z.string().min(1, { message: "please write the old password" }),
+      newPassword: z
+        .string({ message: "enter new password" })
+        .min(8, "Password must be at least 8 characters long")
+        .refine((value) => /[a-z]/.test(value), {
+          message: "Password must contain at least one lowercase letter",
+        })
+        .refine((value) => /[A-Z]/.test(value), {
+          message: "Password must contain at least one uppercase letter",
+        })
+        .refine((value) => /\d/.test(value), {
+          message: "Password must contain at least one number",
+        })
+        .refine((value) => /[@$!%*?&]/.test(value), {
+          message:
+            "Password must contain at least one special character (@$!%*?&)",
+        }),
+      newPasswordConfirm: z.string({
+        message: "new password confirm required",
+      }),
+    })
+    .refine((data) => data.newPassword === data.newPasswordConfirm, {
+      message: "new passwords must match",
+      path: ["newPasswordConfirm"],
+    }),
+};
+
+const ResetPasswordPayload = {
   body:z.object({
-    name:z.string().optional(),
-    occupation:z.string().optional(),
-    gender:z.string().optional(),
-    height:z.string().optional(),
-    weight:z.string().optional()
+    email:z.string({message:"email is required"}).email({message:"invalid email supported"})
   })
 }
 const params = {
@@ -76,14 +111,26 @@ export const CreateUserSchema = z.object({
 
 export const AddAdditionalSchema = z.object({
   ...params,
-  ...secondPayload
+  ...secondPayload,
 });
-
 
 export const UpdateUserSchema = z.object({
   ...params,
-  ...ChangePayload
+  ...ChangePayload,
+});
+
+export const ChangePasswordSchema = z.object({
+  ...params,
+  ...ChangePasswordPayload
+})
+
+export const ResetPasswordSchema = z.object({
+  ...params,
+  ...ResetPasswordPayload
 })
 export type CreateUserInterface = z.infer<typeof CreateUserSchema>;
-export type AddAdditionalInterface = z.infer<typeof AddAdditionalSchema>
-export type ChangeUserInterface = z.infer<typeof UpdateUserSchema>
+export type AddAdditionalInterface = z.infer<typeof AddAdditionalSchema>;
+export type ChangeUserInterface = z.infer<typeof UpdateUserSchema>;
+export type ChangePasswordInterface = z.infer<typeof ChangePasswordSchema>;
+
+export type ResetPasswordInterface = z.infer<typeof ResetPasswordSchema>;

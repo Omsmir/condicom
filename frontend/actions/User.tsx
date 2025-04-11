@@ -51,7 +51,7 @@ export const LoginApi = async ({ email, password }: LoginApiProps) => {
   });
 
   if (!result || result.error) {
-    throw new Error(result?.error || "Authentication failed");
+   throw new Error(result?.error || "failed")
   }
 
   return result;
@@ -81,4 +81,8 @@ export const PostRegister = async ({
 
 export const ChangeUserInfo = async (id:string | undefined,data:FormData) => {
 return await axiosInstace.put(`/update/${id}`,data)
+}
+
+export const ChangeUserPassword = async(id:string | undefined,data:FormData) => {
+  return await axiosInstace.put(`/password/change/${id}`,data)
 }

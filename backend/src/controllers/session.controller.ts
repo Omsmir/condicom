@@ -41,14 +41,12 @@ export const login = async (
       );
 
 
-      console.log(refreshToken)
-
-      res.cookie("refreshToken",refreshToken,{
-        httpOnly:true,
-        path:"/",
-        sameSite:"lax",
-        secure:config.get<string>("nodeEnv") === 'production'
-      })
+      // res.cookie("refreshToken",refreshToken,{
+      //   httpOnly:true,
+      //   path:"/",
+      //   sameSite:"lax",
+      //   secure:config.get<string>("nodeEnv") === 'production'
+      // })
       res.status(200).json({message:"logged in successfully",accessToken,refreshToken})
   } catch (error:any) {
     res.status(500).json({message:error.message})

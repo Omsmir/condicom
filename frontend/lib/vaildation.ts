@@ -266,3 +266,33 @@ export const CodeDeletionSchema = z.object({
       message: "invalid code",
     }),
 });
+
+export const SettingAuthentcationSchema = z
+  .object({
+    password: z.string().min(1, { message: "current password is required" }),
+    newPassword: z
+      .string({ message: "enter new password" })
+      .min(8, "Password must be at least 8 characters long")
+      .refine((value) => /[a-z]/.test(value), {
+        message: "Password must contain at least one lowercase letter",
+      })
+      .refine((value) => /[A-Z]/.test(value), {
+        message: "Password must contain at least one uppercase letter",
+      })
+      .refine((value) => /\d/.test(value), {
+        message: "Password must contain at least one number",
+      })
+      .refine((value) => /[@$!%*?&]/.test(value), {
+        message:
+          "Password must contain at least one special character (@$!%*?&)",
+      }),
+    newPasswordConfirm: z.string({ message: "new password confirm required" }),
+  })
+  .refine((data) => data.newPassword === data.newPasswordConfirm, {
+    message: "new passwords must match",
+    path: ["newPasswordConfirm"],
+  });
+
+export const ResetPasswordSchema = z.object({
+  email: z.string({ message:"email is required" }).email({ message: "invalid email supported" }),
+});

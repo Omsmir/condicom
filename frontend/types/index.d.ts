@@ -1,6 +1,6 @@
 import NextAuth, { DefaultSession, DefaultUser } from "next-auth";
 import { JWT } from "next-auth/jwt";
-import 'jspdf';
+import "jspdf";
 
 declare interface Props {
   name: string;
@@ -20,16 +20,18 @@ declare interface Product {
   image: {
     url: string;
     ThumbnailImage: boolean;
-  }[] ;
+  }[];
 }
 
 declare interface types {
-  product?:{
-    image: {
-      url: string;
-      ThumbnailImage: boolean;
-    }[]
-  } | undefined  
+  product?:
+    | {
+        image: {
+          url: string;
+          ThumbnailImage: boolean;
+        }[];
+      }
+    | undefined;
 }
 
 declare interface Param {
@@ -37,8 +39,6 @@ declare interface Param {
     _id: string;
   };
 }
-
-
 
 declare interface ProductsProp {
   product: Product[];
@@ -62,9 +62,9 @@ declare interface singleProductProps {
 declare interface FileUploaderProps {
   files: File[] | undefined;
   onChange: (files: File[]) => void;
-  state?:boolean;
-  children?:React.ReactNode  
-  profileState?: boolean
+  state?: boolean;
+  children?: React.ReactNode;
+  profileState?: boolean;
   className?: string;
 }
 
@@ -73,14 +73,13 @@ declare interface Images {
   _id: string;
 }
 
-
 declare interface prop {
   onHandle?: () => void;
   name?: string;
   className?: string;
   id?: string;
-  state?:boolean
-  style?:string
+  state?: boolean;
+  style?: string;
 }
 
 // Extend the User object returned by NextAuth
@@ -89,11 +88,12 @@ declare module "next-auth" {
     user: {
       id: string;
       role: string;
-      verified?:boolean;
-      accessToken:string;
-      refreshToken:string;
-      code:string;
-      profileState:boolean
+      verified?: boolean;
+      accessToken: string;
+      refreshToken: string;
+      code: string;
+      profileState: boolean;
+      passwordUpdatedAt: Date;
     } & DefaultSession["user"];
   }
 
@@ -101,9 +101,10 @@ declare module "next-auth" {
     id: string;
     role: string;
     verified?: boolean;
-    accessToken:string;
-    refreshToken:string;
-    profileState:boolean
+    accessToken: string;
+    refreshToken: string;
+    profileState: boolean;
+    passwordUpdatedAt: Date;
   }
 }
 
@@ -111,46 +112,42 @@ declare module "next-auth" {
 declare module "next-auth/jwt" {
   interface JWT {
     id: string;
-    role: string
+    role: string;
     verified?: boolean;
-    trigger:any;
-    session:any;
-    code:string;
-    accessToken:string;
-    refreshToken:string;
-    profileState:boolean
-
+    trigger: any;
+    session: any;
+    code: string;
+    accessToken: string;
+    refreshToken: string;
+    profileState: boolean;
+    passwordUpdatedAt: Date;
   }
 }
 
 declare interface Appointment {
-  _id:string;
-  task:string;
-  description:string;
-  startDate:Date;
-  endDate:Date;
-  interval:string;
-  color:string;
-  user:string;
-  completed:boolean;
-  createdAt:Date;
+  _id: string;
+  task: string;
+  description: string;
+  startDate: Date;
+  endDate: Date;
+  interval: string;
+  color: string;
+  user: string;
+  completed: boolean;
+  createdAt: Date;
 }
 
-declare interface UserAppointments {
- 
-}
+declare interface UserAppointments {}
 
 declare interface Appointments {
-  userAppointments:Appointment[]
+  userAppointments: Appointment[];
 }
 
-
-declare module 'jspdf' {
+declare module "jspdf" {
   interface jsPDF {
     autoTable: (options: any) => jsPDF;
   }
 }
-
 
 declare interface Notification {
   _id: string;
@@ -158,67 +155,64 @@ declare interface Notification {
   title: string;
   description: string;
   user: string;
-  assignedBy:string;
-  assignedTo?:string;
+  assignedBy: string;
+  assignedTo?: string;
   eventId?: string;
   updatedAt: Date;
   seen: boolean;
 }
 
-
-
 declare interface Notifications {
-  notifications: Notification[]
+  notifications: Notification[];
 }
 
-
-
 declare interface UserInformation {
-  _id:string;
-  name:string;
-  weight:string;
-  height:string;
-  bio:string;
-  address:string;
-  phone:string;
-  birthDate:Date;
-  gender:string;
-  occupation:string;
-  role:string;
-  email:string;
-  profileImg:{
-    url:string
-  }
-  code:string;
-  country:string;
-  verified:boolean;
-  profileState?:boolean
-  createdAt:Date;
-  updatedAt:Date
+  _id: string;
+  name: string;
+  weight: string;
+  height: string;
+  bio: string;
+  address: string;
+  phone: string;
+  birthDate: Date;
+  gender: string;
+  occupation: string;
+  role: string;
+  email: string;
+  profileImg: {
+    url: string;
+  };
+  code: string;
+  country: string;
+  verified: boolean;
+  profileState?: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  passwordUpdatedAt: Date;
 }
 
 declare interface user {
-  existingUser:UserInformation
+  existingUser: UserInformation;
 }
 declare interface Users {
-  users:UserInformation[]
+  users: UserInformation[];
 }
-declare interface ObjectType{
-  public:{
-    title:string;
-    tone:string
-  }
-  adminOnly:{
-    title:string;
-    tone:string
-  }
+declare interface ObjectType {
+  public: {
+    title: string;
+    tone: string;
+  };
+  adminOnly: {
+    title: string;
+    tone: string;
+  };
 }
 
 interface patient {
-  id:string;
-  profileImg?:{
-    url:string
-  }
+  id: string;
+  profileImg?: {
+    url: string;
+  };
   firstName: string;
   lastName: string;
   gender: string;
@@ -243,51 +237,48 @@ interface patient {
   smokingFrequency?: string;
   alcohol: string;
   alcoholFrequency?: string;
-  createdAt:Date;
-  updatedAt:Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 declare interface PatientsToQuery {
-  Patients:patient[]
+  Patients: patient[];
 }
 
 declare interface PatientToQuery {
-  patient:patient
+  patient: patient;
 }
 declare interface medication {
-  _id:string;
-  name:string;
-  generic_name:string;
-  description?:string;
-  form:string;
-  strength:string;
-  route:string;
-  manufacturer?:string;
-  batch_number?:string;
-  storage_conditions?:string;
-  expiryDate:Date;
-  createdAt:Date;
-  updatedAt:Date;
-  drug_category:string;
+  _id: string;
+  name: string;
+  generic_name: string;
+  description?: string;
+  form: string;
+  strength: string;
+  route: string;
+  manufacturer?: string;
+  batch_number?: string;
+  storage_conditions?: string;
+  expiryDate: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  drug_category: string;
   price: number;
-  stock_quantity:number;
-  supplier?:string
+  stock_quantity: number;
+  supplier?: string;
 }
 
-
-
-declare interface medications{
-  medications: medication[]
+declare interface medications {
+  medications: medication[];
 }
-
 
 declare interface code {
-  _id:string;
-  code:string;
-  createdAt:Date;
-  updatedAt:Date;
-  expiration:Date;
-  used:boolean;
-  role:string;
-  user?:string;
+  _id: string;
+  code: string;
+  createdAt: Date;
+  updatedAt: Date;
+  expiration: Date;
+  used: boolean;
+  role: string;
+  user?: string;
 }
