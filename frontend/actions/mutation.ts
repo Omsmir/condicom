@@ -13,6 +13,7 @@ import HandleAxiosErrors from "@/components/HandleAxiosErrors";
 import { DashboardHook } from "@/components/context/Dashboardprovider";
 import {
   ChangeUserInfo,
+  ChangeUserPassword,
   LoginApi,
   LoginApiProps,
   PostRegister,
@@ -354,6 +355,30 @@ export const UseCreateNotification = (api: NotificationInstance) => {
   });
 };
 
+export const UseChangePassword =  (
+  api: NotificationInstance,
+  id: string | undefined
+) => {
+  const { setIsLoading } = AccountHook();
+
+  return useMutation({
+    mutationFn:  (data:FormData) => ChangeUserPassword(id,data),
+    onMutate:() =>{
+      setIsLoading(true)
+    },
+    onError: (error) => {
+      setIsLoading(false)
+      HandleAxiosErrors({ api: api, error: error });
+    },
+    onSuccess: async (response) => {
+      api.success({
+        message: response.data.message,
+      });
+      setIsLoading(false);
+    },
+  })
+};
+
 export const UseGenerateCode = (
   api: NotificationInstance,
   id: string | undefined
@@ -375,7 +400,7 @@ export const UseGenerateCode = (
         message: response.data.message,
       });
       setIsLoading(false);
-      queryClient.invalidateQueries({queryKey:["codes"]})
+      queryClient.invalidateQueries({ queryKey: ["codes"] });
     },
   });
 };
@@ -388,12 +413,11 @@ export const UseDeleteCode = (
   const { setIsDeleteLoading } = AccountHook();
 
   return useMutation({
-    mutationFn: async (data:FormData) => deleteCode(id,data),
+    mutationFn: async (data: FormData) => deleteCode(id, data),
     onMutate: () => {
       setIsDeleteLoading(true);
-
     },
-    onError : (error) => {
+    onError: (error) => {
       HandleAxiosErrors({ api: api, error: error });
       setIsDeleteLoading(false);
     },
@@ -402,7 +426,7 @@ export const UseDeleteCode = (
         message: response.data.message,
       });
       setIsDeleteLoading(false);
-      queryClient.invalidateQueries({queryKey:["codes"]})
-    }
-  })
+      queryClient.invalidateQueries({ queryKey: ["codes"] });
+    },
+  });
 };

@@ -1,8 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import {
   AddAdditionalInterface,
+  ChangePasswordInterface,
   ChangeUserInterface,
   CreateUserInterface,
+  ResetPasswordInterface,
 } from "../schemas/user.schema";
 import { uploadImageToFirebase } from "../utils/getPresignedUrl";
 import {
@@ -10,10 +12,14 @@ import {
   findUser,
   getAllUsers,
   updateUser,
+  validatePassword,
 } from "../services/user.service";
 import { findCode, updateCode } from "../services/code.service";
 import { UserDocument } from "../models/user.model";
 import { keyBy } from "lodash";
+import mongoose from "mongoose";
+import { hashPassword } from "../utils/backevents";
+import { addWeeks } from "date-fns";
 
 export const createUserHandler = async (
   req: Request<{}, {}, CreateUserInterface["body"]>,
@@ -50,12 +56,16 @@ export const createUserHandler = async (
       return;
     }
 
-   const Postcode = await updateCode({_id:preCode._id},{used:true},{new:true,runValidators:true}) 
+    const Postcode = await updateCode(
+      { _id: preCode._id },
+      { used: true },
+      { new: true, runValidators: true }
+    );
 
-   if(!Postcode){
-    res.status(404).json({message:"Invalid Code Supported"})
-    return
-   }
+    if (!Postcode) {
+      res.status(404).json({ message: "Invalid Code Supported" });
+      return;
+    }
     // Create the user
     const user = await createUser({ ...req.body, role: Postcode.role });
 
@@ -94,15 +104,18 @@ export const AddAdditionlHandler = async (
       userId: existingUser._id as string,
     });
 
-    const code = await findCode({ code:existingUser.code });
+    const code = await findCode({ code: existingUser.code });
 
-
-    if(!code) {
-      res.status(403).json({message:"something went wrong with the code"})
-      return
+    if (!code) {
+      res.status(403).json({ message: "something went wrong with the code" });
+      return;
     }
 
-    await updateCode({_id:code._id},{user:existingUser._id},{new:true,runValidators:true})
+    await updateCode(
+      { _id: code._id },
+      { user: existingUser._id },
+      { new: true, runValidators: true }
+    );
 
     const updatedUser = await updateUser(
       { _id: id },
@@ -135,12 +148,14 @@ export const getUser = async (
   }
 };
 
-export const getAllUsersHandler = async (req: Request<ChangeUserInterface['params']>, res: Response) => {
+export const getAllUsersHandler = async (
+  req: Request<ChangeUserInterface["params"]>,
+  res: Response
+) => {
   try {
-    const id = req.params.id
+    const id = req.params.id;
 
-
-    const user = await findUser({_id:id})
+    const user = await findUser({ _id: id });
 
     if (!user) {
       res.status(403).json({ message: "forbidden" });
@@ -181,22 +196,20 @@ export const ChangeUserInformationHandler = async (
     const data = {
       name: req.body.name,
       occupation: req.body.occupation || user?.occupation,
-      gender:req.body.gender || user?.gender,
-      height:req.body.height || user?.height,
-      weight:req.body.weight || user?.weight
+      gender: req.body.gender || user?.gender,
+      height: req.body.height || user?.height,
+      weight: req.body.weight || user?.weight,
     };
-
 
     if (!user) {
       res.status(404).json({ message: "user doesn't exist" });
       return;
     }
-    const changed = Object.entries(data).every(([key, value]) => 
-      user[key as keyof typeof user] === value
+    const changed = Object.entries(data).every(
+      ([key, value]) => user[key as keyof typeof user] === value
     );
-    
 
-    console.log(data)
+    console.log(data);
     if (changed) {
       res.status(200).json({ message: "No Changes", state: true });
       return;
@@ -214,3 +227,84 @@ export const ChangeUserInformationHandler = async (
     res.status(500).json({ message: error.message });
   }
 };
+
+export const changePasswordHandler = async (
+  req: Request<
+    ChangePasswordInterface["params"],
+    {},
+    ChangePasswordInterface["body"]
+  >,
+  res: Response
+) => {
+  try {
+    const id = req.params.id;
+    const password = req.body.password;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      res.status(400).json({ message: "invalid id provided" });
+      return;
+    }
+    const existingUser = await findUser({ _id: id });
+
+    const currDate = new Date(existingUser?.passwordUpdatedAt as Date)
+    const AllowedDateToChange = addWeeks(currDate,2)
+
+    if (!existingUser || !id) {
+      res.status(403).json({ message: "forbidden" });
+      return;
+    }
+    if (password === req.body.newPassword) {
+      res.status(400).json({ message: "No changes" });
+      return;
+    }
+   
+    const email = existingUser.email;
+
+    const confirmUser = await validatePassword({ email, password });
+
+    if (!confirmUser) {
+      res.status(403).json({ message: "invalid password" });
+      return;
+    }
+
+    if(AllowedDateToChange > new Date()){
+      res.status(400).json({ message: "Too Many Changes at a short time" });
+      return;
+    }
+    const hashedPassword = await hashPassword({
+      password: req.body.newPassword,
+    });
+
+    await updateUser(
+      { email },
+      { password: hashedPassword, passwordUpdatedAt: Date.now() },
+      { new: true, runValidators: true }
+    );
+
+    res.status(200).json({ message: "password has changed successfully" });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+
+export const ResetPasswordHandler = async (  req: Request<
+  ResetPasswordInterface["params"],
+  {},
+  ResetPasswordInterface["body"]
+>,
+res: Response) => {
+  try {
+    const id = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      res.status(400).json({ message: "invalid id provided" });
+      return;
+    }
+    const existingUser = await findUser({ _id: id });
+    
+  } catch (error) {
+    
+  }
+}

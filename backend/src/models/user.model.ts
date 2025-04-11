@@ -1,6 +1,6 @@
 import mongoose, { Document } from "mongoose";
-import bcrypt from 'bcrypt'
-import config from 'config'
+import bcryptjs from "bcryptjs";
+import config from "config";
 import log from "../utils/logger";
 export interface UserInput {
   name: string;
@@ -30,7 +30,8 @@ export interface UserInput {
 export interface UserDocument extends UserInput, Document {
   createdAt: Date;
   updatedAt: Date;
-  comparePassword:(candidatePassword:string)=> Promise<boolean>
+  passwordUpdatedAt: Date;
+  comparePassword: (candidatePassword: string) => Promise<boolean>;
 }
 
 const userSchema = new mongoose.Schema<UserDocument>(
@@ -38,12 +39,16 @@ const userSchema = new mongoose.Schema<UserDocument>(
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     profileImg: {
-      filename: { type: String, },
-      url: { type: String},
+      filename: { type: String },
+      url: { type: String },
       uploadedAt: { type: Date, default: Date.now },
-      path: { type: String},
+      path: { type: String },
     },
-    password: { type: String, required: true },
+    password: {
+      type: String,
+      required: true,
+    },
+    passwordUpdatedAt: { type: Date, default: Date.now },
     phone: { type: String, required: true },
     birthDate: { type: String, required: true },
     gender: { type: String, required: true },
@@ -61,27 +66,31 @@ const userSchema = new mongoose.Schema<UserDocument>(
   { timestamps: true }
 );
 
-userSchema.pre("save", async function(next){
-    const user = this as UserDocument
-    if(!user.isModified('password')) return next()
+userSchema.pre("save", async function (next) {
+  const user = this as UserDocument;
+
+  if (user.isModified("password")) {
+    user.passwordUpdatedAt = new Date();
+
     try {
-        const salt = await bcrypt.genSalt(config.get<number>('saltWorkFactor'))
-
-        const hash =  bcrypt.hashSync(user.password,salt)
-
-        user.password = hash
-    } catch (error:any) {
-        log.error(error.message)
-        return  next(error)
+      const salt = await bcryptjs.genSalt(config.get<number>("saltWorkFactor"));
+      const hash = bcryptjs.hashSync(user.password, salt);
+      user.password = hash;
+    } catch (error: any) {
+      log.error(error.message);
+      return next(error);
     }
-})
+  }
+
+  next();
+});
 
 userSchema.methods.comparePassword = async function (
-    candidatePassword: string
-  ): Promise<boolean> {
-    const user = this as UserDocument;
-    return bcrypt.compare(candidatePassword, user.password).catch((e) => false);
-  };
+  candidatePassword: string
+): Promise<boolean> {
+  const user = this as UserDocument;
+  return bcryptjs.compare(candidatePassword, user.password).catch((e) => false);
+};
 
 const UserModel = mongoose.model("User", userSchema);
 

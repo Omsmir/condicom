@@ -21,7 +21,7 @@ export const validate =
             ? "More than one field is required"
             : errorMessages[0];
     
-         res.status(400).json({ message: responseMessage });
+         res.status(400).json({ message: responseMessage,errorMessages });
       }
     }
   };

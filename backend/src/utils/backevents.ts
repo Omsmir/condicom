@@ -3,7 +3,9 @@ import { NotificationModel } from "../models/notifications.model";
 import { MedicalStuffRegex } from "./constants";
 import { UserDocument } from "../models/user.model.js";
 import { isNumber } from "lodash";
-
+import bcryptjs from 'bcryptjs'
+import config from 'config'
+import { Transporter } from "nodemailer";
 interface Notification {
   type: string;
   description: string;
@@ -148,3 +150,25 @@ export const detectExpiredCode = ({expiration}:{expiration:Date}) =>{
   return false
 }
 
+export const hashPassword = async ({password}:{password:string}) => {
+  const salt = await bcryptjs.genSalt(config.get<number>("saltWorkFactor"))
+
+  const hash = bcryptjs.hashSync(password,salt)
+
+  return hash
+}
+
+
+interface sendEmailProps {
+  to:string;
+  title:string;
+  body:string
+}
+
+export const sendEmail = async ({to,title,body}:sendEmailProps) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+}

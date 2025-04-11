@@ -4,14 +4,14 @@ import axios from "axios";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { JWT } from "next-auth/jwt";
 
- const refreshAccessToken = async (token: any) => {
+const refreshAccessToken = async (token: any) => {
   try {
     const res = await fetch("http://localhost:8080/api/auth/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token.accessToken}`,
-        'x-refresh':token.refreshToken
+        "x-refresh": token.refreshToken,
       },
     });
 
@@ -48,17 +48,12 @@ const authOptions: AuthOptions = {
       },
       authorize: async (credentials) => {
         try {
-          const response = await fetch("http://localhost:8080/api/auth/login", {
-            method: "POST",
-            credentials: "include", 
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: credentials?.email,
-              password: credentials?.password,
-            }),
+          const response = await axios.post("http://localhost:8080/api/auth/login", {
+            email: credentials?.email,
+            password: credentials?.password,
           });
 
-          const { accessToken, refreshToken } = await response.json();
+          const { accessToken, refreshToken } = await response.data
 
           if (accessToken) {
             // Decode the JWT token
@@ -73,20 +68,18 @@ const authOptions: AuthOptions = {
               expiresAt: decodedToken.exp && decodedToken.exp * 1000,
               code: decodedToken.code,
               profileState: decodedToken.profileState,
+              passwordUpdatedAt:decodedToken.passwordUpdatedAt,
               accessToken,
               refreshToken,
             };
           }
           return null;
         } catch (error: any) {
-          console.error("Login Error:", error.response?.data || error.message);
-
-          if (error.response) {
-            const { status, data } = error.response;
-            if (status !== 200) throw new Error(data.message);
-            if (status === 403)
-              throw new Error(data?.message || "Access forbidden.");
-            throw new Error(data?.message || "An unexpected error occurred.");
+          if (axios.isAxiosError(error)) {
+            if (error.response) {
+              const { status, data } = error.response;
+              if (status !== 200) throw new Error(data.message);
+            }
           }
 
           throw new Error("Unable to connect to the server.");
@@ -108,6 +101,7 @@ const authOptions: AuthOptions = {
         token.refreshToken = user.refreshToken;
         token.expiresAt = user.expiresAt;
         token.profileState = user.profileState;
+        token.passwordUpdatedAt = user.passwordUpdatedAt
       }
 
       if (Date.now() > (token.expiresAt as number)) {
@@ -128,7 +122,8 @@ const authOptions: AuthOptions = {
           code: token.code,
           accessToken: token.accessToken,
           profileState: token.profileState,
-          refreshToken: token.refreshToken
+          refreshToken: token.refreshToken,
+          passwordUpdatedAt:token.passwordUpdatedAt
         };
         session.expires = new Date(token.expiresAt as number).toISOString();
       }
