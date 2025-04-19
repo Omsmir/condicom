@@ -1,6 +1,4 @@
-import { DashboardProvider } from "@/components/context/Dashboardprovider";
 import { PatientProvider } from "@/components/context/PatientProvider";
-import BreadCrumb from "@/components/doctorProfile/BreadCrumb";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,9 +6,7 @@ export const metadata: Metadata = {
 };
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <DashboardProvider>
       <PatientProvider>{children}</PatientProvider>
-    </DashboardProvider>
   );
 };
 

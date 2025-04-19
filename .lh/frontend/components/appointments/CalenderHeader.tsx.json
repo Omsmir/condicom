@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1738531204428,
@@ -52,6 +52,10 @@
                 {
                     "date": 1739461979627,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n             <p className=\"mx-1\">{currDate.getFullYear()}</p>\r\n           </div>\r\n           <div className=\"flex\">\r\n             <SwitchDay />\r\n-            {/* <FadeMenu /> */}\r\n+            <FadeMenu />\r\n             <div className=\"ml-8 border-l pl-4\">\r\n               <AppointmentCreationButton />\r\n             </div>\r\n           </div>\r\n"
+                },
+                {
+                    "date": 1744483288405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,10 @@\n const AppointmentCreationButton = dynamic(() => import(\"@/components/AddAppointment\"))\r\n const CalenderHeader = ({children}:{children:React.ReactNode}) => {\r\n \r\n     const {currDate} = CalenderHook()\r\n+\r\n+    console.log(currDate)\r\n   return (\r\n     <div className={`flex h-screen pt-14 ${inter.className} `}>\r\n       <div className=\"flex flex-col w-full border border-l-0 border-t-0 dark:bg-[var(--sidebar-accent)] dark:border-slate-800\">\r\n         <div className=\"flex p-4 justify-between items-center bg-[var(--sidebar-background)] \">\r\n"
                 }
             ],
             "date": 1738531204428,

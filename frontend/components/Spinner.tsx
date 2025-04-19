@@ -11,11 +11,11 @@ const Spinner: React.FC<SpinnerProps> = ({ text, className, size }) => {
   return (
     <div
       className={cn(
-        "flex justify-center items-center w-full h-full ",
+        "flex justify-center items-center h-screen ",
         className
       )}
     >
-      <Spin size={size ?? "large"} />
+      <Spin size={size ?? "large"}  />
       {text && <p className="text-sm font-medium">{text}</p>}
     </div>
   );

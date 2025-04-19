@@ -1,0 +1,26 @@
+{
+    "sourceFile": "frontend/components/updateSession.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1744461427484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1744461563895,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,25 @@\n-import { signIn } from \"next-auth/react\";\r\n+import { useSession } from \"next-auth/react\";\r\n \r\n-const RefreshSessionExample = () => {\r\n-  const refreshSession = async () => {\r\n-    // Trigger a session refresh\r\n-    await signIn(\"credentials\", { redirect: false });\r\n+const UpdateSessionExample = () => {\r\n+  const { data: session, update } = useSession();\r\n+\r\n+  const handleUpdateSession = async () => {\r\n+    // Example: Update session with new data\r\n+    await update({\r\n+      ...session,\r\n+      user: {\r\n+        ...session?.user,\r\n+        name: \"Updated Name\", // Example: Update the user's name\r\n\\ No newline at end of file\n+      },\r\n+    });\r\n   };\r\n \r\n   return (\r\n     <div>\r\n-      <h1>Refresh Session Example</h1>\r\n-      <button onClick={refreshSession}>Refresh Session</button>\r\n+      <h1>Session Update Example</h1>\r\n+      <button onClick={handleUpdateSession}>Update Session</button>\r\n     </div>\r\n   );\r\n };\r\n \r\n-export default RefreshSessionExample;\n+export default UpdateSessionExample;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744461569781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-\"\"\r\n+\"us\"\r\n import { useSession } from \"next-auth/react\";\r\n \r\n const UpdateSessionExample = () => {\r\n   const { data: session, update } = useSession();\r\n"
+                }
+            ],
+            "date": 1744461427484,
+            "name": "Commit-0",
+            "content": "import { signIn } from \"next-auth/react\";\r\n\r\nconst RefreshSessionExample = () => {\r\n  const refreshSession = async () => {\r\n    // Trigger a session refresh\r\n    await signIn(\"credentials\", { redirect: false });\r\n  };\r\n\r\n  return (\r\n    <div>\r\n      <h1>Refresh Session Example</h1>\r\n      <button onClick={refreshSession}>Refresh Session</button>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default RefreshSessionExample;"
+        }
+    ]
+}

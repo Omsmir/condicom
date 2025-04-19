@@ -3,28 +3,47 @@ import config from "config";
 
 export const signJwt = async (
   object: Object,
-  keyNameIdentifier: "accessTokenPrivateKey" | "refreshTokenPrivateKey",
+  keyNameIdentifier:
+    | "accessTokenPrivateKey"
+    | "refreshTokenPrivateKey"
+    | "VerTokenPrivateKey",
+  KeyEncryption: "HS512" | "RS256", // Ensure this matches supported algorithms
   options?: jwt.SignOptions | undefined
 ) => {
-  const signingKey = Buffer.from(
-    config.get<string>(keyNameIdentifier),
-    "base64"
-  ).toString("ascii");
+  if (!["HS512", "RS256"].includes(KeyEncryption)) {
+    throw new Error(
+      `Invalid KeyEncryption algorithm provided: ${KeyEncryption}. Supported algorithms are "HS512" and "RS256".`
+    );
+  }
+
+  const rawKey = config.get<string>(keyNameIdentifier);
+
+  const signingKey =
+    KeyEncryption === "HS512"
+      ? rawKey // use plain string or .env variable
+      : Buffer.from(rawKey, "base64").toString("ascii"); // for RS256 (PEM base64)
+
   return jwt.sign(object, signingKey, {
     ...(options && options),
-    algorithm: "RS256",
+    algorithm: KeyEncryption, // Default to RS256 if not specified
   });
 };
 
 export const verifyJwt = async (
   token: string,
-  keyNameIdentifier: "accessTokenPublicKey" | "refreshTokenPublicKey"
+  keyNameIdentifier:
+    | "accessTokenPublicKey"
+    | "refreshTokenPublicKey"
+    | "VerTokenPrivateKey",
+  KeyEncryption: "HS512" | "RS256"
 ) => {
   try {
-    const publicKey = Buffer.from(
-      config.get<string>(keyNameIdentifier),
-      "base64"
-    ).toString("ascii");
+    const publicKey =
+      KeyEncryption === "HS512"
+        ? config.get<string>(keyNameIdentifier)
+        : Buffer.from(config.get<string>(keyNameIdentifier), "base64").toString(
+            "ascii"
+          );
 
     const decoded = jwt.verify(token, publicKey);
 

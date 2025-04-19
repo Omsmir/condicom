@@ -17,13 +17,10 @@ import { useLogin } from "@/actions/mutation";
 
 const LoginForm = () => {
   const [state, setState] = useState<boolean>(false);
-  const { api, contextHolder ,isLoading} = DashboardHook();
-  const LoginIn = useLogin(api,true);
+  const { api, contextHolder, isLoading } = DashboardHook();
+  const LoginIn = useLogin(api, true);
 
-
-  
   const onSubmit = async (values: z.infer<typeof userSchema>) => {
-
     const email = values.email;
     const password = values.password;
 
@@ -32,7 +29,6 @@ const LoginForm = () => {
     } catch (error: any) {
       console.log(error.message);
     }
-
   };
   const form = useForm<z.infer<typeof userSchema>>({
     resolver: zodResolver(userSchema),
@@ -74,34 +70,42 @@ const LoginForm = () => {
           state
         />
 
-        <CustomFormField
-          control={form.control}
-          Lucide={<KeyRound className="dark:text-dark-600" />}
-          placeholder="enter password"
-          label="password"
-          fieldType={FormFieldType.PASSWORD}
-          type={state ? "text" : "password"}
-          error={form.formState.errors.password}
-          children={
-            <>
-              {state ? (
-                <Eye
-                  onClick={() => setState(false)}
-                  size="20px"
-                  cursor="pointer"
-                />
-              ) : (
-                <EyeOff
-                  onClick={() => setState(true)}
-                  size="20px"
-                  cursor="pointer"
-                />
-              )}
-            </>
-          }
-          name="password"
-        />
-
+        <div className="flex flex-col">
+          <CustomFormField
+            control={form.control}
+            Lucide={<KeyRound className="dark:text-dark-600" />}
+            placeholder="enter password"
+            label="password"
+            fieldType={FormFieldType.PASSWORD}
+            type={state ? "text" : "password"}
+            error={form.formState.errors.password}
+            children={
+              <>
+                {state ? (
+                  <Eye
+                    onClick={() => setState(false)}
+                    size="20px"
+                    cursor="pointer"
+                  />
+                ) : (
+                  <EyeOff
+                    onClick={() => setState(true)}
+                    size="20px"
+                    cursor="pointer"
+                  />
+                )}
+              </>
+            }
+            name="password"
+          />
+          <div className="flex justify-end">
+            <Link href={"/reset"} className="mt-2">
+              <p className="text-sky-700 text-sm hover:underline">
+                forgot password?
+              </p>
+            </Link>
+          </div>
+        </div>
         <SubmitButton
           isLoading={isLoading}
           className="bg-[#6366f1] w-full text-slate-50"

@@ -1,5 +1,4 @@
 import { AccountProvider } from "@/components/context/AccountProvider";
-import { DashboardProvider } from "@/components/context/Dashboardprovider";
 import SettingsLayout from "@/components/settings/SettingsLayout";
 
 import { Metadata } from "next";
@@ -15,11 +14,9 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <DashboardProvider>
       <AccountProvider>
         <SettingsLayout>{children}</SettingsLayout>
       </AccountProvider>
-    </DashboardProvider>
   );
 };
 

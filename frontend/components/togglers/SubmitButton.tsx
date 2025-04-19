@@ -9,6 +9,7 @@ interface ButtonProps {
   onclick?: () => void;
   innerText?: string;
   disabled?: boolean;
+  disabledText?:string
 }
 
 const SubmitButton = ({
@@ -18,6 +19,7 @@ const SubmitButton = ({
   onclick,
   innerText,
   disabled,
+  disabledText
 }: ButtonProps) => {
   return (
     <Button
@@ -39,7 +41,7 @@ const SubmitButton = ({
         </div>
       ) : disabled ? (
         <div className="flex">
-          <p>no data</p>
+          <p>{disabledText || "no data"}</p>
         </div>
       ) : (
         children

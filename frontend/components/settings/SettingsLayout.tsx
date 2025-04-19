@@ -9,7 +9,7 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   const {contextHolder} = DashboardHook()
   return (
     <div
-      className={`flex flex-col h-screen max-h-screen px-4 pt-16 pb-6  ${Nunito.className}`}
+      className={`flex flex-col h-screen max-h-screen px-4 pt-16 pb-6 ${Nunito.className}`}
     >
       {contextHolder}
       <div className="flex flex-col justify-center items-start p-6 w-full">
@@ -21,7 +21,7 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
       <OverlayScrollbarsComponent defer >
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           {children}
         </div>
       </OverlayScrollbarsComponent>

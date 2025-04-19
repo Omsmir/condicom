@@ -25,7 +25,7 @@ const SingleLinkItem = ({item}:singleLinkItemProps) => {
   >
     <li
       className={clsx(
-        "text-sm font-medium text-slate-600 capitalize transition-transform",
+        "text-sm font-medium text-slate-800 dark:text-slate-50 capitalize transition-transform",
         {
           "border-b-2 border-b-blue-800 !text-blue-800":
             pathname === item.url,

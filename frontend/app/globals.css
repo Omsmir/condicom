@@ -447,10 +447,10 @@ img{
  
  }
 }
-.ant-upload-list {
+/* .ant-upload-list {
   display: flex;
   justify-content: center;
-}
+} */
 .dark .custom-steps .ant-steps-item-title , .ant-steps-icon{
   color: #ffffff !important;
 }
@@ -476,4 +476,17 @@ img{
     color: #ffffff !important;
   }
 
+}
+
+
+.dark .ant-result-title ,.dark .ant-result-subtitle{
+  color: #ffff !important;
+}
+.ant-upload-list .ant-upload-select{
+  width: 125px !important;
+  height: 125px !important;
+}
+.ant-upload-list-item-container {
+  width: 125px !important;
+  height: 125px !important;
 }

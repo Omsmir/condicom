@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/app/dashboard/(routes)/notifications/layout.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1744367472707,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1744367527531,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,4 @@\n-import { DashboardProvider } from \"@/components/context/Dashboardprovider\";\r\n \r\n import { Metadata } from \"next\";\r\n \r\n \r\n"
+                }
+            ],
+            "date": 1744367472707,
+            "name": "Commit-0",
+            "content": "import { DashboardProvider } from \"@/components/context/Dashboardprovider\";\r\n\r\nimport { Metadata } from \"next\";\r\n\r\n\r\nexport const metadata:Metadata = {\r\n    title: \"Health - Notifications\",\r\n    description: \"User Notifications\",\r\n  };\r\n\r\nexport default async function RootLayout({\r\n  children,\r\n}: Readonly<{\r\n  children: React.ReactNode;\r\n}>) {\r\n\r\n  \r\n  return  (\r\n        {children}\r\n  ) ;\r\n}\r\n"
+        }
+    ]
+}

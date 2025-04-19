@@ -10,26 +10,26 @@ export enum SkeletonType {
 }
 interface CustomSkeletonProps {
   classname?: string;
-  innerText?: string | undefined ;
+  innerText?: string | undefined;
   SkeletonType: SkeletonType;
   loading: boolean;
-  setLoading?: React.Dispatch<React.SetStateAction<boolean>>
-  src?:string
-  width?:number;
-  height?:number;
-  size?:number;
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>;
+  src?: string;
+  width?: number;
+  height?: number;
+  size?: number;
   shape?: "circle" | "square";
-  
 }
 
 const RenderSkeleton = ({ props }: { props: CustomSkeletonProps }) => {
-    const {setLoading} = props
+  const { setLoading } = props;
 
-    const setHandler = () => {
-       if(setLoading){
-        setLoading(false)
-       }
+  const setHandler =  () => {
+    if (setLoading) {
+
+       setLoading(false);
     }
+  };
   switch (props.SkeletonType) {
     case SkeletonType.HEAD:
       return (
@@ -43,30 +43,39 @@ const RenderSkeleton = ({ props }: { props: CustomSkeletonProps }) => {
               className="absolute"
             />
           )}
-          <span className={`relative block ${props.loading && "hidden"} w-full `}>
-
+          <span
+            className={`relative block ${props.loading && "hidden"} w-full `}
+          >
             {props.innerText}
           </span>
         </h1>
       );
-      case SkeletonType.AVATAR: return (
-        <span className={cn("relative border overflow-hidden cursor-pointer",props.classname)}>
-        {props.loading && (
-          <Skeleton.Avatar active size={props.size} shape={props.shape} className="absolute inset-0" />
-        )}
-        <Image
-          width={props.width}
-          height={props.height}
-          src={
-            props.src ||
-            "/assets/images/dr-cameron.png"
-          }
-          loading="lazy"
-          onLoad={setHandler}
-          className="w-full h-full object-cover object-center "
-        />
-      </span>
-      )
+    case SkeletonType.AVATAR:
+      return (
+        <span
+          className={cn(
+            "relative border overflow-hidden cursor-pointer",
+            props.classname
+          )}
+        >
+          {props.loading && (
+            <Skeleton.Avatar
+              active
+              size={props.size}
+              shape={props.shape}
+              className="absolute inset-0"
+            />
+          )}
+          <Image
+            width={props.width}
+            height={props.height}
+            src={props.src || "/assets/images/dr-cameron.png"}
+            loading="lazy"
+            onLoad={setHandler}
+            className="w-full h-full object-cover object-center "
+          />
+        </span>
+      );
 
     default:
       return null;

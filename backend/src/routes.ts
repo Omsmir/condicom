@@ -5,6 +5,7 @@ import appointmentRouter from "./routes/appointment.routes"
 import patientRouter from "./routes/patient.routes"
 import medicationRouter from "./routes/medication.routes"
 import notifcationRouter from "./routes/notifications.routes"
+import { deserializeCode } from "./middleware/deserializeCode"
 const routes = (app:Express) => {
 // code router
 app.use('/api/code',codeRouter)

@@ -46,10 +46,13 @@ interface SubItemModelProps {
 const SubItemModel = ({ subItem }: SubItemModelProps) => {
   const pathname = usePathname();
 
+  const {setViewPort,viewPort} = CalenderHook()
+
   return (
     <SidebarMenuSubItem key={subItem.title}>
       <SidebarMenuSubButton asChild>
         <Link
+        onClick={() => setViewPort(1)}
           href={subItem.url}
           className={clsx("text-slate-600", {
             "bg-[var(--sidebar-accent)] !text-slate-50  dark:bg-[var(--sidebar-accent)]":

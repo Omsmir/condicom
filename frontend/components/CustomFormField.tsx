@@ -7,7 +7,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Control } from "react-hook-form";
+import { Control, FieldError } from "react-hook-form";
 import { Textarea } from "./ui/textarea";
 import { XCircle, CheckCircle } from "lucide-react";
 
@@ -25,12 +25,11 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { CalenderHook } from "./context/CalenderProvider";
 import { ColorPicker } from "antd";
-import ReactCountryFlagsSelect from 'react-country-flags-select';
+import ReactCountryFlagsSelect from "react-country-flags-select";
 import { cn } from "@/lib/utils";
 import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 import { Checkbox } from "./ui/checkbox";
-
-
+import Otp from "./Otp";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -43,13 +42,14 @@ export enum FormFieldType {
   DATE = "datePicker",
   PHONE = "phoneInput",
   COLOR = "colorPicker",
-  COUNTRY= "country",
-  CHECKBOX = "checkbox"
+  COUNTRY = "country",
+  CHECKBOX = "checkbox",
+  OTP = "Otp",
 }
 
 interface CustomProps {
   control: Control<any> | undefined;
-  name: string ;
+  name: string;
   label?: string;
   placeholder?: string;
   iconSrc?: string;
@@ -71,7 +71,9 @@ interface CustomProps {
   calenderDays?: Date[];
   innerState?: boolean;
   className?: string;
-  optionalLabel?:string;
+  optionalLabel?: string;
+  OtpLength?: number;
+  OtpInvalid?:boolean | FieldError
 }
 
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
@@ -105,7 +107,12 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
   switch (props.fieldType) {
     case FormFieldType.INPUT:
       return (
-        <div className={cn("flex justify-center items-center rounded-md border bg-slate-100 dark:border-[var(--sidebar-accent)]",props.className)}>
+        <div
+          className={cn(
+            "flex justify-center items-center rounded-md border bg-slate-100 dark:border-[var(--sidebar-accent)]",
+            props.className
+          )}
+        >
           {props.Lucide && (
             <span className="ml-2 w-[24px] h-[24px]">{props.Lucide}</span>
           )}
@@ -141,7 +148,10 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
             ) : (
               field.value && (
                 <>
-                  <CheckCircleFilled className=" text-green-500 mx-2" size={20} />
+                  <CheckCircleFilled
+                    className=" text-green-500 mx-2"
+                    size={20}
+                  />
                   {props.children}
                 </>
               )
@@ -188,7 +198,9 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                 <SelectValue placeholder={props.placeholder} />
               </SelectTrigger>
             </FormControl>
-            <SelectContent className={cn("shad-select-content",props.className)}>
+            <SelectContent
+              className={cn("shad-select-content", props.className)}
+            >
               {props.children}
             </SelectContent>
           </Select>
@@ -196,7 +208,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       );
     case FormFieldType.DATE:
       return (
-        <div >
+        <div>
           <FormControl>
             <Calendar
               value={field.value || date}
@@ -245,30 +257,43 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
             />
           </FormControl>
         </div>
-      )
-      case FormFieldType.COLOR:
-      return (
-       <div className="flex justify-center items-center">
-         <FormControl>
-          <ColorPicker defaultValue="#242c55" className="w-full h-11" value={field.value} onChange={(color) => field.onChange(color.toHex())} />
-        </FormControl>
-       </div>
       );
-      case FormFieldType.CHECKBOX:
-        return (
+    case FormFieldType.COLOR:
+      return (
+        <div className="flex justify-center items-center">
           <FormControl>
-            <div className="flex justify-start items-center">
-              <label htmlFor={props.name} className="checkbox-label mr-1">
-                {props.label}
-              </label>
-              <Checkbox
-                id={props.name}
-                onCheckedChange={field.onChange}
-                checked={field.value}
-              />
-            </div>
+            <ColorPicker
+              defaultValue="#242c55"
+              className="w-full h-11"
+              value={field.value}
+              onChange={(color) => field.onChange(color.toHex())}
+            />
           </FormControl>
-        );
+        </div>
+      );
+    case FormFieldType.CHECKBOX:
+      return (
+        <FormControl>
+          <div className="flex justify-start items-center">
+            <label htmlFor={props.name} className="checkbox-label mr-1">
+              {props.label}
+            </label>
+            <Checkbox
+              id={props.name}
+              onCheckedChange={field.onChange}
+              checked={field.value}
+            />
+          </div>
+        </FormControl>
+      );
+    case FormFieldType.OTP: 
+      return (
+        <div className={cn("flex justify-center items-center",props.className)}>
+          <FormControl>
+          <Otp length={props.OtpLength} name={props.name} value={field.value} setValue={field.onChange} confirmState={props.state} invalid={props.OtpInvalid} />
+          </FormControl>
+        </div>
+      );
       default:
       return null;
   }
@@ -285,8 +310,10 @@ const CustomFormField = (props: CustomProps) => {
             {props.label && (
               <FormLabel className="shad-input-label dark:text-slate-50">
                 <div className="flex items-center">
-                <h1 className="mr-1 capitalize">{props.label}</h1>
-                <p className="text-[12px] text-slate-600">{props.optionalLabel}</p>
+                  <h1 className="mr-1 capitalize">{props.label}</h1>
+                  <p className="text-[12px] text-slate-600">
+                    {props.optionalLabel}
+                  </p>
                 </div>
               </FormLabel>
             )}

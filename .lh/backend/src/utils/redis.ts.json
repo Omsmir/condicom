@@ -1,0 +1,94 @@
+{
+    "sourceFile": "backend/src/utils/redis.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 19,
+            "patches": [
+                {
+                    "date": 1744448723860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1744448859837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-import redis\n\\ No newline at end of file\n+import {,  RedisClientType } from \"redis\";\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744448869377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,3 @@\n-import {,  RedisClientType } from \"redis\";\n\\ No newline at end of file\n+import {createClient,  RedisClientType } from \"redis\";\r\n+\r\n+let redisClient = \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744448875185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n import {createClient,  RedisClientType } from \"redis\";\r\n \r\n-let redisClient = \n\\ No newline at end of file\n+let redisClient: Rediscli\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744448881994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,5 @@\n import {createClient,  RedisClientType } from \"redis\";\r\n \r\n-let redisClient: Rediscli\n\\ No newline at end of file\n+let redisClient: RedisClientType : null = null\r\n+\r\n+\r\n"
+                },
+                {
+                    "date": 1744448891025,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,4 +2,5 @@\n \r\n let redisClient: RedisClientType : null = null\r\n \r\n \r\n+const getRedisCon\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744448905133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import {createClient,  RedisClientType } from \"redis\";\r\n \r\n-let redisClient: RedisClientType : null = null\r\n+let redisClient: RedisClientType | null = null\r\n \r\n \r\n\\ No newline at end of file\n-const getRedisCon\n+const RedisConnection = async ()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744448911264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,7 @@\n \r\n let redisClient: RedisClientType | null = null\r\n \r\n \r\n-const RedisConnection = async ()\n\\ No newline at end of file\n+const RedisConnection = async ():RedisClientType => {\r\n+    \r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744448924855,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,6 +3,10 @@\n let redisClient: RedisClientType | null = null\r\n \r\n \r\n const RedisConnection = async ():RedisClientType => {\r\n-    \r\n+    if(!redisClient){\r\n+        redisClient = {\r\n+            \r\n+        }\r\n+    }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744448935905,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \r\n \r\n const RedisConnection = async ():RedisClientType => {\r\n     if(!redisClient){\r\n-        redisClient = {\r\n+        redisClient = createClient({\r\n             \r\n-        }\r\n+        })\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744448943399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,8 @@\n \r\n const RedisConnection = async ():RedisClientType => {\r\n     if(!redisClient){\r\n         redisClient = createClient({\r\n-            \r\n+            url\r\n         })\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744449037575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import {createClient,  RedisClientType } from \"redis\";\r\n-\r\n+import config\r\n let redisClient: RedisClientType | null = null\r\n \r\n \r\n const RedisConnection = async ():RedisClientType => {\r\n"
+                },
+                {
+                    "date": 1744449047785,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import {createClient,  RedisClientType } from \"redis\";\r\n-import config\r\n+import config from \"config\"\r\n let redisClient: RedisClientType | null = null\r\n \r\n \r\n const RedisConnection = async ():RedisClientType => {\r\n"
+                },
+                {
+                    "date": 1744449058698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \r\n \r\n const RedisConnection = async ():RedisClientType => {\r\n     if(!redisClient){\r\n-        redisClient = createClient({\r\n+        redisClient = await createClient({\r\n             url\r\n         })\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744449063754,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \r\n \r\n const RedisConnection = async ():RedisClientType => {\r\n     if(!redisClient){\r\n-        redisClient = await createClient({\r\n+      await  redisClient =  createClient({\r\n             url\r\n         })\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744449077792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,11 @@\n import config from \"config\"\r\n let redisClient: RedisClientType | null = null\r\n \r\n \r\n-const RedisConnection = async ():RedisClientType => {\r\n+const RedisConnection = async ():<RedisClientType> => {\r\n     if(!redisClient){\r\n-      await  redisClient =  createClient({\r\n+        redisClient =  createClient({\r\n             url\r\n         })\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744449093950,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,11 @@\n import config from \"config\"\r\n let redisClient: RedisClientType | null = null\r\n \r\n \r\n-const RedisConnection = async ():<RedisClientType> => {\r\n+const RedisConnection = async ():Promise<RedisClientType> => {\r\n     if(!redisClient){\r\n-        redisClient =  createClient({\r\n+       return redisClient =  createClient({\r\n             url\r\n         })\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744449100881,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,8 @@\n \r\n const RedisConnection = async ():Promise<RedisClientType> => {\r\n     if(!redisClient){\r\n        return redisClient =  createClient({\r\n-            url\r\n+            url:config\r\n         })\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744449106572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,8 @@\n \r\n const RedisConnection = async ():Promise<RedisClientType> => {\r\n     if(!redisClient){\r\n        return redisClient =  createClient({\r\n-            url:config.get<String()>\r\n+            url:config.get<String>\r\n         })\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744449766768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n             return log.error(err.message)\r\n         })\r\n         redisClient.connect().catch((err) => err)\r\n \r\n-        redisClient.on(\"connect\",(client)=>{\r\n+        redisClient.on(\"connection\",(client)=>{\r\n             log.info(\"connected to redis\")\r\n         })\r\n     }\r\n     return redisClient\r\n"
+                }
+            ],
+            "date": 1744448723860,
+            "name": "Commit-0",
+            "content": "import redis"
+        }
+    ]
+}

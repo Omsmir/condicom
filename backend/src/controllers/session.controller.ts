@@ -4,6 +4,7 @@ import { validatePassword } from "../services/user.service";
 import { signJwt } from "../utils/jwt.sign";
 import { createSession, getSession } from "../services/session.service";
 import config from "config";
+import { findCode } from "../services/code.service";
 export const login = async (
   req: Request<{}, {}, SessionSchemaInterface["body"]>,
   res: Response,
@@ -17,43 +18,54 @@ export const login = async (
       return;
     }
 
-  
     const obj = {
       user: user._id as string,
       userAgent: req.get("user-agent") || "",
       role: user.role,
     };
 
+    const code = await findCode({ used: true});
 
-
+    if (!code) {
+      res
+        .status(404)
+        .json({ message: "something went wrong with the subscribtion plan" });
+      return;
+    }
     const session = await createSession({ ...obj });
 
     const accessToken = await signJwt(
-      { ...user,id:user._id, session: session._id },
+      {
+        ...user,
+        id: user._id,
+        session: session._id,
+        codePlan: code.expiration,
+      },
       "accessTokenPrivateKey",
+      "RS256",
       { expiresIn: config.get("accessTokenTtl") }
     );
 
     const refreshToken = await signJwt(
-        { ...user, session: session._id },
-        "refreshTokenPrivateKey",
-        { expiresIn: config.get("refreshTokenTtl") }
-      );
+      { ...user, session: session._id, codePlan: code.expiration },
+      "refreshTokenPrivateKey",
+      "RS256",
+      { expiresIn: config.get("refreshTokenTtl") }
+    );
 
-
-      // res.cookie("refreshToken",refreshToken,{
-      //   httpOnly:true,
-      //   path:"/",
-      //   sameSite:"lax",
-      //   secure:config.get<string>("nodeEnv") === 'production'
-      // })
-      res.status(200).json({message:"logged in successfully",accessToken,refreshToken})
-  } catch (error:any) {
-    res.status(500).json({message:error.message})
+    // res.cookie("refreshToken",refreshToken,{
+    //   httpOnly:true,
+    //   path:"/",
+    //   sameSite:"lax",
+    //   secure:config.get<string>("nodeEnv") === 'production'
+    // })
+    res
+      .status(200)
+      .json({ message: "logged in successfully", accessToken, refreshToken });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
 };
-
-
 
 export const getUserSessions = async (req: Request, res: Response) => {
   try {
@@ -61,8 +73,8 @@ export const getUserSessions = async (req: Request, res: Response) => {
 
     const sessions = await getSession({ user: userId, valid: true });
 
-     res.status(200).json({ sessions });
+    res.status(200).json({ sessions });
   } catch (error: any) {
-     res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };

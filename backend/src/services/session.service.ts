@@ -4,6 +4,7 @@ import { signJwt, verifyJwt } from "../utils/jwt.sign";
 import { findUser } from "./user.service";
 import config from 'config'
 import { FilterQuery } from "mongoose";
+import { findCode } from "./code.service";
 export const createSession = async (input:sessionInput) => {
     return await SessionModel.create(input)
 }
@@ -16,7 +17,7 @@ return await SessionModel.findOne(query).lean()
 
 
 export const reIssueAccessToken = async(refreshToken:string) => {
-    const {decoded} = await verifyJwt(refreshToken,"refreshTokenPublicKey")
+    const {decoded} = await verifyJwt(refreshToken,"refreshTokenPublicKey","RS256")
 
     if(!decoded || !get(decoded,'session')) return false
 
@@ -28,9 +29,11 @@ export const reIssueAccessToken = async(refreshToken:string) => {
 
     if(!user) return false
 
+    const code = await findCode({user:user._id})
     const accessToken =  signJwt(
-        { ...user, session: session?._id },
+        { ...user, session: session?._id,codePlan:code?.expiration },
         "accessTokenPrivateKey",
+        "RS256",
         { expiresIn: config.get("accessTokenTtl") } // 15min
       );
     

@@ -9,52 +9,51 @@ import { useState } from "react";
 import { User, KeyRound, EyeOff, Eye } from "lucide-react";
 import SubmitButton from "../togglers/SubmitButton";
 import { RegisterSchema } from "@/lib/vaildation";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
-import {  genders } from "@/lib/constants";
+import { genders } from "@/lib/constants";
 import { SelectItem } from "../ui/select";
 import Link from "next/link";
 import { QrcodeOutlined } from "@ant-design/icons";
 import { DashboardHook } from "../context/Dashboardprovider";
 import { UseRegister } from "@/actions/mutation";
 
-
-
 const RegisterForm = () => {
-
   const [state, setState] = useState<boolean>(false);
-  const { api, contextHolder,isLoading } = DashboardHook();
+  const { api, contextHolder, isLoading } = DashboardHook();
 
-  const register = UseRegister(api)
+  const register = UseRegister(api);
   const onSubmit = async (values: Yup.InferType<typeof RegisterSchema>) => {
-
     const formData = new FormData();
 
     const data = {
-     email:values.email,
-     password:values.password,
-     confirmPassword:values.confirmPassword,
-     name:values.name,
-     gender:values.gender,
-     birthDate:values.birthDate,
-     phone:values.phone,
-     code:values.code
-    
-    }
+      email: values.email,
+      password: values.password,
+      confirmPassword: values.confirmPassword,
+      name: values.name,
+      gender: values.gender,
+      birthDate: values.birthDate,
+      phone: values.phone,
+      code: values.code,
+    };
 
-    Object.entries(data).forEach(([key,value]) => {
-      if(value !== "" && value !== undefined && value !== null){
-        formData.append(key,value as string)
+    Object.entries(data).forEach(([key, value]) => {
+      if (value !== "" && value !== undefined && value !== null) {
+        formData.append(key, value as string);
       }
-    })
-  
+    });
+
     try {
-     register.mutate(formData)
-
+      await register.mutateAsync(formData, {
+        onSuccess: async (response) => {
+          if (!response.SupportedInfo.profileState) {
+            redirect("/register/profile");
+          }
+        },
+      });
     } catch (error: any) {
-     console.log(error.message)
+      console.log(error.message);
     }
-
   };
   const form = useForm<Yup.InferType<typeof RegisterSchema>>({
     resolver: yupResolver(RegisterSchema),

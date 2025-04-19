@@ -12,15 +12,22 @@ import { CreatePatient, DeletePatient } from "./Patients";
 import HandleAxiosErrors from "@/components/HandleAxiosErrors";
 import { DashboardHook } from "@/components/context/Dashboardprovider";
 import {
+  changeProfileImage,
   ChangeUserInfo,
   ChangeUserPassword,
+  ConfirmEmailChange,
   LoginApi,
   LoginApiProps,
   PostRegister,
   PostRegisterProps,
   register,
+  ResetNewPassword,
+  SendEmailChange,
+  SendEmailVerification,
+  SendVerificationEmail,
+  verifyEmail,
 } from "./User";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { CreateNotification } from "./Notification";
 import { data } from "@/components/togglers/Handlers";
 import { AccountHook } from "@/components/context/AccountProvider";
@@ -205,7 +212,6 @@ export const UseCreatePatient = (api: NotificationInstance) => {
 };
 
 export const useLogin = (api: NotificationInstance, loginState: boolean) => {
-  const router = useRouter();
   const { setIsLoading } = DashboardHook();
 
   return useMutation({
@@ -227,14 +233,12 @@ export const useLogin = (api: NotificationInstance, loginState: boolean) => {
           timer: 1500,
         });
       }
-      router.push("/dashboard");
       setIsLoading(false);
     },
   });
 };
 export const UseRegister = (api: NotificationInstance) => {
   const login = useLogin(api, false);
-  const router = useRouter();
   const { setIsLoading } = DashboardHook();
 
   return useMutation({
@@ -250,7 +254,7 @@ export const UseRegister = (api: NotificationInstance) => {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "registered successfully",
+        title: response.message,
         showConfirmButton: false,
         timer: 2000,
       });
@@ -259,19 +263,20 @@ export const UseRegister = (api: NotificationInstance) => {
 
       await login.mutateAsync({ email, password });
 
-      router.push("/register/profile");
       setIsLoading(false);
     },
   });
 };
 
-export const UsePostRegister = (api: NotificationInstance) => {
+export const UsePostRegister = (
+  api: NotificationInstance,
+  id: string | undefined
+) => {
   const router = useRouter();
   const { setIsLoading } = DashboardHook();
 
   return useMutation({
-    mutationFn: async ({ formData, id }: PostRegisterProps) =>
-      await PostRegister({ formData, id }),
+    mutationFn: (formData: FormData) => PostRegister({ formData, id }),
     onMutate: () => {
       setIsLoading(true);
     },
@@ -288,8 +293,6 @@ export const UsePostRegister = (api: NotificationInstance) => {
 
       setIsLoading(false);
 
-      router.push("/dashboard");
-
       // await axios.post(
       //   "http://localhost:8080/api/notifications/system",
       //   {
@@ -303,6 +306,48 @@ export const UsePostRegister = (api: NotificationInstance) => {
       //   }
 
       // );
+    },
+  });
+};
+
+export const UseSendEmailVerification = (
+  api: NotificationInstance,
+  id: string | undefined
+) => {
+  const { setIsVerifyingEmail } = AccountHook();
+
+  return useMutation({
+    mutationFn: () => SendEmailVerification(id),
+    onMutate: () => {
+      setIsVerifyingEmail(true);
+    },
+    onError: (error) => {
+      HandleAxiosErrors({ api, error });
+      setIsVerifyingEmail(false);
+    },
+    onSuccess: async (response) => {
+      api.success({
+        message: response.data.message,
+      });
+
+      setIsVerifyingEmail(false);
+    },
+  });
+};
+export const UseVerifyEmail = (id: string | undefined) => {
+  const { setIsVerifyingEmail } = AccountHook();
+
+  return useMutation({
+    mutationFn: (data:FormData) => verifyEmail(id),
+    onMutate: () => {
+      setIsVerifyingEmail(true);
+    },
+    onError: (error) => {
+      setIsVerifyingEmail(false);
+    },
+    onSuccess: async (response) => {
+     
+      setIsVerifyingEmail(false);
     },
   });
 };
@@ -355,19 +400,19 @@ export const UseCreateNotification = (api: NotificationInstance) => {
   });
 };
 
-export const UseChangePassword =  (
+export const UseChangePassword = (
   api: NotificationInstance,
   id: string | undefined
 ) => {
   const { setIsLoading } = AccountHook();
 
   return useMutation({
-    mutationFn:  (data:FormData) => ChangeUserPassword(id,data),
-    onMutate:() =>{
-      setIsLoading(true)
+    mutationFn: (data: FormData) => ChangeUserPassword(id, data),
+    onMutate: () => {
+      setIsLoading(true);
     },
     onError: (error) => {
-      setIsLoading(false)
+      setIsLoading(false);
       HandleAxiosErrors({ api: api, error: error });
     },
     onSuccess: async (response) => {
@@ -376,7 +421,7 @@ export const UseChangePassword =  (
       });
       setIsLoading(false);
     },
-  })
+  });
 };
 
 export const UseGenerateCode = (
@@ -427,6 +472,120 @@ export const UseDeleteCode = (
       });
       setIsDeleteLoading(false);
       queryClient.invalidateQueries({ queryKey: ["codes"] });
+    },
+  });
+};
+
+export const UseSendVerificationCode = (api: NotificationInstance) => {
+  const { setIsLoading } = AccountHook();
+
+  return useMutation({
+    mutationFn: (data: FormData) => SendVerificationEmail(data),
+    onMutate: () => {
+      setIsLoading(true);
+    },
+    onError: (error) => {
+      HandleAxiosErrors({ error, api });
+      setIsLoading(false);
+    },
+    onSuccess: async (response) => {
+      api.success({
+        message: response.data.message,
+      });
+      setIsLoading(false);
+    },
+  });
+};
+
+export const UseResetPassword = (
+  api: NotificationInstance,
+  token: string | undefined
+) => {
+  const { setIsLoading } = AccountHook();
+
+  return useMutation({
+    mutationFn: (data: FormData) => ResetNewPassword(token, data),
+    onMutate: () => {
+      setIsLoading(true);
+    },
+    onError: (error) => {
+      HandleAxiosErrors({ error, api });
+      setIsLoading(false);
+    },
+    onSuccess: async (response) => {
+      api.success({
+        message: response.data.message,
+      });
+      setIsLoading(false);
+    },
+  });
+};
+
+export const UseChangeEmail = (
+  api: NotificationInstance,
+  id: string | undefined
+) => {
+  const { setIsChangingEmail } = AccountHook();
+  return useMutation({
+    mutationFn: (data: FormData) => SendEmailChange(id, data),
+    onMutate: () => {
+      setIsChangingEmail(true);
+    },
+    onError: (error) => {
+      HandleAxiosErrors({ error, api });
+      setIsChangingEmail(false);
+    },
+    onSuccess: async (response) => {
+      api.success({
+        message: response.message,
+      });
+      setIsChangingEmail(false);
+    },
+  });
+};
+
+export const UseConfirmChangeEmail = (
+  api: NotificationInstance,
+  id: string | undefined
+) => {
+  const { setIsChangingEmail } = AccountHook();
+  return useMutation({
+    mutationFn: (data: FormData) => ConfirmEmailChange(id, data),
+    onMutate: () => {
+      setIsChangingEmail(true);
+    },
+    onError: (error) => {
+      HandleAxiosErrors({ error, api });
+      setIsChangingEmail(false);
+    },
+    onSuccess: async (response) => {
+      api.success({
+        message: response.message,
+      });
+      setIsChangingEmail(false);
+    },
+  });
+};
+
+export const UseChangeProfilePicture = (
+  api: NotificationInstance,
+  id: string | undefined
+) => {
+  const { setIsChangingPicture } = AccountHook();
+  return useMutation({
+    mutationFn: (data: FormData) => changeProfileImage(id, data),
+    onMutate: () => {
+      setIsChangingPicture(true);
+    },
+    onError: (error) => {
+      HandleAxiosErrors({ error, api });
+      setIsChangingPicture(false);
+    },
+    onSuccess: async (response) => {
+      api.success({
+        message: response.data.message,
+      });
+      setIsChangingPicture(false);
     },
   });
 };

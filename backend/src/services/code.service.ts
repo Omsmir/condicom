@@ -1,6 +1,6 @@
 import { FilterQuery, QueryOptions, UpdateQuery } from "mongoose";
 import { CodeDocument, CodeInput, CodeModel } from "../models/code.model";
-import { queryObjects } from "v8";
+
 
 export const createCode = async (input: CodeInput) => {
   return await CodeModel.create(input);
@@ -21,15 +21,12 @@ export const getCodes = async (
   const codes = await CodeModel.find(query)
     .sort({ _id: -1 })
     .limit(4 + 1);
-  console.log("before" + codes.length, limit);
 
   let nextCursor: string | null = null;
   if (codes.length > +limit) {
     nextCursor = codes[limit - 1]._id as string; // Use the last item's _id as the nextCursor
     codes.pop();
   }
-
-  console.log("after" + codes.length, limit);
 
   return { codes, nextCursor };
 };
