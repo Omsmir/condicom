@@ -9,49 +9,48 @@ import Image from "next/image";
 import { heights, medicalSpecialties, weights } from "@/lib/constants";
 import { SelectItem } from "../ui/select";
 import FileUploader from "../FileUploader";
-import {  useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DashboardHook } from "../context/Dashboardprovider";
 import { UsePostRegister } from "@/actions/mutation";
+import { redirect } from "next/navigation";
 
 const Profile = () => {
-  
-  const { data: session, update } = useSession();
-  const { api, contextHolder ,isLoading} = DashboardHook();
+  const { data: session ,update} = useSession();
+  const { api, contextHolder, isLoading } = DashboardHook();
 
-const postRegister = UsePostRegister(api)
-
-
+  const postRegister = UsePostRegister(api, session?.user.id);
 
   const onSubmit = async (values: Zod.infer<typeof PostRegisterSchema>) => {
-
     const formData = new FormData();
 
     const data = {
       profileImg: values.profileImg[0],
-      occupation:values.occupation,
-      weight:values.weight,
-      height:values.height,
-      address:values.address,
-      country:values.country.label,
-      bio:values.bio,
-      profileState:true
-     
-    }
+      occupation: values.occupation,
+      weight: values.weight,
+      height: values.height,
+      address: values.address,
+      country: values.country.label,
+      bio: values.bio,
+      profileState: true,
+    };
 
-    Object.entries(data).forEach(([key,value]) => {
-      if(value !== "" && value !== undefined && value !== null){
-        formData.append(key,value as string)
+    Object.entries(data).forEach(([key, value]) => {
+      if (value !== "" && value !== undefined && value !== null) {
+        formData.append(key, value as string);
       }
-    })
-  
-    const id =session?.user.id
+    });
+
 
     try {
-    postRegister.mutate({formData,id})
-      
+      await postRegister.mutateAsync(formData, {
+        onSuccess: async () => {
+          await update()
+          redirect("/dashboard")
+        },
+      });
     } catch (error: any) {
-      console.log("error",error.message)
+      console.log("error", error.message);
     }
   };
   const form = useForm<Zod.infer<typeof PostRegisterSchema>>({

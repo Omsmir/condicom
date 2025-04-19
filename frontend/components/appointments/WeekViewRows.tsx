@@ -43,7 +43,7 @@ const WeekViewRows = ({
 
             return (
               <div
-                className="flex justify-center cursor-pointer border-b h-20 relative dark:border-slate-700 hover:bg-slate-50  dark:hover:bg-[var(--sidebar-accent)]"
+                className="flex justify-center cursor-pointer border-b h-20 relative dark:border-slate-700 hover:bg-slate-200  dark:hover:bg-[var(--sidebar-accent)]"
                 key={hourIndex}
               >
                 {filteredTasks &&

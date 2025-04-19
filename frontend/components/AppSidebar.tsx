@@ -40,11 +40,11 @@ const AppSidebar = () => {
               className="mr-1 min-w-[25px] min-h-[25px]"
             />
             <h1
-              className={clsx(`text-xl font-bold ${inter.className}`, {
+              className={clsx(`text-xl font-bold capitalize ${inter.className}`, {
                 hidden: !open && !isMobile,
               })}
             >
-              Dashboard
+              conduktor
             </h1>
           </span>
         </SidebarHeader>

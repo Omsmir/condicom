@@ -13,7 +13,6 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { useTheme } from "next-themes";
 import { io, Socket } from "socket.io-client";
-import { Notification } from "@/types";
 import { DefaultEventsMap } from "@socket.io/component-emitter";
 
 NProgress.configure({ showSpinner: false, speed: 500 });

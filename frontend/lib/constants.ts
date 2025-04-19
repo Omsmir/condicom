@@ -24,25 +24,22 @@ export const SideBarItems = [
   },
   {
     title: "Appointments",
-    url: "/dashboard/appointments",
+    url: "#",
     icon: Calendar,
     group: true,
     isActive: true,
     items: [
       {
-        title: "Month View",
+        title: "Month ",
         url: "/dashboard/appointments/#monthview",
-
       },
       {
-        title: "Week View",
+        title: "Week ",
         url: "/dashboard/appointments/#weekview",
-
       },
       {
-        title: "Day View",
+        title: "Day ",
         url: "/dashboard/appointments/#dayview",
-
       },
     ],
   },
@@ -108,7 +105,7 @@ export const SideBarItems = [
     isActive: true,
     sideItemTitle: "Metrics & analytics",
     sideItemState: true,
-    icon:TableChart,
+    icon: TableChart,
     items: [
       {
         title: "API",
@@ -501,14 +498,15 @@ export const medicationCategories = [
   "Antimigraine",
 ] as const;
 
-
-
-
-export const firstNumber = ['1'] as const
-export const characters = ["C","D","E"] as const
-export const FiveNumber = ['1','2','3','4','5'] as const
-export const codeExpirationPlans = ["month","3month","6month","1year"] as const
-
+export const firstNumber = ["1"] as const;
+export const characters = ["C", "D", "E"] as const;
+export const FiveNumber = ["1", "2", "3", "4", "5"] as const;
+export const codeExpirationPlans = [
+  "month",
+  "3month",
+  "6month",
+  "1year",
+] as const;
 
 export const Roles = [
   "clear",
@@ -519,5 +517,5 @@ export const Roles = [
   "Head Secretary",
   "Charge Secretary",
   "Head Nurse",
-  "Charge Nurse"
-] as const
+  "Charge Nurse",
+] as const;

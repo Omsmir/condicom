@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1740881564272,
@@ -40,6 +40,46 @@
                 {
                     "date": 1741008041405,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,11 +14,11 @@\n router.post('/register',upload.none(),validate(CreateUserSchema),createUserHandler)\r\n \r\n router.post('/login',upload.none(),validate(SessionSchema),login)\r\n \r\n-router.put(\"/update:id\",upload.none(),validate(UpdateUserSchema),ChangeUserInformationHandler)\r\n+router.put(\"/update/:id\",upload.none(),validate(UpdateUserSchema),ChangeUserInformationHandler)\r\n router.get(\"/sessions\",requireUser,getUserSessions)\r\n \r\n-router.get(\"/\",getAllUsersHandler)\r\n+router.get(\"/users\",getAllUsersHandler)\r\n \r\n router.get(\"/:id\",getUser)\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744386719977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,30 @@\n import express from 'express'\r\n import upload from '../middleware/multer'\r\n import { validate } from '../middleware/validateResource'\r\n-import { AddAdditionalSchema, CreateUserSchema, UpdateUserSchema } from '../schemas/user.schema'\r\n-import { AddAdditionlHandler, ChangeUserInformationHandler, createUserHandler, getAllUsersHandler, getUser } from '../controllers/user.controller'\r\n+import { AddAdditionalSchema, ChangePasswordSchema, CreateUserSchema, UpdateUserSchema } from '../schemas/user.schema'\r\n+import { AddAdditionlHandler, changePasswordHandler, ChangeUserInformationHandler, createUserHandler, getAllUsersHandler, getUser } from '../controllers/user.controller'\r\n import { SessionSchema } from '../schemas/session.schema'\r\n import { getUserSessions, login } from '../controllers/session.controller'\r\n import { requireUser } from '../middleware/requireUser'\r\n \r\n \r\n const router = express.Router()\r\n router.put(\"/:id\",upload.single(\"profileImg\"),validate(AddAdditionalSchema),AddAdditionlHandler)\r\n \r\n+\r\n router.post('/register',upload.none(),validate(CreateUserSchema),createUserHandler)\r\n \r\n router.post('/login',upload.none(),validate(SessionSchema),login)\r\n \r\n router.put(\"/update/:id\",upload.none(),validate(UpdateUserSchema),ChangeUserInformationHandler)\r\n router.get(\"/sessions\",requireUser,getUserSessions)\r\n \r\n-router.get(\"/users\",getAllUsersHandler)\r\n+router.get(\"/users/:id\",getAllUsersHandler)\r\n \r\n router.get(\"/:id\",getUser)\r\n+\r\n+\r\n+router.put(\"/password/change/:id\",upload.none(),validate(ChangePasswordSchema),changePasswordHandler)\r\n+\r\n+router.\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744386725678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,6 +25,6 @@\n \r\n \r\n router.put(\"/password/change/:id\",upload.none(),validate(ChangePasswordSchema),changePasswordHandler)\r\n \r\n-router.\r\n+router.post(\"/\")\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744386734592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,6 +25,6 @@\n \r\n \r\n router.put(\"/password/change/:id\",upload.none(),validate(ChangePasswordSchema),changePasswordHandler)\r\n \r\n-router.post(\"/\")\r\n+router.post(\"/password/reset\")\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744386740397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,6 +25,6 @@\n \r\n \r\n router.put(\"/password/change/:id\",upload.none(),validate(ChangePasswordSchema),changePasswordHandler)\r\n \r\n-router.post(\"/password/reset\")\r\n+router.post(\"/password/reset/sendmessage\")\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744386746284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,6 +25,6 @@\n \r\n \r\n router.put(\"/password/change/:id\",upload.none(),validate(ChangePasswordSchema),changePasswordHandler)\r\n \r\n-router.post(\"/password/reset/sendmessage\")\r\n+router.post(\"/password/reset/message/:id\")\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744386753906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,6 +25,6 @@\n \r\n \r\n router.put(\"/password/change/:id\",upload.none(),validate(ChangePasswordSchema),changePasswordHandler)\r\n \r\n-router.post(\"/password/reset/message/:id\")\r\n+router.post(\"/password/reset/message/:id\",upload.none(),val)\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744386759361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,6 +25,6 @@\n \r\n \r\n router.put(\"/password/change/:id\",upload.none(),validate(ChangePasswordSchema),changePasswordHandler)\r\n \r\n-router.post(\"/password/reset/message/:id\",upload.none(),val)\r\n+router.post(\"/password/reset/message/:id\",upload.none(),validate(resetpas))\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744386764890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import express from 'express'\r\n import upload from '../middleware/multer'\r\n import { validate } from '../middleware/validateResource'\r\n-import { AddAdditionalSchema, ChangePasswordSchema, CreateUserSchema, UpdateUserSchema } from '../schemas/user.schema'\r\n+import { AddAdditionalSchema, ChangePasswordSchema, CreateUserSchema, ResetPasswordSchema, UpdateUserSchema } from '../schemas/user.schema'\r\n import { AddAdditionlHandler, changePasswordHandler, ChangeUserInformationHandler, createUserHandler, getAllUsersHandler, getUser } from '../controllers/user.controller'\r\n import { SessionSchema } from '../schemas/session.schema'\r\n import { getUserSessions, login } from '../controllers/session.controller'\r\n import { requireUser } from '../middleware/requireUser'\r\n@@ -25,6 +25,6 @@\n \r\n \r\n router.put(\"/password/change/:id\",upload.none(),validate(ChangePasswordSchema),changePasswordHandler)\r\n \r\n-router.post(\"/password/reset/message/:id\",upload.none(),validate(resetpas))\r\n+router.post(\"/password/reset/message/:id\",upload.none(),validate(ResetPasswordSchema),resetpas)\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744386784860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import express from 'express'\r\n import upload from '../middleware/multer'\r\n import { validate } from '../middleware/validateResource'\r\n import { AddAdditionalSchema, ChangePasswordSchema, CreateUserSchema, ResetPasswordSchema, UpdateUserSchema } from '../schemas/user.schema'\r\n-import { AddAdditionlHandler, changePasswordHandler, ChangeUserInformationHandler, createUserHandler, getAllUsersHandler, getUser } from '../controllers/user.controller'\r\n+import { AddAdditionlHandler, changePasswordHandler, ChangeUserInformationHandler, createUserHandler, getAllUsersHandler, getUser, ResetPasswordHandler } from '../controllers/user.controller'\r\n import { SessionSchema } from '../schemas/session.schema'\r\n import { getUserSessions, login } from '../controllers/session.controller'\r\n import { requireUser } from '../middleware/requireUser'\r\n \r\n@@ -25,6 +25,6 @@\n \r\n \r\n router.put(\"/password/change/:id\",upload.none(),validate(ChangePasswordSchema),changePasswordHandler)\r\n \r\n-router.post(\"/password/reset/message/:id\",upload.none(),validate(ResetPasswordSchema),resetpas)\r\n+router.put(\"/password/reset/message/:id\",upload.none(),validate(ResetPasswordSchema),ResetPasswordHandler)\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1744386804478,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,5 +26,6 @@\n \r\n router.put(\"/password/change/:id\",upload.none(),validate(ChangePasswordSchema),changePasswordHandler)\r\n \r\n router.put(\"/password/reset/message/:id\",upload.none(),validate(ResetPasswordSchema),ResetPasswordHandler)\r\n+\r\n export default router\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1740881564272,

@@ -28,8 +28,10 @@ const FirstStepForm: React.FC<FirstStepFormProps> = ({ form }) => {
           renderSkeleton={(field) => (
             <FormControl>
               <CustomFileUploader
+              classname="justify-center"
                 files={field.value}
                 onChange={field.onChange}
+                plusIcon
               />
             </FormControl>
           )}

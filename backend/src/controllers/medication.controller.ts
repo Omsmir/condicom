@@ -27,10 +27,13 @@ export const createMedicationHandler = async (
 
       existedMedication.updateOne(req.body);
 
+      await existedMedication.save();
+      
 
-      await existedMedication.save()
-
-      res.status(201).json({ message: "medication updated successfully",existedMedication });
+      res.status(201).json({
+        message: "medication updated successfully",
+        existedMedication,
+      });
       return;
     }
 

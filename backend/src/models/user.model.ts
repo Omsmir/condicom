@@ -17,6 +17,7 @@ export interface UserInput {
   gender: string;
   role: string;
   profileState?: boolean;
+  mfa_state?:boolean;
   verified?: boolean;
   bio?: string;
   weight?: string;
@@ -54,6 +55,7 @@ const userSchema = new mongoose.Schema<UserDocument>(
     gender: { type: String, required: true },
     role: { type: String, required: true },
     profileState: { type: Boolean, default: false },
+    mfa_state:{type:Boolean,default:false},
     verified: { type: Boolean, default: false },
     bio: { type: String },
     weight: { type: String },

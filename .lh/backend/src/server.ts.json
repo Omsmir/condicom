@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1741040365100,
@@ -36,6 +36,50 @@
                 {
                     "date": 1741093793820,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n );\r\n \r\n app.use(deserializeUser);\r\n \r\n-app.use(deserializeCode)\r\n+// app.use(deserializeCode)\r\n \r\n export const initiator = io(server);\r\n \r\n server.listen(port, async () => {\r\n"
+                },
+                {
+                    "date": 1744449338450,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,10 @@\n \r\n server.listen(port, async () => {\r\n   log.info(`server is connected to port: ${port}`);\r\n \r\n-  await SocketInitiator(initiator);\r\n+  await SocketInitiator(initiator);'\r\n+  await '\r\n   await connect();\r\n \r\n   routes(app);\r\n \r\n"
+                },
+                {
+                    "date": 1744449343630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n server.listen(port, async () => {\r\n   log.info(`server is connected to port: ${port}`);\r\n \r\n   await SocketInitiator(initiator);'\r\n-  await '\r\n+  aw\r\n   await connect();\r\n \r\n   routes(app);\r\n \r\n"
+                },
+                {
+                    "date": 1744449352148,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n import http from \"http\";\r\n import { Server } from \"socket.io\";\r\n import { io, SocketInitiator } from \"./utils/socketServer\";\r\n import { deserializeCode } from \"./middleware/deserializeCode\";\r\n+import RedisConnection from \"./utils/redis\";\r\n const port = config.get<string>(\"port\");\r\n const app = express();\r\n \r\n const server = http.createServer(app);\r\n@@ -37,10 +38,10 @@\n \r\n server.listen(port, async () => {\r\n   log.info(`server is connected to port: ${port}`);\r\n \r\n-  await SocketInitiator(initiator);'\r\n-  aw\r\n+  await SocketInitiator(initiator);\r\n+  await RedisConnection()\r\n   await connect();\r\n \r\n   routes(app);\r\n \r\n"
+                },
+                {
+                    "date": 1744449696585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n server.listen(port, async () => {\r\n   log.info(`server is connected to port: ${port}`);\r\n \r\n   await SocketInitiator(initiator);\r\n-  await RedisConnection()\r\n+  const redsi =await RedisConnection()\r\n   await connect();\r\n \r\n   routes(app);\r\n \r\n"
+                },
+                {
+                    "date": 1744449705375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,11 @@\n server.listen(port, async () => {\r\n   log.info(`server is connected to port: ${port}`);\r\n \r\n   await SocketInitiator(initiator);\r\n-  const redsi =await RedisConnection()\r\n+  const redis =await RedisConnection()\r\n+\r\n+  redis?.SADD()\r\n   await connect();\r\n \r\n   routes(app);\r\n \r\n"
+                },
+                {
+                    "date": 1744449711748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n \r\n   await SocketInitiator(initiator);\r\n   const redis =await RedisConnection()\r\n \r\n-  redis?.SADD()\r\n+  redis?.SADD(\"omar\",\"\")\r\n   await connect();\r\n \r\n   routes(app);\r\n \r\n"
+                },
+                {
+                    "date": 1744449721026,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n \r\n   await SocketInitiator(initiator);\r\n   const redis =await RedisConnection()\r\n \r\n-  redis?.SADD(\"omar\",\"\")\r\n+  await redis?.SADD(\"omar\",\"1\")\r\n   await connect();\r\n \r\n   routes(app);\r\n \r\n"
+                },
+                {
+                    "date": 1744449869700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n \r\n   await SocketInitiator(initiator);\r\n   const redis =await RedisConnection()\r\n \r\n-  await redis?.SADD(\"omar\",\"1\")\r\n+  await redis?.SADD(\"om5ar\",\"1\")\r\n   await connect();\r\n \r\n   routes(app);\r\n \r\n"
+                },
+                {
+                    "date": 1744450138012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n \r\n   await SocketInitiator(initiator);\r\n   const redis =await RedisConnection()\r\n \r\n-  await redis?.SADD(\"om5ar\",\"1\")\r\n+ \r\n   await connect();\r\n \r\n   routes(app);\r\n \r\n"
+                },
+                {
+                    "date": 1744454847875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n import http from \"http\";\r\n import { Server } from \"socket.io\";\r\n import { io, SocketInitiator } from \"./utils/socketServer\";\r\n import { deserializeCode } from \"./middleware/deserializeCode\";\r\n-import RedisConnection from \"./utils/redis\";\r\n+import { RedisConnection } from \"./utils/redis\";\r\n const port = config.get<string>(\"port\");\r\n const app = express();\r\n \r\n const server = http.createServer(app);\r\n@@ -39,9 +39,9 @@\n server.listen(port, async () => {\r\n   log.info(`server is connected to port: ${port}`);\r\n \r\n   await SocketInitiator(initiator);\r\n-  const redis =await RedisConnection()\r\n+  await RedisConnection()\r\n \r\n  \r\n   await connect();\r\n \r\n"
+                },
+                {
+                    "date": 1744459124556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,9 @@\n \r\n   await SocketInitiator(initiator);\r\n   await RedisConnection()\r\n \r\n+  await redis\r\n  \r\n   await connect();\r\n \r\n   routes(app);\r\n"
                 }
             ],
             "date": 1741040365100,

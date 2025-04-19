@@ -1,14 +1,17 @@
-"use client"
-import { inter } from "@/fonts/fonts"
-import {FadeMenu, SwitchDay, SwitchMonth } from "../togglers/TopBarEvents"
-import { CalenderHook } from "../context/CalenderProvider"
+"use client";
+import { inter } from "@/fonts/fonts";
+import { FadeMenu, SwitchDay, SwitchMonth } from "../togglers/TopBarEvents";
+import { CalenderHook } from "../context/CalenderProvider";
+import dynamic from "next/dynamic";
+const AppointmentCreationButton = dynamic(
+  () => import("@/components/AddAppointment")
+);
 
-import dynamic from "next/dynamic"
-import AddPatient from "../AddPatient"
-const AppointmentCreationButton = dynamic(() => import("@/components/AddAppointment"))
-const CalenderHeader = ({children}:{children:React.ReactNode}) => {
 
-    const {currDate} = CalenderHook()
+
+const CalenderHeader = ({ children }: { children: React.ReactNode }) => {
+  const { currDate } = CalenderHook();
+
   return (
     <div className={`flex h-screen pt-14 ${inter.className} `}>
       <div className="flex flex-col w-full border border-l-0 border-t-0 dark:bg-[var(--sidebar-accent)] dark:border-slate-800">
@@ -26,9 +29,9 @@ const CalenderHeader = ({children}:{children:React.ReactNode}) => {
           </div>
         </div>
         {children}
-        </div>
-        </div>
-  )
-}
+      </div>
+    </div>
+  );
+};
 
-export default CalenderHeader
+export default CalenderHeader;

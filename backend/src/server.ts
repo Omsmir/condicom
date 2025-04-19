@@ -11,6 +11,7 @@ import http from "http";
 import { Server } from "socket.io";
 import { io, SocketInitiator } from "./utils/socketServer";
 import { deserializeCode } from "./middleware/deserializeCode";
+import { redisBroker, RedisConnection } from "./utils/redis";
 const port = config.get<string>("port");
 const app = express();
 
@@ -39,6 +40,10 @@ server.listen(port, async () => {
   log.info(`server is connected to port: ${port}`);
 
   await SocketInitiator(initiator);
+  await RedisConnection()
+
+  await redisBroker()
+ 
   await connect();
 
   routes(app);

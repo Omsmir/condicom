@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import DeleteCode from "./DeleteCode";
 import { Badge } from "antd";
 import { Badge as ShadBadge } from "@/components/ui/badge";
+import { useSession } from "next-auth/react";
 interface SingleCodeProps {
   users: UserInformation[] | undefined;
   code: code;
@@ -14,6 +15,7 @@ interface SingleCodeProps {
 
 const Preferences = ({ code }: { code: code }) => {
   const [currDate, setCurrDate] = useState(code.createdAt);
+
 
   const newExpirationDate = addWeeks(currDate, 1);
 
@@ -27,13 +29,16 @@ const Preferences = ({ code }: { code: code }) => {
   );
 };
 const SingleCode = ({ code, users, isLoading }: SingleCodeProps) => {
+  const {data:session} = useSession()
+
   const UserWithCode = (id: string | undefined) => {
     return users
-      ?.filter((user) => user._id === id)
-      .map((element) => element.name)
+      ?.filter((user) => user._id  === id )
+      .map((user) => user.name)
       .join("");
   };
 
+  
 
   const data = {
     code: code.code,

@@ -2,10 +2,13 @@ import crypto from "crypto";
 import { NotificationModel } from "../models/notifications.model";
 import { MedicalStuffRegex } from "./constants";
 import { UserDocument } from "../models/user.model.js";
-import { isNumber } from "lodash";
-import bcryptjs from 'bcryptjs'
-import config from 'config'
-import { Transporter } from "nodemailer";
+import bcryptjs from "bcryptjs";
+import config from "config";
+import { createTransport } from "nodemailer";
+import path from "path";
+import fs from "fs";
+import Handlebars from "handlebars";
+
 interface Notification {
   type: string;
   description: string;
@@ -17,19 +20,18 @@ interface Notification {
 // Function to get system notifications based on event type
 export const systemNotifications = (
   title: "newUserHasJoined" | "emailVerification",
-  user: UserDocument,
-  newUser: UserDocument
+  user: UserDocument
 ): Notification => {
   const systemNotification: Record<string, Notification> = {
     newUserHasJoined: {
       type: "New Member",
-      description: `New Member (${newUser.name}) Has Joined Our Community`,
+      description: `New Member (${user.name}) Has Joined Our Community`,
       title: "System Administration",
       assignedTo: "AdminOnly",
     },
     emailVerification: {
       type: "Email Verification",
-      description: "Please Verify Your Email",
+      description: "A verification link has sent to your email please verify your email",
       title: "System Administration",
       assignedTo: "All",
       eventId: user._id as string,
@@ -43,8 +45,18 @@ export const systemNotifications = (
   return systemNotification[title];
 };
 
-export const generateRandomToken = (): string => {
-  return crypto.randomBytes(32).toString("hex");
+export const generateRandomToken = ({
+  bytes,
+  type,
+}: {
+  bytes: number;
+  type: BufferEncoding;
+}): string => {
+  return crypto.randomBytes(bytes).toString(`${type}`);
+};
+
+export const VerifyRandomTokenWithHash = ({ token }: { token: string }) => {
+  return crypto.createHash("sha256").update(token).digest("hex");
 };
 
 export const getUserNotifications = async (user: UserDocument) => {
@@ -141,34 +153,100 @@ export const generateExpirationDate = ({ month }: { month: string }) => {
   return expirationDate;
 };
 
+export const detectExpiredCode = ({ expiration }: { expiration: Date }) => {
+  if (new Date(expiration) < new Date()) return true;
 
+  return false;
+};
 
+export const hashPassword = async ({ password }: { password: string }) => {
+  const salt = await bcryptjs.genSalt(config.get<number>("saltWorkFactor"));
 
-export const detectExpiredCode = ({expiration}:{expiration:Date}) =>{
-  if(new Date(expiration) < new Date()) return true
+  const hash = bcryptjs.hashSync(password, salt);
 
-  return false
-}
-
-export const hashPassword = async ({password}:{password:string}) => {
-  const salt = await bcryptjs.genSalt(config.get<number>("saltWorkFactor"))
-
-  const hash = bcryptjs.hashSync(password,salt)
-
-  return hash
-}
-
+  return hash;
+};
 
 interface sendEmailProps {
-  to:string;
-  title:string;
-  body:string
+  to: string;
+  link?: string;
+  templateName: string;
+  health?:string;
+  otp?:string;
+  year?:string  | number | Date
 }
 
-export const sendEmail = async ({to,title,body}:sendEmailProps) => {
+export const sendEmail = async ({
+  to,
+  link,
+  templateName,
+  health,
+  year,
+  otp
+}: sendEmailProps): Promise<boolean> => {
+  const transport = createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    auth: {
+      user: config.get<string>("smtpUser"),
+      pass: config.get<string>("smtpAppPassword"),
+    },
+  });
+  const from = "HealthCare";
+  const subject = " HealthCare Email Verification";
+
+  const html = renderTemplate(`${templateName}`, {
+    to,
+    link,
+    health,
+    year,
+    otp
+  });
+
   try {
-    
-  } catch (error) {
+    await transport.sendMail({ from, subject, to, html });
+
+    return true;
+  } catch (error: any) {
+    console.log(error.message);
+    return false;
+  }
+};
+
+export const renderTemplate = (templateName: string, context: object) => {
+  const filePath = path.resolve(__dirname, `../../templates/${templateName}`);
+  const source = fs.readFileSync(filePath, "utf-8");
+  const template = Handlebars.compile(source);
+  return template(context);
+};
+
+
+type GenerateOtpProps = {
+  length: number;
+  type: "number" | "string";
+}
+
+export const generateOtp =  ({length,type}:GenerateOtpProps) => {
+  let otp = "";
+  const characters = "abcdefghijklmnopqrstuvwxyz";
+  const numbers = "0123456789";
+  switch(type){
+    case "number":
+      for (let i = 0; i < length; i++) {
+        otp += numbers.charAt(Math.floor(Math.random() * numbers.length));
+
+      }
+      break;
+    case "string":
+      for (let i = 0; i < length; i++) {
+         otp += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      break;
+    default:
+      throw new Error("Invalid type. Type should be either 'number' or 'string'.");
     
   }
+  return otp
 }
+
+

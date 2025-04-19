@@ -23,13 +23,15 @@ export const deserializeUser = async (
 
 
 
-      const {decoded,valid} = await verifyJwt(accessToken,'accessTokenPublicKey')
+      const {decoded,valid} = await verifyJwt(accessToken,'accessTokenPublicKey',"RS256")
 
       if(decoded){
         res.locals.user = decoded
 
+        console.log("Decoded User: from access token deserialize ")
         return next()
       }
+
 
 
       if(!valid && refreshToken){
@@ -40,15 +42,13 @@ export const deserializeUser = async (
             res.setHeader('Authorization',`${newAccessToken}`)
         }
 
-        const {decoded} = await verifyJwt(newAccessToken as string,'accessTokenPublicKey')
+        const {decoded} = await verifyJwt(newAccessToken as string,'accessTokenPublicKey',"RS256")
 
         res.locals.user = decoded
 
         return  next()
     }
 
-     
-    console.log("n")
 
     return next()
 

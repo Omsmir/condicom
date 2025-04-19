@@ -1,5 +1,5 @@
 import React from 'react'
-import { Skeleton ,Spin} from "antd";
+import {Spin} from "antd";
 const Loading = () => {
   return (
     <div className='absolute flex h-screen my-auto w-full justify-center items-center'>

@@ -13,15 +13,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const { NProgress } = DashboardHook();
-  
+
   NProgress.done();
   return (
     <SidebarProvider>
       <Navbar />
       <Dashboard>
-      
         <DashboardProvider>
-          {children}
+        {children}
         </DashboardProvider>
       </Dashboard>
     </SidebarProvider>
