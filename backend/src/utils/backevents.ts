@@ -174,6 +174,7 @@ interface sendEmailProps {
   health?:string;
   otp?:string;
   year?:string  | number | Date
+  date?:string  | number | Date 
 }
 
 export const sendEmail = async ({
@@ -182,6 +183,7 @@ export const sendEmail = async ({
   templateName,
   health,
   year,
+  date,
   otp
 }: sendEmailProps): Promise<boolean> => {
   const transport = createTransport({
@@ -200,6 +202,7 @@ export const sendEmail = async ({
     link,
     health,
     year,
+    date,
     otp
   });
 

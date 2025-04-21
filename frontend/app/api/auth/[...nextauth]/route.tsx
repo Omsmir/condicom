@@ -41,6 +41,7 @@ export const authOptions: AuthOptions = {
               profileState: decodedToken.profileState,
               passwordUpdatedAt: decodedToken.passwordUpdatedAt,
               codeExp: decodedToken.codePlan,
+              mfa_state:decodedToken.mfa_state,
               accessToken,
               refreshToken,
             };
@@ -83,6 +84,7 @@ export const authOptions: AuthOptions = {
         token.profileState = user.profileState;
         token.passwordUpdatedAt = user.passwordUpdatedAt;
         token.codeExp = user.codeExp;
+        token.mfa_state = user.mfa_state
       }
     
 
@@ -119,6 +121,7 @@ export const authOptions: AuthOptions = {
           refreshToken: token.refreshToken,
           passwordUpdatedAt: token.passwordUpdatedAt,
           codeExp: token.codeExp,
+          mfa_state:token.mfa_state
         };
         session.expires = addHours(
           new Date(token.expiresAt as number),

@@ -7,6 +7,7 @@ export default {
     nodeEnv:process.env.NODE_ENV,
     port:8080,
     dbUri:"mongodb://localhost:27017/",
+    frontendUri:process.env.NODE_ENV === "development" ? process.env.FRONTEND_URI_DEV : undefined,
     smtpAppPassword:process.env.APP_PASSWORD,
     smtpUser:process.env.SMTP_USER,
     mongoUser:process.env.MONGO_AUTH_USER,

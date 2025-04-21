@@ -25,7 +25,9 @@ import {
   SendEmailChange,
   SendEmailVerification,
   SendVerificationEmail,
+  toggleMultiAuthOtpFactor,
   verifyEmail,
+  verifyMultiAuthOtpEnabling,
 } from "./User";
 import { redirect, useRouter } from "next/navigation";
 import { CreateNotification } from "./Notification";
@@ -338,7 +340,7 @@ export const UseVerifyEmail = (id: string | undefined) => {
   const { setIsVerifyingEmail } = AccountHook();
 
   return useMutation({
-    mutationFn: (data:FormData) => verifyEmail(id),
+    mutationFn: (data: FormData) => verifyEmail(id),
     onMutate: () => {
       setIsVerifyingEmail(true);
     },
@@ -346,7 +348,6 @@ export const UseVerifyEmail = (id: string | undefined) => {
       setIsVerifyingEmail(false);
     },
     onSuccess: async (response) => {
-     
       setIsVerifyingEmail(false);
     },
   });
@@ -589,3 +590,52 @@ export const UseChangeProfilePicture = (
     },
   });
 };
+
+export const UseToggleMultiAuthFactor = (
+  api: NotificationInstance,
+  id: string | undefined
+) => {
+  const { setIsTogglingMulti } = AccountHook();
+  return useMutation({
+    mutationFn: (data:FormData) => toggleMultiAuthOtpFactor(id),
+    onMutate: () => {
+      setIsTogglingMulti(true);
+    },
+    onError: (error) => {
+      HandleAxiosErrors({ error, api });
+      setIsTogglingMulti(false);
+    },
+    onSuccess: async (response) => {
+      api.success({
+        message: response.data.message,
+      });
+      setIsTogglingMulti(false);
+    },
+  });
+};
+
+export const UseVerifyMultiAuthFactorEnabling = (
+  api: NotificationInstance,
+  id: string | undefined
+) => {
+  const { setIsTogglingMulti } = AccountHook();
+  return useMutation({
+    mutationFn: (data:FormData) => verifyMultiAuthOtpEnabling(id,data),
+    onMutate: () => {
+      setIsTogglingMulti(true);
+    },
+    onError: (error) => {
+      HandleAxiosErrors({ error, api });
+      setIsTogglingMulti(false);
+    },
+    onSuccess: async (response) => {
+      api.success({
+        message: response.message,
+      });
+      setIsTogglingMulti(false);
+    },
+  });
+};
+
+
+

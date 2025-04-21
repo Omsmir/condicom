@@ -1,41 +1,34 @@
 "use client";
 import React from "react";
-import { z } from "zod";
 import { Form } from "@/components/ui/form";
 import SubmitButton from "@/components/togglers/SubmitButton";
-import { ResetPasswordSchema } from "@/lib/vaildation";
 import { DashboardHook } from "@/components/context/Dashboardprovider";
 import { AccountHook } from "@/components/context/AccountProvider";
-import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import CustomFormField, { FormFieldType } from "@/components/CustomFormField";
 import { useSession } from "next-auth/react";
+import { UseToggleMultiAuthFactor } from "@/actions/mutation";
+import { redirect } from "next/navigation";
 
 const MutliAuth = () => {
-  const { isLoading } = AccountHook();
+  const { isTogglingMulti } = AccountHook();
   const { api } = DashboardHook();
 
   const { data: session } = useSession();
 
-  const form = useForm<z.infer<typeof ResetPasswordSchema>>({
-    resolver: zodResolver(ResetPasswordSchema),
-    defaultValues: {
-      email: "",
-    },
-  });
+  const toggleMulti = UseToggleMultiAuthFactor(api, session?.user.id);
 
-  const onSubmit = async (values: z.infer<typeof ResetPasswordSchema>) => {
+  const form = useForm();
+
+  const onSubmit = async () => {
     const formData = new FormData();
 
-    const data = {};
-
-    Object.entries(data).forEach(([key, value]) => {
-      if (value !== null && value !== "") {
-        formData.append(key, value as string);
-      }
-    });
     try {
+      await toggleMulti.mutateAsync(formData, {
+        onSuccess: async (response) => {
+          await new Promise((res) => setTimeout(res, 1500));
+          redirect(`/dashboard/settings/setting/verify/${response.data.token}`);
+        },
+      });
     } catch (error: any) {
       console.log(`error from Account profile: ${error.message}`);
     }
@@ -47,30 +40,41 @@ const MutliAuth = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col p-8  w-full space-y-4"
       >
-       <div className="flex flex-col sm:flex-row items-center">
-       <div className="flex w-full flex-col space-y-2">
-          <div className="flex">
-            <h1 className="font-medium capitalize">
-              Multi-factor Authentication
-            </h1>
+        <div className="flex flex-col sm:flex-row items-center">
+          <div className="flex w-full flex-col space-y-2">
+            <div className="flex">
+              <h1 className="font-medium capitalize">
+                Multi-factor Authentication
+              </h1>
+            </div>
+            <p className="text-xs text-slate-500">
+              Enabling multi-factor authentication will add extra layer of
+              security to your department account
+            </p>
           </div>
-          <p className="text-xs text-slate-500">
-            Enabling multi-factor authentication will add extra layer of security to your department account
-          </p>
+          <div className="flex flex-col h-full w-full sm:w-fit space-y-2 mt-4 sm:mt-0">
+            <SubmitButton
+              className="bg-blue-800 text-slate-50 max-h-[25px] capitalize "
+              isLoading={isTogglingMulti}
+              disabled={session?.user.mfa_state}
+              disabledText="multi-auth is enabled"
+              innerText=" " // importtant
+            >
+              enable multi-factor authentication
+            </SubmitButton>
+
+            <div className="flex items-center text-xs capitalize whitespace-nowrap">
+              multi-factor authentication is{" "}
+              <p
+                className={`ml-1 text-xs ${
+                  session?.user.mfa_state ? "text-green-800" : "text-red-800"
+                }`}
+              >
+                {session?.user.mfa_state ? "enabled" : "not enabled"}
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col h-full w-full sm:w-fit space-y-2 mt-4 sm:mt-0">
-          <SubmitButton
-            className="bg-blue-800 text-slate-50 max-h-[25px] capitalize "
-            isLoading={isLoading}
-            innerText=" " // importtant
-          >
-            enable multi-factor authentication
-          </SubmitButton>
-          <p className="text-xs capitalize">
-            multi-factor authentication is not enabled
-          </p>
-        </div>
-       </div>
       </form>
     </Form>
   );

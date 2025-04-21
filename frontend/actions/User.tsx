@@ -113,8 +113,7 @@ interface Token {
   message: string;
 }
 export const checkToken = async (token: string, hashname: string) => {
-  return (await axiosInstace.get<Token>(`/password/reset/${token}/${hashname}`))
-    .data;
+  return (await axiosInstace.get<Token>(`/token/${token}/${hashname}`)).data;
 };
 
 export const ResetNewPassword = async (
@@ -186,6 +185,7 @@ export const refreshAccessToken = async (token: any) => {
       refreshToken: refreshToken,
       profileState: decodedToken.profileState,
       codeExp: decodedToken.codePlan,
+      mfa_state: decodedToken.mfa_state,
     };
   } catch (error) {
     console.error("Refresh token error:", error);
@@ -202,4 +202,18 @@ export const verifyEmail = async (
   id: string | undefined
 ): Promise<verifyEmailProps> => {
   return await axiosInstace.post(`/email/verify/${id}`);
+};
+
+export const toggleMultiAuthOtpFactor = async (id: string | undefined) => {
+  return await axiosInstace.put(`/multi-factor-otp/enabling-disabling/${id}`);
+};
+
+export const verifyMultiAuthOtpEnabling = async (
+  id: string | undefined,
+  data: FormData
+):Promise<verifyEmailProps> => {
+  return await axiosInstace.put(
+    `/multi-factor-otp/enabling/verify/${id}`,
+    data
+  );
 };

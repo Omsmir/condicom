@@ -98,3 +98,8 @@ export const DelHash = async (HashName: string, value: string) => {
 
   return await redis.hDel(HashName, value);
 };
+
+export const GetHashExpiration = async (HashName: string) => {
+  const redis = await RedisConnection();
+  return await redis.ttl(HashName)
+}

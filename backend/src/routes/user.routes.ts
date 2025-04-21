@@ -2,7 +2,7 @@ import express from 'express'
 import upload from '../middleware/multer'
 import { validate } from '../middleware/validateResource'
 import { AddAdditionalSchema, ChangeEmailSchema, ChangePasswordSchema, ChangeProfilePictureSchema, CheckOtpSchema, CheckTokenExistanceSchema, CreateUserSchema, ResetPasswordNewSchema, ResetPasswordSchema, SendEmailVerificationSchema, UpdateUserSchema } from '../schemas/user.schema'
-import { AddAdditionlHandler, changePasswordHandler, changeProfilePictureHandler, ChangeUserInformationHandler, checkOtpEmailChangeHandler, CheckTokenHandler, createUserHandler, getAllUsersHandler, getUser, reIssueAccessTokenHandler, ResetPasswordHandler, SendChangeEmailHandler, sendEmailVerificationHandler, SendResetEmailHandler, verifyEmailHandler } from '../controllers/user.controller'
+import { AddAdditionlHandler, changePasswordHandler, changeProfilePictureHandler, ChangeUserInformationHandler, checkOtpEmailChangeHandler, CheckTokenHandler, createUserHandler, getAllUsersHandler, getUser, multiAuthOtpHandler, reIssueAccessTokenHandler, ResetPasswordHandler, SendChangeEmailHandler, sendEmailVerificationHandler, SendResetEmailHandler, verifyEmailHandler, verifyEnablingMultiAuthOtpHandler } from '../controllers/user.controller'
 import { SessionSchema } from '../schemas/session.schema'
 import { getUserSessions, login } from '../controllers/session.controller'
 import { requireUser } from '../middleware/requireUser'
@@ -29,15 +29,20 @@ router.get("/users/:id",getAllUsersHandler)
 
 router.get("/:id",getUser)
 
-// password routes
+// password and security routes
 router.put("/password/change/:id",upload.none(),validate(ChangePasswordSchema),changePasswordHandler)
 
 router.put("/password/reset/message",upload.none(),validate(ResetPasswordSchema),SendResetEmailHandler)
 
 router.put("/password/reset/:token",upload.none(),validate(ResetPasswordNewSchema),ResetPasswordHandler)
 
+router.put("/multi-factor-otp/enabling-disabling/:id",validate(SendEmailVerificationSchema),multiAuthOtpHandler)
+
+router.put("/multi-factor-otp/enabling/verify/:id",upload.none(),validate(CheckOtpSchema),verifyEnablingMultiAuthOtpHandler)
+//
+
 //commen token checker
-router.get("/password/reset/:token/:hashname",validate(CheckTokenExistanceSchema),CheckTokenHandler)
+router.get("/token/:token/:hashname",validate(CheckTokenExistanceSchema),CheckTokenHandler)
 // email routes
 router.post("/email/change/otp/:id",upload.none(),validate(ChangeEmailSchema),SendChangeEmailHandler)
 

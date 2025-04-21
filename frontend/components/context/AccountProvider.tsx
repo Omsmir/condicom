@@ -29,7 +29,9 @@ setIsChangingEmail: React.Dispatch<React.SetStateAction<boolean>>;
 isChangingPicture: boolean
 setIsChangingPicture: React.Dispatch<React.SetStateAction<boolean>>
 setIsVerifyingEmail: React.Dispatch<React.SetStateAction<boolean>>
-isVerifyingEmail: boolean
+isVerifyingEmail: boolean;
+isTogglingMulti: boolean;
+setIsTogglingMulti: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AccountContext = createContext<AccountContextProps | null>(null);
@@ -43,6 +45,7 @@ export const AccountProvider = ({ children }: { children: React.ReactNode }) => 
   const[isChangingEmail,setIsChangingEmail] = useState<boolean>(false)
   const[isChangingPicture,setIsChangingPicture] = useState<boolean>(false)
   const [isVerifyingEmail,setIsVerifyingEmail] = useState(false)
+  const [isTogglingMulti,setIsTogglingMulti] = useState(false)
 
   const [ResetState,setResetState] = useState<boolean>(false)
   const [open, setOpen] = React.useState(false);
@@ -56,7 +59,7 @@ export const AccountProvider = ({ children }: { children: React.ReactNode }) => 
     },
   });
   return (
-    <AccountContext.Provider value={{isVerifyingEmail,setIsVerifyingEmail,isChangingEmail,setIsChangingEmail,isChangingPicture,setIsChangingPicture, ProfileEdit,AccountEdit,isLoading,isDeleteLoading,open,ResetState,emailSent,setEmailSent,setResetState,setOpen,setIsDeleteLoading, setProfileEdit,setAccountEdit,setIsLoading ,form}}>
+    <AccountContext.Provider value={{isTogglingMulti,setIsTogglingMulti,isVerifyingEmail,setIsVerifyingEmail,isChangingEmail,setIsChangingEmail,isChangingPicture,setIsChangingPicture, ProfileEdit,AccountEdit,isLoading,isDeleteLoading,open,ResetState,emailSent,setEmailSent,setResetState,setOpen,setIsDeleteLoading, setProfileEdit,setAccountEdit,setIsLoading ,form}}>
       {children}
     </AccountContext.Provider>
   );

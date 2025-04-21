@@ -94,7 +94,8 @@ declare module "next-auth" {
       code: string;
       profileState: boolean;
       passwordUpdatedAt: Date;
-      codeExp:Date
+      codeExp: Date;
+      mfa_state: boolean;
     } & DefaultSession["user"];
   }
 
@@ -106,8 +107,8 @@ declare module "next-auth" {
     refreshToken: string;
     profileState: boolean;
     passwordUpdatedAt: Date;
-    codeExp:Date
-
+    codeExp: Date;
+    mfa_state: boolean;
   }
 }
 
@@ -124,8 +125,8 @@ declare module "next-auth/jwt" {
     refreshToken: string;
     profileState: boolean;
     passwordUpdatedAt: Date;
-    codeExp:Date
-
+    codeExp: Date;
+    mfa_state: boolean;
   }
 }
 
