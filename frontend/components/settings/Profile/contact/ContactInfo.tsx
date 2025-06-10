@@ -15,7 +15,7 @@ const ContactInfo = ({
   const data = {
     "email address": user?.email,
     "contact number": user?.phone,
-    address: `${user?.country}, ${user?.address}` || "not assigned",
+    address: `${user?.country}, ${user?.address || "not assigned"}` || "not assigned",
     role: user?.role,
   };
   return (

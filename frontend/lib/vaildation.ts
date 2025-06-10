@@ -12,6 +12,7 @@ import {
   medicationRoutes,
   medicationStrengths,
 } from "./constants";
+import { File } from "buffer";
 
 export const formSchema = z.object({
   name: z.string().min(2, {
@@ -265,4 +266,82 @@ export const CodeDeletionSchema = z.object({
     .refine((code) => code.match(/B(1|2)[0-5](C|D|E)[0-9]{5}/g), {
       message: "invalid code",
     }),
+});
+
+export const SettingAuthentcationSchema = z
+  .object({
+    password: z.string().min(1, { message: "current password is required" }),
+    newPassword: z
+      .string({ message: "enter new password" })
+      .min(8, "Password must be at least 8 characters long")
+      .refine((value) => /[a-z]/.test(value), {
+        message: "Password must contain at least one lowercase letter",
+      })
+      .refine((value) => /[A-Z]/.test(value), {
+        message: "Password must contain at least one uppercase letter",
+      })
+      .refine((value) => /\d/.test(value), {
+        message: "Password must contain at least one number",
+      })
+      .refine((value) => /[@$!%*?&]/.test(value), {
+        message:
+          "Password must contain at least one special character (@$!%*?&)",
+      }),
+    newPasswordConfirm: z.string({ message: "new password confirm required" }),
+  })
+  .refine((data) => data.newPassword === data.newPasswordConfirm, {
+    message: "new passwords must match",
+    path: ["newPasswordConfirm"],
+  });
+
+export const ResetPasswordNewSchema = z
+  .object({
+    newPassword: z
+      .string({ message: "enter new password" })
+      .min(8, "Password must be at least 8 characters long")
+      .refine((value) => /[a-z]/.test(value), {
+        message: "Password must contain at least one lowercase letter",
+      })
+      .refine((value) => /[A-Z]/.test(value), {
+        message: "Password must contain at least one uppercase letter",
+      })
+      .refine((value) => /\d/.test(value), {
+        message: "Password must contain at least one number",
+      })
+      .refine((value) => /[@$!%*?&]/.test(value), {
+        message:
+          "Password must contain at least one special character (@$!%*?&)",
+      }),
+    newPasswordConfirm: z.string({ message: "new password confirm required" }),
+  })
+  .refine((data) => data.newPassword === data.newPasswordConfirm, {
+    message: "new passwords must match",
+    path: ["newPasswordConfirm"],
+  });
+
+export const ResetPasswordSchema = z.object({
+  email: z
+    .string({ message: "email is required" })
+    .email({ message: "invalid email supported" }),
+  id: z.string().optional(),
+});
+
+export const ConfirmEmailChangeSchema = z.object({
+  otp: z.string({ message: "otp is required" }).min(8, "otp is required"),
+});
+
+export const profilePictureSchema = z.object({
+  profilePicture: z
+  .custom<File[]>((files) => files && files.length > 0, {
+    message: "Please select an image",
+  })
+  .refine(
+    (files) =>
+      files.every((file) => {
+        const fileName = file.name.toLowerCase();
+        const extension = fileName.split(".").pop();
+        return validImageExtensions.includes(extension || "");
+      }),
+    { message: "Invalid image extension" }
+  )
 });

@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/home/omar/Documents/Health/backend/src/logs/error/.de1e30153b4ef0ac264a39005ad306866c936ae7-audit.json",
+    "files": [
+        {
+            "date": 1749494329123,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/2025-06-09.log",
+            "hash": "36c965c66d10bc449c328361fe02ebacd9ccb200f758185d41973400ebd56d4f"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -1,8 +1,8 @@
 "use client";
 import { SidebarTrigger, useSidebar } from "./ui/sidebar";
 import clsx from "clsx";
-import BadgeAvatar from "./profileMenu/Avatar";
-import NotificationContent from "./profileMenu/NotificationContent";
+import BadgeAvatar from "./TopMenu/Avatar";
+import NotificationContent from "./TopMenu/NotificationContent";
 import { useSession } from "next-auth/react";
 const Navbar = () => {
   const { open, isMobile } = useSidebar();

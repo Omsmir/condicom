@@ -74,7 +74,7 @@ const CalenderRow: React.FC<Calender> = ({
       className={clsx(
         "flex flex-col border-b h-32 p-2 cursor-pointer dark:border-slate-700",
         {
-          "bg-[var(--sidebar-background)]":
+          "bg-slate-200 dark:bg-[var(--sidebar-background)]":
             dayToCompare(day).day === stateTocompare().day,
         },
         className

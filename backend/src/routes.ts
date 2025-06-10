@@ -1,24 +1,19 @@
-import { Express } from "express"
-import userRouter from "./routes/user.routes"
-import codeRouter from "./routes/code.routes"
-import appointmentRouter from "./routes/appointment.routes"
-import patientRouter from "./routes/patient.routes"
-import medicationRouter from "./routes/medication.routes"
-import notifcationRouter from "./routes/notifications.routes"
-const routes = (app:Express) => {
-// code router
-app.use('/api/code',codeRouter)
-// user router
-app.use("/api/auth",userRouter)
+import AppointmentsRoutes from './routes/appointment.routes';
+import CodeRoutes from './routes/code.routes';
+import IndexRoute from './routes/index.route';
+import MedicationRoutes from './routes/medication.routes';
+import NotificationsRoutes from './routes/notifications.routes';
+import PatientRoutes from './routes/patient.routes';
+import UserRoutes from './routes/user.routes';
 
-app.use("/api/appointments",appointmentRouter)
+const routes = [
+    new IndexRoute(),
+    new UserRoutes(),
+    new AppointmentsRoutes(),
+    new MedicationRoutes(),
+    new CodeRoutes(),
+    new NotificationsRoutes(),
+    new PatientRoutes(),
+];
 
-app.use("/api/patient",patientRouter)
-
-app.use("/api/medications",medicationRouter)
-
-app.use("/api/notifications",notifcationRouter)
-}
-
-
-export default routes
+export default routes;

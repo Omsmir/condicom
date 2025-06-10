@@ -8,8 +8,7 @@ import {
 } from "./table/PharmacyColumns";
 import { UseMedicationsQuery } from "@/actions/queries";
 import Loading from "@/app/loading";
-import { useEffect, useState } from "react";
-import { medication, medications } from "@/types";
+
 
 const Pharmacy = () => {
   const { data, error, isLoading,isError,isFetching } = UseMedicationsQuery();

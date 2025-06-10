@@ -59,7 +59,7 @@ const MonthView = ({appointments}:{appointments: Appointment[] | undefined}) => 
               return (
                 <CalenderRow
                   day={day}
-                  className="border-r hover:bg-slate-100 dark:hover:bg-[var(--sidebar-background)]"
+                  className="border-r hover:bg-slate-200 dark:hover:bg-[var(--sidebar-background)]"
                   key={index}
                   appointment={appointments}
                 />
@@ -68,7 +68,7 @@ const MonthView = ({appointments}:{appointments: Appointment[] | undefined}) => 
               return (
                 <CalenderRow
                   day={day}
-                  className="border-r hover:bg-slate-100 dark:hover:bg-[var(--sidebar-background)]"
+                  className="border-r hover:bg-slate-200 dark:hover:bg-[var(--sidebar-background)]"
                   key={index}
                   appointment={appointments}
                 />

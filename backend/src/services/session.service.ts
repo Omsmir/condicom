@@ -1,39 +1,38 @@
-import { get } from "lodash";
-import { sessionDocument, sessionInput, SessionModel } from "../models/session.model";
-import { signJwt, verifyJwt } from "../utils/jwt.sign";
-import { findUser } from "./user.service";
-import config from 'config'
-import { FilterQuery } from "mongoose";
-export const createSession = async (input:sessionInput) => {
-    return await SessionModel.create(input)
-}
+import { get } from 'lodash';
+import { sessionDocument, sessionInput, SessionModel } from '../models/session.model';
+import { signJwt, verifyJwt } from '../utils/jwt.sign';
+import { findUser } from './user.service';
+import { ACCESSTOKENTTL } from 'config';
+import { FilterQuery } from 'mongoose';
+import { findCode } from './code.service';
+export const createSession = async (input: sessionInput) => {
+    return await SessionModel.create(input);
+};
 
+export const getSession = async (query: FilterQuery<sessionDocument>) => {
+    return await SessionModel.findOne(query).lean();
+};
 
+export const reIssueAccessToken = async (refreshToken: string) => {
+    const { decoded } = await verifyJwt(refreshToken, 'refreshTokenPublicKey', 'RS256');
 
-export const getSession = async (query:FilterQuery<sessionDocument>) => {
-return await SessionModel.findOne(query).lean()
-}
+    if (!decoded || !get(decoded, 'session')) return false;
 
+    const session = await SessionModel.findById(get(decoded, 'session'));
 
-export const reIssueAccessToken = async(refreshToken:string) => {
-    const {decoded} = await verifyJwt(refreshToken,"refreshTokenPublicKey")
+    if (!session || !session.valid) return false;
 
-    if(!decoded || !get(decoded,'session')) return false
+    const user = await findUser({ _id: session.user });
 
-    const session = await SessionModel.findById(get(decoded, "session"))
+    if (!user) return false;
 
-    if(!session || !session.valid) return false
+    const code = await findCode({ user: user._id });
+    const accessToken = signJwt(
+        { ...user, session: session?._id, codePlan: code?.expiration },
+        'accessTokenPrivateKey',
+        'RS256',
+        { expiresIn: ACCESSTOKENTTL as any } // 15min
+    );
 
-    const user = await findUser({_id:session.user})
-
-    if(!user) return false
-
-    const accessToken =  signJwt(
-        { ...user, session: session?._id },
-        "accessTokenPrivateKey",
-        { expiresIn: config.get("accessTokenTtl") } // 15min
-      );
-    
-
-      return accessToken
-}
+    return accessToken;
+};

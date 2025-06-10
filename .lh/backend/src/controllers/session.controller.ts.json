@@ -1,0 +1,214 @@
+{
+    "sourceFile": "backend/src/controllers/session.controller.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 49,
+            "patches": [
+                {
+                    "date": 1744451545650,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1744451557621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { validatePassword } from \"../services/user.service\";\r\n import { signJwt } from \"../utils/jwt.sign\";\r\n import { createSession, getSession } from \"../services/session.service\";\r\n import config from \"config\";\r\n+import { findCode } from \"../services/code.service\";\r\n export const login = async (\r\n   req: Request<{}, {}, SessionSchemaInterface[\"body\"]>,\r\n   res: Response,\r\n   next: NextFunction\r\n@@ -25,9 +26,9 @@\n     };\r\n \r\n \r\n \r\n-    const code = await fin\r\n+    const code = await findCode({us})\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n       { ...user,id:user._id, session: session._id },\r\n"
+                },
+                {
+                    "date": 1744451565708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     };\r\n \r\n \r\n \r\n-    const code = await findCode({us})\r\n+    const code = await findCode({used:true,user})\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n       { ...user,id:user._id, session: session._id },\r\n"
+                },
+                {
+                    "date": 1744451574593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     };\r\n \r\n \r\n \r\n-    const code = await findCode({used:true,user})\r\n+    const code = await findCode({used:true,user:user.})\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n       { ...user,id:user._id, session: session._id },\r\n"
+                },
+                {
+                    "date": 1744451581823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,11 @@\n     };\r\n \r\n \r\n \r\n-    const code = await findCode({used:true,user:user.})\r\n+    const code = await findCode({used:true,user:user._id})\r\n+\r\n+    if(!code)\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n       { ...user,id:user._id, session: session._id },\r\n"
+                },
+                {
+                    "date": 1744451590381,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,11 @@\n \r\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n-    if(!code)\r\n+    if(!code){\r\n+      res.status()\r\n+    }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n       { ...user,id:user._id, session: session._id },\r\n"
+                },
+                {
+                    "date": 1744451597766,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     if(!code){\r\n-      res.status()\r\n+      res.status(404).json\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744451602962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     if(!code){\r\n-      res.status(404).json\r\n+      res.status(404).json({message:\"\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744451608675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     if(!code){\r\n-      res.status(404).json({message:\"\"})\r\n+      res.status(404).json({message:\"code \"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744451621193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     if(!code){\r\n-      res.status(404).json({message:\"code \"})\r\n+      res.status(404).json({message:\"code no\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744451626670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     if(!code){\r\n-      res.status(404).json({message:\"code no\"})\r\n+      res.status(404).json({message:\"not redgistered \"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744451634323,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     if(!code){\r\n-      res.status(404).json({message:\"not redgistered \"})\r\n+      res.status(404).json({message:\"not redgistered or plan expired\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744451646776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,10 +28,11 @@\n \r\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n+    \r\n     if(!code){\r\n-      res.status(404).json({message:\"not redgistered or plan expired\"})\r\n+      res.status(404).json({message:\"not registered or plan expired\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744451661278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n       role: user.role,\r\n     };\r\n \r\n \r\n+    const checkExpiration\r\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     \r\n"
+                },
+                {
+                    "date": 1744451671908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n       role: user.role,\r\n     };\r\n \r\n \r\n-    const checkExpiration\r\n+    const checkExpiration = ({date})\r\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     \r\n"
+                },
+                {
+                    "date": 1744451678724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,11 +24,11 @@\n       userAgent: req.get(\"user-agent\") || \"\",\r\n       role: user.role,\r\n     };\r\n \r\n+[]\r\n+    const checkExpiration = ({codeExp}:)\r\n \r\n-    const checkExpiration = ({date})\r\n-\r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     \r\n     if(!code){\r\n"
+                },
+                {
+                    "date": 1744451688202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,11 +24,11 @@\n       userAgent: req.get(\"user-agent\") || \"\",\r\n       role: user.role,\r\n     };\r\n \r\n-[]\r\n-    const checkExpiration = ({codeExp}:)\r\n \r\n+    const checkExpiration = ({codeExp}:{codeExp:Date})\r\n+\r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     \r\n     if(!code){\r\n"
+                },
+                {
+                    "date": 1744451697044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,11 @@\n       role: user.role,\r\n     };\r\n \r\n \r\n-    const checkExpiration = ({codeExp}:{codeExp:Date})\r\n+    const checkExpiration = ({codeExp}:{codeExp:Date}) => {\r\n+      const currDate = \r\n+    }\r\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     \r\n"
+                },
+                {
+                    "date": 1744451702960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     };\r\n \r\n \r\n     const checkExpiration = ({codeExp}:{codeExp:Date}) => {\r\n-      const currDate = \r\n+      const currDate = new Date()\r\n     }\r\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n"
+                },
+                {
+                    "date": 1744451731651,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,9 @@\n \r\n \r\n     const checkExpiration = ({codeExp}:{codeExp:Date}) => {\r\n       const currDate = new Date()\r\n+      if()\r\n     }\r\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n"
+                },
+                {
+                    "date": 1744451739444,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n \r\n \r\n     const checkExpiration = ({codeExp}:{codeExp:Date}) => {\r\n       const currDate = new Date()\r\n-      if()\r\n+      if(currDate > codeex)\r\n     }\r\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n"
+                },
+                {
+                    "date": 1744451749255,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,11 +25,13 @@\n       role: user.role,\r\n     };\r\n \r\n \r\n-    const checkExpiration = ({codeExp}:{codeExp:Date}) => {\r\n+    const checkExpiration = ({codeExp}:{codeExp:Date}):boolean => {\r\n       const currDate = new Date()\r\n-      if(currDate > codeex)\r\n+      if(currDate > codeExp){\r\n+        return true\r\n+      }\r\n     }\r\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n"
+                },
+                {
+                    "date": 1744451759129,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,14 +30,15 @@\n       const currDate = new Date()\r\n       if(currDate > codeExp){\r\n         return true\r\n       }\r\n+      return false\r\n     }\r\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     \r\n-    if(!code){\r\n+    if(!code ){\r\n       res.status(404).json({message:\"not registered or plan expired\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n"
+                },
+                {
+                    "date": 1744451770200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     \r\n-    if(!code ){\r\n+    if(!code || checkExpiration(code.expiration)){\r\n       res.status(404).json({message:\"not registered or plan expired\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n"
+                },
+                {
+                    "date": 1744451780469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     \r\n-    if(!code || checkExpiration(code.expiration)){\r\n+    if(!code || checkExpiration({})){\r\n       res.status(404).json({message:\"not registered or plan expired\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n"
+                },
+                {
+                    "date": 1744451787979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     \r\n-    if(!code || checkExpiration({})){\r\n+    if(!code || checkExpiration({codeExp:code.exp})){\r\n       res.status(404).json({message:\"not registered or plan expired\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n"
+                },
+                {
+                    "date": 1744451858835,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,15 +36,15 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     \r\n-    if(!code || checkExpiration({codeExp:code.exp})){\r\n+    if(!code || checkExpiration({codeExp:code.expiration})){\r\n       res.status(404).json({message:\"not registered or plan expired\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n-      { ...user,id:user._id, session: session._id },\r\n+      { ...user,id:user._id, session: session._id,code },\r\n       \"accessTokenPrivateKey\",\r\n       { expiresIn: config.get(\"accessTokenTtl\") }\r\n     );\r\n \r\n"
+                },
+                {
+                    "date": 1744451863925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n-      { ...user,id:user._id, session: session._id,code },\r\n+      { ...user,id:user._id, session: session._id,codePla },\r\n       \"accessTokenPrivateKey\",\r\n       { expiresIn: config.get(\"accessTokenTtl\") }\r\n     );\r\n \r\n"
+                },
+                {
+                    "date": 1744451871423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n-      { ...user,id:user._id, session: session._id,codePla },\r\n+      { ...user,id:user._id, session: session._id,codePlan:code.exp },\r\n       \"accessTokenPrivateKey\",\r\n       { expiresIn: config.get(\"accessTokenTtl\") }\r\n     );\r\n \r\n"
+                },
+                {
+                    "date": 1744451882553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,13 +38,14 @@\n \r\n     \r\n     if(!code || checkExpiration({codeExp:code.expiration})){\r\n       res.status(404).json({message:\"not registered or plan expired\"})\r\n+      return\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n-      { ...user,id:user._id, session: session._id,codePlan:code.exp },\r\n+      { ...user,id:user._id, session: session._id,codePlan:code?.expiration },\r\n       \"accessTokenPrivateKey\",\r\n       { expiresIn: config.get(\"accessTokenTtl\") }\r\n     );\r\n \r\n"
+                },
+                {
+                    "date": 1744451889316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n-      { ...user,id:user._id, session: session._id,codePlan:code?.expiration },\r\n+      { ...user,id:user._id, session: session._id,codePlan:code.ex},\r\n       \"accessTokenPrivateKey\",\r\n       { expiresIn: config.get(\"accessTokenTtl\") }\r\n     );\r\n \r\n"
+                },
+                {
+                    "date": 1744452863597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,16 +36,16 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     \r\n-    if(!code || checkExpiration({codeExp:code.expiration})){\r\n-      res.status(404).json({message:\"not registered or plan expired\"})\r\n-      return\r\n-    }\r\n+    // if(!code || checkExpiration({codeExp:code.expiration})){\r\n+    //   res.status(404).json({message:\"not registered or plan expired\"})\r\n+    //   return\r\n+    // }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n-      { ...user,id:user._id, session: session._id,codePlan:code.ex},\r\n+      { ...user,id:user._id, session: session._id,codePlan:code.expiration},\r\n       \"accessTokenPrivateKey\",\r\n       { expiresIn: config.get(\"accessTokenTtl\") }\r\n     );\r\n \r\n"
+                },
+                {
+                    "date": 1744452882373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n     // }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n-      { ...user,id:user._id, session: session._id,codePlan:code.expiration},\r\n+      { ...user,id:user._id, session: session._id,codePlan:code?.expiration},\r\n       \"accessTokenPrivateKey\",\r\n       { expiresIn: config.get(\"accessTokenTtl\") }\r\n     );\r\n \r\n"
+                },
+                {
+                    "date": 1744453983762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,12 +36,8 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n \r\n     \r\n-    // if(!code || checkExpiration({codeExp:code.expiration})){\r\n-    //   res.status(404).json({message:\"not registered or plan expired\"})\r\n-    //   return\r\n-    // }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n       { ...user,id:user._id, session: session._id,codePlan:code?.expiration},\r\n"
+                },
+                {
+                    "date": 1744454144750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,19 +25,10 @@\n       role: user.role,\r\n     };\r\n \r\n \r\n-    const checkExpiration = ({codeExp}:{codeExp:Date}):boolean => {\r\n-      const currDate = new Date()\r\n-      if(currDate > codeExp){\r\n-        return true\r\n-      }\r\n-      return false\r\n-    }\r\n-\r\n     const code = await findCode({used:true,user:user._id})\r\n-\r\n-    \r\n+ \r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n       { ...user,id:user._id, session: session._id,codePlan:code?.expiration},\r\n"
+                },
+                {
+                    "date": 1744454226908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,9 @@\n \r\n \r\n     const code = await findCode({used:true,user:user._id})\r\n  \r\n+    if(!code)\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n       { ...user,id:user._id, session: session._id,codePlan:code?.expiration},\r\n"
+                },
+                {
+                    "date": 1744454235494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,11 @@\n \r\n \r\n     const code = await findCode({used:true,user:user._id})\r\n  \r\n-    if(!code)\r\n+    if(!code){\r\n+      res.status(404)\r\n+    }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n       { ...user,id:user._id, session: session._id,codePlan:code?.expiration},\r\n"
+                },
+                {
+                    "date": 1744454240699,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n  \r\n     if(!code){\r\n-      res.status(404)\r\n+      res.status(404).json({message:\"\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744454245931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n  \r\n     if(!code){\r\n-      res.status(404).json({message:\"\"})\r\n+      res.status(404).json({message:\"fo\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744454255550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n  \r\n     if(!code){\r\n-      res.status(404).json({message:\"fo\"})\r\n+      res.status(404).json({message:\"something went \"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744454263417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n  \r\n     if(!code){\r\n-      res.status(404).json({message:\"something went \"})\r\n+      res.status(404).json({message:\"something went wrong with the subs\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744454269834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n  \r\n     if(!code){\r\n-      res.status(404).json({message:\"something went wrong with the subs\"})\r\n+      res.status(404).json({message:\"something went wrong with the subsribe\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744454276046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \r\n     const code = await findCode({used:true,user:user._id})\r\n  \r\n     if(!code){\r\n-      res.status(404).json({message:\"something went wrong with the subsribe\"})\r\n+      res.status(404).json({message:\"something went wrong with the subscribtion plan\"})\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n"
+                },
+                {
+                    "date": 1744459988004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,57 +17,62 @@\n       res.status(403).json({ message: \"invalid email or password\" });\r\n       return;\r\n     }\r\n \r\n-  \r\n     const obj = {\r\n       user: user._id as string,\r\n       userAgent: req.get(\"user-agent\") || \"\",\r\n       role: user.role,\r\n     };\r\n \r\n+    const code = await findCode({ used: true, user: user._id });\r\n \r\n-    const code = await findCode({used:true,user:user._id})\r\n- \r\n-    if(!code){\r\n-      res.status(404).json({message:\"something went wrong with the subscribtion plan\"})\r\n+    if (!code) {\r\n+      res\r\n+        .status(404)\r\n+        .json({ message: \"something went wrong with the subscribtion plan\" });\r\n+      return;\r\n     }\r\n     const session = await createSession({ ...obj });\r\n \r\n     const accessToken = await signJwt(\r\n-      { ...user,id:user._id, session: session._id,codePlan:code?.expiration},\r\n+      {\r\n+        ...user,\r\n+        id: user._id,\r\n+        session: session._id,\r\n+        codePlan: code.expiration,\r\n+      },\r\n       \"accessTokenPrivateKey\",\r\n       { expiresIn: config.get(\"accessTokenTtl\") }\r\n     );\r\n \r\n     const refreshToken = await signJwt(\r\n-        { ...user, session: session._id },\r\n-        \"refreshTokenPrivateKey\",\r\n-        { expiresIn: config.get(\"refreshTokenTtl\") }\r\n-      );\r\n+      { ...user, session: session._id },\r\n+      \"refreshTokenPrivateKey\",\r\n+      { expiresIn: config.get(\"refreshTokenTtl\") }\r\n+    );\r\n \r\n-\r\n-      // res.cookie(\"refreshToken\",refreshToken,{\r\n-      //   httpOnly:true,\r\n-      //   path:\"/\",\r\n-      //   sameSite:\"lax\",\r\n-      //   secure:config.get<string>(\"nodeEnv\") === 'production'\r\n-      // })\r\n-      res.status(200).json({message:\"logged in successfully\",accessToken,refreshToken})\r\n-  } catch (error:any) {\r\n-    res.status(500).json({message:error.message})\r\n+    // res.cookie(\"refreshToken\",refreshToken,{\r\n+    //   httpOnly:true,\r\n+    //   path:\"/\",\r\n+    //   sameSite:\"lax\",\r\n+    //   secure:config.get<string>(\"nodeEnv\") === 'production'\r\n+    // })\r\n+    res\r\n+      .status(200)\r\n+      .json({ message: \"logged in successfully\", accessToken, refreshToken });\r\n+  } catch (error: any) {\r\n+    res.status(500).json({ message: error.message });\r\n   }\r\n };\r\n \r\n-\r\n-\r\n export const getUserSessions = async (req: Request, res: Response) => {\r\n   try {\r\n     const userId = res.locals.user._id;\r\n \r\n     const sessions = await getSession({ user: userId, valid: true });\r\n \r\n-     res.status(200).json({ sessions });\r\n+    res.status(200).json({ sessions });\r\n   } catch (error: any) {\r\n-     res.status(500).json({ message: error.message });\r\n+    res.status(500).json({ message: error.message });\r\n   }\r\n };\r\n"
+                },
+                {
+                    "date": 1744460689356,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n         session: session._id,\r\n         codePlan: code.expiration,\r\n       },\r\n       \"accessTokenPrivateKey\",\r\n-      { expiresIn: config.get(\"accessTokenTtl\") }\r\n+      { expiresIn: config.get(\"accessTokenTtl\") ,exp}\r\n     );\r\n \r\n     const refreshToken = await signJwt(\r\n       { ...user, session: session._id },\r\n"
+                },
+                {
+                    "date": 1744460700814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n         session: session._id,\r\n         codePlan: code.expiration,\r\n       },\r\n       \"accessTokenPrivateKey\",\r\n-      { expiresIn: config.get(\"accessTokenTtl\") ,exp}\r\n+      { expiresIn: new date }\r\n     );\r\n \r\n     const refreshToken = await signJwt(\r\n       { ...user, session: session._id },\r\n"
+                },
+                {
+                    "date": 1744460710466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n         session: session._id,\r\n         codePlan: code.expiration,\r\n       },\r\n       \"accessTokenPrivateKey\",\r\n-      { expiresIn: new date }\r\n+      { expiresIn: new Date() }\r\n     );\r\n \r\n     const refreshToken = await signJwt(\r\n       { ...user, session: session._id },\r\n"
+                },
+                {
+                    "date": 1744460719733,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n         session: session._id,\r\n         codePlan: code.expiration,\r\n       },\r\n       \"accessTokenPrivateKey\",\r\n-      { expiresIn: new Date() }\r\n+      { expiresIn: new Date().get }\r\n     );\r\n \r\n     const refreshToken = await signJwt(\r\n       { ...user, session: session._id },\r\n"
+                },
+                {
+                    "date": 1744483924031,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,5 +74,5 @@\n     res.status(200).json({ sessions });\r\n   } catch (error: any) {\r\n     res.status(500).json({ message: error.message });\r\n   }\r\n-};\r\n\\ No newline at end of file\n+};\r\n"
+                },
+                {
+                    "date": 1744483940984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,13 +41,13 @@\n         session: session._id,\r\n         codePlan: code.expiration,\r\n       },\r\n       \"accessTokenPrivateKey\",\r\n-      { expiresIn: new Date().get }\r\n+      { expiresIn: config.get(\"accessTokenTtl\") }\r\n     );\r\n \r\n     const refreshToken = await signJwt(\r\n-      { ...user, session: session._id },\r\n+      { ...user, session: session._id, codePlan: code.expiration },\r\n       \"refreshTokenPrivateKey\",\r\n       { expiresIn: config.get(\"refreshTokenTtl\") }\r\n     );\r\n \r\n@@ -75,5 +75,4 @@\n   } catch (error: any) {\r\n     res.status(500).json({ message: error.message });\r\n   }\r\n };\r\n-\n"
+                }
+            ],
+            "date": 1744451545650,
+            "name": "Commit-0",
+            "content": "import { NextFunction, Request, Response } from \"express\";\r\nimport { SessionSchemaInterface } from \"../schemas/session.schema\";\r\nimport { validatePassword } from \"../services/user.service\";\r\nimport { signJwt } from \"../utils/jwt.sign\";\r\nimport { createSession, getSession } from \"../services/session.service\";\r\nimport config from \"config\";\r\nexport const login = async (\r\n  req: Request<{}, {}, SessionSchemaInterface[\"body\"]>,\r\n  res: Response,\r\n  next: NextFunction\r\n) => {\r\n  try {\r\n    const user = await validatePassword(req.body);\r\n\r\n    if (!user) {\r\n      res.status(403).json({ message: \"invalid email or password\" });\r\n      return;\r\n    }\r\n\r\n  \r\n    const obj = {\r\n      user: user._id as string,\r\n      userAgent: req.get(\"user-agent\") || \"\",\r\n      role: user.role,\r\n    };\r\n\r\n\r\n\r\n    const code = await fin\r\n    const session = await createSession({ ...obj });\r\n\r\n    const accessToken = await signJwt(\r\n      { ...user,id:user._id, session: session._id },\r\n      \"accessTokenPrivateKey\",\r\n      { expiresIn: config.get(\"accessTokenTtl\") }\r\n    );\r\n\r\n    const refreshToken = await signJwt(\r\n        { ...user, session: session._id },\r\n        \"refreshTokenPrivateKey\",\r\n        { expiresIn: config.get(\"refreshTokenTtl\") }\r\n      );\r\n\r\n\r\n      // res.cookie(\"refreshToken\",refreshToken,{\r\n      //   httpOnly:true,\r\n      //   path:\"/\",\r\n      //   sameSite:\"lax\",\r\n      //   secure:config.get<string>(\"nodeEnv\") === 'production'\r\n      // })\r\n      res.status(200).json({message:\"logged in successfully\",accessToken,refreshToken})\r\n  } catch (error:any) {\r\n    res.status(500).json({message:error.message})\r\n  }\r\n};\r\n\r\n\r\n\r\nexport const getUserSessions = async (req: Request, res: Response) => {\r\n  try {\r\n    const userId = res.locals.user._id;\r\n\r\n    const sessions = await getSession({ user: userId, valid: true });\r\n\r\n     res.status(200).json({ sessions });\r\n  } catch (error: any) {\r\n     res.status(500).json({ message: error.message });\r\n  }\r\n};\r\n"
+        }
+    ]
+}

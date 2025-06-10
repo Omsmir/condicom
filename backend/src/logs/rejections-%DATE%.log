@@ -1,0 +1,67 @@
+2025:06:10 21:37:15:error unhandledRejection: logger_1.logger.s is not a function
+TypeError: logger_1.logger.s is not a function
+    at Server.<anonymous> (/home/omar/Documents/Health/backend/src/app.ts:46:20)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitListeningNT (node:net:1845:10)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+2025:06:10 21:37:19:error unhandledRejection: logger_1.logger.s is not a function
+TypeError: logger_1.logger.s is not a function
+    at Server.<anonymous> (/home/omar/Documents/Health/backend/src/app.ts:46:20)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitListeningNT (node:net:1845:10)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+2025:06:10 21:37:28:error unhandledRejection: Cannot create property 'Symbol(level)' on string '===== http://localhost:8080 ====='
+TypeError: Cannot create property 'Symbol(level)' on string '===== http://localhost:8080 ====='
+    at DerivedLogger.log (/home/omar/Documents/Health/backend/node_modules/winston/lib/winston/logger.js:214:20)
+    at Server.<anonymous> (/home/omar/Documents/Health/backend/src/app.ts:46:20)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitListeningNT (node:net:1845:10)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+2025:06:10 21:37:50:error unhandledRejection: logger_1.logger.c is not a function
+TypeError: logger_1.logger.c is not a function
+    at Server.<anonymous> (/home/omar/Documents/Health/backend/src/app.ts:46:20)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitListeningNT (node:net:1845:10)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+2025:06:10 21:51:38:error unhandledRejection: health3D is not defined
+ReferenceError: health3D is not defined
+    at Server.<anonymous> (/home/omar/Documents/Health/backend/src/app.ts:47:30)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitListeningNT (node:net:1845:10)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+2025:06:10 21:56:47:error unhandledRejection: Cannot read properties of undefined (reading 'warn')
+TypeError: Cannot read properties of undefined (reading 'warn')
+    at Server.<anonymous> (/home/omar/Documents/Health/backend/src/app.ts:50:20)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitListeningNT (node:net:1845:10)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+2025:06:10 22:48:45:error unhandledRejection: initiator is not a function
+TypeError: initiator is not a function
+    at App.socketInitialize (/home/omar/Documents/Health/backend/src/app.ts:77:15)
+    at new App (/home/omar/Documents/Health/backend/src/app.ts:39:14)
+    at Function.create (/home/omar/Documents/Health/backend/src/app.ts:86:16)
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/server.ts:4:17)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-3832602305401889.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-3832602305401889.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-3832602305401889.js:71:20)
+2025:06:10 22:54:20:error unhandledRejection: Cannot read properties of undefined (reading 'o')
+TypeError: Cannot read properties of undefined (reading 'o')
+    at App.socketInitialize (/home/omar/Documents/Health/backend/src/app.ts:79:9)
+    at new App (/home/omar/Documents/Health/backend/src/app.ts:39:14)
+    at Function.create (/home/omar/Documents/Health/backend/src/app.ts:88:16)
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/server.ts:4:17)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-3832602305401889.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-3832602305401889.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-3832602305401889.js:71:20)

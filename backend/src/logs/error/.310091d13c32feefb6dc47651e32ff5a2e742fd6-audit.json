@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/home/omar/Documents/Health/backend/src/logs/error/.310091d13c32feefb6dc47651e32ff5a2e742fd6-audit.json",
+    "files": [
+        {
+            "date": 1749494265899,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-09.log",
+            "hash": "44aed698c20366597adc82d6d1dae866645bdae0aa7bf831c199320b2b121396"
+        },
+        {
+            "date": 1749578390988,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-10.log",
+            "hash": "062666ea63f6c99122257870ea457146fed2c899991409cfe83c264734823b01"
+        }
+    ],
+    "hashType": "sha256"
+}

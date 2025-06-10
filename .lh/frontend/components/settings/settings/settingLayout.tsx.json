@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1742949133173,
@@ -56,6 +56,30 @@
                 {
                     "date": 1742950140253,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,9 @@\n \r\n const SettingLayout = () => {\r\n   return (\r\n     <div className=\"grid grid-cols-12 w-full pt-0 p-6\">\r\n-       {/* <ReusebleForm innerText=\"Account Info\"  >\r\n-\r\n-       </ReusebleForm> */}\r\n+      \r\n     </div>\r\n   )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1744372010455,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,19 @@\n-import React from 'react'\r\n-import ReusebleForm from '../Profile/ReusebleForm'\r\n+\"use client\";\r\n+import React from \"react\";\r\n+import AuthenticationandSecurityLayout from \"./AuthenticationandSecurityLayout\";\r\n+import AuthenticationForm from \"./AuthenticationForm\";\r\n+import { AccountHook } from \"@/components/context/AccountProvider\";\r\n+import ForgetPassword from \"./ChangePassword\";\r\n \r\n const SettingLayout = () => {\r\n+  const { ResetState } = AccountHook();\r\n   return (\r\n     <div className=\"grid grid-cols-12 w-full pt-0 p-6\">\r\n-      \r\n+      <AuthenticationandSecurityLayout>\r\n+        {ResetState ? <ForgetPassword /> : <AuthenticationForm />}\r\n+      </AuthenticationandSecurityLayout>\r\n     </div>\r\n-  )\r\n-}\r\n+  );\r\n+};\r\n \r\n-export default SettingLayout\r\n+export default SettingLayout;\r\n"
+                },
+                {
+                    "date": 1744372066873,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n \"use client\";\r\n import React from \"react\";\r\n import AuthenticationandSecurityLayout from \"./AuthenticationandSecurityLayout\";\r\n-import AuthenticationForm from \"./AuthenticationForm\";\r\n+import AuthenticationForm from \"./change/AuthenticationForm\";\r\n import { AccountHook } from \"@/components/context/AccountProvider\";\r\n-import ForgetPassword from \"./ChangePassword\";\r\n+import ForgetPassword\r\n \r\n const SettingLayout = () => {\r\n   const { ResetState } = AccountHook();\r\n   return (\r\n"
+                },
+                {
+                    "date": 1744372095435,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import React from \"react\";\r\n import AuthenticationandSecurityLayout from \"./AuthenticationandSecurityLayout\";\r\n import AuthenticationForm from \"./change/AuthenticationForm\";\r\n import { AccountHook } from \"@/components/context/AccountProvider\";\r\n-import ForgetPassword\r\n+import ForgetPassword from \"./forget/ForgetPassword\";\r\n \r\n const SettingLayout = () => {\r\n   const { ResetState } = AccountHook();\r\n   return (\r\n"
+                },
+                {
+                    "date": 1744372104659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n \"use client\";\r\n import React from \"react\";\r\n import AuthenticationandSecurityLayout from \"./AuthenticationandSecurityLayout\";\r\n-import AuthenticationForm from \"./change/AuthenticationForm\";\r\n+import AuthenticationForm from \"./change/ChangePassword\";\r\n import { AccountHook } from \"@/components/context/AccountProvider\";\r\n import ForgetPassword from \"./forget/ForgetPassword\";\r\n \r\n const SettingLayout = () => {\r\n"
+                },
+                {
+                    "date": 1744372133017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n \"use client\";\r\n import React from \"react\";\r\n import AuthenticationandSecurityLayout from \"./AuthenticationandSecurityLayout\";\r\n-import AuthenticationForm from \"./change/ChangePassword\";\r\n+import chan from \"./change/ChangePassword\";\r\n import { AccountHook } from \"@/components/context/AccountProvider\";\r\n import ForgetPassword from \"./forget/ForgetPassword\";\r\n \r\n const SettingLayout = () => {\r\n"
+                },
+                {
+                    "date": 1744372139602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n \"use client\";\r\n import React from \"react\";\r\n import AuthenticationandSecurityLayout from \"./AuthenticationandSecurityLayout\";\r\n-import chan from \"./change/ChangePassword\";\r\n+import Changep\r\n import { AccountHook } from \"@/components/context/AccountProvider\";\r\n import ForgetPassword from \"./forget/ForgetPassword\";\r\n \r\n const SettingLayout = () => {\r\n"
                 }
             ],
             "date": 1742949133173,

@@ -3,42 +3,10 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { JWT } from "next-auth/jwt";
+import { addHours, subMinutes } from "date-fns";
+import { refreshAccessToken } from "@/actions/User";
 
- const refreshAccessToken = async (token: any) => {
-  try {
-    const res = await fetch("http://localhost:8080/api/auth/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token.accessToken}`,
-        'x-refresh':token.refreshToken
-      },
-    });
-
-    const newAccessToken = res.headers.get("Authorization");
-    if (!newAccessToken) throw new Error();
-
-    const decodedToken = jwt.decode(newAccessToken) as JwtPayload;
-
-    return {
-      ...decodedToken,
-      accessToken: newAccessToken,
-      expiresAt: decodedToken?.exp && decodedToken.exp * 1000,
-      id: decodedToken?._id,
-      role: decodedToken?.role,
-      name: decodedToken?.name,
-      profileImg: decodedToken?.profileImg.url,
-      verified: decodedToken?.verified,
-      refreshToken: token.refreshToken,
-      profileState: decodedToken.profileState,
-    };
-  } catch (error) {
-    console.error("Refresh token error:", error);
-    return { ...token, accessToken: null, error: "RefreshTokenError" };
-  }
-};
-
-const authOptions: AuthOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -48,17 +16,15 @@ const authOptions: AuthOptions = {
       },
       authorize: async (credentials) => {
         try {
-          const response = await fetch("http://localhost:8080/api/auth/login", {
-            method: "POST",
-            credentials: "include", 
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
+          const response = await axios.post(
+            "http://localhost:8080/api/auth/login",
+            {
               email: credentials?.email,
               password: credentials?.password,
-            }),
-          });
+            }
+          );
 
-          const { accessToken, refreshToken } = await response.json();
+          const { accessToken, refreshToken } = await response.data;
 
           if (accessToken) {
             // Decode the JWT token
@@ -73,20 +39,20 @@ const authOptions: AuthOptions = {
               expiresAt: decodedToken.exp && decodedToken.exp * 1000,
               code: decodedToken.code,
               profileState: decodedToken.profileState,
+              passwordUpdatedAt: decodedToken.passwordUpdatedAt,
+              codeExp: decodedToken.codePlan,
+              mfa_state:decodedToken.mfa_state,
               accessToken,
               refreshToken,
             };
           }
           return null;
         } catch (error: any) {
-          console.error("Login Error:", error.response?.data || error.message);
-
-          if (error.response) {
-            const { status, data } = error.response;
-            if (status !== 200) throw new Error(data.message);
-            if (status === 403)
-              throw new Error(data?.message || "Access forbidden.");
-            throw new Error(data?.message || "An unexpected error occurred.");
+          if (axios.isAxiosError(error)) {
+            if (error.response) {
+              const { status, data } = error.response;
+              if (status !== 200) throw new Error(data.message);
+            }
           }
 
           throw new Error("Unable to connect to the server.");
@@ -95,7 +61,15 @@ const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: { token: JWT; user: any }) {
+    async jwt({
+      token,
+      user,
+      trigger,
+    }: {
+      token: JWT;
+      user: any;
+      trigger?: "signIn" | "update" | "signUp";
+    }) {
       if (user) {
         token.id = user.id;
         token.role = user.role;
@@ -108,11 +82,31 @@ const authOptions: AuthOptions = {
         token.refreshToken = user.refreshToken;
         token.expiresAt = user.expiresAt;
         token.profileState = user.profileState;
+        token.passwordUpdatedAt = user.passwordUpdatedAt;
+        token.codeExp = user.codeExp;
+        token.mfa_state = user.mfa_state
+      }
+    
+
+      if (trigger === "update" && !token.profileState) {
+        token.profileState = true
       }
 
-      if (Date.now() > (token.expiresAt as number)) {
-        return await refreshAccessToken(token);
+        
+      if (trigger === "update") {
+        return await refreshAccessToken(token.refreshToken as string);
       }
+
+      const tokenExpiration = addHours(new Date(token.expiresAt as number), 2);
+      const currDate = addHours(new Date(), 2);
+
+      if (currDate > tokenExpiration) {
+        return await refreshAccessToken(token.refreshToken as string);
+      }
+
+      console.log(token)
+
+
 
       return token;
     },
@@ -128,9 +122,15 @@ const authOptions: AuthOptions = {
           code: token.code,
           accessToken: token.accessToken,
           profileState: token.profileState,
-          refreshToken: token.refreshToken
+          refreshToken: token.refreshToken,
+          passwordUpdatedAt: token.passwordUpdatedAt,
+          codeExp: token.codeExp,
+          mfa_state:token.mfa_state
         };
-        session.expires = new Date(token.expiresAt as number).toISOString();
+        session.expires = addHours(
+          new Date(token.expiresAt as number),
+          2
+        ).toISOString();
       }
 
       return session;
