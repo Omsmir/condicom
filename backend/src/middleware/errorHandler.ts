@@ -1,22 +1,21 @@
-import { NextFunction, Request,Response } from "express"
+import HttpException from '@/exceptions/httpException';
+import { logger } from '@/utils/logger';
+import { Request, Response, NextFunction } from 'express';
 
-const notFound= (req:Request,res:Response,next:NextFunction)=>{
-    const error = new Error("Error"+ req.originalUrl)
-    res.status(404)
-    next(error)
-}
+export const ErrorHandler = async (
+    Error: HttpException,
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const status: number = Error.status || 500;
+        const message: string = Error.message || 'Something went wrong';
 
+        logger.error(`[${req.method}] ${req.path} >> StatusCode:: ${status}, Message:: ${message}`);
 
-const errorHandler = (err:any,req:Request,res:Response,next:NextFunction) => {
-    const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-    res.status(statusCode);
-    res.json({
-        message: err.message,
-        stack: process.env.NODE_ENV === 'production' ? null : err.stack,
-    });
-}
-
-export {
-    notFound,
-    errorHandler
-}
+        res.status(status).json({ message });
+    } catch (error) {
+        next(error);
+    }
+};

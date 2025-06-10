@@ -17,7 +17,7 @@ const EnablingMultiAuth = () => {
   const { isTogglingMulti } = AccountHook();
   const { api } = DashboardHook();
 
-  const { data: session } = useSession();
+  const { data: session ,update} = useSession();
 
   const EnableMulti = UseVerifyMultiAuthFactorEnabling(api, session?.user.id);
   const [state, setState] = useState(true);
@@ -51,6 +51,9 @@ const EnablingMultiAuth = () => {
           setValid(response.state);
 
           await new Promise((resolve) => setTimeout(resolve, 1000));
+
+          await update()
+          
           redirect("/dashboard/settings/setting");
         }
       

@@ -1,61 +1,162 @@
-import express from 'express'
-import upload from '../middleware/multer'
-import { validate } from '../middleware/validateResource'
-import { AddAdditionalSchema, ChangeEmailSchema, ChangePasswordSchema, ChangeProfilePictureSchema, CheckOtpSchema, CheckTokenExistanceSchema, CreateUserSchema, ResetPasswordNewSchema, ResetPasswordSchema, SendEmailVerificationSchema, UpdateUserSchema } from '../schemas/user.schema'
-import { AddAdditionlHandler, changePasswordHandler, changeProfilePictureHandler, ChangeUserInformationHandler, checkOtpEmailChangeHandler, CheckTokenHandler, createUserHandler, getAllUsersHandler, getUser, multiAuthOtpHandler, reIssueAccessTokenHandler, ResetPasswordHandler, SendChangeEmailHandler, sendEmailVerificationHandler, SendResetEmailHandler, verifyEmailHandler, verifyEnablingMultiAuthOtpHandler } from '../controllers/user.controller'
-import { SessionSchema } from '../schemas/session.schema'
-import { getUserSessions, login } from '../controllers/session.controller'
-import { requireUser } from '../middleware/requireUser'
+import express from 'express';
+import upload from '../middleware/multer';
+import { validate } from '../middleware/validateResource';
+import {
+    AddAdditionalSchema,
+    ChangeEmailSchema,
+    ChangePasswordSchema,
+    ChangeProfilePictureSchema,
+    CheckOtpSchema,
+    CheckTokenExistanceSchema,
+    CreateUserSchema,
+    ResetPasswordNewSchema,
+    ResetPasswordSchema,
+    SendEmailVerificationSchema,
+    UpdateUserSchema,
+} from '../schemas/user.schema';
+import {
+    AddAdditionlHandler,
+    changePasswordHandler,
+    changeProfilePictureHandler,
+    ChangeUserInformationHandler,
+    checkOtpEmailChangeHandler,
+    CheckTokenHandler,
+    createUserHandler,
+    getAllUsersHandler,
+    getUser,
+    multiAuthOtpHandler,
+    reIssueAccessTokenHandler,
+    ResetPasswordHandler,
+    SendChangeEmailHandler,
+    sendEmailVerificationHandler,
+    SendResetEmailHandler,
+    verifyEmailHandler,
+    verifyEnablingMultiAuthOtpHandler,
+} from '../controllers/user.controller';
+import { SessionSchema } from '../schemas/session.schema';
+import { getUserSessions, login } from '../controllers/session.controller';
+import { requireUser } from '../middleware/requireUser';
+import { Routes } from '@/interfaces/routes.interface';
 
+class UserRoutes implements Routes {
+    public path = '/auth';
+    public router = express.Router();
 
-const router = express.Router()
+    constructor() {
+        this.initializeRoutes();
+    }
 
-router.get("/reIssueAccessToken",reIssueAccessTokenHandler)
+    private initializeRoutes() {
+        this.router.get(`${this.path}/reIssueAccessToken`, reIssueAccessTokenHandler);
 
-router.put("/:id",upload.single("profileImg"),validate(AddAdditionalSchema),AddAdditionlHandler)
+        this.router.put(
+            `${this.path}/:id`,
+            upload.single('profileImg'),
+            validate(AddAdditionalSchema),
+            AddAdditionlHandler
+        );
 
+        this.router.post(
+            `${this.path}/register`,
+            upload.none(),
+            validate(CreateUserSchema),
+            createUserHandler
+        );
 
-router.post('/register',upload.none(),validate(CreateUserSchema),createUserHandler)
+        this.router.post(`${this.path}/login`, upload.none(), validate(SessionSchema), login);
 
-router.post('/login',upload.none(),validate(SessionSchema),login)
+        // change main info
+        this.router.put(
+            `${this.path}/update/:id`,
+            upload.none(),
+            validate(UpdateUserSchema),
+            ChangeUserInformationHandler
+        );
 
-// change main info
-router.put("/update/:id",upload.none(),validate(UpdateUserSchema),ChangeUserInformationHandler)
+        this.router.get(`${this.path}/sessions`, requireUser, getUserSessions);
 
+        this.router.get(`${this.path}/users/:id`, getAllUsersHandler);
 
-router.get("/sessions",requireUser,getUserSessions)
+        this.router.get(`${this.path}/:id`, getUser);
 
-router.get("/users/:id",getAllUsersHandler)
+        // password and security routes
+        this.router.put(
+            `${this.path}/password/change/:id`,
+            upload.none(),
+            validate(ChangePasswordSchema),
+            changePasswordHandler
+        );
 
-router.get("/:id",getUser)
+        this.router.put(
+            `${this.path}/password/reset/message`,
+            upload.none(),
+            validate(ResetPasswordSchema),
+            SendResetEmailHandler
+        );
 
-// password and security routes
-router.put("/password/change/:id",upload.none(),validate(ChangePasswordSchema),changePasswordHandler)
+        this.router.put(
+            `${this.path}/password/reset/:token`,
+            upload.none(),
+            validate(ResetPasswordNewSchema),
+            ResetPasswordHandler
+        );
 
-router.put("/password/reset/message",upload.none(),validate(ResetPasswordSchema),SendResetEmailHandler)
+        this.router.put(
+            `${this.path}/multi-factor-otp/enabling-disabling/:id`,
+            validate(SendEmailVerificationSchema),
+            multiAuthOtpHandler
+        );
 
-router.put("/password/reset/:token",upload.none(),validate(ResetPasswordNewSchema),ResetPasswordHandler)
+        this.router.put(
+            `${this.path}/multi-factor-otp/enabling/verify/:id`,
+            upload.none(),
+            validate(CheckOtpSchema),
+            verifyEnablingMultiAuthOtpHandler
+        );
 
-router.put("/multi-factor-otp/enabling-disabling/:id",validate(SendEmailVerificationSchema),multiAuthOtpHandler)
+        // common token checker
+        this.router.get(
+            `${this.path}/token/:token/:hashname`,
+            validate(CheckTokenExistanceSchema),
+            CheckTokenHandler
+        );
 
-router.put("/multi-factor-otp/enabling/verify/:id",upload.none(),validate(CheckOtpSchema),verifyEnablingMultiAuthOtpHandler)
-//
+        // email routes
+        this.router.post(
+            `${this.path}/email/change/otp/:id`,
+            upload.none(),
+            validate(ChangeEmailSchema),
+            SendChangeEmailHandler
+        );
 
-//commen token checker
-router.get("/token/:token/:hashname",validate(CheckTokenExistanceSchema),CheckTokenHandler)
-// email routes
-router.post("/email/change/otp/:id",upload.none(),validate(ChangeEmailSchema),SendChangeEmailHandler)
+        this.router.post(
+            `${this.path}/email/change/verify/:id`,
+            upload.none(),
+            validate(CheckOtpSchema),
+            checkOtpEmailChangeHandler
+        );
 
-router.post("/email/change/verify/:id",upload.none(),validate(CheckOtpSchema),checkOtpEmailChangeHandler)
-// email verification
+        // email verification
+        this.router.post(
+            `${this.path}/email/verify/:id`,
+            validate(SendEmailVerificationSchema),
+            verifyEmailHandler
+        );
 
+        this.router.post(
+            `${this.path}/email/verify/send/:id`,
+            validate(SendEmailVerificationSchema),
+            sendEmailVerificationHandler
+        );
 
-router.post("/email/verify/:id",validate(SendEmailVerificationSchema),verifyEmailHandler)
+        // profile
+        this.router.put(
+            `${this.path}/picture/:id`,
+            upload.single('profilePicture'),
+            validate(ChangeProfilePictureSchema),
+            changeProfilePictureHandler
+        );
+    }
+}
 
-router.post("/email/verify/send/:id",validate(SendEmailVerificationSchema),sendEmailVerificationHandler)
-
-// profile picture 
-
-router.put("/picture/:id",upload.single("profilePicture"),validate(ChangeProfilePictureSchema),changeProfilePictureHandler)
-
-export default router
+export default UserRoutes;

@@ -104,6 +104,10 @@ export const authOptions: AuthOptions = {
         return await refreshAccessToken(token.refreshToken as string);
       }
 
+      console.log(token)
+
+
+
       return token;
     },
     async session({ session, token }) {

@@ -1,105 +1,116 @@
-import { createClient, RedisClientType } from "redis";
-import config from "config";
-import log from "./logger";
-import { initiator } from "../server";
-let redisClient: RedisClientType | null = null;
+import { createClient, RedisClientType } from 'redis';
+import { NODE_ENV, REDIS_DEV_URI, REDIS_PWD } from 'config';
+import { logger } from './logger';
 
-export const RedisConnection = async (): Promise<RedisClientType> => {
-  if (!redisClient) {
-    redisClient = createClient({
-      url: config.get<string>("redisDevUri"),
-      password: config.get<string>("redisPwd"),
-    });
+class RedisConnection {
+    public redisClient: RedisClientType | null;
 
-    redisClient.on("error", (err) => {
-      log.error("error connecting to redis");
-    });
-    redisClient.connect().catch((err) => log.error(err));
+    constructor() {
+        this.redisClient = null;
+    }
+    public async initializeConnection(): Promise<RedisClientType> {
+        try {
+            if (!this.redisClient) {
+                this.redisClient = createClient({
+                    url: NODE_ENV === 'development' ? REDIS_DEV_URI : '',
+                    password: REDIS_PWD,
+                });
 
-    redisClient.on("connect", () => {
-      log.info("connected to redis");
-    });
-  }
-  return redisClient;
-};
+                this.redisClient.on('connect', () => {
+                    logger.info('connected to redis');
+                });
 
-export const redisBroker = async () => {
-  const redis = await RedisConnection();
+                await this.redisClient.connect(); // Ensure the client is connected
+            }
+            return this.redisClient;
+        } catch (error) {
+            logger.error(error);
+            throw error;
+        }
+    }
+}
 
-  const subscriber = redis.duplicate();
+// export const redisBroker = async () => {
+//         const connection = new RedisConnection();
 
-  subscriber.on("error", (error) => {
-    console.log(error.message);
-  });
-  await subscriber.connect();
-  subscriber.on("connect", () => {
-    log.info("subscribed to the redis pub/sub");
-  });
+// const redis = await connection.listen();
 
-  await subscriber.subscribe("events", (message) => {
-    console.log(message);
-    initiator.emit("redis-updates", message);
-  });
-};
+//     const subscriber = redis.duplicate();
+
+//     subscriber.on('error', error => {
+//         console.log(error.message);
+//     });
+//     await subscriber.connect();
+//     subscriber.on('connect', () => {
+//         logger.info('subscribed to the redis pub/sub');
+//     });
+
+//     await subscriber.subscribe('events', message => {
+//         console.log(message);
+//         initiator.emit('redis-updates', message);
+//     });
+// };
 
 interface addToHashProps {
-  HashName: string;
-  token: any;
-  channel?: string;
-  expire: number;
-  content: object;
+    HashName: string;
+    token: any;
+    channel?: string;
+    expire: number;
+    content: object;
 }
 
 interface CreateHashProps {
-  HashName: string;
-  content: any;
-  expire?: number;
+    HashName: string;
+    content: any;
+    expire?: number;
 }
 
-export const addToHash = async ({
-  HashName,
-  token,
-  channel,
-  expire,
-  content,
-}: addToHashProps) => {
-  const redis = await RedisConnection();
+export const addToHash = async ({ HashName, token, channel, expire, content }: addToHashProps) => {
+    const connection = new RedisConnection();
 
-  await redis.hSet(HashName, token);
+    const redis = await connection.initializeConnection();
 
-  Object.entries(content).forEach(([key, value]) => {
-    redis.hSet(`${HashName}:1`, key, value);
-  });
-  await redis.expire(HashName, expire);
+    await redis.hSet(HashName, token);
+
+    Object.entries(content).forEach(([key, value]) => {
+        redis.hSet(`${HashName}:1`, key, value);
+    });
+    await redis.expire(HashName, expire);
 };
 
-export const createHash = async ({
-  HashName,
-  content,
-  expire,
-}: CreateHashProps) => {
-  const redis = await RedisConnection();
+export const createHash = async ({ HashName, content, expire }: CreateHashProps) => {
+    const connection = new RedisConnection();
 
-  await redis.hSet(HashName, content);
+    const redis = await connection.initializeConnection();
 
-  if(expire) {
-    await redis.expire(HashName, expire);
-  }
+    await redis.hSet(HashName, content);
+
+    if (expire) {
+        await redis.expire(HashName, expire);
+    }
 };
 
 export const checkHash = async (HashName: string, value: string) => {
-  const redis = await RedisConnection();
+    const connection = new RedisConnection();
 
-  return await redis.hGet(HashName, value);
+    const redis = await connection.initializeConnection();
+
+    return await redis.hGet(HashName, value);
 };
 
 export const DelHash = async (HashName: string, value: string) => {
-  const redis = await RedisConnection();
+    const connection = new RedisConnection();
 
-  return await redis.hDel(HashName, value);
+    const redis = await connection.initializeConnection();
+
+    return await redis.hDel(HashName, value);
 };
 
 export const GetHashExpiration = async (HashName: string) => {
-  const redis = await RedisConnection();
-  return await redis.ttl(HashName)
-}
+    const connection = new RedisConnection();
+
+    const redis = await connection.initializeConnection();
+    return await redis.ttl(HashName);
+};
+
+export default RedisConnection;

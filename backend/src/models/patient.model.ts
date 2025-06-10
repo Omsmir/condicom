@@ -1,7 +1,6 @@
-import mongoose from "mongoose";
-import { genders } from "../utils/constants";
-import { randomUUID } from "crypto";
-
+import mongoose from 'mongoose';
+import { genders } from '../utils/constants';
+import { randomUUID } from 'crypto';
 
 interface ProfileImage {
     filename?: string;
@@ -10,7 +9,7 @@ interface ProfileImage {
     uploadedAt?: Date;
 }
 export interface PatientInput {
-    profileImg?: ProfileImage
+    profileImg?: ProfileImage;
     firstName: string;
     lastName: string;
     gender: string;
@@ -35,51 +34,50 @@ export interface PatientInput {
     smokingFrequency?: string;
     alcohol: string;
     AlcoholFrequency?: string;
-  }
-  
-  export interface PatientDocument extends PatientInput, Document {
-    id:string
+}
+
+export interface PatientDocument extends PatientInput, Document {
+    id: string;
     createdAt?: Date;
     updatedAt?: Date;
-  }
+}
 const patientSchema = new mongoose.Schema<PatientDocument>(
-    
-  {
-    id: { type: String, default: () => randomUUID(), unique: true },
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    profileImg: {
-      filename: { type: String },
-      url: { type: String },
-      path: { type: String },
-      uploadedAt: { type: Date, default: Date.now() },
+    {
+        id: { type: String, default: () => randomUUID(), unique: true },
+        firstName: { type: String, required: true },
+        lastName: { type: String, required: true },
+        profileImg: {
+            filename: { type: String },
+            url: { type: String },
+            path: { type: String },
+            uploadedAt: { type: Date, default: Date.now() },
+        },
+        gender: { type: String, enum: genders, required: true },
+        height: { type: String },
+        weight: { type: String },
+        birthDate: { type: String, required: true },
+        email: { type: String, required: true },
+        phone: { type: String, required: true },
+        bloodType: { type: String, required: true },
+        country: { type: String, required: true },
+        emergencyContactPerson: { type: String },
+        emergencyContactRelationship: { type: String },
+        emergencyContactNumber: { type: String, required: true },
+        residentialAddress: { type: String },
+        insuranceProvider: { type: String },
+        medicalConditions: { type: String, required: true },
+        allergies: { type: String, required: true },
+        pastSurgeries: { type: String },
+        familyMedicalHistory: { type: String },
+        currentMedications: { type: String, required: true },
+        smoking: { type: String, required: true },
+        smokingFrequency: { type: String },
+        alcohol: { type: String, required: true },
+        AlcoholFrequency: { type: String },
     },
-    gender: { type: String, enum: genders, required: true },
-    height: { type: String },
-    weight: { type: String },
-    birthDate: { type: String, required: true },
-    email: { type: String ,required:true},
-    phone: { type: String, required: true },
-    bloodType: { type: String, required: true },
-    country: { type: String, required: true },
-    emergencyContactPerson: { type: String },
-    emergencyContactRelationship: { type: String },
-    emergencyContactNumber: { type: String, required: true },
-    residentialAddress: { type: String },
-    insuranceProvider: { type: String },
-    medicalConditions: { type: String, required: true },
-    allergies: { type: String, required: true },
-    pastSurgeries: { type: String },
-    familyMedicalHistory: { type: String },
-    currentMedications: { type: String, required: true },
-    smoking: { type: String, required: true },
-    smokingFrequency: { type: String },
-    alcohol: { type: String, required: true },
-    AlcoholFrequency: { type: String },
-  },
-  {
-    timestamps: true,
-  }
+    {
+        timestamps: true,
+    }
 );
 
-export const PatientModel = mongoose.model("patients", patientSchema);
+export const PatientModel = mongoose.model('patients', patientSchema);

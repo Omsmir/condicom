@@ -1,30 +1,26 @@
-import { FilterQuery, QueryOptions, UpdateQuery } from "mongoose";
+import { FilterQuery, QueryOptions, UpdateQuery } from 'mongoose';
 import {
-  AppointmentDocument,
-  AppointmentInput,
-  AppointmentModel,
-} from "../models/appointment.model";
+    AppointmentDocument,
+    AppointmentInput,
+    AppointmentModel,
+} from '../models/appointment.model';
 
 export const createAppointment = async (input: AppointmentInput) => {
-  return await AppointmentModel.create(input);
+    return await AppointmentModel.create(input);
 };
 
-export const findUserAppointments = async (
-  query: FilterQuery<AppointmentDocument>
-) => {
-  return await AppointmentModel.find(query);
+export const findUserAppointments = async (query: FilterQuery<AppointmentDocument>) => {
+    return await AppointmentModel.find(query);
 };
 
-export const deleteAppointment = async (
-  query: FilterQuery<AppointmentDocument>
-) => {
-  return await AppointmentModel.deleteOne(query);
+export const deleteAppointment = async (query: FilterQuery<AppointmentDocument>) => {
+    return await AppointmentModel.deleteOne(query);
 };
 
 export const updateAppointment = async (
-  query: FilterQuery<AppointmentDocument>,
-  update: UpdateQuery<AppointmentDocument>,
-  options?: QueryOptions
+    query: FilterQuery<AppointmentDocument>,
+    update: UpdateQuery<AppointmentDocument>,
+    options?: QueryOptions
 ) => {
-    return await AppointmentModel.findByIdAndUpdate(query,update,options)
+    return await AppointmentModel.findByIdAndUpdate(query, update, options);
 };

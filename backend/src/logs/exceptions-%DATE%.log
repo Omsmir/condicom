@@ -1,0 +1,304 @@
+2025:06:10 21:38:07:error uncaughtException: al is not defined
+ReferenceError: al is not defined
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/utils/logger.ts:52:89)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-2737632151765095.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-2737632151765095.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-2737632151765095.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+2025:06:10 21:50:45:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/utils/constants.ts(231,1): error TS1128: Declaration or statement expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/utils/constants.ts(231,1): error TS1128: Declaration or statement expected.
+
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/utils/constants.ts:1:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-2737632151765095.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-2737632151765095.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-2737632151765095.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+2025:06:10 21:55:35:error uncaughtException: this.socketInitialize is not a function
+TypeError: this.socketInitialize is not a function
+    at new App (/home/omar/Documents/Health/backend/src/app.ts:39:14)
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/server.ts:4:13)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-2737632151765095.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-2737632151765095.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-2737632151765095.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+2025:06:10 21:55:38:error uncaughtException: this.socketInitialize is not a function
+TypeError: this.socketInitialize is not a function
+    at new App (/home/omar/Documents/Health/backend/src/app.ts:39:14)
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/server.ts:4:13)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-2737632151765095.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-2737632151765095.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-2737632151765095.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+2025:06:10 21:55:59:error uncaughtException: this.socketInitialize is not a function
+TypeError: this.socketInitialize is not a function
+    at new App (/home/omar/Documents/Health/backend/src/app.ts:39:14)
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/server.ts:4:13)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-2737632151765095.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-2737632151765095.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-2737632151765095.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+2025:06:10 22:17:23:error uncaughtException: Missing initializer in const declaration
+/home/omar/Documents/Health/backend/src/controllers/user.controller.ts:64
+        const init;
+              ^^^^
+
+SyntaxError: Missing initializer in const declaration
+    at internalCompileFunction (node:internal/vm:73:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1274:20)
+    at Module._compile (node:internal/modules/cjs/loader:1320:27)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-2737632151765095.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-2737632151765095.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-2737632151765095.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+2025:06:10 22:17:26:error uncaughtException: Missing initializer in const declaration
+/home/omar/Documents/Health/backend/src/controllers/user.controller.ts:64
+        const initiat;
+              ^^^^^^^
+
+SyntaxError: Missing initializer in const declaration
+    at internalCompileFunction (node:internal/vm:73:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1274:20)
+    at Module._compile (node:internal/modules/cjs/loader:1320:27)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-2737632151765095.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-2737632151765095.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-2737632151765095.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+2025:06:10 22:17:36:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/user.controller.ts(105,28): error TS1005: ',' expected.
+src/controllers/user.controller.ts(106,16): error TS1005: ',' expected.
+src/controllers/user.controller.ts(106,23): error TS1005: ',' expected.
+src/controllers/user.controller.ts(109,9): error TS1472: 'catch' or 'finally' expected.
+src/controllers/user.controller.ts(165,7): error TS1005: ',' expected.
+src/controllers/user.controller.ts(168,1): error TS1128: Declaration or statement expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/user.controller.ts(105,28): error TS1005: ',' expected.
+src/controllers/user.controller.ts(106,16): error TS1005: ',' expected.
+src/controllers/user.controller.ts(106,23): error TS1005: ',' expected.
+src/controllers/user.controller.ts(109,9): error TS1472: 'catch' or 'finally' expected.
+src/controllers/user.controller.ts(165,7): error TS1005: ',' expected.
+src/controllers/user.controller.ts(168,1): error TS1128: Declaration or statement expected.
+
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-2737632151765095.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-2737632151765095.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-2737632151765095.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+2025:06:10 22:17:46:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/user.controller.ts(105,28): error TS1005: ',' expected.
+src/controllers/user.controller.ts(106,16): error TS1005: ',' expected.
+src/controllers/user.controller.ts(106,23): error TS1005: ',' expected.
+src/controllers/user.controller.ts(109,9): error TS1472: 'catch' or 'finally' expected.
+src/controllers/user.controller.ts(165,7): error TS1005: ',' expected.
+src/controllers/user.controller.ts(168,1): error TS1128: Declaration or statement expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/user.controller.ts(105,28): error TS1005: ',' expected.
+src/controllers/user.controller.ts(106,16): error TS1005: ',' expected.
+src/controllers/user.controller.ts(106,23): error TS1005: ',' expected.
+src/controllers/user.controller.ts(109,9): error TS1472: 'catch' or 'finally' expected.
+src/controllers/user.controller.ts(165,7): error TS1005: ',' expected.
+src/controllers/user.controller.ts(168,1): error TS1128: Declaration or statement expected.
+
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-2737632151765095.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-2737632151765095.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-2737632151765095.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+2025:06:10 22:18:00:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/user.controller.ts(105,28): error TS1005: ',' expected.
+src/controllers/user.controller.ts(106,16): error TS1005: ',' expected.
+src/controllers/user.controller.ts(106,23): error TS1005: ',' expected.
+src/controllers/user.controller.ts(109,9): error TS1472: 'catch' or 'finally' expected.
+src/controllers/user.controller.ts(165,7): error TS1005: ',' expected.
+src/controllers/user.controller.ts(168,1): error TS1128: Declaration or statement expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/user.controller.ts(105,28): error TS1005: ',' expected.
+src/controllers/user.controller.ts(106,16): error TS1005: ',' expected.
+src/controllers/user.controller.ts(106,23): error TS1005: ',' expected.
+src/controllers/user.controller.ts(109,9): error TS1472: 'catch' or 'finally' expected.
+src/controllers/user.controller.ts(165,7): error TS1005: ',' expected.
+src/controllers/user.controller.ts(168,1): error TS1128: Declaration or statement expected.
+
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-2737632151765095.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-2737632151765095.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-2737632151765095.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+2025:06:10 22:22:08:error uncaughtException: app_1.default.create is not a function
+TypeError: app_1.default.create is not a function
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/server.ts:4:17)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-2737632151765095.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-2737632151765095.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-2737632151765095.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+2025:06:10 22:23:25:error uncaughtException: app_1.default.create is not a constructor
+TypeError: app_1.default.create is not a constructor
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/server.ts:4:13)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-2737632151765095.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-2737632151765095.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-2737632151765095.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+2025:06:10 22:34:17:error uncaughtException: Cannot read properties of undefined (reading 'listen')
+TypeError: Cannot read properties of undefined (reading 'listen')
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/server.ts:6:5)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-3832602305401889.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-3832602305401889.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-3832602305401889.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+2025:06:10 22:34:33:error uncaughtException: Cannot read properties of undefined (reading 'forEach')
+TypeError: Cannot read properties of undefined (reading 'forEach')
+    at App.initializeRoutes (/home/omar/Documents/Health/backend/src/app.ts:79:16)
+    at new App (/home/omar/Documents/Health/backend/src/app.ts:42:14)
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/server.ts:5:1)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-3832602305401889.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-3832602305401889.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-3832602305401889.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+2025:06:10 22:37:31:error uncaughtException: Unexpected strict mode reserved word
+/home/omar/Documents/Health/backend/src/utils/socketServer.ts:16
+        private;
+        ^^^^^^^
+
+SyntaxError: Unexpected strict mode reserved word
+    at internalCompileFunction (node:internal/vm:73:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1274:20)
+    at Module._compile (node:internal/modules/cjs/loader:1320:27)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-3832602305401889.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-3832602305401889.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-3832602305401889.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+2025:06:10 22:46:16:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/utils/socketServer.ts(21,9): error TS1435: Unknown keyword or identifier. Did you mean 'return'?
+
+Error: ⨯ Unable to compile TypeScript:
+src/utils/socketServer.ts(21,9): error TS1435: Unknown keyword or identifier. Did you mean 'return'?
+
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/utils/socketServer.ts:1:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-3832602305401889.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-3832602305401889.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-3832602305401889.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+2025:06:10 22:47:48:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/utils/socketServer.ts(16,9): error TS1135: Argument expression expected.
+src/utils/socketServer.ts(16,10): error TS1068: Unexpected token. A constructor, method, accessor, or property was expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/utils/socketServer.ts(16,9): error TS1135: Argument expression expected.
+src/utils/socketServer.ts(16,10): error TS1068: Unexpected token. A constructor, method, accessor, or property was expected.
+
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/utils/socketServer.ts:1:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-3832602305401889.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-3832602305401889.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-3832602305401889.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+2025:06:10 22:57:42:error uncaughtException: Unexpected token ';'
+/home/omar/Documents/Health/backend/src/controllers/notifications.controller.ts:14
+        const ;
+              ^
+
+SyntaxError: Unexpected token ';'
+    at internalCompileFunction (node:internal/vm:73:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1274:20)
+    at Module._compile (node:internal/modules/cjs/loader:1320:27)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-3832602305401889.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-3832602305401889.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-3832602305401889.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+2025:06:10 22:57:46:error uncaughtException: Missing initializer in const declaration
+/home/omar/Documents/Health/backend/src/controllers/notifications.controller.ts:14
+        const init;
+              ^^^^
+
+SyntaxError: Missing initializer in const declaration
+    at internalCompileFunction (node:internal/vm:73:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1274:20)
+    at Module._compile (node:internal/modules/cjs/loader:1320:27)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-3832602305401889.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-3832602305401889.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-3832602305401889.js:71:20)
+    at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)

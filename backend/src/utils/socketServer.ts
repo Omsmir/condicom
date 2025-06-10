@@ -1,30 +1,26 @@
-import { Server, Socket } from "socket.io";
-import {Server as httpServerType} from 'http'
-import { initiator } from "../server";
+import { Server, Socket } from 'socket.io';
+import { Server as httpServerType } from 'http';
+import { logger } from './logger';
+import { ORIGIN } from '@/config';
 
-
-export const io =  (server:httpServerType) => {
-
-  return  new Server (server,{
-        cors: {
-            origin: "*",
-            methods: ["GET", "POST"]
+class SocketServer {
+    public static io(server: httpServerType) {
+        return new Server(server, {
+            cors: {
+                origin: ORIGIN,
+                methods: ['GET', 'POST'],
+            },
+        });
+    }
+    public static SocketInitiator(initiator: Server) {
+        try {
+            initiator.on('connection', (socket: Socket) => {
+                socket.on('disconnect', () => {});
+            });
+        } catch (error) {
+            logger.error('Connection error to the socket', error);
         }
-    })
+    }
 }
 
-
-export const SocketInitiator = async (initiator:Server) => {
-    try {
-    
-      initiator.on("connection", (socket:Socket) => {
-    
-        // console.log("connected",socket.id)
-  
-        socket.on("disconnect", () => {});
-      });
-  
-    } catch (error) {
-      console.log("connection error to the socket", error);
-    }
-  };
+export default SocketServer;
