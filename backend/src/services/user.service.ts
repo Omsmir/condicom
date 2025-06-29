@@ -27,6 +27,10 @@ export const findUser = async (query: FilterQuery<UserDocument>) => {
 export const getAllUsers = async (query?: FilterQuery<UserDocument>) => {
     return await UserModel.find(query ? query : {});
 };
+
+export const deleteUser = async (query: FilterQuery<UserDocument>) => {
+    return await UserModel.findOneAndDelete(query);
+};
 export const validatePassword = async ({
     email,
     password,

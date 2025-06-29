@@ -12,7 +12,7 @@ const page = async ({params}:{params:Promise<{token:string}>}) => {
     const token = (await params).token
     
   return (
-    <Encapsulating token={token} hashStart='verifyEmail'>
+    <Encapsulating token={token} hashStart='verifyEmail' KeyType='VerTokenPrivateKey'>
       <VerifyEmail />
     </Encapsulating>
   )

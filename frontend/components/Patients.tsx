@@ -6,7 +6,7 @@ import { UsePatientQuery } from "@/actions/queries";
 import Loading from "@/app/loading";
 
 const Patients = () => {
-  const { data, isLoading, isError, error,isFetching } = UsePatientQuery();
+  const { data, isLoading, isError, error } = UsePatientQuery();
 
   if (isLoading ) return <Loading />;
   if (isError) {

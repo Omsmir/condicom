@@ -11,6 +11,12 @@ const payload = {
     }),
 };
 
+const updatePayload = {
+    body: z.object({
+        seen: z.boolean({ message: 'state is required' }),
+        notificationId: z.string({ message: 'notificationId is required' }),
+    }),
+};
 const params = {
     params: z.object({
         id: z.string({ message: 'id is required' }),
@@ -24,5 +30,11 @@ export const notificationSchema = z.object({
 export const getNotificationSchema = z.object({
     ...params,
 });
+
+export const updateNotificationSchema = z.object({
+    ...params,
+    ...updatePayload,
+});
 export type notificationSchemaInterface = z.infer<typeof notificationSchema>;
 export type GetnotificationSchemaInterface = z.infer<typeof getNotificationSchema>;
+export type updateNotificationSchemaInterface = z.infer<typeof updateNotificationSchema>;

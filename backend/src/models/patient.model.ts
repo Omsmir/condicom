@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
 import { genders } from '../utils/constants';
 import { randomUUID } from 'crypto';
+import { Document } from 'mongoose';
 
 interface ProfileImage {
     filename?: string;
     url?: string;
     path?: string;
-    uploadedAt?: Date;
+    uploadedAt?: string;
 }
 export interface PatientInput {
     profileImg?: ProfileImage;

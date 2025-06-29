@@ -4,6 +4,7 @@ import clsx from "clsx";
 import BadgeAvatar from "./TopMenu/Avatar";
 import NotificationContent from "./TopMenu/NotificationContent";
 import { useSession } from "next-auth/react";
+import NotificationEncapsulating from "./TopMenu/NotificationEncapsulating";
 const Navbar = () => {
   const { open, isMobile } = useSidebar();
   const { data: session } = useSession();
@@ -12,7 +13,8 @@ const Navbar = () => {
       <div
         className={clsx(
           " flex flex-row items-center justify-between h-full py-2 pl-14 transition-all pr-8 overflow-hidden",
-          { "pl-14 md:pl-[220px]": open },{"pl-8":isMobile}
+          { "pl-14 md:pl-[220px]": open },
+          { "pl-8": isMobile }
         )}
       >
         <div className="flex flex-1">
@@ -25,11 +27,10 @@ const Navbar = () => {
               i hope you're in a good mood because there're 52 tasks
             </p>
           </div>
-         
         </div>
 
         <div className="flex items-center">
-          <NotificationContent />
+          <NotificationEncapsulating /> 
           <BadgeAvatar />
         </div>
       </div>

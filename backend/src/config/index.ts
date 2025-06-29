@@ -32,6 +32,9 @@ export const {
     LOG_FORMAT,
     LOG_DIR,
     ORIGIN,
+    TEMPORALTOKENTTL,
+    DFTOKENTTL,
+    OTPTTL,
 } = process.env;
 
 export const CREDENTIALS = process.env.CREDENTIALS === `true`;
@@ -42,4 +45,5 @@ export default {
     refreshTokenPrivateKey: process.env.REFRESH_PRIVATE_KEY,
     refreshTokenPublicKey: process.env.REFRESH_PUBLIC_KEY,
     VerTokenPrivateKey: process.env.VERIFICATION_TOKEN_PRIVATE,
+    MULTI_AUTH_SECRET: process.env.MULTI_AUTH_SECRET,
 };

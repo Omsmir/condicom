@@ -12,29 +12,38 @@ import {
     ResetPasswordNewInterface,
     SendEmailVerificationInterface,
 } from '../schemas/user.schema';
-import { uploadImageToFirebase } from '../utils/getPresignedUrl';
+import { deleteImage, uploadImageToFirebase } from '../utils/getPresignedUrl';
 import {
     createUser,
+    deleteUser,
     findUser,
     getAllUsers,
     updateUser,
     validatePassword,
 } from '../services/user.service';
-import { findCode, updateCode } from '../services/code.service';
+import { deleteCode, findCode, updateCode } from '../services/code.service';
 
 import mongoose from 'mongoose';
 import { generateOtp, hashPassword, sendEmail, systemNotifications } from '../utils/backevents';
-import { addDays, addHours, addMinutes, addMonths, addWeeks } from 'date-fns';
-import { addToHash, checkHash, createHash, DelHash, GetHashExpiration } from '../utils/redis';
+import { addHours, addWeeks } from 'date-fns';
+import { checkHash, createHash, DelHash, GetHashExpiration } from '../utils/redis';
 import { signJwt, verifyJwt } from '../utils/jwt.sign';
 import { UserDocument } from '../models/user.model';
 import { get } from 'lodash';
-import { reIssueAccessToken } from '../services/session.service';
+import { createSession, reIssueAccessToken } from '../services/session.service';
 import { createNotification } from '../services/notifications.service';
-import { FRONTEND_URI_DEV } from 'config';
+import {
+    ACCESSTOKENTTL,
+    DFTOKENTTL,
+    FRONTEND_URI_DEV,
+    NODE_ENV,
+    OTPTTL,
+    REFRESHTOKENTTL,
+    TEMPORALTOKENTTL,
+} from 'config';
 import App from '@/app';
 
-const frontendUri = FRONTEND_URI_DEV;
+const FRONTEND_URL = NODE_ENV === 'development' ? FRONTEND_URI_DEV : '';
 export const createUserHandler = async (
     req: Request<{}, {}, CreateUserInterface['body']>,
     res: Response
@@ -135,11 +144,20 @@ export const AddAdditionlHandler = async (
 
         const HashName = `verifyEmail:${existingUser._id}`;
 
-        const token = await signJwt({ _id: existingUser._id }, 'VerTokenPrivateKey', 'HS512', {
-            expiresIn: '1h',
-        });
+        const token = await signJwt(
+            { _id: existingUser._id, HashName },
+            'VerTokenPrivateKey',
+            'HS512',
+            {
+                expiresIn: parseInt(ACCESSTOKENTTL as string) * 4,
+            }
+        );
 
-        await createHash({ HashName, content: { token }, expire: 3600 });
+        await createHash({
+            HashName: `${HashName}:token`,
+            content: { token },
+            expire: parseInt(DFTOKENTTL as string),
+        });
 
         const link = `http://localhost:3000/dashboard/verify/${token}`;
 
@@ -153,13 +171,13 @@ export const AddAdditionlHandler = async (
 
         const notification = systemNotifications('emailVerification', existingUser);
 
-        initiator.emit(`EmailVerification${existingUser._id}`, notification);
-
-        await createNotification({
+        const createdNotification = await createNotification({
             ...notification,
             user: existingUser._id,
             assignedBy: 'system',
         });
+
+        initiator.emit(`EmailVerification${existingUser._id}`, createdNotification);
 
         res.status(203).json({ message: 'information added successfully', updatedUser });
     } catch (error: any) {
@@ -190,18 +208,27 @@ export const sendEmailVerificationHandler = async (
 
         const HashName = `verifyEmail:${existingUser._id}`;
 
-        const ExitingToken = await checkHash(HashName, 'token');
+        const ExitingToken = await checkHash(`${HashName}:token`, 'token');
 
         if (ExitingToken) {
             res.status(400).json({ message: 'verification email already has sent' });
             return;
         }
 
-        const token = await signJwt({ _id: existingUser._id }, 'VerTokenPrivateKey', 'HS512', {
-            expiresIn: '1h',
-        });
+        const token = await signJwt(
+            { _id: existingUser._id, HashName },
+            'VerTokenPrivateKey',
+            'HS512',
+            {
+                expiresIn: parseInt(ACCESSTOKENTTL as string) * 4,
+            }
+        );
 
-        await createHash({ HashName, content: { token }, expire: 3600 });
+        await createHash({
+            HashName: `${HashName}:token`,
+            content: { token },
+            expire: parseInt(DFTOKENTTL as string),
+        });
 
         const link = `http://localhost:3000/dashboard/verify/${token}`;
 
@@ -235,10 +262,10 @@ export const verifyEmailHandler = async (
 
         const HashName = `verifyEmail:${existingUser._id}`;
 
-        const token = await checkHash(HashName, 'token');
+        const token = await checkHash(`${HashName}:token`, 'token');
 
         if (!token) {
-            res.status(404).json({ message: 'token has expiredd', state: false });
+            res.status(404).json({ message: 'token has expired', state: false });
             return;
         }
 
@@ -255,7 +282,7 @@ export const verifyEmailHandler = async (
             { runValidators: true, new: true }
         );
 
-        await DelHash(HashName, 'token');
+        await DelHash(`${HashName}:token`, 'token');
 
         res.status(201).json({ message: 'email verified successfully', state: true });
     } catch (error: any) {
@@ -366,7 +393,7 @@ export const changePasswordHandler = async (
         const existingUser = await findUser({ _id: id });
 
         const currDate = new Date(existingUser?.passwordUpdatedAt as Date);
-        const AllowedDateToChange = addWeeks(currDate, 2);
+        const AllowedDateToChange = addWeeks(currDate, 1);
 
         if (!existingUser || !id) {
             res.status(403).json({ message: 'forbidden' });
@@ -413,7 +440,6 @@ export const SendResetEmailHandler = async (
     try {
         const email = req.body.email;
         const id = req.body.id;
-        const currDate = new Date();
 
         const existingUser = await findUser({ email });
 
@@ -422,15 +448,13 @@ export const SendResetEmailHandler = async (
             return;
         }
 
-        const HashName = `${existingUser.name}:${existingUser._id}`;
+        const HashName = `resetpassword:${existingUser._id}`;
 
-        const lastEmail = await checkHash(`${HashName}:1`, 'content');
+        const lastEmail = await checkHash(`${HashName}:lastemail`, 'content');
 
-        const tomorrow = addDays(existingUser.passwordUpdatedAt as Date, 3);
+        const existingToken = await checkHash(`${HashName}:token`, 'token');
 
-        const existingToken = await checkHash(HashName, 'token');
-
-        if (addHours(currDate, 2) < tomorrow) {
+        if (lastEmail) {
             res.status(400).json({
                 message: "can't reset password right now",
             });
@@ -443,43 +467,44 @@ export const SendResetEmailHandler = async (
             });
             return;
         }
-        const token = await signJwt(
-            { _id: existingUser._id, email: existingUser.email },
-            'VerTokenPrivateKey',
-            'HS512',
-            {
-                expiresIn: '1h',
-            }
-        );
+
+        const obj = {
+            _id: existingUser._id as string,
+            email: existingUser.email,
+            HashName,
+        };
+
+        const token = await signJwt(obj, 'VerTokenPrivateKey', 'HS512', {
+            expiresIn: (parseInt(TEMPORALTOKENTTL as string) * 12) as number,
+        });
 
         let link;
 
         if (id === 'undefined') {
-            link = `${frontendUri}reset/${token}`;
+            link = `${FRONTEND_URL}reset/${token}`;
         } else {
-            link = `${frontendUri}dashboard/settings/setting/reset/${token}`;
+            link = `${FRONTEND_URL}dashboard/settings/setting/reset/${token}`;
         }
-        const sent = await sendEmail({
+        await sendEmail({
             to: existingUser.email,
             templateName: 'passwordreset.hbs',
             link,
         });
 
-        if (!sent) {
-            res.status(404).json({ message: 'error occurred sending verification email' });
-            return;
-        }
-
         const content = {
-            content: addHours(currDate, 2).toISOString(),
+            content: addHours(new Date(), 2).toISOString(),
         };
 
-        await addToHash({
-            HashName,
-            token: { token },
-            channel: 'events',
-            expire: 3600,
-            content,
+        await createHash({
+            HashName: `${HashName}:token`,
+            content: { token },
+            expire: parseInt(DFTOKENTTL as string),
+        });
+
+        await createHash({
+            HashName: `${HashName}:lastemail`,
+            content: content,
+            expire: parseInt(DFTOKENTTL as string) * 3,
         });
 
         res.status(200).json({ message: 'email sent successfully' });
@@ -494,16 +519,16 @@ export const CheckTokenHandler = async (
 ) => {
     try {
         const token = req.params.token;
-        const HashName = req.params.hashname;
+        const KeyType = req.query.KeyType as 'VerTokenPrivateKey' | 'MULTI_AUTH_SECRET';
 
-        const { decoded, valid } = await verifyJwt(token, 'VerTokenPrivateKey', 'HS512');
+        const { decoded, valid } = await verifyJwt(token, KeyType, 'HS512');
 
         if (!valid) {
             res.status(403).json({ message: 'invalid token', state: false });
             return;
         }
 
-        const user = decoded as UserDocument;
+        const user = decoded as UserDocument | any;
 
         const existingUser = await findUser({ _id: user._id });
 
@@ -512,9 +537,11 @@ export const CheckTokenHandler = async (
             return;
         }
 
-        const existingToken = await checkHash(HashName, 'token');
+        const HashName = user.HashName;
 
-        if ((existingToken && token !== existingToken) || !existingToken) {
+        const existingToken = await checkHash(`${HashName}:token`, 'token');
+
+        if ((existingToken && token != existingToken) || !existingToken) {
             res.status(404).json({ message: 'invalid token', state: false });
             return;
         }
@@ -546,7 +573,7 @@ export const ResetPasswordHandler = async (
             return;
         }
 
-        const HashName = `${existingUser.name}:${existingUser._id}`;
+        const HashName = `resetpassword:${existingUser._id}:token`;
 
         const existingToken = await checkHash(HashName, 'token');
 
@@ -579,7 +606,6 @@ export const SendChangeEmailHandler = async (
     try {
         const id = req.params.id;
         const newEmail = req.body.email;
-        let token = null;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
             res.status(400).json({ message: 'invalid id provided' });
@@ -593,65 +619,76 @@ export const SendChangeEmailHandler = async (
             return;
         }
 
-        const HashName = `newEmail:otp:${existingUser._id}`;
+        const HashName = `newEmail:${existingUser._id}`;
 
-        const lastEmail = await checkHash(`${HashName}:1`, 'content');
+        const lastEmail = await checkHash(`${HashName}:lastemail`, 'content');
 
-        const fiveMinutes = addMinutes(new Date(lastEmail as string), 5);
-
-        const month = addMonths(new Date(lastEmail as string), 1);
-
-        const existingOtp = await checkHash(HashName, 'otp');
+        const existingOtp = await checkHash(`${HashName}:otp`, 'otp');
 
         const existingToken = await checkHash(`${HashName}:token`, 'token');
 
-        if (fiveMinutes < month) {
-            res.status(400).json({ message: "can't change email right now" });
-            return;
-        }
-        if (new Date(lastEmail as string) < fiveMinutes) {
+        const repeatStepOne = async ({ existedToken }: { existedToken: boolean }) => {
+            const otp = generateOtp({ length: 8, type: 'number' });
+            let token = null;
+
+            if (!existedToken) {
+                token = await signJwt(
+                    { _id: existingUser._id, email: newEmail, HashName },
+                    'VerTokenPrivateKey',
+                    'HS512',
+                    {
+                        expiresIn: parseInt(ACCESSTOKENTTL as string) * 4,
+                    }
+                );
+            }
+
+            const sent = await sendEmail({
+                to: newEmail,
+                templateName: 'changeEmail.hbs',
+                otp,
+                health: 'healthcare',
+                year: new Date().getFullYear(),
+            });
+            return { otp, token, sent };
+        };
+
+        if (existingToken) {
             if (existingOtp) {
                 res.status(400).json({ message: 'email already sent' });
                 return;
             }
-        }
+            const { otp } = await repeatStepOne({ existedToken: true });
 
-        const otp = generateOtp({ length: 8, type: 'number' });
+            await createHash({
+                HashName: `${HashName}:otp`,
+                content: { otp },
+                expire: parseInt(OTPTTL as string),
+            });
 
-        if (!existingToken) {
-            token = await signJwt(
-                { _id: existingUser._id, email: newEmail },
-                'VerTokenPrivateKey',
-                'HS512',
-                {
-                    expiresIn: '1h',
-                }
-            );
-        }
-
-        const sent = await sendEmail({
-            to: newEmail,
-            templateName: 'changeEmail.hbs',
-            otp,
-            health: 'healthcare',
-            year: new Date().getFullYear(),
-        });
-
-        if (!sent) {
-            res.status(404).json({ message: 'error occurred sending verification email' });
+            res.status(200).json({
+                message: 'otp has been sent again',
+                token: existingToken,
+            });
             return;
         }
 
+        if (lastEmail) {
+            res.status(400).json({ message: "can't change email right now" });
+            return;
+        }
+
+        const { otp, token } = await repeatStepOne({ existedToken: false });
+
         await createHash({
-            HashName,
+            HashName: `${HashName}:otp`,
             content: { otp },
-            expire: 300,
+            expire: parseInt(OTPTTL as string),
         });
 
         await createHash({
             HashName: `${HashName}:token`,
             content: { token: token },
-            expire: 3600,
+            expire: parseInt(DFTOKENTTL as string),
         });
 
         res.status(200).json({
@@ -681,8 +718,8 @@ export const checkOtpEmailChangeHandler = async (
             res.status(403).json({ message: 'forbidden' });
             return;
         }
-        const HashName = `newEmail:otp:${existingUser._id}`;
-        const existingOtp = await checkHash(HashName, 'otp');
+        const HashName = `newEmail:${existingUser._id}`;
+        const existingOtp = await checkHash(`${HashName}:otp`, 'otp');
 
         const token = await checkHash(`${HashName}:token`, 'token');
 
@@ -714,11 +751,12 @@ export const checkOtpEmailChangeHandler = async (
         );
 
         await createHash({
-            HashName: `${HashName}:1`,
+            HashName: `${HashName}:lastemail`,
             content: { content: addHours(new Date(), 2).toISOString() },
+            expire: parseInt(REFRESHTOKENTTL as string),
         });
 
-        await DelHash(HashName, 'otp');
+        await DelHash(`${HashName}:otp`, 'otp');
         await DelHash(`${HashName}:token`, 'token');
 
         res.status(201).json({ message: 'email has changed successfully', state: true });
@@ -776,7 +814,11 @@ export const changeProfilePictureHandler = async (
 
         const content = addHours(update.profileImg?.uploadedAt as Date, 2).toISOString();
 
-        await createHash({ HashName, content: { content }, expire: 3600 * 24 * 3 });
+        await createHash({
+            HashName,
+            content: { content },
+            expire: parseInt(DFTOKENTTL as string) * 24 * 3,
+        });
         res.status(201).json({ message: 'profile picture updated successfully' });
     } catch (error: any) {
         res.status(500).json({ message: error });
@@ -786,6 +828,53 @@ export const changeProfilePictureHandler = async (
 export const reIssueAccessTokenHandler = async (req: Request, res: Response) => {
     try {
         const refreshToken = get(req, 'headers.x-refresh') as string;
+        const temporalToken = get(req, 'headers.x-temporal-token') as string;
+
+        if (temporalToken) {
+            const { decoded, valid } = await verifyJwt(temporalToken, `MULTI_AUTH_SECRET`, 'HS512');
+
+            if (!valid) {
+                res.status(403).json({ message: 'invalid temporal token', sessionState: false });
+                return;
+            }
+            const user = decoded as UserDocument;
+
+            const existingUser = await findUser({ _id: user._id });
+            if (!existingUser) {
+                res.status(403).json({ message: 'forbidden', sessionState: false });
+                return;
+            }
+            const obj = {
+                user: user._id as string,
+                userAgent: req.get('user-agent') || '',
+                role: user.role,
+            };
+            const session = await createSession({ ...obj });
+
+            const accessToken = await signJwt(
+                {
+                    ...existingUser,
+                    id: existingUser._id,
+                    session: session._id,
+                },
+                'accessTokenPrivateKey',
+                'RS256',
+                { expiresIn: parseInt(ACCESSTOKENTTL as string) }
+            );
+            const refreshToken = await signJwt(
+                { ...existingUser, session: session._id },
+                'refreshTokenPrivateKey',
+                'RS256',
+                { expiresIn: parseInt(REFRESHTOKENTTL as string) }
+            );
+            res.status(200).json({
+                message: 'logged in successfully ',
+                accessToken,
+                refreshToken,
+                sessionState: true,
+            });
+            return;
+        }
 
         const accessToken = await reIssueAccessToken(refreshToken);
 
@@ -798,7 +887,7 @@ export const reIssueAccessTokenHandler = async (req: Request, res: Response) => 
             res.setHeader('Authorization', `${accessToken}`);
         }
 
-        res.status(200).json({ accessToken, sessionState: true, refreshToken });
+        res.status(200).json({ accessToken, refreshToken, sessionState: true });
     } catch (error: any) {
         res.status(500).json({ message: error.message });
     }
@@ -849,15 +938,15 @@ export const multiAuthOtpHandler = async (
         const existedToken = await checkHash(`${HashName}:token`, 'token');
 
         if (existedToken) {
-            const link = `${frontendUri}dashboard/settings/setting/verify/${existedToken}`;
+            const link = `${FRONTEND_URL}dashboard/settings/setting/verify/${existedToken}`;
 
             await createHash({
                 HashName: `${HashName}:otp`,
                 content: { otp },
-                expire: 300,
+                expire: parseInt(OTPTTL as string),
             });
 
-            const sent = await sendEmail({
+            await sendEmail({
                 to: existingUser.email,
                 templateName: 'multiAuth.hbs',
                 link,
@@ -866,10 +955,6 @@ export const multiAuthOtpHandler = async (
                 year: new Date().getFullYear(),
             });
 
-            if (!sent) {
-                res.status(400).json({ message: 'an error occured while sending the otp again' });
-                return;
-            }
             const TTL = await GetHashExpiration(`${HashName}:otp`);
 
             res.status(201).json({
@@ -883,27 +968,28 @@ export const multiAuthOtpHandler = async (
         const object = {
             _id: existingUser._id,
             email: existingUser.email,
+            HashName,
         };
 
-        const token = await signJwt(object, 'VerTokenPrivateKey', 'HS512', {
-            expiresIn: '1h',
+        const token = await signJwt(object, 'MULTI_AUTH_SECRET', 'HS512', {
+            expiresIn: parseInt(ACCESSTOKENTTL as string) * 4,
         });
 
-        const link = `${frontendUri}dashboard/settings/setting/verify/${token}`;
+        const link = `${FRONTEND_URL}dashboard/settings/setting/verify/${token}`;
 
         await createHash({
             HashName: `${HashName}:otp`,
             content: { otp },
-            expire: 300,
+            expire: parseInt(OTPTTL as string),
         });
 
         await createHash({
             HashName: `${HashName}:token`,
             content: { token },
-            expire: 3600,
+            expire: parseInt(DFTOKENTTL as string),
         });
 
-        const sent = await sendEmail({
+        await sendEmail({
             to: existingUser.email,
             templateName: 'multiAuth.hbs',
             link,
@@ -912,10 +998,6 @@ export const multiAuthOtpHandler = async (
             year: new Date().getFullYear(),
         });
 
-        if (!sent) {
-            res.status(400).json({ message: 'an error occured while sending the otp again' });
-            return;
-        }
         const TTL = await GetHashExpiration(`${HashName}:otp`);
 
         res.status(201).json({
@@ -988,6 +1070,50 @@ export const verifyEnablingMultiAuthOtpHandler = async (
             message: 'mulit-factor authentication has been enabled',
             state: true,
         });
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// test handler only for deleting unverified users
+// This should be run manually or scheduled using a cron job
+// It is not recommended to use this in production without proper checks
+
+export const deleteUnVerifiedUsersHandler = async (req: Request, res: Response) => {
+    try {
+        const unverified = await getAllUsers({ verified: false });
+
+        if (!unverified || unverified.length < 1) {
+            res.status(404).json({ message: 'no unverified users found' });
+            return;
+        }
+
+        for (let user of unverified) {
+            const HashName = `emailVerificationAlert:${user._id}`;
+
+            const lastEmail = await checkHash(HashName, 'lastemail');
+
+            if (!lastEmail) {
+                res.status(403).json({ message: 'User is still within the warning phase' });
+                return;
+            }
+
+            await sendEmail({
+                to: user.email,
+                templateName: 'emailDeletion.hbs',
+                health: 'healthcare',
+                year: new Date().getFullYear(),
+            });
+
+            await deleteImage(user.profileImg?.path);
+
+            await deleteCode({ user: user._id });
+
+            await deleteUser({ _id: user._id });
+
+            await DelHash(HashName, 'lastemail');
+        }
+        res.status(200).json({ message: 'unverified users deleted successfully' });
     } catch (error: any) {
         res.status(500).json({ message: error.message });
     }

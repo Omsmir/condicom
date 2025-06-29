@@ -147,7 +147,7 @@ export const patientSchema = z.object({
     .min(2, { message: "Minimum characters is 2" }),
   birthDate: z
     .date({ message: "Please select a date" })
-    .refine((date) => date < new Date(), { message: "Date must be in past" }),
+    .refine((date) => date < new Date(), { message: "Date must be in past" }).optional(),
   profileImg: z
     .custom<File[]>((files) => files && files.length > 0, {
       message: "Please select an image",
@@ -175,7 +175,7 @@ export const patientSchema = z.object({
   country: z.object(
     { label: z.string({ message: "Please select a country" }) },
     { message: "Please select a country" }
-  ),
+  ).optional(),
   emergencyContactPerson: z.string().optional(),
   emergencyContactRelationship: z.string().optional(),
   emergencyContactNumber: z
@@ -202,6 +202,10 @@ export const patientSchema = z.object({
   alcoholFrequency: z
     .enum(["daily", "occasionally", "rarely", "never"])
     .optional(),
+});
+
+export const PatientsSchema = z.object({
+  patients: z.array(patientSchema),
 });
 
 export const MedicationSchema = z.object({
@@ -332,16 +336,20 @@ export const ConfirmEmailChangeSchema = z.object({
 
 export const profilePictureSchema = z.object({
   profilePicture: z
-  .custom<File[]>((files) => files && files.length > 0, {
-    message: "Please select an image",
-  })
-  .refine(
-    (files) =>
-      files.every((file) => {
-        const fileName = file.name.toLowerCase();
-        const extension = fileName.split(".").pop();
-        return validImageExtensions.includes(extension || "");
-      }),
-    { message: "Invalid image extension" }
-  )
+    .custom<File[]>((files) => files && files.length > 0, {
+      message: "Please select an image",
+    })
+    .refine(
+      (files) =>
+        files.every((file) => {
+          const fileName = file.name.toLowerCase();
+          const extension = fileName.split(".").pop();
+          return validImageExtensions.includes(extension || "");
+        }),
+      { message: "Invalid image extension" }
+    ),
+});
+
+export const VerifyOtp = z.object({
+  otp: z.string({ message: "otp is required" }).min(8, "otp is required"),
 });

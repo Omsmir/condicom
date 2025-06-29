@@ -18,6 +18,24 @@ export const middleware = async (req: NextRequest) => {
       return NextResponse.redirect(new URL("/dashboard", req.url));
     }
 
+    if (
+      pathname.startsWith("/dashboard") &&
+      token.mfa_state &&
+      !token.isFullyAuthenicated&&
+      token.temporalToken
+    ) {
+      return NextResponse.redirect(
+        new URL(`/multi-auth-verification/${token.temporalToken}`, req.url)
+      );
+    }
+    if (
+      pathname.startsWith("/multi-auth-verification") &&
+      token.mfa_state &&
+      token.isFullyAuthenicated
+    ) {
+      return NextResponse.redirect(new URL(`/dashboard`, req.url));
+    }
+
     if (PrivateRoutes.includes(pathname) && token?.role !== "Admin") {
       return NextResponse.redirect(new URL("/dashboard", req.url));
     }

@@ -1,14 +1,14 @@
 import crypto from 'crypto';
 import { NotificationModel } from '@/models/notifications.model';
 import { MedicalStuffRegex } from '@/utils/constants';
-import { UserDocument } from '../models/user.model.js';
+import { UserDocument } from '../models/user.model';
 import bcryptjs from 'bcryptjs';
 import { APP_PASSWORD, SALTWORKFACTOR, SMTP_USER } from 'config';
 import { createTransport } from 'nodemailer';
 import path from 'path';
 import fs from 'fs';
 import Handlebars from 'handlebars';
-
+import { logger } from './logger';
 interface Notification {
     type: string;
     description: string;
@@ -156,7 +156,7 @@ export const detectExpiredCode = ({ expiration }: { expiration: Date }) => {
 };
 
 export const hashPassword = async ({ password }: { password: string }) => {
-    const salt = await bcryptjs.genSalt(SALTWORKFACTOR as any);
+    const salt = await bcryptjs.genSalt(parseInt(SALTWORKFACTOR as string) as number);
 
     const hash = bcryptjs.hashSync(password, salt);
 
@@ -181,34 +181,33 @@ export const sendEmail = async ({
     year,
     date,
     otp,
-}: sendEmailProps): Promise<boolean> => {
-    const transport = createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        auth: {
-            user: SMTP_USER,
-            pass: APP_PASSWORD,
-        },
-    });
-    const from = 'HealthCare';
-    const subject = ' HealthCare Email Verification';
-
-    const html = renderTemplate(`${templateName}`, {
-        to,
-        link,
-        health,
-        year,
-        date,
-        otp,
-    });
-
+}: sendEmailProps) => {
     try {
+        const transport = createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            auth: {
+                user: SMTP_USER,
+                pass: APP_PASSWORD,
+            },
+        });
+        const from = 'HealthCare';
+        const subject = 'HealthCare Email Verification';
+
+        const html = renderTemplate(`${templateName}`, {
+            to,
+            link,
+            health,
+            year,
+            date,
+            otp,
+        });
         await transport.sendMail({ from, subject, to, html });
 
-        return true;
+        logger.info(`Email sent to ${to} with template ${templateName}`);
     } catch (error: any) {
-        console.log(error.message);
-        return false;
+        logger.error(error.message);
+        throw new Error(`Failed to send email: ${error.message}`);
     }
 };
 

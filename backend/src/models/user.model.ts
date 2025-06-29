@@ -1,7 +1,7 @@
 import mongoose, { Document } from 'mongoose';
 import bcryptjs from 'bcryptjs';
-import config, { SALTWORKFACTOR } from 'config';
-import log from '../utils/logger';
+import { SALTWORKFACTOR } from 'config';
+import { logger } from '@/utils/logger';
 export interface UserInput {
     name: string;
     email: string;
@@ -18,6 +18,8 @@ export interface UserInput {
     role: string;
     profileState?: boolean;
     mfa_state?: boolean;
+    isFullyAuthenicated?: boolean;
+    isPartiallyAuthenicated?: boolean;
     verified?: boolean;
     bio?: string;
     weight?: string;
@@ -56,6 +58,8 @@ const userSchema = new mongoose.Schema<UserDocument>(
         role: { type: String, required: true },
         profileState: { type: Boolean, default: false },
         mfa_state: { type: Boolean, default: false },
+        isFullyAuthenicated: { type: Boolean, default: false },
+        isPartiallyAuthenicated: { type: Boolean, default: false },
         verified: { type: Boolean, default: false },
         bio: { type: String },
         weight: { type: String },
@@ -79,7 +83,7 @@ userSchema.pre('save', async function (next) {
             const hash = bcryptjs.hashSync(user.password, salt);
             user.password = hash;
         } catch (error: any) {
-            log.error(error.message);
+            logger.error(error.message);
             return next(error);
         }
     }

@@ -15,11 +15,8 @@ const page = async ({ params }: { params: Promise<{ token: string }> }) => {
       return <NotFound />;
     }
   
-    const decoded = decodeURIComponent(token);
-
-    console.log(decoded)
   return (
-    <Encapsulating token={token} >
+    <Encapsulating token={token} KeyType="VerTokenPrivateKey">
       <div className="flex h-screen justify-center items-center p-4">
         <div className="flex flex-col justify-center items-center w-full h-full p-4 sm:p-6">
           <Image

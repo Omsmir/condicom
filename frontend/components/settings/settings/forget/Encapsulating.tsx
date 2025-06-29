@@ -11,20 +11,23 @@ interface EncapsulatingProps {
   token: string;
   hashStart?: string;
   hashEnd?: string;
+  KeyType?: "VerTokenPrivateKey" | "MULTI_AUTH_SECRET";
 }
 const Encapsulating = ({
   children,
   token,
   hashStart,
   hashEnd,
+  KeyType,
 }: EncapsulatingProps) => {
   const { data: session } = useSession();
 
   const { contextHolder } = DashboardHook();
-
-  const {  isFetching, isLoading, isError } = useCheckToken(
+  console.log(KeyType);
+  const { isFetching, isLoading, isError } = useCheckToken(
     token,
-    `${hashStart || session?.user.name}:${session?.user?.id}${hashEnd || ""}`
+    `${hashStart || session?.user.name}:${session?.user.id}${hashEnd || ""}`,
+    KeyType || "VerTokenPrivateKey"
   );
   if (isFetching || isLoading) {
     return <Spinner className="relative" />;

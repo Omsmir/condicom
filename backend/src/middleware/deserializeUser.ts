@@ -17,7 +17,6 @@ export const deserializeUser = async (req: Request, res: Response, next: NextFun
     if (decoded) {
         res.locals.user = decoded;
 
-        console.log('Decoded User: from access token deserialize ');
         return next();
     }
 

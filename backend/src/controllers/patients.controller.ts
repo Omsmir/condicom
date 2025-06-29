@@ -1,4 +1,4 @@
-import { NextFunction, Response, Request, ErrorRequestHandler } from 'express';
+import { Response, Request } from 'express';
 import {
     DeletepatientSchemaInterface,
     GetpatientSchemaInterface,
@@ -12,7 +12,6 @@ import {
     getAllPatients,
     getPatient,
 } from '../services/patient.service';
-import { ZodError } from 'zod';
 
 export const createPatientHandler = async (
     req: Request<{}, {}, patientSchemaInterface['body']>,
@@ -37,7 +36,7 @@ export const createPatientHandler = async (
 
         const patient = await createPatient({
             ...req.body,
-            profileImg: profileImg,
+            profileImg,
         });
 
         res.status(201).json({ message: 'patient created successfully', patient });

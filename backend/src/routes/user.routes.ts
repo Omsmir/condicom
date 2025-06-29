@@ -22,6 +22,7 @@ import {
     checkOtpEmailChangeHandler,
     CheckTokenHandler,
     createUserHandler,
+    deleteUnVerifiedUsersHandler,
     getAllUsersHandler,
     getUser,
     multiAuthOtpHandler,
@@ -33,8 +34,13 @@ import {
     verifyEmailHandler,
     verifyEnablingMultiAuthOtpHandler,
 } from '../controllers/user.controller';
-import { SessionSchema } from '../schemas/session.schema';
-import { getUserSessions, login } from '../controllers/session.controller';
+import { logOutSchema, SessionSchema } from '../schemas/session.schema';
+import {
+    getUserSessions,
+    login,
+    logout,
+    verifyMultiAuthOtpHandler,
+} from '../controllers/session.controller';
 import { requireUser } from '../middleware/requireUser';
 import { Routes } from '@/interfaces/routes.interface';
 
@@ -65,6 +71,14 @@ class UserRoutes implements Routes {
 
         this.router.post(`${this.path}/login`, upload.none(), validate(SessionSchema), login);
 
+        this.router.post(
+            `${this.path}/multi-auth-verification/:id`,
+            upload.none(),
+            validate(CheckOtpSchema),
+            verifyMultiAuthOtpHandler
+        );
+
+        this.router.put(`${this.path}/logout/:id`, validate(logOutSchema), logout);
         // change main info
         this.router.put(
             `${this.path}/update/:id`,
@@ -116,7 +130,8 @@ class UserRoutes implements Routes {
 
         // common token checker
         this.router.get(
-            `${this.path}/token/:token/:hashname`,
+            `${this.path}/token/:token`,
+            upload.none(),
             validate(CheckTokenExistanceSchema),
             CheckTokenHandler
         );
@@ -156,6 +171,8 @@ class UserRoutes implements Routes {
             validate(ChangeProfilePictureSchema),
             changeProfilePictureHandler
         );
+
+        this.router.delete(`${this.path}`, deleteUnVerifiedUsersHandler);
     }
 }
 

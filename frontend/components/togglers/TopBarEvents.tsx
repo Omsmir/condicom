@@ -493,7 +493,7 @@ export const NotificationDescription = ({
                 {notification.eventId}
               </p>
               <p className="text-left text-[11px] ml-1">
-                at {format(notification.updatedAt, "Pp")}
+                at {format(notification.createdAt, "Pp")}
               </p>
             </React.Fragment>
           );
@@ -506,7 +506,7 @@ export const NotificationDescription = ({
           return (
             <React.Fragment>
               <p className="text-left text-[11px]">
-                at {format(notification.updatedAt, "Pp")}
+                at {format(notification.createdAt, "Pp")}
               </p>
             </React.Fragment>
           );

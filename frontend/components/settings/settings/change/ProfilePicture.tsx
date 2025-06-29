@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { z } from "zod";
 import { Form, FormControl } from "@/components/ui/form";
 import SubmitButton from "@/components/togglers/SubmitButton";
@@ -10,15 +10,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CustomFormField, { FormFieldType } from "@/components/CustomFormField";
 import { useSession } from "next-auth/react";
-import CustomFileUploader from "@/components/CustomFileUploader";
+import CustomFileUploader, { FileUploaderType } from "@/components/CustomFileUploader";
 import { UseChangeProfilePicture } from "@/actions/mutation";
-import Image from "next/image";
 import CustomSkeleton, { SkeletonType } from "@/components/CustomSkeleton";
 
 const ProfilePicture = () => {
   const { isChangingPicture } = AccountHook();
   const { api } = DashboardHook();
-  const[loading,setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   const { data: session, update } = useSession();
 
@@ -52,6 +51,12 @@ const ProfilePicture = () => {
       console.log(`error from Account profile: ${error.message}`);
     }
   };
+  useEffect(() => {
+    const interval = setTimeout(() => {
+      setLoading(false);
+    }, 10000);
+    return () => clearTimeout(interval);
+  }, []);
 
   return (
     <Form {...form}>
@@ -83,6 +88,7 @@ const ProfilePicture = () => {
                 <CustomFileUploader
                   files={field.value}
                   onChange={field.onChange}
+                  type={FileUploaderType.PICTURE}
                   buttonTitle="change"
                   classname="!mt-0 absolute left-0 top-0 group"
                   buttonClassName="hidden group-hover:block group-hover:text-slate-50 transition-all"

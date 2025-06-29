@@ -142,7 +142,9 @@ const CheckTokenExistancePayload = {
 const CheckTokenExistancePayload2 = {
     params: z.object({
         token: z.string({ message: 'token is required' }),
-        hashname: z.string({ message: 'hashname is required' }),
+    }),
+    query: z.object({
+        KeyType: z.enum(['VerTokenPrivateKey', 'MULTI_AUTH_SECRET']),
     }),
 };
 const CheckOtpPayload = {

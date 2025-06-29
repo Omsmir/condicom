@@ -8,12 +8,13 @@ import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
 import { UseToggleMultiAuthFactor } from "@/actions/mutation";
 import { redirect } from "next/navigation";
+import clsx from "clsx";
 
 const MutliAuth = () => {
   const { isTogglingMulti } = AccountHook();
   const { api } = DashboardHook();
 
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
 
   const toggleMulti = UseToggleMultiAuthFactor(api, session?.user.id);
 
@@ -25,8 +26,16 @@ const MutliAuth = () => {
     try {
       await toggleMulti.mutateAsync(formData, {
         onSuccess: async (response) => {
-          await new Promise((res) => setTimeout(res, 1500));
-          redirect(`/dashboard/settings/setting/verify/${response.data.token}`);
+          if (session?.user.mfa_state) {
+            await new Promise((res) => setTimeout(res, 1500));
+
+            await update();
+          } else {
+            await new Promise((res) => setTimeout(res, 1500));
+            redirect(
+              `/dashboard/settings/setting/verify/${response.data.token}`
+            );
+          }
         },
       });
     } catch (error: any) {
@@ -54,13 +63,17 @@ const MutliAuth = () => {
           </div>
           <div className="flex flex-col h-full w-full sm:w-fit space-y-2 mt-4 sm:mt-0">
             <SubmitButton
-              className="bg-blue-800 text-slate-50 max-h-[25px] capitalize "
+              className={clsx(
+                "bg-blue-800 text-slate-50 max-h-[25px] capitalize",
+                { "bg-red-700": session?.user.mfa_state }
+              )}
               isLoading={isTogglingMulti}
-              disabled={session?.user.mfa_state}
               disabledText="multi-auth is enabled"
               innerText=" " // importtant
             >
-              enable multi-factor authentication
+              {session?.user.mfa_state
+                ? "disable multi-auth"
+                : "enable multi-auth"}
             </SubmitButton>
 
             <div className="flex items-center text-xs capitalize whitespace-nowrap">

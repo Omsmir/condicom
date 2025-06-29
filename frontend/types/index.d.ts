@@ -89,13 +89,16 @@ declare module "next-auth" {
       id: string;
       role: string;
       verified?: boolean;
-      accessToken: string;
-      refreshToken: string;
-      code: string;
+      accessToken?: string;
+      refreshToken?: string;
+      code?: string;
       profileState: boolean;
-      passwordUpdatedAt: Date;
-      codeExp: Date;
+      passwordUpdatedAt?: Date;
+      codeExp?: Date;
+      temporalToken?: string;
       mfa_state: boolean;
+      isFullyAuthenicated?: boolean;
+      isPartiallyAuthenicated?: boolean;
     } & DefaultSession["user"];
   }
 
@@ -103,12 +106,15 @@ declare module "next-auth" {
     id: string;
     role: string;
     verified?: boolean;
-    accessToken: string;
-    refreshToken: string;
+    accessToken?: string;
+    refreshToken?: string;
     profileState: boolean;
-    passwordUpdatedAt: Date;
-    codeExp: Date;
+    passwordUpdatedAt?: Date;
+    temporalToken?: string;
+    codeExp?: Date;
     mfa_state: boolean;
+    isFullyAuthenicated?: boolean;
+    isPartiallyAuthenicated?: boolean;
   }
 }
 
@@ -127,6 +133,9 @@ declare module "next-auth/jwt" {
     passwordUpdatedAt: Date;
     codeExp: Date;
     mfa_state: boolean;
+    temporalToken?: string;
+    isFullyAuthenicated?: boolean;
+    isPartiallyAuthenicated?: boolean;
   }
 }
 
@@ -165,6 +174,7 @@ declare interface Notification {
   assignedTo?: string;
   eventId?: string;
   updatedAt: Date;
+  createdAt: Date;
   seen: boolean;
 }
 
@@ -208,7 +218,7 @@ declare interface ObjectType {
     title: string;
     tone: string;
   };
-  adminOnly: {
+  system: {
     title: string;
     tone: string;
   };

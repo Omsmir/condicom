@@ -73,7 +73,9 @@ interface CustomProps {
   className?: string;
   optionalLabel?: string;
   OtpLength?: number;
-  OtpInvalid?:boolean | FieldError
+  OtpInvalid?: boolean | FieldError;
+  otpForm?: "bar" | "seperate" | undefined;
+  otpSeperator?:boolean
 }
 
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
@@ -286,15 +288,26 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
           </div>
         </FormControl>
       );
-    case FormFieldType.OTP: 
+    case FormFieldType.OTP:
       return (
-        <div className={cn("flex justify-center items-center",props.className)}>
+        <div
+          className={cn("flex justify-center items-center", props.className)}
+        >
           <FormControl>
-          <Otp length={props.OtpLength} name={props.name} value={field.value} setValue={field.onChange} confirmState={props.state} invalid={props.OtpInvalid} />
+            <Otp
+              form={props.otpForm}
+              length={props.OtpLength}
+              name={props.name}
+              value={field.value}
+              setValue={field.onChange}
+              confirmState={props.state}
+              invalid={props.OtpInvalid}
+              separator={props.otpSeperator}
+            />
           </FormControl>
         </div>
       );
-      default:
+    default:
       return null;
   }
 };

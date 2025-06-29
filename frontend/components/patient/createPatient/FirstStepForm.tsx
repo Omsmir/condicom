@@ -3,8 +3,8 @@ import React from "react";
 import { UseFormReturn } from "react-hook-form";
 import { FormControl } from "@/components/ui/form";
 import CustomFormField, { FormFieldType } from "@/components/CustomFormField";
-import CustomFileUploader from "@/components/CustomFileUploader";
-import { bloodTypes, genders, heights,  weights } from "@/lib/constants";
+import CustomFileUploader, { FileUploaderType } from "@/components/CustomFileUploader";
+import { bloodTypes, genders, heights, weights } from "@/lib/constants";
 import { SelectItem } from "../../ui/select";
 import { MailOutlined, UserOutlined } from "@ant-design/icons";
 import { z } from "zod";
@@ -28,7 +28,8 @@ const FirstStepForm: React.FC<FirstStepFormProps> = ({ form }) => {
           renderSkeleton={(field) => (
             <FormControl>
               <CustomFileUploader
-              classname="justify-center"
+                classname="justify-center"
+                type={FileUploaderType.PICTURE}
                 files={field.value}
                 onChange={field.onChange}
                 plusIcon

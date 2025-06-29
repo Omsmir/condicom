@@ -15,7 +15,7 @@ const page = async ({ params }: { params: Promise<{ token: string }> }) => {
       return <NotFound />;
     }
   return (
-    <Encapsulating token={token} hashStart="newEmail:otp" hashEnd=":token">
+    <Encapsulating token={token} hashStart="newEmail:otp" hashEnd=":token" >
       <ConfirmEmail />
     </Encapsulating>
   );

@@ -3,7 +3,7 @@ import { sessionDocument, sessionInput, SessionModel } from '../models/session.m
 import { signJwt, verifyJwt } from '../utils/jwt.sign';
 import { findUser } from './user.service';
 import { ACCESSTOKENTTL } from 'config';
-import { FilterQuery } from 'mongoose';
+import { FilterQuery, QueryOptions } from 'mongoose';
 import { findCode } from './code.service';
 export const createSession = async (input: sessionInput) => {
     return await SessionModel.create(input);
@@ -11,6 +11,14 @@ export const createSession = async (input: sessionInput) => {
 
 export const getSession = async (query: FilterQuery<sessionDocument>) => {
     return await SessionModel.findOne(query).lean();
+};
+
+export const updateSession = async (
+    query: FilterQuery<sessionDocument>,
+    update: Partial<sessionDocument>,
+    options?: QueryOptions
+) => {
+    return await SessionModel.findOneAndUpdate(query, update, options);
 };
 
 export const reIssueAccessToken = async (refreshToken: string) => {
@@ -31,7 +39,7 @@ export const reIssueAccessToken = async (refreshToken: string) => {
         { ...user, session: session?._id, codePlan: code?.expiration },
         'accessTokenPrivateKey',
         'RS256',
-        { expiresIn: ACCESSTOKENTTL as any } // 15min
+        { expiresIn: parseInt(ACCESSTOKENTTL as string) }
     );
 
     return accessToken;

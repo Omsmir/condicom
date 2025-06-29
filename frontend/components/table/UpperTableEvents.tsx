@@ -12,6 +12,7 @@ import { ColumnDef, ColumnFiltersState, Table } from "@tanstack/react-table";
 import AddPatient from "../AddPatient";
 import ColumnFilters from "./ColumnFilters";
 import AddMedication from "../AddMedication";
+import ImportPatients from "../patient/createPatient/ImportPatients";
 
 interface UpperTableEventsProps<TData, TValue> {
   columns?: ColumnDef<TData, TValue>[] | any;
@@ -31,16 +32,20 @@ const UpperTableEvents = <TData, TValue>({
     switch (renderSwitchState) {
       case "patient":
         return (
-          <div className="ml-4 border-l pl-4">
-            <AddPatient />
+          <div className="flex justify-between ml-4 border-l pl-4">
+            <ImportPatients />
+
+            <div className="ml-4">
+              <AddPatient />
+            </div>
           </div>
         );
-        case "pharmacy":
-          return (
-            <div className="ml-4 border-l pl-4">
-              <AddMedication />
-            </div>
-          );
+      case "pharmacy":
+        return (
+          <div className="ml-4 border-l pl-4">
+            <AddMedication />
+          </div>
+        );
       default:
         return null;
     }

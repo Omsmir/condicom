@@ -1,4 +1,5 @@
-import { ObjectType } from "@/types";
+
+// import { ObjectType } from "@/types";
 import { BellOutlined } from "@ant-design/icons";
 import {
   Calendar,
@@ -12,6 +13,7 @@ import {
   User,
 } from "lucide-react";
 import { Medication, Notifications, TableChart } from "@mui/icons-material";
+import { ObjectType } from "@/types";
 
 export const SideBarItems = [
   {
@@ -237,7 +239,7 @@ export const heights = [
 
 export const notificationSounds = (tone: keyof ObjectType): string | null => {
   const systemSounds: ObjectType = {
-    adminOnly: {
+    system: {
       title: "public",
       tone: "/assets/audio/airport-call-157168.mp3",
     },

@@ -15,7 +15,7 @@ const page = async ({ params }: { params: Promise<{ token: string }> }) => {
       return <NotFound />;
     }
   return (
-    <Encapsulating token={token} hashStart="multi-auth-enabling" hashEnd=":token">
+    <Encapsulating token={token} hashStart="multi-auth-enabling" hashEnd=":token" KeyType="MULTI_AUTH_SECRET">
         <EnableMultiAuth />
     </Encapsulating>
   );

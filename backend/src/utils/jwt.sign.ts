@@ -3,7 +3,11 @@ import config from '@/config';
 
 export const signJwt = async (
     object: object,
-    keyNameIdentifier: 'accessTokenPrivateKey' | 'refreshTokenPrivateKey' | 'VerTokenPrivateKey',
+    keyNameIdentifier:
+        | 'accessTokenPrivateKey'
+        | 'refreshTokenPrivateKey'
+        | 'VerTokenPrivateKey'
+        | 'MULTI_AUTH_SECRET',
     KeyEncryption: 'HS512' | 'RS256', // Ensure this matches supported algorithms
     options?: jwt.SignOptions | undefined
 ) => {
@@ -28,7 +32,11 @@ export const signJwt = async (
 
 export const verifyJwt = async (
     token: string,
-    keyNameIdentifier: 'accessTokenPublicKey' | 'refreshTokenPublicKey' | 'VerTokenPrivateKey',
+    keyNameIdentifier:
+        | 'accessTokenPublicKey'
+        | 'refreshTokenPublicKey'
+        | 'VerTokenPrivateKey'
+        | 'MULTI_AUTH_SECRET',
     KeyEncryption: 'HS512' | 'RS256'
 ) => {
     try {

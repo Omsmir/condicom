@@ -56,6 +56,10 @@ export const LoginApi = async ({ email, password }: LoginApiProps) => {
   return result;
 };
 
+export const logout = async (id: string | undefined) => {
+  return (await axiosInstace.put(`/logout/${id}`)).data;
+};
+
 export interface PostRegisterResponse {
   message: string;
   existingUser: UserInformation;
@@ -112,8 +116,16 @@ interface Token {
   state: boolean;
   message: string;
 }
-export const checkToken = async (token: string, hashname: string) => {
-  return (await axiosInstace.get<Token>(`/token/${token}/${hashname}`)).data;
+export const checkToken = async (
+  token: string,
+  hashname: string,
+  KeyType: "VerTokenPrivateKey" | "MULTI_AUTH_SECRET"
+) => {
+  return (
+    await axiosInstace.get<Token>(`/token/${token}`, {
+      params: { KeyType },
+    })
+  ).data;
 };
 
 export const ResetNewPassword = async (
@@ -154,19 +166,33 @@ interface RefreshTokenResponse {
   accessToken: string;
   sessionState: boolean;
 }
-export const refreshAccessToken = async (token: any) => {
-  try {
-    const response = await axiosInstace.get<RefreshTokenResponse>(
-      `/reIssueAccessToken`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "x-refresh": token,
-        },
-      }
-    );
 
-    const { accessToken, refreshToken, sessionState } = response.data;
+interface reIssueAccessTokenProps {
+  token: any;
+  headerName?: string;
+}
+export const refreshAccessToken = async ({
+  token,
+  headerName,
+}: reIssueAccessTokenProps) => {
+  try {
+    const getResponse = async () => {
+      const response = await axiosInstace.get<RefreshTokenResponse>(
+        `/reIssueAccessToken`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            ...(headerName && { [headerName]: token }),
+          },
+        }
+      );
+
+      const { accessToken, refreshToken, sessionState } = response.data;
+
+      return { accessToken, refreshToken, sessionState };
+    };
+
+    const { accessToken, refreshToken, sessionState } = await getResponse();
 
     if (!sessionState) return signOut();
     if (!accessToken) throw new Error();
@@ -176,6 +202,7 @@ export const refreshAccessToken = async (token: any) => {
     return {
       ...decodedToken,
       accessToken: accessToken,
+      email: decodedToken?.email,
       expiresAt: decodedToken?.exp && decodedToken.exp * 1000,
       id: decodedToken?._id,
       role: decodedToken?.role,
@@ -186,6 +213,7 @@ export const refreshAccessToken = async (token: any) => {
       profileState: decodedToken.profileState,
       codeExp: decodedToken.codePlan,
       mfa_state: decodedToken.mfa_state,
+      isFullyAuthenicated: decodedToken.isFullyAuthenicated,
     };
   } catch (error) {
     console.error("Refresh token error:", error);
@@ -194,8 +222,10 @@ export const refreshAccessToken = async (token: any) => {
 };
 
 interface verifyEmailProps {
-  message: string;
-  state: boolean;
+  data: {
+    message: string;
+    state: boolean;
+  };
 }
 
 export const verifyEmail = async (
@@ -211,9 +241,27 @@ export const toggleMultiAuthOtpFactor = async (id: string | undefined) => {
 export const verifyMultiAuthOtpEnabling = async (
   id: string | undefined,
   data: FormData
-):Promise<verifyEmailProps> => {
+): Promise<verifyEmailProps> => {
   return await axiosInstace.put(
     `/multi-factor-otp/enabling/verify/${id}`,
     data
   );
+};
+
+interface CheckOtpInterface {
+  id: string | undefined;
+  otp: FormData;
+}
+
+interface CheckOtpResponse {
+  state: boolean;
+  message: string;
+  accessToken: string;
+  refreshToken: string;
+}
+export const verifyMultiAuthOtp = async ({
+  id,
+  otp,
+}: CheckOtpInterface): Promise<CheckOtpResponse> => {
+  return (await axiosInstace.post(`/multi-auth-verification/${id}`, otp)).data;
 };

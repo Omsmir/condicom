@@ -17,6 +17,7 @@ import { MongoConnection } from './utils/connect';
 import { disconnect, set } from 'mongoose';
 import { Routes } from './interfaces/routes.interface';
 import { developedBy, healthShape } from './utils/constants';
+import RateLimiters from './middleware/rateLimiters';
 
 class App {
     public port: number | string;
@@ -63,9 +64,9 @@ class App {
     }
 
     private async connectToMongo() {
-        if (NODE_ENV != 'production') {
-            set('debug', true);
-        }
+        // if (NODE_ENV != 'production') {
+        //     set('debug', true);
+        // }
         await this.mongoConnection.connect();
     }
 
@@ -100,6 +101,7 @@ class App {
 
     private initializeImplementedMiddlwares() {
         this.app.use(deserializeUser);
+        this.app.use(RateLimiters.GlobalRateLimiter);
         // this.app.use(deserializeCode);
     }
 

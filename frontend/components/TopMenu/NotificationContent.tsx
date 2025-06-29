@@ -16,31 +16,19 @@ import { SocketInitiator } from "../togglers/TopBarEvents";
 import { Notification, ObjectType } from "@/types";
 import { DashboardHook } from "../context/Dashboardprovider";
 import SingleNotification from "./Notification";
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export const NotificationContent = () => {
-  const [notifications, setNotifications] = useState<Notification[]>([]);
-  const { socket } = DashboardHook();
-  const NotSeen = notifications.filter(
-    (notification) => notification.seen === false
-  );
+export const NotificationContent = ({
+  fetchedNotifications,
+}: {
+  fetchedNotifications: Notification[];
+}) => {
   const { data: session } = useSession();
 
+  const [notifications, setNotifications] =
+    useState<Notification[]>(fetchedNotifications);
+  const { socket } = DashboardHook();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `${API_URL}/api/notifications/${session?.user.id}`
-        );
-        const data = await response.json();
-        setNotifications(data.notifications);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
+  const NotSeen = notifications.filter((notification) => !notification.seen);
 
   useEffect(() => {
     const role = session?.user.role;
@@ -57,16 +45,16 @@ export const NotificationContent = () => {
     if (!role || !socket) return;
 
     if (role === "Admin") {
-      initiator("adminNotification", "adminOnly");
+      initiator("adminNotification", "public");
 
-      initiator(`Admin_${session.user.id}`, "public");
+      initiator(`Admin_${session.user.id}`, "system");
 
       if (!session.user.verified) {
-        initiator(`EmailVerification${session.user.id}`, "public");
+        initiator(`EmailVerification${session.user.id}`, "system");
       }
     } else {
       if (!session.user.verified) {
-        initiator(`EmailVerification${session.user.id}`, "public");
+        initiator(`EmailVerification${session.user.id}`, "system");
       }
     }
 
@@ -95,40 +83,43 @@ export const NotificationContent = () => {
   }, []);
 
   return (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <div className="flex cursor-pointer mr-6">
-            <Badge
-              count={NotSeen.length}
-              size="small"
-              offset={[0, 0]}
-              color="blue"
-              style={{ boxShadow: "none" }}
-            >
-              <div className="flex">
-                <BellOutlined className="text-xl dark:text-slate-50" />
-              </div>
-            </Badge>
-          </div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-[400px] sm:w-[480px] bg-[var(--sidebar-background)] p-0 border-0">
-          <DropdownMenuLabel className="bg-slate-100 p-4 dark:bg-[var(--sidebar-background)]">
-            Notificationss
-          </DropdownMenuLabel>
-          <DropdownMenuLabel className="bg-slate-200 dark:bg-[var(--sidebar-accent)] px-4 font-medium text-slate-500">
-            Today
-          </DropdownMenuLabel>
-          <SingleNotification notifications={notifications} />
-          <Link href={"/dashboard/notifications"} className="flex">
-            <DropdownMenuItem className="p-0 w-full cursor-pointer ">
-              <div className="flex items-center justify-center w-full px-4 py-2 text-slate-500 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-[var(--sidebar-accent)]">
-                View All Notifications
-                <ArrowRightOutlined className="ml-2" />
-              </div>
-            </DropdownMenuItem>
-          </Link>
-        </DropdownMenuContent>
-      </DropdownMenu>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <div className="flex cursor-pointer mr-6">
+          <Badge
+            count={NotSeen?.length}
+            size="small"
+            offset={[0, 0]}
+            color="blue"
+            style={{ boxShadow: "none" }}
+          >
+            <div className="flex">
+              <BellOutlined className="text-xl dark:text-slate-50" />
+            </div>
+          </Badge>
+        </div>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-[400px] sm:w-[480px] bg-[var(--sidebar-background)] p-0 border-0">
+        <DropdownMenuLabel className="bg-slate-100 p-4 dark:bg-[var(--sidebar-background)]">
+          Notifications
+        </DropdownMenuLabel>
+        <DropdownMenuLabel className="bg-slate-200 dark:bg-[var(--sidebar-accent)] px-4 font-medium text-slate-500">
+          Today
+        </DropdownMenuLabel>
+        <SingleNotification
+          notifications={notifications}
+          setNotifications={setNotifications}
+        />
+        <Link href={"/dashboard/notifications"} className="flex">
+          <DropdownMenuItem className="p-0 w-full cursor-pointer ">
+            <div className="flex items-center justify-center w-full px-4 py-2 text-slate-500 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-[var(--sidebar-accent)]">
+              View All Notifications
+              <ArrowRightOutlined className="ml-2" />
+            </div>
+          </DropdownMenuItem>
+        </Link>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

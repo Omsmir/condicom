@@ -13,7 +13,7 @@ const Login = () => {
   return (
     <MotionComponent>
     <main className=" min-h-screen h-screen flex justify-center items-center ">
-    <div className="sub-container max-w-[550px] ">
+    <div className="sub-container max-w-[686px] ">
       <LoginForm />
     </div>
     <Image

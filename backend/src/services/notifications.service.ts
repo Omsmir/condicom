@@ -1,4 +1,4 @@
-import { FilterQuery } from 'mongoose';
+import { FilterQuery, QueryOptions, UpdateQuery } from 'mongoose';
 import {
     NotificationDocument,
     NotificationInput,
@@ -11,4 +11,16 @@ export const createNotification = async (input: NotificationInput) => {
 
 export const getUserNotifications = async (query: FilterQuery<NotificationDocument>) => {
     return await NotificationModel.find({ query });
+};
+
+export const getNotification = async (query: FilterQuery<NotificationDocument>) => {
+    return await NotificationModel.findOne(query);
+};
+
+export const updateNotification = async (
+    query: FilterQuery<NotificationDocument>,
+    update: UpdateQuery<NotificationDocument>,
+    options?: QueryOptions
+) => {
+    return await NotificationModel.findOneAndUpdate(query, update, options);
 };

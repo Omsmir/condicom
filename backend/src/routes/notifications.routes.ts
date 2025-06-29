@@ -2,15 +2,21 @@ import { Router } from 'express';
 import upload from '../middleware/multer';
 import { validate } from '../middleware/validateResource';
 
-import { getNotificationSchema, notificationSchema } from '../schemas/notifications.schema';
+import {
+    getNotificationSchema,
+    notificationSchema,
+    updateNotificationSchema,
+} from '../schemas/notifications.schema';
 import {
     createNotificationHandler,
     getUserNotificationsHandler,
+    sendEmailVerificationTest,
+    updateNotificationSeenHandler,
 } from '../controllers/notifications.controller';
 import { Routes } from '@/interfaces/routes.interface';
 
 class NotificationsRoutes implements Routes {
-    public path = '/notificatilons';
+    public path = '/notifications';
     public router = Router();
 
     constructor() {
@@ -30,6 +36,15 @@ class NotificationsRoutes implements Routes {
             validate(getNotificationSchema),
             getUserNotificationsHandler
         );
+
+        this.router.put(
+            `${this.path}/update/:id`,
+            upload.none(),
+            validate(updateNotificationSchema),
+            updateNotificationSeenHandler
+        );
+
+        this.router.post(`${this.path}/send`, sendEmailVerificationTest);
     }
 }
 

@@ -18,6 +18,7 @@ import {
   ConfirmEmailChange,
   LoginApi,
   LoginApiProps,
+  logout,
   PostRegister,
   PostRegisterProps,
   register,
@@ -27,13 +28,14 @@ import {
   SendVerificationEmail,
   toggleMultiAuthOtpFactor,
   verifyEmail,
+  verifyMultiAuthOtp,
   verifyMultiAuthOtpEnabling,
 } from "./User";
 import { redirect, useRouter } from "next/navigation";
-import { CreateNotification } from "./Notification";
+import { CreateNotification, UpdateNotificationSeen } from "./Notification";
 import { data } from "@/components/togglers/Handlers";
 import { AccountHook } from "@/components/context/AccountProvider";
-import { getSession, useSession } from "next-auth/react";
+import { getSession, signOut, useSession } from "next-auth/react";
 import { deleteCode, generateCode } from "./Codes";
 
 export const UseCreateMedication = (api: NotificationInstance) => {
@@ -225,17 +227,38 @@ export const useLogin = (api: NotificationInstance, loginState: boolean) => {
       setIsLoading(false);
       HandleAxiosErrors({ api: api, error: error });
     },
-    onSuccess: () => {
+    onSuccess: async (response) => {
       if (loginState) {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "logged in successfully",
+          title: "Logged in successfully",
           showConfirmButton: false,
           timer: 1500,
         });
       }
       setIsLoading(false);
+    },
+  });
+};
+
+export const useLogout = (
+  api: NotificationInstance,
+  id: string | undefined
+) => {
+  return useMutation({
+    mutationFn: () => logout(id),
+    onMutate: () => {},
+    onError: async (error) => {
+      HandleAxiosErrors({ api: api, error: error });
+    },
+    onSuccess: async (response) => {
+      signOut({
+        redirect: true,
+        callbackUrl: "/",
+      });
+
+      Swal.fire("Logged out", "", "success");
     },
   });
 };
@@ -390,13 +413,16 @@ export const UseUpdateUser = (
   });
 };
 export const UseCreateNotification = (api: NotificationInstance) => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (formData: FormData) => CreateNotification(formData),
     onError: (error) => {
       HandleAxiosErrors({ api: api, error: error });
     },
-    onSuccess: () => {
-      console.log("submitted");
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ["notifications"],
+      });
     },
   });
 };
@@ -597,7 +623,7 @@ export const UseToggleMultiAuthFactor = (
 ) => {
   const { setIsTogglingMulti } = AccountHook();
   return useMutation({
-    mutationFn: (data:FormData) => toggleMultiAuthOtpFactor(id),
+    mutationFn: (data: FormData) => toggleMultiAuthOtpFactor(id),
     onMutate: () => {
       setIsTogglingMulti(true);
     },
@@ -620,7 +646,30 @@ export const UseVerifyMultiAuthFactorEnabling = (
 ) => {
   const { setIsTogglingMulti } = AccountHook();
   return useMutation({
-    mutationFn: (data:FormData) => verifyMultiAuthOtpEnabling(id,data),
+    mutationFn: (data: FormData) => verifyMultiAuthOtpEnabling(id, data),
+    onMutate: () => {
+      setIsTogglingMulti(true);
+    },
+    onError: (error) => {
+      HandleAxiosErrors({ error, api });
+      setIsTogglingMulti(false);
+    },
+    onSuccess: async (response) => {
+      api.success({
+        message: response.data.message,
+      });
+      setIsTogglingMulti(false);
+    },
+  });
+};
+
+export const UseVerifyMultiAuthOtp = (
+  api: NotificationInstance,
+  id: string | undefined
+) => {
+  const { setIsTogglingMulti } = AccountHook();
+  return useMutation({
+    mutationFn: (otp: FormData) => verifyMultiAuthOtp({ id, otp }),
     onMutate: () => {
       setIsTogglingMulti(true);
     },
@@ -637,5 +686,22 @@ export const UseVerifyMultiAuthFactorEnabling = (
   });
 };
 
-
-
+export const UseUpdateNotification = (
+  api: NotificationInstance,
+  id: string | undefined
+) => {
+  const queryClient = useQueryClient();
+  const { data: session } = useSession();
+  return useMutation({
+    mutationFn: ({ notificationId }: { notificationId: string }) =>
+      UpdateNotificationSeen({ id, notificationId }),
+    onError: (error) => {
+      HandleAxiosErrors({ api: api, error: error });
+    },
+    onSuccess: async (response) => {
+      await queryClient.invalidateQueries({
+        queryKey: ["notifications", session?.user.id],
+      });
+    },
+  });
+};

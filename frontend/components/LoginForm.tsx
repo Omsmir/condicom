@@ -9,7 +9,7 @@ import { useState } from "react";
 import { User, KeyRound, EyeOff, Eye } from "lucide-react";
 import SubmitButton from "./togglers/SubmitButton";
 import { userSchema } from "@/lib/vaildation";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { DashboardHook } from "./context/Dashboardprovider";
@@ -25,7 +25,14 @@ const LoginForm = () => {
     const password = values.password;
 
     try {
-      await LoginIn.mutateAsync({ email, password });
+      await LoginIn.mutateAsync(
+        { email, password },
+        {
+          onSuccess: async (response) => {
+            redirect("/dashboard");
+          },
+        }
+      );
     } catch (error: any) {
       console.log(error.message);
     }

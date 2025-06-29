@@ -12,6 +12,7 @@ import { checkToken, getUserQuery, getUsers, verifyEmail } from "./User";
 import { getCodes } from "./Codes";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { getUserNotifications } from "./Notification";
 
 export const UseGetUsers = (id: string | undefined) => {
   return useQuery({
@@ -66,9 +67,25 @@ export const useGetCodes = (id: string | undefined) => {
   });
 };
 
-export const useCheckToken = (token: string, hashname: string) => {
+export const useCheckToken = (
+  token: string,
+  hashname: string,
+  KeyType: "VerTokenPrivateKey" | "MULTI_AUTH_SECRET"
+) => {
   return useQuery({
     queryKey: ["token"],
-    queryFn: () => checkToken(token, hashname),
+    queryFn: () => checkToken(token, hashname, KeyType),
+    retry: 15, // Retry 5 times if it fails
+    retryDelay: 1000, // 1 second delay between each retry
+  });
+};
+
+export const UseGetNotifications = (id: string | undefined) => {
+  return useQuery({
+    queryKey: ["notifications", id],
+    queryFn: () => getUserNotifications(id),
+    enabled: !!id,
+    retry: 3, // Retry 3 times if it fails
+    retryDelay: 1000, // 1 second delay between each retry
   });
 };
