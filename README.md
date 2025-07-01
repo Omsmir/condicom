@@ -22,64 +22,79 @@ A production-grade, modular **Hospital Management System** designed for scalabil
 
 ## 📂 Project Structure
 
+
 The project follows a modular folder structure for better scalability and maintainability:
 
 ```
 ```
 hospital-management-system/
-├── backend/                # Backend services (Express.js, Zod validation)
-│   ├── src/
-│   │   ├── controllers/    # API controllers
-│   │   ├── models/         # MongoDB schemas
-│   │   ├── routes/         # API routes
-│   │   ├── services/       # Business logic
-│   │   └── utils/          # Utility functions
-│   └── server.ts           # Centralized service startup
-├── frontend/               # Frontend application (Next.js)
-│   ├── components/         # Reusable UI components
-│   ├── pages/              # Next.js pages
-│   ├── styles/             # TailwindCSS styles
-│   └── utils/              # Frontend utilities
-├── docker/                 # Docker configuration files
-├── scripts/                # Deployment and automation scripts
-├── Makefile                # Makefile for Docker orchestration
-└── README.md               # Project documentation
+├── backend/ # Backend services (Express.js, Zod validation)
+│ ├── src/
+│ │ ├── controllers/ # API controllers
+│ │ ├── models/ # MongoDB schemas
+│ │ ├── routes/ # API routes
+│ │ ├── services/ # Business logic
+│ │ └── utils/ # Utility functions
+│ └── server.ts # Centralized service startup
+├── frontend/ # Frontend application (Next.js)
+│ ├── components/ # Reusable UI components
+│ ├── pages/ # Next.js pages
+│ ├── styles/ # TailwindCSS styles
+│ └── utils/ # Frontend utilities
+├── docker/ # Docker configuration files
+├── scripts/ # Deployment and automation scripts
+├── Makefile # Makefile for Docker orchestration
+└── README.md # Project documentation
+```
 ```
 
----
+## 📦 Features Breakdown
 
-## 📦 Features at a Glance
+### 1. **Authentication & Authorization**
+- 🔐 JWT (Access & Refresh Tokens)
+- 🔄 Auto refresh via `DeserializeUser` middleware
+- 🧠 Role-Based Access (Admin, Doctor, Nurse, Patient)
+- 🌍 NextAuth integration for session-based frontend auth
 
-### 🔐 Authentication & Access Control
-- Secure JWT-based authentication with auto-refresh middleware
-- Role-based access control for granular permissions
-- NextAuth integration for session-based frontend authentication
+### 2. **Multi-Tenant & Modular Architecture**
+- 🏥 Separate instances for multiple hospitals/clinics
+- 🧩 Modular Express services for clean separation
+- 🗃️ Centralized `server.ts` to start all services with one command
 
-### 🧩 Modular Architecture
-- Microservices for core modules like users, appointments, and pharmacy
-- Centralized service orchestration via `server.ts`
-- Multi-tenant support for managing multiple hospital instances
+### 3. **Patient, Staff & Appointment Management**
+- 📋 CRUD for patients, doctors, nurses, receptionists
+- 📅 Scheduling with real-time update via Socket.IO
+- 💊 Prescription handling, linked to doctors and pharmacists
 
-### 🧑‍⚕️ Core Modules
-- Comprehensive patient and staff management
-- Doctor dashboard with live appointment tracking
-- Prescription and medical history management
+### 4. **Real-Time Notification System**
+- ⚡ Redis Pub/Sub + Socket.IO for scalable real-time events
+- 🔔 Notifications for appointments, emergencies, alerts
+- 🧑‍💻 Doctor dashboard receives live updates
 
-### ⚡ Real-Time System
-- Redis Pub/Sub and Socket.IO for real-time updates
-- Live notifications for appointments, emergencies, and system alerts
+### 5. **3D Medical Anatomy Viewer**
+- 🦷 Oral cavity modeled using **Blender**
+- 🧩 Interactive **Three.js** viewer for individual tooth dissection
+- 📍 Tracks pathology (e.g. cavities, restorations) per tooth
 
-### 🦷 3D Medical Viewer
-- Interactive 3D oral cavity model with detailed tooth layers
-- Tracks conditions such as decay, restorations, and more
+### 6. **Dynamic Dashboards with Custom Metrics**
+- 📊 API monitoring: success/error rate, latency, usage
+- 📈 Built with Recharts, no Grafana dependency
+- 🔍 Admin can track performance and system health
 
-### 📊 Admin & Metrics Dashboard
-- API performance monitoring: error rates, success rates, and latency
-- Visualized metrics using Recharts, powered by Prometheus
+### 7. **Data Tables & UI/UX**
+- 🧮 TanStack Table for filtering, sorting, pagination
+- 🪄 TailwindCSS + ShadCN for responsive, accessible design
+- 🧑‍💻 Clean, minimal, role-specific interfaces
 
-### ✅ Validation & Error Handling
-- End-to-end validation using Zod (backend and frontend)
-- Unified error response structure for consistent debugging
+### 8. **Consistent Validation & Error Handling**
+- ✅ Zod schemas for request validation and parsing
+- ❌ Global error handler with standardized responses
+- 🧩 Middleware-based API protection and data access
+
+### 9. **Hospital Services API**
+- 🚑 APIs for medical records, diagnostics, staff roles
+- 🔬 Pharmacy and lab services (modular & extendable)
+- 📄 Swagger documentation (planned for full public API exposure)
 
 ---
 
@@ -91,30 +106,28 @@ This project leverages a `Makefile` for seamless Docker-based deployment, orches
 
 #### Step-by-Step Instructions:
 
-1. Clone the repository:
+1. **Clone the repository:**
     ```bash
     git clone https://github.com/actual-username/hospital-management-system.git
     cd hospital-management-system
     ```
 
-2. Start all services using Docker Compose:
+2. **Start all services using Docker Compose:**
     ```bash
     make up
     ```
 
-3. Tear down all services:
+3. **Tear down all services:**
     ```bash
     make down
     ```
 
-For advanced deployment options, refer to the `docker/` directory and the `Makefile` for customizable configurations.
+> ⚙️ For advanced deployment, refer to the `docker/` directory and `Makefile` for service-specific configurations.
 
 ---
 
 ## 📖 Additional Resources
 
-- **Documentation**: Detailed API and module documentation can be found in the `docs/` directory.
-- **Contributing**: Contributions are welcome! Please refer to the `CONTRIBUTING.md` file for guidelines.
+- **Documentation**: Detailed API and module documentation is available in the `docs/` directory.
+- **Contributing**: Contributions are welcome! See `CONTRIBUTING.md` for guidelines.
 - **License**: This project is licensed under the MIT License. See `LICENSE` for details.
-
----
