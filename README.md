@@ -26,7 +26,6 @@ A production-grade, modular **Hospital Management System** designed for scalabil
 The project follows a modular folder structure for better scalability and maintainability:
 
 ```
-```
 hospital-management-system/
 ├── backend/ # Backend services (Express.js, Zod validation)
 │ ├── src/
@@ -46,7 +45,7 @@ hospital-management-system/
 ├── Makefile # Makefile for Docker orchestration
 └── README.md # Project documentation
 ```
-```
+
 
 ## 📦 Features Breakdown
 
