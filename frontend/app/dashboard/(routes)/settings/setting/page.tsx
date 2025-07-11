@@ -1,9 +1,9 @@
-import React from 'react'
-import dynamic from 'next/dynamic'
+import React from 'react';
+import dynamic from 'next/dynamic';
 
-const Setting = dynamic(() => import("@/components/settings/settings/settingLayout"))
+const Setting = dynamic(() => import('@/components/settings/settings/settingLayout'));
 const page = () => {
-  return <Setting />
-}
+    return <Setting />;
+};
 
-export default page
+export default page;

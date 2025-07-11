@@ -1,101 +1,104 @@
-"use client";
-import { patient } from "@/types";
-import React from "react";
-import CustomSkeleton, { SkeletonType } from "../CustomSkeleton";
-import { PatientHook } from "../context/PatientProvider";
+'use client';
+import { patient } from '@/types';
+import React from 'react';
+import CustomSkeleton, { SkeletonType } from '../CustomSkeleton';
+import { PatientHook } from '../context/PatientProvider';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Button } from "../ui/button";
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
+import { Button } from '../ui/button';
 
-import { DeleteHandler } from "../togglers/Handlers";
-import { MoreHorizontal } from "lucide-react";
-import AnchorElments from "./AnchorElements";
-import { useSpecificPatient } from "@/actions/queries";
-import Loading from "@/app/loading";
+import { DeleteHandler } from '../togglers/Handlers';
+import { MoreHorizontal } from 'lucide-react';
+import AnchorElments from './AnchorElements';
+import { useSpecificPatient } from '@/actions/queries';
+import Loading from '@/app/loading';
+import { DashboardHook } from '../context/Dashboardprovider';
 const PatientHeader = ({ id }: { id: string | undefined }) => {
-  const { loading, setLoading } = PatientHook();
+    const { loading, setLoading } = PatientHook();
+    const {contextHolder} = DashboardHook()
 
-  const { data,isLoading } = useSpecificPatient(id);
+    const { data, isLoading } = useSpecificPatient(id);
 
-  const patient = data?.patient;
-  const printTemplate = () => [window.print()];
+    const patient = data?.patient;
+    const printTemplate = () => [window.print()];
 
-  if(isLoading) return <Loading />
+    if (isLoading) return <Loading />;
 
-  if(data)
-  return (
-    <div className="flex pt-14  m-2 ">
-      <div className="flex flex-col  w-full bg-[var(--sidebar-background)] px-4 pt-4 rounded-md printHeader">
-        <div className="flex  justify-between ">
-          <div className="flex items-center h-full">
-            <CustomSkeleton
-              SkeletonType={SkeletonType.AVATAR}
-              classname="rounded-full overflow-hidden size-28 "
-              width={112}
-              height={112}
-              shape="circle"
-              size={112}
-              loading={loading}
-              setLoading={setLoading}
-              src={
-                patient?.profileImg?.url || "/assets/images/female-doctor.jpg"
-              }
-            />
-            <div className="flex flex-col items-start justify-start ml-2">
-              <CustomSkeleton
-                SkeletonType={SkeletonType.HEAD}
-                loading={loading}
-                classname="w-60 min-h-[25px] font-medium capitalize"
-                innerText={`${patient?.firstName} ${patient?.lastName}`}
-              />
-              <CustomSkeleton
-                SkeletonType={SkeletonType.HEAD}
-                loading={loading}
-                classname="w-40 text-slate-600 capitalize text-sm"
-                innerText={`${patient?.country} `}
-              />
+    if (data)
+        return (
+            <div className="flex pt-14  m-2 ">
+                {contextHolder}
+                <div className="flex flex-col  w-full bg-[var(--sidebar-background)] px-4 pt-4 rounded-md printHeader">
+                    <div className="flex  justify-between ">
+                        <div className="flex items-center h-full">
+                            <CustomSkeleton
+                                SkeletonType={SkeletonType.AVATAR}
+                                classname="rounded-full overflow-hidden size-28 "
+                                width={112}
+                                height={112}
+                                shape="circle"
+                                size={112}
+                                loading={loading}
+                                setLoading={setLoading}
+                                src={patient?.profileImg?.url || '/assets/images/female-doctor.jpg'}
+                            />
+                            <div className="flex flex-col items-start justify-start ml-2">
+                                <CustomSkeleton
+                                    SkeletonType={SkeletonType.HEAD}
+                                    loading={loading}
+                                    classname="w-60 min-h-[25px] font-medium capitalize"
+                                    innerText={`${patient?.firstName} ${patient?.lastName}`}
+                                />
+                                <CustomSkeleton
+                                    SkeletonType={SkeletonType.HEAD}
+                                    loading={loading}
+                                    classname="w-40 text-slate-600 capitalize text-sm"
+                                    innerText={`${patient?.country} `}
+                                />
+                            </div>
+                        </div>
+                        <div className="h-full">
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button
+                                        variant="ghost"
+                                        className="h-8 w-8 p-0"
+                                    >
+                                        <span className="sr-only">Open menu</span>
+                                        <MoreHorizontal className="h-4 w-4" />
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent
+                                    align="end"
+                                    className="bg-slate-100 dark:bg-[var(--sidebar-accent)] p-0 border-0"
+                                >
+                                    <DropdownMenuItem
+                                        className="cursor-pointer hover:bg-slate-200 dark:hover:bg-[var(--sidebar-background)]"
+                                        onClick={printTemplate}
+                                    >
+                                        print
+                                    </DropdownMenuItem>
+                                    <DeleteHandler
+                                        id={patient?.id}
+                                        apiString="patient"
+                                        messagePopup="do you want to delete the patient"
+                                        className="absolute text-slate-50 right-0 hidden hover:text-red-800 transition-colors delete"
+                                        tableState
+                                    />
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </div>
+                    </div>
+                    <div className="flex mt-4 notPrintable">
+                        <AnchorElments />
+                    </div>
+                </div>
             </div>
-          </div>
-          <div className="h-full">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="h-8 w-8 p-0">
-                  <span className="sr-only">Open menu</span>
-                  <MoreHorizontal className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                className="bg-slate-100 dark:bg-[var(--sidebar-accent)] p-0 border-0"
-              >
-                <DropdownMenuItem
-                  className="cursor-pointer hover:bg-slate-200 dark:hover:bg-[var(--sidebar-background)]"
-                  onClick={printTemplate}
-                >
-                  print
-                </DropdownMenuItem>
-                <DeleteHandler
-                  id={patient?.id}
-                  apiString="patient"
-                  messagePopup="do you want to delete the patient"
-                  className="absolute text-slate-50 right-0 hidden hover:text-red-800 transition-colors delete"
-                  name="delete"
-                  patientState
-                />
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </div>
-        <div className="flex mt-4 notPrintable">
-          <AnchorElments />
-        </div>
-      </div>
-    </div>
-  );
+        );
 };
 
 export default PatientHeader;

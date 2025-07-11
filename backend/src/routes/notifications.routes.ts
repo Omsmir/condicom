@@ -7,19 +7,15 @@ import {
     notificationSchema,
     updateNotificationSchema,
 } from '../schemas/notifications.schema';
-import {
-    createNotificationHandler,
-    getUserNotificationsHandler,
-    sendEmailVerificationTest,
-    updateNotificationSeenHandler,
-} from '../controllers/notifications.controller';
+
 import { Routes } from '@/interfaces/routes.interface';
+import NotificationController from '@/controllers/notifications.controller';
 
 class NotificationsRoutes implements Routes {
     public path = '/notifications';
     public router = Router();
 
-    constructor() {
+    constructor(private notificationController: NotificationController) {
         this.initializeRoutes();
     }
 
@@ -28,23 +24,23 @@ class NotificationsRoutes implements Routes {
             `${this.path}/create`,
             upload.none(),
             validate(notificationSchema),
-            createNotificationHandler
+            this.notificationController.createNotificationHandler
         );
 
         this.router.get(
             `${this.path}/:id`,
             validate(getNotificationSchema),
-            getUserNotificationsHandler
+            this.notificationController.getUserNotificationsHandler
         );
 
         this.router.put(
             `${this.path}/update/:id`,
             upload.none(),
             validate(updateNotificationSchema),
-            updateNotificationSeenHandler
+            this.notificationController.updateNotificationSeenHandler
         );
 
-        this.router.post(`${this.path}/send`, sendEmailVerificationTest);
+        this.router.post(`${this.path}/send`, this.notificationController.sendEmailVerificationTest);
     }
 }
 

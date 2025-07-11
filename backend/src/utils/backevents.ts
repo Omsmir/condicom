@@ -9,41 +9,8 @@ import path from 'path';
 import fs from 'fs';
 import Handlebars from 'handlebars';
 import { logger } from './logger';
-interface Notification {
-    type: string;
-    description: string;
-    title: string;
-    assignedTo: string;
-    eventId?: string;
-}
+import { codeProps, GenerateOtpProps, sendEmailProps } from '@/interfaces/global.interface';
 
-// Function to get system notifications based on event type
-export const systemNotifications = (
-    title: 'newUserHasJoined' | 'emailVerification',
-    user: UserDocument
-): Notification => {
-    const systemNotification: Record<string, Notification> = {
-        newUserHasJoined: {
-            type: 'New Member',
-            description: `New Member (${user.name}) Has Joined Our Community`,
-            title: 'System Administration',
-            assignedTo: 'AdminOnly',
-        },
-        emailVerification: {
-            type: 'Email Verification',
-            description: 'A verification link has sent to your email please verify your email',
-            title: 'System Administration',
-            assignedTo: 'All',
-            eventId: user._id as string,
-        },
-    };
-
-    if (!systemNotification[title]) {
-        throw new Error(`Invalid notification type: ${title}`);
-    }
-
-    return systemNotification[title];
-};
 
 export const generateRandomToken = ({
     bytes,
@@ -59,37 +26,10 @@ export const VerifyRandomTokenWithHash = ({ token }: { token: string }) => {
     return crypto.createHash('sha256').update(token).digest('hex');
 };
 
-export const getUserNotifications = async (user: UserDocument) => {
-    let notifications: Notification[] = [];
-
-    if (user.role === 'Admin') {
-        notifications = await NotificationModel.find({
-            createdAt: { $gt: user.createdAt },
-            $or: [
-                { assignedTo: 'All', eventId: user._id },
-                { assignedTo: 'AdminOnly', user: { $ne: user._id } },
-                { assignedTo: 'AdminsFromAll' },
-            ],
-        });
-    } else if (user.role === 'Resident Doctor') {
-        notifications = await NotificationModel.find({
-            createdAt: { $gt: user.createdAt },
-            $or: [{ assignedTo: 'All', eventId: user._id }],
-        });
-    }
-
-    return notifications;
-};
 
 export const assignedNotifications = (user: UserDocument): string => {
     return user.role === 'Admin' ? 'AdminOnly' : 'AdminsFromAll';
 };
-
-interface codeProps {
-    numbers: string[];
-    fiveNumbers: string[];
-    characters: string[];
-}
 
 export const generateCode = ({ numbers, fiveNumbers, characters }: codeProps) => {
     let code;
@@ -109,17 +49,6 @@ export const generateCode = ({ numbers, fiveNumbers, characters }: codeProps) =>
     return code;
 };
 
-export interface role {
-    role:
-        | 'Admin'
-        | 'Senior Consultant'
-        | 'Resident Doctor'
-        | 'Intern Doctor'
-        | 'Head Secretary'
-        | 'Charge Secretary'
-        | 'Head Nurse'
-        | 'Charge Nurse';
-}
 
 export const signRole = (code: string): string => {
     let role = '';
@@ -163,15 +92,6 @@ export const hashPassword = async ({ password }: { password: string }) => {
     return hash;
 };
 
-interface sendEmailProps {
-    to: string;
-    link?: string;
-    templateName: string;
-    health?: string;
-    otp?: string;
-    year?: string | number | Date;
-    date?: string | number | Date;
-}
 
 export const sendEmail = async ({
     to,
@@ -218,10 +138,6 @@ export const renderTemplate = (templateName: string, context: object) => {
     return template(context);
 };
 
-type GenerateOtpProps = {
-    length: number;
-    type: 'number' | 'string';
-};
 
 export const generateOtp = ({ length, type }: GenerateOtpProps) => {
     let otp = '';

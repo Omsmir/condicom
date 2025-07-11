@@ -1,36 +1,36 @@
-"use client";
-import { DataTable } from "./table/Table";
-import { patientsColumns } from "./table/PatientsColumns";
-import { AccessibleForward } from "@mui/icons-material";
-import { UsePatientQuery } from "@/actions/queries";
-import Loading from "@/app/loading";
+'use client';
+import { DataTable } from './table/Table';
+import { patientsColumns } from './table/PatientsColumns';
+import { AccessibleForward } from '@mui/icons-material';
+import { UsePatientQuery } from '@/actions/queries';
+import Loading from '@/app/loading';
 
 const Patients = () => {
-  const { data, isLoading, isError, error } = UsePatientQuery();
+    const { data, isLoading, isError, error } = UsePatientQuery();
 
-  if (isLoading ) return <Loading />;
-  if (isError) {
-    return (
-      <DataTable
-        columns={patientsColumns}
-        data={[]}
-        StatsIcon={<AccessibleForward />}
-        renderSwitchState="patient"
-        breadCrumbString="Patients"
-        message={error.message}
-      />
-    );
-  }
-  if (data)
-    return (
-      <DataTable
-        columns={patientsColumns}
-        data={data?.Patients}
-        renderSwitchState="patient"
-        breadCrumbString="Patients"
-        StatsIcon={<AccessibleForward />}
-      />
-    );
+    if (isLoading) return <Loading />;
+    if (isError) {
+        return (
+            <DataTable
+                columns={patientsColumns}
+                data={[]}
+                StatsIcon={<AccessibleForward />}
+                renderSwitchState="patient"
+                breadCrumbString="patients"
+                message={error.message}
+            />
+        );
+    }
+    if (data)
+        return (
+            <DataTable
+                columns={patientsColumns}
+                data={data.Patients}
+                renderSwitchState="patient"
+                breadCrumbString="patients"
+                StatsIcon={<AccessibleForward />}
+            />
+        );
 };
 
 export default Patients;

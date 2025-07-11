@@ -1,0 +1,35 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\error\\.499a57ed5ecfbd2a58d27584fc4cb370ceaa9d2e-audit.json",
+    "files": [
+        {
+            "date": 1751158787922,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\error\\error-2025-06-29.log",
+            "hash": "57432bdcfa5c8a9c99457bb89d15044ddb3c1cbd159856785d307a5f992fd74f"
+        },
+        {
+            "date": 1751240274832,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\error\\error-2025-06-30.log",
+            "hash": "760c7fa86ec1252c39d9d861eb0e82d56459536fdeca405eaf68630e6e68294a"
+        },
+        {
+            "date": 1751322852447,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\error\\error-2025-07-01.log",
+            "hash": "940c40201bf88f763c0ddc077fc8b55b84a3d9d95d5dacc164bf5c4b48363438"
+        },
+        {
+            "date": 1751727728990,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\error\\error-2025-07-05.log",
+            "hash": "6bbc7f765e1e06607e65de1c7a72fba9d0c8d7af802c99322c834767d2832a86"
+        },
+        {
+            "date": 1751809772365,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\error\\error-2025-07-06.log",
+            "hash": "c24ab5efd79ec89fd2920a98ef2354110eb61903cc1a9ae06e1bd796a9fbd7ab"
+        }
+    ],
+    "hashType": "sha256"
+}

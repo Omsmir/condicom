@@ -6954,3 +6954,1491 @@ src/utils/getPresignedUrl.ts(52,1): error TS1005: '}' expected.
     at Object.nodeDevHook [as .ts] (/home/omar/Documents/Health/backend/node_modules/ts-node-dev/lib/hook.js:63:13)
     at Module.load (node:internal/modules/cjs/loader:1197:32)
     at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+2025:06:29 05:00:52:error uncaughtException: Unexpected token ';'
+C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:34
+        const ;
+              ^
+
+SyntaxError: Unexpected token ';'
+    at wrapSafe (node:internal/modules/cjs/loader:1486:18)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1528:20)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:02:24:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(7,29): error TS1005: ',' expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(7,29): error TS1005: ',' expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:02:32:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(8,6): error TS1005: ',' expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(8,6): error TS1005: ',' expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:02:57:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(55,10): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(55,10): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:03:04:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(55,10): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(55,10): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:03:16:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(8,6): error TS1005: ',' expected.
+src/schemas/patient.schema.ts(57,10): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(8,6): error TS1005: ',' expected.
+src/schemas/patient.schema.ts(57,10): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:03:34:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(57,10): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(57,10): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:03:58:error uncaughtException: Unexpected token ';'
+C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:53
+const ;
+      ^
+
+SyntaxError: Unexpected token ';'
+    at wrapSafe (node:internal/modules/cjs/loader:1486:18)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1528:20)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:04:08:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(55,26): error TS1003: Identifier expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(55,26): error TS1003: Identifier expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:04:17:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(59,1): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(59,1): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:04:31:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(59,1): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(59,1): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:05:06:error uncaughtException: patients is not defined
+ReferenceError: patients is not defined
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:56:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:05:13:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(57,1): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(57,1): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:05:18:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(56,14): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(56,14): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:05:31:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(57,1): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(57,1): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:05:53:error uncaughtException: Spread syntax requires ...iterable[Symbol.iterator] to be a function
+TypeError: Spread syntax requires ...iterable[Symbol.iterator] to be a function
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:57:20)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:06:09:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(10,1): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(10,1): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:07:13:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(100,1): error TS1128: Declaration or statement expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(100,1): error TS1128: Declaration or statement expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:07:25:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(100,36): error TS1005: '=' expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(100,36): error TS1005: '=' expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:08:31:error uncaughtException: pa is not defined
+ReferenceError: pa is not defined
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:98:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:09:12:error uncaughtException: Unexpected token ';'
+C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:34
+        const ;
+              ^
+
+SyntaxError: Unexpected token ';'
+    at wrapSafe (node:internal/modules/cjs/loader:1486:18)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1528:20)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:09:26:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(56,12): error TS1109: Expression expected.
+src/controllers/patients.controller.ts(57,5): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(56,12): error TS1109: Expression expected.
+src/controllers/patients.controller.ts(57,5): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:09:34:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(57,5): error TS1003: Identifier expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(57,5): error TS1003: Identifier expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:09:39:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(56,13): error TS1109: Expression expected.
+src/controllers/patients.controller.ts(57,5): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(56,13): error TS1109: Expression expected.
+src/controllers/patients.controller.ts(57,5): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:09:44:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(57,5): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(57,5): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:09:53:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(57,5): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(57,5): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:10:12:error uncaughtException: Missing initializer in const declaration
+C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:36
+            const existedPati;
+                  ^^^^^^^^^^^
+
+SyntaxError: Missing initializer in const declaration
+    at wrapSafe (node:internal/modules/cjs/loader:1486:18)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1528:20)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:10:32:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(60,16): error TS1109: Expression expected.
+src/controllers/patients.controller.ts(61,9): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(60,16): error TS1109: Expression expected.
+src/controllers/patients.controller.ts(61,9): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:10:38:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(61,9): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(61,9): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:12:23:error uncaughtException: async is not defined
+ReferenceError: async is not defined
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\patient.service.ts:21:14)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:12:31:error uncaughtException: async is not defined
+ReferenceError: async is not defined
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\patient.service.ts:21:14)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:12:44:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/patient.service.ts(21,53): error TS1110: Type expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/patient.service.ts(21,53): error TS1110: Type expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\patient.service.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:12:51:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/patient.service.ts(21,59): error TS1003: Identifier expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/patient.service.ts(21,59): error TS1003: Identifier expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\patient.service.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:13:10:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/patient.service.ts(21,59): error TS1003: Identifier expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/patient.service.ts(21,59): error TS1003: Identifier expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\patient.service.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:13:23:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/patient.service.ts(21,53): error TS1110: Type expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/patient.service.ts(21,53): error TS1110: Type expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\patient.service.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:18:09:error uncaughtException: Unexpected token ';'
+C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:44
+        const ;
+              ^
+
+SyntaxError: Unexpected token ';'
+    at wrapSafe (node:internal/modules/cjs/loader:1486:18)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1528:20)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:19:37:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/models/patient.model.ts(41,6): error TS1131: Property or signature expected.
+src/models/patient.model.ts(41,19): error TS1011: An element access expression should take an argument.
+src/models/patient.model.ts(42,1): error TS1128: Declaration or statement expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/models/patient.model.ts(41,6): error TS1131: Property or signature expected.
+src/models/patient.model.ts(41,19): error TS1011: An element access expression should take an argument.
+src/models/patient.model.ts(42,1): error TS1128: Declaration or statement expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\models\patient.model.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:20:09:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(71,5): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(71,5): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:20:16:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(71,5): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(71,5): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:21:55:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/routes/patient.routes.ts(33,34): error TS1003: Identifier expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/routes/patient.routes.ts(33,34): error TS1003: Identifier expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\routes\patient.routes.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:29 05:22:26:error uncaughtException: patien is not defined
+ReferenceError: patien is not defined
+    at PatientRoutes.initializeRoutes (C:\Users\omar\Documents\Health\backend\src\routes\patient.routes.ts:33:80)
+    at new PatientRoutes (C:\Users\omar\Documents\Health\backend\src\routes\patient.routes.ts:19:14)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\routes.ts:16:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-8849597834090739.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+2025:06:29 21:29:29:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/utils/redis.ts(31,31): error TS1005: ',' expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/utils/redis.ts(31,31): error TS1005: ',' expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-1340349431600576.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-1340349431600576.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-1340349431600576.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:30 23:10:23:error uncaughtException: Identifier 'getUserNotifications' has already been declared
+C:\Users\omar\Documents\Health\backend\src\services\notifications.service.ts:21
+const getUserNotifications = async (user) => {
+      ^
+
+SyntaxError: Identifier 'getUserNotifications' has already been declared
+    at wrapSafe (node:internal/modules/cjs/loader:1486:18)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1528:20)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:06:30 23:36:26:error uncaughtException: BODYSIZELIMIT is not defined
+ReferenceError: BODYSIZELIMIT is not defined
+    at App.initializeMiddlewares (C:\Users\omar\Documents\Health\backend\src\app.ts:97:44)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:41:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:88:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+2025:07:01 01:36:56:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/notifications.service.ts(83,14): error TS1389: 'delete' is not allowed as a variable declaration name.
+src/services/notifications.service.ts(83,20): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/notifications.service.ts(83,14): error TS1389: 'delete' is not allowed as a variable declaration name.
+src/services/notifications.service.ts(83,20): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\notifications.service.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:37:03:error uncaughtException: async is not defined
+ReferenceError: async is not defined
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\notifications.service.ts:83:14)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:42:42:error uncaughtException: Missing initializer in const declaration
+C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:54
+const PatientTo;
+      ^^^^^^^^^
+
+SyntaxError: Missing initializer in const declaration
+    at wrapSafe (node:internal/modules/cjs/loader:1486:18)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1528:20)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:42:52:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(54,1): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(54,1): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:43:21:error uncaughtException: string is not defined
+ReferenceError: string is not defined
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:55:29)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:43:41:error uncaughtException: st is not defined
+ReferenceError: st is not defined
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:55:30)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:43:48:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(55,31): error TS1003: Identifier expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(55,31): error TS1003: Identifier expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:45:54:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(105,1): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(105,1): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:46:06:error uncaughtException: deletepa is not defined
+ReferenceError: deletepa is not defined
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:106:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:46:24:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(112,1): error TS1128: Declaration or statement expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(112,1): error TS1128: Declaration or statement expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:46:50:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(112,60): error TS1005: '>' expected.
+src/schemas/patient.schema.ts(112,65): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(112,60): error TS1005: '>' expected.
+src/schemas/patient.schema.ts(112,65): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:47:50:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(155,9): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(155,9): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:52:30:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/routes/patient.routes.ts(46,63): error TS1003: Identifier expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/routes/patient.routes.ts(46,63): error TS1003: Identifier expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\routes\patient.routes.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:52:38:error uncaughtException: deletepa is not defined
+ReferenceError: deletepa is not defined
+    at PatientRoutes.initializeRoutes (C:\Users\omar\Documents\Health\backend\src\routes\patient.routes.ts:46:79)
+    at new PatientRoutes (C:\Users\omar\Documents\Health\backend\src\routes\patient.routes.ts:25:14)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\routes.ts:16:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+2025:07:01 01:52:49:error uncaughtException: deletemul is not defined
+ReferenceError: deletemul is not defined
+    at PatientRoutes.initializeRoutes (C:\Users\omar\Documents\Health\backend\src\routes\patient.routes.ts:47:101)
+    at new PatientRoutes (C:\Users\omar\Documents\Health\backend\src\routes\patient.routes.ts:26:14)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\routes.ts:16:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+2025:07:01 01:57:45:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(165,37): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(165,37): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:58:45:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(155,25): error TS1003: Identifier expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(155,25): error TS1003: Identifier expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 01:59:09:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(59,5): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(59,5): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 02:00:58:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(155,31): error TS1003: Identifier expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(155,31): error TS1003: Identifier expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 02:01:31:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(155,31): error TS1003: Identifier expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(155,31): error TS1003: Identifier expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 02:01:41:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(155,31): error TS1003: Identifier expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(155,31): error TS1003: Identifier expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 02:05:27:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(59,5): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(59,5): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 02:05:34:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(63,6): error TS1005: ',' expected.
+src/schemas/patient.schema.ts(63,7): error TS1134: Variable declaration expected.
+src/schemas/patient.schema.ts(64,1): error TS1128: Declaration or statement expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/schemas/patient.schema.ts(63,6): error TS1005: ',' expected.
+src/schemas/patient.schema.ts(63,7): error TS1134: Variable declaration expected.
+src/schemas/patient.schema.ts(64,1): error TS1128: Declaration or statement expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\patient.schema.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 02:07:47:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/patient.service.ts(35,33): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/patient.service.ts(35,33): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\patient.service.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 02:07:54:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/patient.service.ts(37,1): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/patient.service.ts(37,1): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\patient.service.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 02:15:29:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(182,16): error TS1109: Expression expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/patients.controller.ts(182,16): error TS1109: Expression expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\patients.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 09:45:10:error uncaughtException: Missing initializer in const declaration
+C:\Users\omar\Documents\Health\backend\src\schemas\medication.schema.ts:49
+const Multple;
+      ^^^^^^^
+
+SyntaxError: Missing initializer in const declaration
+    at wrapSafe (node:internal/modules/cjs/loader:1486:18)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1528:20)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 09:45:22:error uncaughtException: body is not defined
+ReferenceError: body is not defined
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\medication.schema.ts:55:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 09:45:37:error uncaughtException: medica is not defined
+ReferenceError: medica is not defined
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\medication.schema.ts:56:29)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 09:45:49:error uncaughtException: Spread syntax requires ...iterable[Symbol.iterator] to be a function
+TypeError: Spread syntax requires ...iterable[Symbol.iterator] to be a function
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\schemas\medication.schema.ts:56:23)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 09:50:24:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/medication.serice.ts(21,55): error TS1110: Type expected.
+src/services/medication.serice.ts(21,56): error TS1005: '=>' expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/medication.serice.ts(21,55): error TS1110: Type expected.
+src/services/medication.serice.ts(21,56): error TS1005: '=>' expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\medication.serice.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 09:50:30:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/medication.serice.ts(21,55): error TS1110: Type expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/medication.serice.ts(21,55): error TS1110: Type expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\medication.serice.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 09:50:37:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/medication.serice.ts(21,55): error TS1110: Type expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/medication.serice.ts(21,55): error TS1110: Type expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\medication.serice.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 09:50:44:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/medication.serice.ts(21,55): error TS1110: Type expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/medication.serice.ts(21,55): error TS1110: Type expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\services\medication.serice.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 09:56:04:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/routes/medication.routes.ts(35,5): error TS1003: Identifier expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/routes/medication.routes.ts(35,5): error TS1003: Identifier expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\routes\medication.routes.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:01 09:56:39:error uncaughtException: create is not defined
+ReferenceError: create is not defined
+    at MedicationRoutes.initializeRoutes (C:\Users\omar\Documents\Health\backend\src\routes\medication.routes.ts:34:103)
+    at new MedicationRoutes (C:\Users\omar\Documents\Health\backend\src\routes\medication.routes.ts:17:14)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\routes.ts:13:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-9367584183594888.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+2025:07:05 18:04:41:error uncaughtException: Mon is not defined
+ReferenceError: Mon is not defined
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:36:31)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:88:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+2025:07:05 18:04:46:error uncaughtException: Cannot find module '../config/defaults'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\utils\MongoConnection.ts
+- C:\Users\omar\Documents\Health\backend\src\app.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+Error: Cannot find module '../config/defaults'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\utils\MongoConnection.ts
+- C:\Users\omar\Documents\Health\backend\src\app.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1225:15)
+    at Function.Module._resolveFilename (C:\Users\omar\Documents\Health\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Module.require (node:internal/modules/cjs/loader:1311:12)
+    at require (node:internal/modules/helpers:136:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\utils\MongoConnection.ts:1:1)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+2025:07:05 18:05:37:error uncaughtException: Cannot find module '../config/defaults'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\utils\MongoConnection.ts
+- C:\Users\omar\Documents\Health\backend\src\app.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+Error: Cannot find module '../config/defaults'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\utils\MongoConnection.ts
+- C:\Users\omar\Documents\Health\backend\src\app.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1225:15)
+    at Function.Module._resolveFilename (C:\Users\omar\Documents\Health\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Module.require (node:internal/modules/cjs/loader:1311:12)
+    at require (node:internal/modules/helpers:136:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\utils\MongoConnection.ts:1:1)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+2025:07:05 18:05:46:error uncaughtException: The "id" argument must be of type string. Received undefined
+TypeError: The "id" argument must be of type string. Received undefined
+    at Module.require (node:internal/modules/cjs/loader:1304:3)
+    at require (node:internal/modules/helpers:136:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\utils\MongoConnection.ts:2:1)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+2025:07:05 18:07:15:error uncaughtException: Cannot find module 'xss'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\middleware\xss.ts
+- C:\Users\omar\Documents\Health\backend\src\app.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+Error: Cannot find module 'xss'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\middleware\xss.ts
+- C:\Users\omar\Documents\Health\backend\src\app.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1225:15)
+    at Function.Module._resolveFilename (C:\Users\omar\Documents\Health\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Module.require (node:internal/modules/cjs/loader:1311:12)
+    at require (node:internal/modules/helpers:136:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\middleware\xss.ts:3:1)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+2025:07:05 18:08:06:error uncaughtException: Cannot find module 'xss'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\middleware\xss.ts
+- C:\Users\omar\Documents\Health\backend\src\app.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+Error: Cannot find module 'xss'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\middleware\xss.ts
+- C:\Users\omar\Documents\Health\backend\src\app.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1225:15)
+    at Function.Module._resolveFilename (C:\Users\omar\Documents\Health\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Module.require (node:internal/modules/cjs/loader:1311:12)
+    at require (node:internal/modules/helpers:136:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\middleware\xss.ts:3:1)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+2025:07:05 18:08:15:error uncaughtException: Cannot find module 'xss'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\middleware\xss.ts
+- C:\Users\omar\Documents\Health\backend\src\app.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+Error: Cannot find module 'xss'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\middleware\xss.ts
+- C:\Users\omar\Documents\Health\backend\src\app.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1225:15)
+    at Function.Module._resolveFilename (C:\Users\omar\Documents\Health\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Module.require (node:internal/modules/cjs/loader:1311:12)
+    at require (node:internal/modules/helpers:136:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\middleware\xss.ts:3:1)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+2025:07:06 17:29:49:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/user.controller.ts(50,1): error TS1005: '{' expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/user.controller.ts(50,1): error TS1005: '{' expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\user.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-3607966931447464.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-3607966931447464.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-3607966931447464.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+2025:07:06 17:30:24:error uncaughtException: Cannot find module '@/config/defaults'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\controllers\user.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\routes\user.routes.ts
+- C:\Users\omar\Documents\Health\backend\src\routes.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+Error: Cannot find module '@/config/defaults'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\controllers\user.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\routes\user.routes.ts
+- C:\Users\omar\Documents\Health\backend\src\routes.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1225:15)
+    at Function.Module._resolveFilename (C:\Users\omar\Documents\Health\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Module.require (node:internal/modules/cjs/loader:1311:12)
+    at require (node:internal/modules/helpers:136:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts:4:1)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+2025:07:06 17:30:30:error uncaughtException: Cannot find module '@/config/defaults'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\controllers\user.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\routes\user.routes.ts
+- C:\Users\omar\Documents\Health\backend\src\routes.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+Error: Cannot find module '@/config/defaults'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\controllers\user.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\routes\user.routes.ts
+- C:\Users\omar\Documents\Health\backend\src\routes.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1225:15)
+    at Function.Module._resolveFilename (C:\Users\omar\Documents\Health\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Module.require (node:internal/modules/cjs/loader:1311:12)
+    at require (node:internal/modules/helpers:136:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts:4:1)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+2025:07:06 17:30:40:error uncaughtException: Cannot find module '@/config/defaults'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\controllers\user.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\routes\user.routes.ts
+- C:\Users\omar\Documents\Health\backend\src\routes.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+Error: Cannot find module '@/config/defaults'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\controllers\user.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\routes\user.routes.ts
+- C:\Users\omar\Documents\Health\backend\src\routes.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1225:15)
+    at Function.Module._resolveFilename (C:\Users\omar\Documents\Health\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Module.require (node:internal/modules/cjs/loader:1311:12)
+    at require (node:internal/modules/helpers:136:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts:4:1)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+2025:07:06 18:33:33:error uncaughtException: Cannot find module '@/config/defaults'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\controllers\user.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\routes.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+Error: Cannot find module '@/config/defaults'
+Require stack:
+- C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\controllers\user.controller.ts
+- C:\Users\omar\Documents\Health\backend\src\routes.ts
+- C:\Users\omar\Documents\Health\backend\src\server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1225:15)
+    at Function.Module._resolveFilename (C:\Users\omar\Documents\Health\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Module.require (node:internal/modules/cjs/loader:1311:12)
+    at require (node:internal/modules/helpers:136:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts:4:1)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+2025:07:06 18:33:55:error uncaughtException: ⨯ Unable to compile TypeScript:
+src/controllers/base.controller.ts(5,1): error TS1005: ',' expected.
+src/controllers/base.controller.ts(5,8): error TS1005: ',' expected.
+src/controllers/base.controller.ts(5,17): error TS1005: ',' expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/controllers/base.controller.ts(5,1): error TS1005: ',' expected.
+src/controllers/base.controller.ts(5,8): error TS1005: ',' expected.
+src/controllers/base.controller.ts(5,17): error TS1005: ',' expected.
+
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\controllers\base.controller.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-4506153767572456.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-4506153767572456.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-4506153767572456.js:71:20)
+    at Object.nodeDevHook [as .ts] (C:\Users\omar\Documents\Health\backend\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)

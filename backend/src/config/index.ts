@@ -35,6 +35,7 @@ export const {
     TEMPORALTOKENTTL,
     DFTOKENTTL,
     OTPTTL,
+    BODYSIZELIMIT
 } = process.env;
 
 export const CREDENTIALS = process.env.CREDENTIALS === `true`;

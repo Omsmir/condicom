@@ -2,18 +2,14 @@ import { Router } from 'express';
 import upload from '../middleware/multer';
 import { validate } from '../middleware/validateResource';
 import { codeSchema, DeleteCodeSchema, GetCodeSchema } from '../schemas/code.schema';
-import {
-    createCodeHandler,
-    deleteCodeHandler,
-    getCodesHandler,
-} from '../controllers/code.controller';
 import { Routes } from '@/interfaces/routes.interface';
+import CodeController from '@/controllers/code.controller';
 
 class CodeRoutes implements Routes {
     public path = '/code';
     public router = Router();
 
-    constructor() {
+    constructor(private codeController: CodeController) {
         this.initializeRoutes();
     }
 
@@ -22,15 +18,15 @@ class CodeRoutes implements Routes {
             `${this.path}/:id`,
             upload.none(),
             validate(codeSchema),
-            createCodeHandler
+            this.codeController.createCodeHandler
         );
 
-        this.router.get(`${this.path}/find/:id`, validate(GetCodeSchema), getCodesHandler);
+        this.router.get(`${this.path}/find/:id`, validate(GetCodeSchema), this.codeController.getCodesHandler);
         this.router.delete(
             `${this.path}/delete/:id`,
             upload.none(),
             validate(DeleteCodeSchema),
-            deleteCodeHandler
+            this.codeController.deleteCodeHandler
         );
     }
 }

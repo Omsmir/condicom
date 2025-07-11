@@ -1,13 +1,11 @@
-import { PatientProvider } from "@/components/context/PatientProvider";
-import { Metadata } from "next";
+import { PatientProvider } from '@/components/context/PatientProvider';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Dashboard - Patients",
+    title: 'Dashboard - Patients',
 };
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-      <PatientProvider>{children}</PatientProvider>
-  );
+    return <PatientProvider>{children}</PatientProvider>;
 };
 
 export default RootLayout;

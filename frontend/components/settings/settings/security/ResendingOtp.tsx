@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const ResendingOtp = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+    return <div></div>;
+};
 
-export default ResendingOtp
+export default ResendingOtp;

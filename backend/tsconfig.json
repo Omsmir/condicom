@@ -1,52 +1,52 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["ESNext"],
-    // "typeRoots": ["node_modules/@types"],
+    "compileOnSave": false,
+    "compilerOptions": {
+        "target": "ESNext",
+        "lib": ["ESNext"],
+        // "typeRoots": ["node_modules/@types"],
 
-    // DECORETOR SETTINGS
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "forceConsistentCasingInFileNames": true,
-    // MODULE SETTINGS
-    "moduleResolution": "nodenext",
-    "module": "NodeNext",
+        // DECORETOR SETTINGS
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "forceConsistentCasingInFileNames": true,
+        // MODULE SETTINGS
+        "moduleResolution": "nodenext",
+        "module": "NodeNext",
 
-    "pretty": true,
+        "pretty": true,
 
-    // emit settings
-    "sourceMap": true,
-    "declaration": true,
-    "outDir": "dist",
+        // emit settings
+        "sourceMap": true,
+        "declaration": true,
+        "outDir": "dist",
 
-    //INTEROP SETTINGS
-    "allowJs": true,
-    "noEmit": false,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "importHelpers": true,
+        //INTEROP SETTINGS
+        "allowJs": true,
+        "noEmit": false,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "importHelpers": true,
 
-    "strict": true,
-    // PATH ALIASES
-    "baseUrl": "src",
-    "paths": {
-      "@/*": ["*"],
-      "@config": ["src/config"],
-      "@controllers/*": ["controllers/*"],
-      "@dtos/*": ["dtos/*"],
-      "@exceptions/*": ["exceptions/*"],
-      "@interfaces/*": ["interfaces/*"],
-      "@middlewares/*": ["middlewares/*"],
-      "@models/*": ["models/*"],
-      "@routes/*": ["routes/*"],
-      "@schemas/*": ["schemas/*"],
-      "@services/*": ["services/*"],
-      "@utils/*": ["utils/*"],
-      "@templates/*": ["templates/*"]
-    }
-  },
-  "include": ["src/**/*.ts", "src/**/*.json", ".env"],
-  "exclude": ["node_modules", "src/http", "src/logs", "src/tests"]
+        "strict": true,
+        // PATH ALIASES
+        "baseUrl": "src",
+        "paths": {
+            "@/*": ["*"],
+            "@config": ["src/config"],
+            "@controllers/*": ["controllers/*"],
+            "@dtos/*": ["dtos/*"],
+            "@exceptions/*": ["exceptions/*"],
+            "@interfaces/*": ["interfaces/*"],
+            "@middlewares/*": ["middlewares/*"],
+            "@models/*": ["models/*"],
+            "@routes/*": ["routes/*"],
+            "@schemas/*": ["schemas/*"],
+            "@services/*": ["services/*"],
+            "@utils/*": ["utils/*"],
+            "@templates/*": ["templates/*"]
+        }
+    },
+    "include": ["src/**/*.ts", "src/**/*.json", ".env"],
+    "exclude": ["node_modules", "src/http", "src/logs", "src/tests"]
 }

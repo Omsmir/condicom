@@ -2,7 +2,6 @@
 import {
   keepPreviousData,
   useInfiniteQuery,
-  useQueries,
   useQuery,
 } from "@tanstack/react-query";
 import { getMedications } from "./Medications";
@@ -10,8 +9,7 @@ import { GetUserAppointments } from "./Appointments";
 import { GetPatients, GetSpecificPatient } from "./Patients";
 import { checkToken, getUserQuery, getUsers, verifyEmail } from "./User";
 import { getCodes } from "./Codes";
-import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+
 import { getUserNotifications } from "./Notification";
 
 export const UseGetUsers = (id: string | undefined) => {

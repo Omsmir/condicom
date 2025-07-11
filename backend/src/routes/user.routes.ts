@@ -14,118 +14,114 @@ import {
     SendEmailVerificationSchema,
     UpdateUserSchema,
 } from '../schemas/user.schema';
-import {
-    AddAdditionlHandler,
-    changePasswordHandler,
-    changeProfilePictureHandler,
-    ChangeUserInformationHandler,
-    checkOtpEmailChangeHandler,
-    CheckTokenHandler,
-    createUserHandler,
-    deleteUnVerifiedUsersHandler,
-    getAllUsersHandler,
-    getUser,
-    multiAuthOtpHandler,
-    reIssueAccessTokenHandler,
-    ResetPasswordHandler,
-    SendChangeEmailHandler,
-    sendEmailVerificationHandler,
-    SendResetEmailHandler,
-    verifyEmailHandler,
-    verifyEnablingMultiAuthOtpHandler,
-} from '../controllers/user.controller';
+import UserController from '../controllers/user.controller';
 import { logOutSchema, SessionSchema } from '../schemas/session.schema';
-import {
-    getUserSessions,
-    login,
-    logout,
-    verifyMultiAuthOtpHandler,
-} from '../controllers/session.controller';
+
 import { requireUser } from '../middleware/requireUser';
 import { Routes } from '@/interfaces/routes.interface';
+import SessionController from '@/controllers/session.controller';
 
 class UserRoutes implements Routes {
     public path = '/auth';
     public router = express.Router();
 
-    constructor() {
+    constructor(
+        private userController: UserController,
+        private sessionController: SessionController
+    ) {
         this.initializeRoutes();
     }
 
     private initializeRoutes() {
-        this.router.get(`${this.path}/reIssueAccessToken`, reIssueAccessTokenHandler);
+        this.router.get(
+            `${this.path}/reIssueAccessToken`,
+            this.userController.reIssueAccessTokenHandler
+        );
 
         this.router.put(
             `${this.path}/:id`,
             upload.single('profileImg'),
             validate(AddAdditionalSchema),
-            AddAdditionlHandler
+            this.userController.AddAdditionlHandler
         );
 
         this.router.post(
             `${this.path}/register`,
             upload.none(),
             validate(CreateUserSchema),
-            createUserHandler
+            this.userController.createUserHandler
         );
 
-        this.router.post(`${this.path}/login`, upload.none(), validate(SessionSchema), login);
+        this.router.post(
+            `${this.path}/login`,
+            upload.none(),
+            validate(SessionSchema),
+            this.sessionController.login
+        );
 
         this.router.post(
             `${this.path}/multi-auth-verification/:id`,
             upload.none(),
             validate(CheckOtpSchema),
-            verifyMultiAuthOtpHandler
+            this.sessionController.verifyMultiAuthOtpHandler
         );
 
-        this.router.put(`${this.path}/logout/:id`, validate(logOutSchema), logout);
+        this.router.put(
+            `${this.path}/logout/:id`,
+            validate(logOutSchema),
+            this.sessionController.logout
+        );
         // change main info
         this.router.put(
             `${this.path}/update/:id`,
             upload.none(),
             validate(UpdateUserSchema),
-            ChangeUserInformationHandler
+            this.userController.ChangeUserInformationHandler
         );
 
-        this.router.get(`${this.path}/sessions`, requireUser, getUserSessions);
+        this.router.get(
+            `${this.path}/sessions`,
+            requireUser,
+            this.sessionController.getUserSessions
+        );
 
-        this.router.get(`${this.path}/users/:id`, getAllUsersHandler);
+        this.router.get(`${this.path}/users/:id`, this.userController.getAllUsersHandler);
 
-        this.router.get(`${this.path}/:id`, getUser);
+        this.router.get(`${this.path}/:id`, this.userController.getUser);
 
         // password and security routes
         this.router.put(
             `${this.path}/password/change/:id`,
             upload.none(),
             validate(ChangePasswordSchema),
-            changePasswordHandler
+            this.userController.changePasswordHandler
         );
 
         this.router.put(
             `${this.path}/password/reset/message`,
             upload.none(),
             validate(ResetPasswordSchema),
-            SendResetEmailHandler
+            this.userController.SendResetEmailHandler
         );
 
         this.router.put(
             `${this.path}/password/reset/:token`,
             upload.none(),
             validate(ResetPasswordNewSchema),
-            ResetPasswordHandler
+            this.userController.ResetPasswordHandler
         );
 
         this.router.put(
             `${this.path}/multi-factor-otp/enabling-disabling/:id`,
             validate(SendEmailVerificationSchema),
-            multiAuthOtpHandler
+            this.userController.multiAuthOtpHandler
         );
 
         this.router.put(
             `${this.path}/multi-factor-otp/enabling/verify/:id`,
             upload.none(),
             validate(CheckOtpSchema),
-            verifyEnablingMultiAuthOtpHandler
+            this.userController.verifyEnablingMultiAuthOtpHandler
         );
 
         // common token checker
@@ -133,7 +129,7 @@ class UserRoutes implements Routes {
             `${this.path}/token/:token`,
             upload.none(),
             validate(CheckTokenExistanceSchema),
-            CheckTokenHandler
+            this.userController.CheckTokenHandler
         );
 
         // email routes
@@ -141,27 +137,27 @@ class UserRoutes implements Routes {
             `${this.path}/email/change/otp/:id`,
             upload.none(),
             validate(ChangeEmailSchema),
-            SendChangeEmailHandler
+            this.userController.SendChangeEmailHandler
         );
 
         this.router.post(
             `${this.path}/email/change/verify/:id`,
             upload.none(),
             validate(CheckOtpSchema),
-            checkOtpEmailChangeHandler
+            this.userController.checkOtpEmailChangeHandler
         );
 
         // email verification
         this.router.post(
             `${this.path}/email/verify/:id`,
             validate(SendEmailVerificationSchema),
-            verifyEmailHandler
+            this.userController.verifyEmailHandler
         );
 
         this.router.post(
             `${this.path}/email/verify/send/:id`,
             validate(SendEmailVerificationSchema),
-            sendEmailVerificationHandler
+            this.userController.sendEmailVerificationHandler
         );
 
         // profile
@@ -169,10 +165,10 @@ class UserRoutes implements Routes {
             `${this.path}/picture/:id`,
             upload.single('profilePicture'),
             validate(ChangeProfilePictureSchema),
-            changeProfilePictureHandler
+            this.userController.changeProfilePictureHandler
         );
 
-        this.router.delete(`${this.path}`, deleteUnVerifiedUsersHandler);
+        this.router.delete(`${this.path}`, this.userController.deleteUnVerifiedUsersHandler);
     }
 }
 

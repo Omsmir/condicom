@@ -5,13 +5,12 @@
 .index {
   z-index: 100 !important;
 }
-img{
+img {
   pointer-events: none;
 }
 /* ========================================== TAILWIND STYLES */
 @layer base {
   /* Remove scrollbar */
-
 
   .remove-scrollbar::-webkit-scrollbar {
     width: 0px;
@@ -28,7 +27,6 @@ img{
     border-radius: 0px;
   }
 
-
   .remove-scrollbar::-webkit-scrollbar-thumb:hover {
     /* background: #1e2238; */
     background: transparent;
@@ -43,7 +41,7 @@ img{
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
- 
+
   .dark {
     --sidebar-background: #0f172a;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -59,23 +57,22 @@ img{
 @layer utilities {
   /* ===== UTILITIES */
 
-  
   .element-class {
     scrollbar-gutter: stable both-edges;
- }
+  }
   .bg-black-800 {
     background-color: #333; /* Replace with your custom color */
   }
-  .Tailwind-Dropdown{
+  .Tailwind-Dropdown {
     @apply absolute left-0 z-10 mt-2 w-32 origin-top-right rounded-md
     bg-slate-100 shadow-lg ring-1 ring-black/5 transition focus:outline-none 
     data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100
      data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in;
   }
-  .tailwind-menuItem{
-    @apply  px-4 py-2 text-sm cursor-pointer text-gray-700 data-[focus]:bg-slate-200 data-[focus]:text-gray-900 ;
+  .tailwind-menuItem {
+    @apply px-4 py-2 text-sm cursor-pointer text-gray-700 data-[focus]:bg-slate-200 data-[focus]:text-gray-900;
   }
-  .Country{
+  .Country {
     @apply flex items-center justify-center border-slate-200 h-11 w-full bg-slate-100 placeholder:text-sm placeholder:text-dark-500 !important;
   }
   .countryOptionsWrapper {
@@ -87,8 +84,8 @@ img{
   .sidebar {
     @apply remove-scrollbar w-full max-w-72 flex-col overflow-auto bg-black-800 px-7 py-10;
   }
-  .AppointmentCreate  {
-    @apply dark:bg-slate-900 text-slate-50 bg-blue-700 capitalize max-h-[30px] px-7 !important;
+  .AppointmentCreate {
+    @apply dark:bg-slate-900 text-slate-50 bg-blue-700 capitalize max-h-[30px] font-normal px-7  !important;
   }
   .left-sidebar {
     @apply hidden lg:flex;
@@ -336,7 +333,6 @@ img{
   .date-picker {
     @apply overflow-hidden rounded-md text-sm w-full h-11  text-dark-200 bg-slate-100 border border-slate-200 hover:bg-slate-100 hover:border-slate-200 cursor-pointer !important;
   }
-
 }
 
 /* =====  REACT-DATEPICKER OVERRIDES */
@@ -411,27 +407,24 @@ img{
   color: #f1f5f9;
 }
 
-
-
-.css-mdw2u7-MuiModal-root-MuiDialog-root{
+.css-mdw2u7-MuiModal-root-MuiDialog-root {
   z-index: 50 !important;
 }
 
 .main:hover .delete {
   display: block;
 }
-.main:hover .edit{
+.main:hover .edit {
   display: flex;
-} 
-.ant-color-picker-color-block:first-of-type{
+}
+.ant-color-picker-color-block:first-of-type {
   width: 100% !important;
   height: 100% !important;
 }
-.ReactSelectFlags-module_selectWrapper__I7wcI{
+.ReactSelectFlags-module_selectWrapper__I7wcI {
   height: auto !important;
-  
 }
-.custom ~ [data-radix-popper-content-wrapper]{
+.custom ~ [data-radix-popper-content-wrapper] {
   left: -188px !important;
 }
 
@@ -442,16 +435,16 @@ img{
 
 @media (min-width: 768px) {
   /* Styles for screens larger than 768px */
- .css-si425x {
-  width: 800px;
- 
- }
+  .css-si425x {
+    width: 800px;
+  }
 }
 /* .ant-upload-list {
   display: flex;
   justify-content: center;
 } */
-.dark .custom-steps .ant-steps-item-title , .ant-steps-icon{
+.dark .custom-steps .ant-steps-item-title,
+.ant-steps-icon {
   color: #ffffff !important;
 }
 
@@ -459,12 +452,12 @@ img{
   z-index: 0 !important;
 }
 
-
 @media print {
-  body{
+  body {
     visibility: hidden;
   }
-  .printable, .printable * {
+  .printable,
+  .printable * {
     visibility: visible;
   }
   .notPrintable {
@@ -475,18 +468,24 @@ img{
     background-color: #042f2e !important;
     color: #ffffff !important;
   }
-
 }
 
-
-.dark .ant-result-title ,.dark .ant-result-subtitle{
+.dark .ant-result-title,
+.dark .ant-result-subtitle {
   color: #ffff !important;
 }
-.ant-upload-list .ant-upload-select{
+.ant-upload-list .ant-upload-select {
   width: 125px !important;
   height: 125px !important;
 }
 .ant-upload-list-item-container {
   width: 125px !important;
   height: 125px !important;
+}
+.ant-upload-list-item-container {
+  width: 100% !important;
+}
+.ant-upload-list-text .ant-upload-list-item-container {
+  height: 55px !important
+  ;
 }

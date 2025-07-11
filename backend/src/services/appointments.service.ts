@@ -5,22 +5,32 @@ import {
     AppointmentModel,
 } from '../models/appointment.model';
 
-export const createAppointment = async (input: AppointmentInput) => {
-    return await AppointmentModel.create(input);
-};
+class AppointmentService {
+    constructor(private appointmentModel = AppointmentModel) {}
 
-export const findUserAppointments = async (query: FilterQuery<AppointmentDocument>) => {
-    return await AppointmentModel.find(query);
-};
+    public createAppointment = async (input: AppointmentInput) => {
+        return await this.appointmentModel.create(input);
+    };
 
-export const deleteAppointment = async (query: FilterQuery<AppointmentDocument>) => {
-    return await AppointmentModel.deleteOne(query);
-};
+    public findOneAppointment = async (query: FilterQuery<AppointmentDocument>) => {
+        return await this.appointmentModel.findOne(query);
+    };
 
-export const updateAppointment = async (
-    query: FilterQuery<AppointmentDocument>,
-    update: UpdateQuery<AppointmentDocument>,
-    options?: QueryOptions
-) => {
-    return await AppointmentModel.findByIdAndUpdate(query, update, options);
-};
+    public findUserAppointments = async (query: FilterQuery<AppointmentDocument>) => {
+        return await this.appointmentModel.find(query);
+    };
+
+    public deleteAppointment = async (query: FilterQuery<AppointmentDocument>) => {
+        return await this.appointmentModel.deleteOne(query);
+    };
+
+    public updateAppointment = async (
+        query: FilterQuery<AppointmentDocument>,
+        update: UpdateQuery<AppointmentDocument>,
+        options?: QueryOptions
+    ) => {
+        return await this.appointmentModel.findByIdAndUpdate(query, update, options);
+    };
+}
+
+export default AppointmentService;

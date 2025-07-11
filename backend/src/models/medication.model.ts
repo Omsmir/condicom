@@ -24,6 +24,8 @@ export interface MedicationInput {
     stock_quantity: number;
 }
 
+export type MedicationsInput = MedicationInput[]
+
 export interface MedicationDocument extends MedicationInput, Document {
     createdAt: Date;
     updatedAt: Date;

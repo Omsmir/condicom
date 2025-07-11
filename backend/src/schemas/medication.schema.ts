@@ -49,6 +49,11 @@ const payload = {
     }),
 };
 
+const MultiplePatientsPayload = {
+    body: z.object({
+        medications: z.array(payload.body, { required_error: 'medications documents is required' }),
+    }),
+};
 export const Params = {
     params: z.object({
         id: z.string({ message: 'id is required' }),
@@ -63,5 +68,12 @@ export const medicationSchema = z.object({
     ...payload,
 });
 
+export const multipleMedicationSchema = z.object({
+    ...MultiplePatientsPayload,
+});
+
+
+
 export type medicationSchemaInterface = z.infer<typeof medicationSchema>;
 export type GetmedicationSchemaInterface = z.infer<typeof getmedicationSchema>;
+export type medicationsSchemaInterface = z.infer<typeof multipleMedicationSchema>;

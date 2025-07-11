@@ -1,12 +1,9 @@
-import React from "react";
-import dynamic from "next/dynamic";
+import React from 'react';
+import dynamic from 'next/dynamic';
 
-const PharmacyDynamic = dynamic(() => import("@/components/Pharmacy"))
+const PharmacyDynamic = dynamic(() => import('@/components/Pharmacy'));
 const page = () => {
+    return <PharmacyDynamic />;
+};
 
-  return (
-      <PharmacyDynamic />
-  )
-}
-
-export default page
+export default page;

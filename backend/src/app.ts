@@ -1,5 +1,5 @@
 import express from 'express';
-import { CREDENTIALS, LOG_FORMAT, NODE_ENV, ORIGIN, PORT } from '@/config';
+import { BODYSIZELIMIT, CREDENTIALS, LOG_FORMAT, NODE_ENV, ORIGIN, PORT } from '@/config';
 import { deserializeUser } from './middleware/deserializeUser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -13,11 +13,12 @@ import helmet from 'helmet';
 import compression from 'compression';
 import { logger, stream } from './utils/logger';
 import { ErrorHandler } from './middleware/errorHandler';
-import { MongoConnection } from './utils/connect';
 import { disconnect, set } from 'mongoose';
 import { Routes } from './interfaces/routes.interface';
 import { developedBy, healthShape } from './utils/constants';
 import RateLimiters from './middleware/rateLimiters';
+import MongoConnection from './utils/MongoConnection';
+import { sanitizeRequest } from './middleware/xss';
 
 class App {
     public port: number | string;
@@ -25,7 +26,7 @@ class App {
     public env: string;
     public server: http.Server;
     public static initiator: Server;
-    public mongoConnection: MongoConnection;
+    public static mongoConnection: MongoConnection;
 
     private constructor(routes: Routes[]) {
         this.port = PORT || 8080;
@@ -33,9 +34,8 @@ class App {
         this.env = NODE_ENV || 'development';
         this.server = http.createServer(this.app);
         App.initiator = SocketServer.io(this.server);
-        this.mongoConnection = new MongoConnection();
+        App.mongoConnection = MongoConnection.getInstance();
 
-        this.connectToMongo();
         this.connectToRedis();
         this.socketInitialize();
         this.initializeMiddlewares();
@@ -63,13 +63,6 @@ class App {
         }
     }
 
-    private async connectToMongo() {
-        // if (NODE_ENV != 'production') {
-        //     set('debug', true);
-        // }
-        await this.mongoConnection.connect();
-    }
-
     private async connectToRedis() {
         const redisConnection = new RedisConnection();
 
@@ -91,12 +84,13 @@ class App {
     private initializeMiddlewares() {
         this.app.use(morgan(LOG_FORMAT || 'dev', { stream: stream }));
         this.app.use(cors({ origin: ORIGIN, credentials: CREDENTIALS }));
-        this.app.use(hpp());
+        this.app.use(hpp({ checkBody: true }));
         this.app.use(helmet());
         this.app.use(compression());
-        this.app.use(express.json());
-        this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(express.json({ limit: BODYSIZELIMIT }));
+        this.app.use(express.urlencoded({ extended: true, limit: BODYSIZELIMIT }));
         this.app.use(cookieParser());
+        this.app.use(sanitizeRequest);
     }
 
     private initializeImplementedMiddlwares() {

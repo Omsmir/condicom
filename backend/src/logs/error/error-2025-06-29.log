@@ -1,0 +1,137 @@
+2025:06:29 04:07:54:error Firebase Storage: Object 'doctors/67c6ea7aa4de1eadefcc4be6' does not exist. (storage/object-not-found)
+2025:06:29 04:07:56:error Firebase Storage: Object 'doctors/680292107bee6dd9cc35acc8' does not exist. (storage/object-not-found)
+2025:06:29 04:08:41:error Firebase Storage: Object 'doctors/6802a0d241a01df8cc5be9d7' does not exist. (storage/object-not-found)
+2025:06:29 05:25:33:error [POST] /api/patient/create-multi >> StatusCode:: 500, Message:: Unexpected field
+2025:06:29 05:26:28:error [POST] /api/patient/create-multi >> StatusCode:: 400, Message:: Bad control character in string literal in JSON at position 20 (line 2 column 18)
+2025:06:29 21:25:24:error AggregateError
+2025:06:29 21:26:05:error AggregateError
+2025:06:29 21:26:44:error The "listener" argument must be of type function. Received undefined
+2025:06:29 21:26:44:error unhandledRejection: The "listener" argument must be of type function. Received undefined
+Error: The "listener" argument must be of type function. Received undefined
+    at RedisConnection.initializeConnection (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:29:19)
+    at App.connectToRedis (C:\Users\omar\Documents\Health\backend\src\app.ts:76:31)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:39:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:88:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-1340349431600576.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-1340349431600576.js:114:20)
+2025:06:29 21:26:56:error AggregateError
+2025:06:29 21:26:56:error AggregateError
+2025:06:29 21:26:56:error AggregateError
+2025:06:29 21:26:56:error AggregateError
+2025:06:29 21:26:57:error AggregateError
+2025:06:29 21:26:57:error AggregateError
+2025:06:29 21:26:57:error AggregateError
+2025:06:29 21:26:57:error AggregateError
+2025:06:29 21:26:58:error AggregateError
+2025:06:29 21:26:58:error AggregateError
+2025:06:29 21:26:59:error AggregateError
+2025:06:29 21:26:59:error AggregateError
+2025:06:29 21:27:00:error AggregateError
+2025:06:29 21:27:00:error AggregateError
+2025:06:29 21:27:01:error AggregateError
+2025:06:29 21:27:01:error AggregateError
+2025:06:29 21:27:02:error AggregateError
+2025:06:29 21:27:02:error AggregateError
+2025:06:29 21:27:03:error AggregateError
+2025:06:29 21:27:03:error AggregateError
+2025:06:29 21:27:09:error 
+2025:06:29 21:27:09:error 
+2025:06:29 21:27:09:error 
+2025:06:29 21:27:09:error 
+2025:06:29 21:27:09:error 
+2025:06:29 21:27:09:error 
+2025:06:29 21:27:10:error 
+2025:06:29 21:27:10:error 
+2025:06:29 21:27:10:error 
+2025:06:29 21:27:11:error 
+2025:06:29 21:27:11:error 
+2025:06:29 21:27:12:error 
+2025:06:29 21:27:12:error 
+2025:06:29 21:27:13:error 
+2025:06:29 21:27:13:error 
+2025:06:29 21:27:14:error 
+2025:06:29 21:27:14:error 
+2025:06:29 21:27:15:error 
+2025:06:29 21:27:15:error 
+2025:06:29 21:27:16:error 
+2025:06:29 21:27:16:error 
+2025:06:29 21:27:17:error 
+2025:06:29 21:27:17:error 
+2025:06:29 21:27:18:error 
+2025:06:29 21:27:18:error 
+2025:06:29 21:27:19:error 
+2025:06:29 21:27:19:error 
+2025:06:29 21:27:20:error 
+2025:06:29 21:27:20:error 
+2025:06:29 21:27:21:error 
+2025:06:29 21:27:21:error 
+2025:06:29 21:27:22:error 
+2025:06:29 21:27:22:error 
+2025:06:29 21:27:23:error 
+2025:06:29 21:27:23:error 
+2025:06:29 21:27:24:error 
+2025:06:29 21:27:24:error 
+2025:06:29 21:27:25:error 
+2025:06:29 21:27:26:error 
+2025:06:29 21:27:26:error 
+2025:06:29 21:27:27:error 
+2025:06:29 21:27:27:error 
+2025:06:29 21:27:28:error 
+2025:06:29 21:27:28:error 
+2025:06:29 21:27:29:error 
+2025:06:29 21:27:29:error 
+2025:06:29 21:27:30:error 
+2025:06:29 21:27:30:error 
+2025:06:29 21:27:31:error 
+2025:06:29 21:27:31:error 
+2025:06:29 21:27:32:error 
+2025:06:29 21:27:32:error 
+2025:06:29 21:27:44:error redis connection error please check connectivity
+2025:06:29 21:27:44:error redis connection error please check connectivity
+2025:06:29 21:27:44:error redis connection error please check connectivity
+2025:06:29 21:27:44:error redis connection error please check connectivity
+2025:06:29 21:27:44:error redis connection error please check connectivity
+2025:06:29 21:27:45:error redis connection error please check connectivity
+2025:06:29 21:27:45:error redis connection error please check connectivity
+2025:06:29 21:27:45:error redis connection error please check connectivity
+2025:06:29 21:27:46:error redis connection error please check connectivity
+2025:06:29 21:27:46:error redis connection error please check connectivity
+2025:06:29 21:27:47:error redis connection error please check connectivity
+2025:06:29 21:27:47:error redis connection error please check connectivity
+2025:06:29 21:27:48:error redis connection error please check connectivity
+2025:06:29 21:27:48:error redis connection error please check connectivity
+2025:06:29 21:27:49:error redis connection error please check connectivity
+2025:06:29 21:27:49:error redis connection error please check connectivity
+2025:06:29 21:27:50:error redis connection error please check connectivity
+2025:06:29 21:27:50:error redis connection error please check connectivity
+2025:06:29 21:27:51:error redis connection error please check connectivity
+2025:06:29 21:27:51:error redis connection error please check connectivity
+2025:06:29 21:27:52:error redis connection error please check connectivity
+2025:06:29 21:27:52:error redis connection error please check connectivity
+2025:06:29 21:27:53:error redis connection error please check connectivity
+2025:06:29 21:27:53:error redis connection error please check connectivity
+2025:06:29 21:27:54:error redis connection error please check connectivity
+2025:06:29 21:27:54:error redis connection error please check connectivity
+2025:06:29 21:27:55:error redis connection error please check connectivity
+2025:06:29 21:27:55:error redis connection error please check connectivity
+2025:06:29 21:27:56:error redis connection error please check connectivity
+2025:06:29 21:27:56:error redis connection error please check connectivity
+2025:06:29 21:27:57:error redis connection error please check connectivity
+2025:06:29 21:27:57:error redis connection error please check connectivity
+2025:06:29 21:27:58:error redis connection error please check connectivity
+2025:06:29 21:27:58:error redis connection error please check connectivity
+2025:06:29 21:27:59:error redis connection error please check connectivity
+2025:06:29 21:27:59:error redis connection error please check connectivity
+2025:06:29 21:28:00:error redis connection error please check connectivity
+2025:06:29 21:28:00:error redis connection error please check connectivity
+2025:06:29 21:28:01:error redis connection error please check connectivity
+2025:06:29 21:28:01:error redis connection error please check connectivity
+2025:06:29 21:28:02:error redis connection error please check connectivity
+2025:06:29 21:28:02:error redis connection error please check connectivity
+2025:06:29 21:28:02:error redis connection error please check connectivity
+2025:06:29 22:12:54:error [POST] /api/patient/create-multi >> StatusCode:: 413, Message:: request entity too large
+2025:06:29 22:13:08:error [POST] /api/patient/create-multi >> StatusCode:: 413, Message:: request entity too large

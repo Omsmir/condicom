@@ -5,7 +5,14 @@ const nextConfig: NextConfig = {
   /* config options here */
   experimental:{
     turbo: {},
+    serverActions: {
+      bodySizeLimit: '5mb',
+    },
   },
+  logging: {
+    fetches: {
+      hmrRefreshes: true,
+    }},
   images: {
     remotePatterns: [
       {

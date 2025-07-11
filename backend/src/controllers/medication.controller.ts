@@ -1,82 +1,129 @@
-import { NextFunction, Response, Request } from 'express';
+import { Response, Request } from 'express';
 import {
     GetmedicationSchemaInterface,
     medicationSchemaInterface,
+    medicationsSchemaInterface,
 } from '@schemas/medication.schema';
-import {
-    createMedication,
-    deleteMedication,
-    getMedications,
-    getSpecficMedication,
-} from '../services/medication.serice';
-export const createMedicationHandler = async (
-    req: Request<{}, {}, medicationSchemaInterface['body']>,
-    res: Response
-) => {
-    try {
-        const name = req.body.name;
+import { BaseController } from './base.controller';
+import MedicationService from '@/services/medication.service';
+import HttpException from '@/exceptions/httpException';
 
-        const strength = req.body.strength;
-        const stock_quantity = req.body.stock_quantity;
+class MedicationController extends BaseController {
+    private medicationService: MedicationService;
+    constructor() {
+        super();
+        this.medicationService = new MedicationService();
+    }
 
-        const existedMedication = await getSpecficMedication({ name, strength });
+    public createMedicationHandler = async (
+        req: Request<{}, {}, medicationSchemaInterface['body']>,
+        res: Response
+    ) => {
+        try {
+            const name = req.body.name;
 
-        if (existedMedication) {
-            existedMedication.stock_quantity =
-                Number(existedMedication.stock_quantity) + Number(stock_quantity);
+            const strength = req.body.strength;
+            const stock_quantity = req.body.stock_quantity;
 
-            existedMedication.updateOne(req.body);
+            const existedMedication = await this.medicationService.getSpecficMedication({
+                name,
+                strength,
+            });
 
-            await existedMedication.save();
+            if (existedMedication) {
+                existedMedication.stock_quantity =
+                    Number(existedMedication.stock_quantity) + Number(stock_quantity);
+
+                existedMedication.updateOne(req.body);
+
+                await existedMedication.save();
+
+                res.status(201).json({
+                    message: 'medication updated successfully',
+                    existedMedication,
+                });
+                return;
+            }
+
+            const medication = await this.medicationService.createMedication(req.body);
+
+            res.status(201).json({ message: 'medication created successfully', medication });
+        } catch (error) {
+            this.handleError(res, error);
+        }
+    };
+
+    public createMultipleMedicationsHandler = async (
+        req: Request<{}, {}, medicationsSchemaInterface['body']>,
+        res: Response
+    ) => {
+        try {
+            const medications = req.body.medications;
+
+            for (const medication of medications) {
+                const existedMedication = await this.medicationService.getSpecficMedication({
+                    name: medication.name,
+                    strength: medication.strength,
+                });
+
+                if (existedMedication) {
+                    throw new HttpException(
+                        403,
+                        `medication with name ${existedMedication.name} already exists `
+                    );
+                }
+            }
+
+            const createdmedications =
+                await this.medicationService.createMultipleMedications(medications);
+
+            if (!createdmedications) {
+                throw new HttpException(400, 'error occured while creating medications');
+            }
 
             res.status(201).json({
-                message: 'medication updated successfully',
-                existedMedication,
+                message: `${createdmedications.length} medications have been added`,
             });
-            return;
+        } catch (error) {
+            this.handleError(res, error);
         }
+    };
 
-        const medication = await createMedication(req.body);
+    public deleteMedicationHandler = async (
+        req: Request<GetmedicationSchemaInterface['params']>,
+        res: Response
+    ) => {
+        try {
+            const id = req.params.id;
 
-        res.status(201).json({ message: 'medication created successfully', medication });
-    } catch (error: any) {
-        res.status(500).json({ message: error.message });
-    }
-};
+            const medication = await this.medicationService.getSpecficMedication({ _id: id });
 
-export const deleteMedicationHandler = async (
-    req: Request<GetmedicationSchemaInterface['params']>,
-    res: Response
-) => {
-    try {
-        const id = req.params.id;
+            if (!medication) {
+                throw new HttpException(404, "medication doesn't exist");
+            }
 
-        const medication = await getSpecficMedication({ _id: id });
+            await this.medicationService.deleteMedication({ _id: id });
 
-        if (!medication) {
-            res.status(404).json({ message: "medication doesn't exist" });
-            return;
+            res.status(200).json({ message: 'medication deleted successfully' });
+        } catch (error) {
+            this.handleError(res, error);
         }
+    };
 
-        await deleteMedication({ _id: id });
+    public getAllMedicationsHandler = async (req: Request, res: Response) => {
+        try {
+            const medications = await this.medicationService.getMedications();
 
-        res.status(200).json({ message: 'medication deleted successfully' });
-    } catch (error: any) {
-        res.status(500).json({ message: error.message });
-    }
-};
+            if (!medications) {
+                throw new HttpException(404, 'No medications');
+            }
 
-export const getAllMedicationsHandler = async (req: Request, res: Response) => {
-    try {
-        const medications = await getMedications();
+            res.status(200).json({ message: 'success', medications });
+        } catch (error) {
+            this.handleError(res, error);
 
-        if (!medications) {
-            res.status(404).json({ message: 'No medications' });
-            return;
         }
+    };
+}
 
-        res.status(200).json({ message: 'success', medications });
-    } catch (error: any) {
-        res.status(500).json({ message: error.message });
-    }
-};
+export default MedicationController

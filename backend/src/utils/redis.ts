@@ -20,12 +20,16 @@ class RedisConnection {
                     logger.info('connected to redis');
                 });
 
+
+                this.redisClient.on("error",() => {
+                    logger.error("redis connection error please check connectivity")
+                })
                 await this.redisClient.connect(); // Ensure the client is connected
             }
             return this.redisClient;
-        } catch (error) {
+        } catch (error:any) {
             logger.error(error);
-            throw error;
+            throw new Error(error.message);
         }
     }
 }

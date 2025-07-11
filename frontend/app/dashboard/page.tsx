@@ -1,20 +1,12 @@
-
-import { Metadata } from "next";
-import Overview from "@/components/Overview";
-
+import { Metadata } from 'next';
+import Overview from '@/components/Overview';
 
 export const metadata: Metadata = {
-  title: "Health - Dashboard",
-  description: "Welcome to dashboard",
+    title: 'Health - Dashboard',
+    description: 'Welcome to dashboard',
 };
 
-const Home =  () => {
-
-  
-  return (
-     <Overview />
-  
-  );
+const Home = () => {
+    return <Overview />;
 };
 export default Home;
-

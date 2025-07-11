@@ -1,14 +1,10 @@
-"use client"
+'use client';
 
-import { Notification } from "@/types"
-import { DashboardHook } from "../context/Dashboardprovider"
+import { Notification } from '@/types';
+import { DashboardHook } from '../context/Dashboardprovider';
 
-const NotificationItem =  () => {
-  return (
-    <div className="">
-      
-    </div>
-  )
-}
+const NotificationItem = () => {
+    return <div className=""></div>;
+};
 
-export default NotificationItem
+export default NotificationItem;

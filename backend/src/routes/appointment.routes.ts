@@ -6,19 +6,15 @@ import {
     AppointmentSchema,
     updateAppointmentSchema,
 } from '../schemas/appointment.schema';
-import {
-    createAppointmentHandler,
-    deleteAppointmentHandler,
-    getUserAppointments,
-    updateAppointmentHandler,
-} from '../controllers/appointments.controller';
+
 import { Routes } from '@/interfaces/routes.interface';
+import AppointmentController from '@/controllers/appointments.controller';
 
 class AppointmentsRoutes implements Routes {
     public path = '/appointments';
     public router = Router();
 
-    constructor() {
+    constructor(private appointmentController:AppointmentController) {
         this.initializeRoutes();
     }
 
@@ -27,20 +23,20 @@ class AppointmentsRoutes implements Routes {
             `${this.path}`,
             upload.none(),
             validate(AppointmentSchema),
-            createAppointmentHandler
+            this.appointmentController.createAppointmentHandler
         );
-        this.router.get(`${this.path}/:id`, validate(AppointmentParams), getUserAppointments);
+        this.router.get(`${this.path}/:id`, validate(AppointmentParams), this.appointmentController.getUserAppointments);
 
         this.router.delete(
             `${this.path}/:id`,
             validate(AppointmentParams),
-            deleteAppointmentHandler
+            this.appointmentController.deleteAppointmentHandler
         );
         this.router.put(
             `${this.path}/:id`,
             upload.none(),
             validate(updateAppointmentSchema),
-            updateAppointmentHandler
+           this.appointmentController.updateAppointmentHandler
         );
     }
 }

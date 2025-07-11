@@ -37,6 +37,8 @@ export interface PatientInput {
     AlcoholFrequency?: string;
 }
 
+export type PatientsInput = PatientInput[];
+
 export interface PatientDocument extends PatientInput, Document {
     id: string;
     createdAt?: Date;

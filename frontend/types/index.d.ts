@@ -225,7 +225,8 @@ declare interface ObjectType {
 }
 
 interface patient {
-  id: string;
+  _id: string;
+  id:string;
   profileImg?: {
     url: string;
   };
@@ -234,7 +235,7 @@ interface patient {
   gender: string;
   birthDate: Date;
   phone: string;
-  bloodType: string; // Optional field
+  bloodType: string; 
   country: string;
   height?: number;
   weight?: number;
@@ -256,6 +257,34 @@ interface patient {
   createdAt: Date;
   updatedAt: Date;
 }
+
+declare interface patientToCreate{
+  firstName: string;
+  lastName: string;
+  gender: string;
+  birthDate?: string;
+  phone: string;
+  bloodType: string; 
+  country?: string;
+  height?: string;
+  weight?: string;
+  email?: string;
+  emergencyContactPerson?: string;
+  emergencyContactRelationship?: string;
+  emergencyContactNumber: string;
+  residentialAddress?: string;
+  insuranceProvider?: string;
+  medicalConditions: string;
+  allergies: string;
+  pastSurgeries?: string;
+  familyMedicalHistory?: string;
+  currentMedications: string;
+  smoking: string;
+  smokingFrequency?: string;
+  alcohol: string;
+  alcoholFrequency?: string;
+}
+
 
 declare interface PatientsToQuery {
   Patients: patient[];
@@ -284,9 +313,27 @@ declare interface medication {
   supplier?: string;
 }
 
+
+declare interface medicationToCreate {
+  name: string;
+  generic_name: string;
+  description?: string;
+  form: string;
+  strength: string;
+  route: string;
+  manufacturer?: string;
+  batch_number?: string;
+  storage_conditions?: string;
+  expiryDate?: string;
+  drug_category: string;
+  price: number;
+  stock_quantity: number;
+  supplier?: string;
+}
 declare interface medications {
   medications: medication[];
 }
+
 
 declare interface code {
   _id: string;

@@ -1,42 +1,47 @@
 import { FilterQuery, QueryOptions, UpdateQuery } from 'mongoose';
 import { CodeDocument, CodeInput, CodeModel } from '../models/code.model';
 
-export const createCode = async (input: CodeInput) => {
-    return await CodeModel.create(input);
-};
+class CodeService {
+    constructor(private codeModel = CodeModel) {}
 
-export const findCode = async (query: FilterQuery<CodeDocument>) => {
-    return await CodeModel.findOne(query);
-};
+    public createCode = async (input: CodeInput) => {
+        return await this.codeModel.create(input);
+    };
+    public findCode = async (query: FilterQuery<CodeDocument>) => {
+        return await this.codeModel.findOne(query);
+    };
 
-export const getCodes = async (
-    query: FilterQuery<CodeDocument>,
-    limit: number,
-    cursor?: string
-) => {
-    if (cursor) {
-        query._id = { $lt: cursor };
-    }
-    const codes = await CodeModel.find(query)
-        .sort({ _id: -1 })
-        .limit(4 + 1);
+    public getCodes = async (query: FilterQuery<CodeDocument>, limit: number, cursor?: string) => {
+        if (cursor) {
+            query._id = { $lt: cursor };
+        }
+        const codes = await this.codeModel
+            .find(query)
+            .sort({ _id: -1 })
+            .limit(4 + 1);
 
-    let nextCursor: string | null = null;
-    if (codes.length > +limit) {
-        nextCursor = codes[limit - 1]._id as string; // Use the last item's _id as the nextCursor
-        codes.pop();
-    }
+        let nextCursor: string | null = null;
+        if (codes.length > +limit) {
+            nextCursor = codes[limit - 1]._id as string; // Use the last item's _id as the nextCursor
+            codes.pop();
+        }
 
-    return { codes, nextCursor };
-};
-export const updateCode = async (
-    query: FilterQuery<CodeDocument>,
-    update: UpdateQuery<CodeDocument>,
-    options?: QueryOptions
-) => {
-    return await CodeModel.findOneAndUpdate(query, update, options);
-};
+        return { codes, nextCursor };
+    };
 
-export const deleteCode = async (query: FilterQuery<CodeDocument>) => {
-    return await CodeModel.deleteOne(query);
-};
+    public updateCode = async (
+        query: FilterQuery<CodeDocument>,
+        update: UpdateQuery<CodeDocument>,
+        options?: QueryOptions
+    ) => {
+        return await this.codeModel.findOneAndUpdate(query, update, options);
+    };
+    
+
+    public deleteCode = async (query: FilterQuery<CodeDocument>) => {
+        return await this.codeModel.deleteOne(query);
+    };
+    
+}
+
+export default CodeService
