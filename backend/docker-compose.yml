@@ -1,0 +1,66 @@
+services:
+    app:
+        build:
+         context: .
+         target: development-build-stage
+        container_name: conduktor
+        ports:
+            - '8080:8080'
+        volumes:
+            - ./:/app
+            - /app/node_modules
+        restart: always
+        command: npm run dev
+        depends_on:
+            - mongodb
+        networks:
+            - backend-network
+    mongodb:
+        image: mongo:7
+        container_name: mongodb
+        restart: always
+        ports:
+            - '27017:27017'
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: omar
+            MONGO_INITDB_ROOT_PASSWORD: omarsamir1
+        volumes:
+            - mongo-data:/data/db
+        networks:
+            - backend-network
+    redis:
+        image: redis/redis-stack:latest       
+        container_name: redisstack 
+        ports:
+           - "6379:6379"
+           - '8001:8001'
+        restart: always
+        environment:
+           REDIS_ARGS: --appendonly yes --requirepass omarsamir1
+        volumes:
+           - redis_data:/data   
+        networks:
+           - backend-network
+
+    nginx:
+        image: nginx:alpine
+        container_name: nginx-server
+        restart: unless-stopped
+        ports:
+            - '80:80'
+            - '443:443'
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx/ssl:/etc/nginx/ssl
+        networks:
+            - backend-network
+        depends_on:
+            - app
+
+volumes:
+    mongo-data:
+    redis_data:
+
+networks:
+    backend-network:
+        driver: bridge

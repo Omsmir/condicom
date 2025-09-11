@@ -54,16 +54,16 @@ const LoginForm = () => {
                 className="space-y-8 my-auto px-4 sm:p-0 sm:mx-4"
             >
                 <div className="flex flex-col justify-center items-center">
-                    <Image
-                        src="/assets/icons/mark.svg"
+                      <Image
+                        src="/assets/logo-1.png"
                         alt="SignIn"
-                        width={50}
-                        height={50}
+                        width={75}
+                        height={75}
                     />
 
-                    <div className="my-4">
-                        <h1 className="text-2xl font-bold sm:text-4xl text-center">
-                            Sign In To Dashboard
+                    <div className="mb-4">
+                        <h1 className="text-2xl font-bold sm:text-4xl text-center capitalize">
+                            login In To condicom
                         </h1>
                     </div>
                 </div>

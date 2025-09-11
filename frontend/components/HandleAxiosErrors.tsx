@@ -1,3 +1,4 @@
+import { ApiError } from '@/core/ApiError';
 import { NotificationInstance } from 'antd/es/notification/interface';
 import axios from 'axios';
 
@@ -16,7 +17,7 @@ const HandleAxiosErrors = ({ api, error }: { api: NotificationInstance; error: E
                 pauseOnHover: false,
             });
         }
-    } else if (error instanceof Error) {
+    } else if (error instanceof ApiError) {
         api.error({
             message: 'Something went wrong',
             description: error.message,

@@ -1,14 +1,12 @@
-import { Routes } from '@/interfaces/routes.interface';
 import { Response, Request, Router, NextFunction } from 'express';
+import { BaseRoute } from './base.route';
 
-class IndexRoute implements Routes {
-    public path = '/';
-    public router = Router();
-
+class IndexRoute extends BaseRoute {
     constructor() {
-        this.initializeIndexRoute();
+        super('/');
+        this.initializeRoutes();
     }
-    private initializeIndexRoute() {
+    protected initializeRoutes() {
         this.router.get(this.path, async (req: Request, res: Response, next: NextFunction) => {
             try {
                 res.status(200).json({ message: 'server is responding' });

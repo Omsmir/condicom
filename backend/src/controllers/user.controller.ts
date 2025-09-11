@@ -17,9 +17,8 @@ import UserService from '../services/user.service';
 import CodeService from '../services/code.service';
 
 import mongoose from 'mongoose';
-import { generateOtp, hashPassword, sendEmail } from '../utils/backevents';
+import { generateOtp, hashPassword } from '../utils/backevents';
 import { addHours, addWeeks } from 'date-fns';
-import { checkHash, createHash, DelHash, GetHashExpiration } from '../utils/redis';
 import { signJwt, verifyJwt } from '../utils/jwt.sign';
 import { UserDocument } from '../models/user.model';
 import { get } from 'lodash';
@@ -38,6 +37,8 @@ import App from '@/app';
 import { BaseController } from './base.controller';
 import HttpException from '@/exceptions/httpException';
 import SessionService from '@/services/session.service';
+import { RedisConnection, RedisServices } from '@/utils/redis';
+import { EmailSubjects, SendEmail } from '@/utils/emailUtils';
 
 class UserController extends BaseController {
     private FRONTEND_URL: string | undefined;
@@ -45,6 +46,7 @@ class UserController extends BaseController {
     private codeService: CodeService;
     private notificationService: NotificationService;
     private sessionService: SessionService;
+    private redisService: RedisServices;
     constructor() {
         super();
         this.FRONTEND_URL = NODE_ENV === 'development' ? FRONTEND_URI_DEV : '';
@@ -52,6 +54,7 @@ class UserController extends BaseController {
         this.codeService = new CodeService();
         this.notificationService = new NotificationService();
         this.sessionService = new SessionService();
+        this.redisService = new RedisServices(RedisConnection.getInstance().getClient());
     }
 
     public createUserHandler = async (
@@ -155,7 +158,7 @@ class UserController extends BaseController {
                 }
             );
 
-            await createHash({
+            await this.redisService.createHash({
                 HashName: `${HashName}:token`,
                 content: { token },
                 expire: parseInt(DFTOKENTTL as string),
@@ -163,13 +166,14 @@ class UserController extends BaseController {
 
             const link = `http://localhost:3000/dashboard/verify/${token}`;
 
-            await sendEmail({
+            await new SendEmail({
                 to: existingUser.email,
                 link,
                 templateName: 'emailVerification.hbs',
                 health: 'healthcare',
                 year: new Date().getFullYear(),
-            });
+                subject: EmailSubjects.EMAIL_VERIFICATION,
+            }).execute();
 
             const notification = this.notificationService.systemNotifications(
                 'emailVerification',
@@ -211,7 +215,7 @@ class UserController extends BaseController {
 
             const HashName = `verifyEmail:${existingUser._id}`;
 
-            const ExitingToken = await checkHash(`${HashName}:token`, 'token');
+            const ExitingToken = await this.redisService.checkHash(`${HashName}:token`, 'token');
 
             if (ExitingToken) {
                 throw new HttpException(400, 'verification email already has sent');
@@ -226,7 +230,7 @@ class UserController extends BaseController {
                 }
             );
 
-            await createHash({
+            await this.redisService.createHash({
                 HashName: `${HashName}:token`,
                 content: { token },
                 expire: parseInt(DFTOKENTTL as string),
@@ -234,13 +238,14 @@ class UserController extends BaseController {
 
             const link = `http://localhost:3000/dashboard/verify/${token}`;
 
-            await sendEmail({
+            await new SendEmail({
                 to: existingUser.email,
                 link,
                 templateName: 'emailVerification.hbs',
                 health: 'healthcare',
                 year: new Date().getFullYear(),
-            });
+                subject: EmailSubjects.EMAIL_VERIFICATION,
+            }).execute();
 
             res.status(201).json({ message: 'A verification email has sent to your email' });
         } catch (error: any) {
@@ -263,7 +268,7 @@ class UserController extends BaseController {
 
             const HashName = `verifyEmail:${existingUser._id}`;
 
-            const token = await checkHash(`${HashName}:token`, 'token');
+            const token = await this.redisService.checkHash(`${HashName}:token`, 'token');
 
             if (!token) {
                 res.status(404).json({ message: 'token has expired', state: false });
@@ -283,7 +288,7 @@ class UserController extends BaseController {
                 { runValidators: true, new: true }
             );
 
-            await DelHash(`${HashName}:token`, 'token');
+            await this.redisService.DelHash(`${HashName}:token`, 'token');
 
             res.status(201).json({ message: 'email verified successfully', state: true });
         } catch (error: any) {
@@ -442,9 +447,9 @@ class UserController extends BaseController {
 
             const HashName = `resetpassword:${existingUser._id}`;
 
-            const lastEmail = await checkHash(`${HashName}:lastemail`, 'content');
+            const lastEmail = await this.redisService.checkHash(`${HashName}:lastemail`, 'content');
 
-            const existingToken = await checkHash(`${HashName}:token`, 'token');
+            const existingToken = await this.redisService.checkHash(`${HashName}:token`, 'token');
 
             if (lastEmail) {
                 throw new HttpException(400, "can't reset password right now");
@@ -471,23 +476,24 @@ class UserController extends BaseController {
             } else {
                 link = `${this.FRONTEND_URL}dashboard/settings/setting/reset/${token}`;
             }
-            await sendEmail({
+            await new SendEmail({
                 to: existingUser.email,
                 templateName: 'passwordreset.hbs',
                 link,
-            });
+                subject: EmailSubjects.PASSWORD_RESET,
+            }).execute();
 
             const content = {
                 content: addHours(new Date(), 2).toISOString(),
             };
 
-            await createHash({
+            await this.redisService.createHash({
                 HashName: `${HashName}:token`,
                 content: { token },
                 expire: parseInt(DFTOKENTTL as string),
             });
 
-            await createHash({
+            await this.redisService.createHash({
                 HashName: `${HashName}:lastemail`,
                 content: content,
                 expire: parseInt(DFTOKENTTL as string) * 3,
@@ -524,7 +530,7 @@ class UserController extends BaseController {
 
             const HashName = user.HashName;
 
-            const existingToken = await checkHash(`${HashName}:token`, 'token');
+            const existingToken = await this.redisService.checkHash(`${HashName}:token`, 'token');
 
             if ((existingToken && token != existingToken) || !existingToken) {
                 res.status(404).json({ message: 'invalid token', state: false });
@@ -558,7 +564,7 @@ class UserController extends BaseController {
 
             const HashName = `resetpassword:${existingUser._id}:token`;
 
-            const existingToken = await checkHash(HashName, 'token');
+            const existingToken = await this.redisService.checkHash(HashName, 'token');
 
             if (!existingToken) {
                 res.status(404).json({ message: 'invalid token', state: false });
@@ -575,7 +581,7 @@ class UserController extends BaseController {
                 { new: true, runValidators: true }
             );
 
-            await DelHash(HashName, 'token');
+            await this.redisService.DelHash(HashName, 'token');
             res.status(200).json({ message: 'password has changed successfully' });
         } catch (error) {
             this.handleError(res, error);
@@ -599,11 +605,11 @@ class UserController extends BaseController {
 
             const HashName = `newEmail:${existingUser._id}`;
 
-            const lastEmail = await checkHash(`${HashName}:lastemail`, 'content');
+            const lastEmail = await this.redisService.checkHash(`${HashName}:lastemail`, 'content');
 
-            const existingOtp = await checkHash(`${HashName}:otp`, 'otp');
+            const existingOtp = await this.redisService.checkHash(`${HashName}:otp`, 'otp');
 
-            const existingToken = await checkHash(`${HashName}:token`, 'token');
+            const existingToken = await this.redisService.checkHash(`${HashName}:token`, 'token');
 
             const repeatStepOne = async ({ existedToken }: { existedToken: boolean }) => {
                 const otp = generateOtp({ length: 8, type: 'number' });
@@ -620,13 +626,14 @@ class UserController extends BaseController {
                     );
                 }
 
-                const sent = await sendEmail({
+                const sent = await new SendEmail({
                     to: newEmail,
                     templateName: 'changeEmail.hbs',
                     otp,
                     health: 'healthcare',
                     year: new Date().getFullYear(),
-                });
+                    subject: EmailSubjects.EMAIL_CHANGE,
+                }).execute();
                 return { otp, token, sent };
             };
 
@@ -636,7 +643,7 @@ class UserController extends BaseController {
                 }
                 const { otp } = await repeatStepOne({ existedToken: true });
 
-                await createHash({
+                await this.redisService.createHash({
                     HashName: `${HashName}:otp`,
                     content: { otp },
                     expire: parseInt(OTPTTL as string),
@@ -655,13 +662,13 @@ class UserController extends BaseController {
 
             const { otp, token } = await repeatStepOne({ existedToken: false });
 
-            await createHash({
+            await this.redisService.createHash({
                 HashName: `${HashName}:otp`,
                 content: { otp },
                 expire: parseInt(OTPTTL as string),
             });
 
-            await createHash({
+            await this.redisService.createHash({
                 HashName: `${HashName}:token`,
                 content: { token: token },
                 expire: parseInt(DFTOKENTTL as string),
@@ -688,9 +695,9 @@ class UserController extends BaseController {
                 throw new HttpException(403, 'Forbidden');
             }
             const HashName = `newEmail:${existingUser._id}`;
-            const existingOtp = await checkHash(`${HashName}:otp`, 'otp');
+            const existingOtp = await this.redisService.checkHash(`${HashName}:otp`, 'otp');
 
-            const token = await checkHash(`${HashName}:token`, 'token');
+            const token = await this.redisService.checkHash(`${HashName}:token`, 'token');
 
             if (!existingOtp || !token || existingOtp !== req.body.otp) {
                 res.status(404).json({ message: 'invalid code', state: false });
@@ -719,14 +726,14 @@ class UserController extends BaseController {
                 { new: true, runValidators: true }
             );
 
-            await createHash({
+            await this.redisService.createHash({
                 HashName: `${HashName}:lastemail`,
                 content: { content: addHours(new Date(), 2).toISOString() },
                 expire: parseInt(REFRESHTOKENTTL as string),
             });
 
-            await DelHash(`${HashName}:otp`, 'otp');
-            await DelHash(`${HashName}:token`, 'token');
+            await this.redisService.DelHash(`${HashName}:otp`, 'otp');
+            await this.redisService.DelHash(`${HashName}:token`, 'token');
 
             res.status(201).json({ message: 'email has changed successfully', state: true });
         } catch (error) {
@@ -750,7 +757,7 @@ class UserController extends BaseController {
             }
             const HashName = `profilePicture:${existingUser._id}:change`;
 
-            const lastTimeChanged = await checkHash(HashName, 'content');
+            const lastTimeChanged = await this.redisService.checkHash(HashName, 'content');
 
             if (lastTimeChanged) {
                 throw new HttpException(400, "can't change profile picture right now");
@@ -776,7 +783,7 @@ class UserController extends BaseController {
 
             const content = addHours(update.profileImg?.uploadedAt as Date, 2).toISOString();
 
-            await createHash({
+            await this.redisService.createHash({
                 HashName,
                 content: { content },
                 expire: parseInt(DFTOKENTTL as string) * 24 * 3,
@@ -787,11 +794,17 @@ class UserController extends BaseController {
         }
     };
 
-    public reIssueAccessTokenHandler = async (req: Request, res: Response) => {
+    public reIssueAccessTokenHandler = async (req: Request, res: Response) => { 
+        // issue solved: 2025:08:15 14:52:48:info GET /api/auth/reIssueAccessToken 200 10.377 ms - -
+
+        // explaintion: the server were getting respawned because of the live reloading,
+        // and when this handler got called from the client server it fails when the server keeps respawning time after time 
+        // solved dockerized the server.
         try {
             const refreshToken = get(req, 'headers.x-refresh') as string;
             const temporalToken = get(req, 'headers.x-temporal-token') as string;
-
+            
+            
             if (temporalToken) {
                 const { decoded, valid } = await verifyJwt(
                     temporalToken,
@@ -890,34 +903,35 @@ class UserController extends BaseController {
             }
             const HashName = `multi-auth-enabling:${existingUser._id}`;
 
-            const lastOtp = await checkHash(`${HashName}:otp`, 'otp');
+            const lastOtp = await this.redisService.checkHash(`${HashName}:otp`, 'otp');
 
             if (lastOtp) {
                 throw new HttpException(400, 'otp has already sent in less than 5 mins');
             }
             const otp = generateOtp({ length: 8, type: 'string' });
 
-            const existedToken = await checkHash(`${HashName}:token`, 'token');
+            const existedToken = await this.redisService.checkHash(`${HashName}:token`, 'token');
 
             if (existedToken) {
                 const link = `${this.FRONTEND_URL}dashboard/settings/setting/verify/${existedToken}`;
 
-                await createHash({
+                await this.redisService.createHash({
                     HashName: `${HashName}:otp`,
                     content: { otp },
                     expire: parseInt(OTPTTL as string),
                 });
 
-                await sendEmail({
+                await new SendEmail({
                     to: existingUser.email,
                     templateName: 'multiAuth.hbs',
                     link,
                     otp,
                     health: 'healthcare',
                     year: new Date().getFullYear(),
-                });
+                    subject: EmailSubjects.MFA_ENABLING,
+                }).execute();
 
-                const TTL = await GetHashExpiration(`${HashName}:otp`);
+                const TTL = await this.redisService.GetHashExpiration(`${HashName}:otp`);
 
                 res.status(201).json({
                     message: 'another otp has sent to your email',
@@ -939,28 +953,29 @@ class UserController extends BaseController {
 
             const link = `${this.FRONTEND_URL}dashboard/settings/setting/verify/${token}`;
 
-            await createHash({
+            await this.redisService.createHash({
                 HashName: `${HashName}:otp`,
                 content: { otp },
                 expire: parseInt(OTPTTL as string),
             });
 
-            await createHash({
+            await this.redisService.createHash({
                 HashName: `${HashName}:token`,
                 content: { token },
                 expire: parseInt(DFTOKENTTL as string),
             });
 
-            await sendEmail({
+            await new SendEmail({
                 to: existingUser.email,
                 templateName: 'multiAuth.hbs',
                 link,
                 otp,
                 health: 'healthcare',
                 year: new Date().getFullYear(),
-            });
+                subject: EmailSubjects.MFA_ENABLING,
+            }).execute();
 
-            const TTL = await GetHashExpiration(`${HashName}:otp`);
+            const TTL = await this.redisService.GetHashExpiration(`${HashName}:otp`);
 
             res.status(201).json({
                 message: 'A verification link with otp has sent to your email',
@@ -989,14 +1004,14 @@ class UserController extends BaseController {
 
             const HashName = `multi-auth-enabling:${existingUser._id}`;
 
-            const existedToken = await checkHash(`${HashName}:token`, 'token');
+            const existedToken = await this.redisService.checkHash(`${HashName}:token`, 'token');
 
             if (!existedToken) {
                 res.status(400).json({ message: 'token has expired', state: false });
                 return;
             }
 
-            const validOtp = await checkHash(`${HashName}:otp`, 'otp');
+            const validOtp = await this.redisService.checkHash(`${HashName}:otp`, 'otp');
 
             if (!validOtp || otp !== validOtp) {
                 res.status(400).json({ message: 'otp has expired', state: false });
@@ -1009,19 +1024,20 @@ class UserController extends BaseController {
                 { runValidators: true, new: true }
             );
 
-            await DelHash(`${HashName}:otp`, 'otp');
+            await this.redisService.DelHash(`${HashName}:otp`, 'otp');
 
-            await DelHash(`${HashName}:token`, 'token');
+            await this.redisService.DelHash(`${HashName}:token`, 'token');
 
             const currDate = new Date();
 
-            await sendEmail({
+            await new SendEmail({
                 to: existingUser.email,
                 templateName: 'mfaEnabled.hbs',
                 date: addHours(currDate, 2).toISOString(),
                 health: 'healthcare',
                 year: new Date().getFullYear(),
-            });
+                subject: EmailSubjects.MFA_ENABLED,
+            }).execute();
 
             res.status(200).json({
                 message: 'mulit-factor authentication has been enabled',
@@ -1047,18 +1063,19 @@ class UserController extends BaseController {
             for (let user of unverified) {
                 const HashName = `emailVerificationAlert:${user._id}`;
 
-                const lastEmail = await checkHash(HashName, 'lastemail');
+                const lastEmail = await this.redisService.checkHash(HashName, 'lastemail');
 
                 if (lastEmail) {
                     throw new HttpException(403, 'User is still within the warning phase');
                 }
 
-                await sendEmail({
+                await new SendEmail({
                     to: user.email,
                     templateName: 'emailDeletion.hbs',
                     health: 'healthcare',
                     year: new Date().getFullYear(),
-                });
+                    subject: EmailSubjects.EMAIL_DELETION,
+                }).execute();
 
                 await deleteImage(user.profileImg?.path);
 
@@ -1066,7 +1083,7 @@ class UserController extends BaseController {
 
                 await this.userService.deleteUser({ _id: user._id });
 
-                await DelHash(HashName, 'lastemail');
+                await this.redisService.DelHash(HashName, 'lastemail');
             }
             res.status(200).json({ message: 'unverified users deleted successfully' });
         } catch (error) {

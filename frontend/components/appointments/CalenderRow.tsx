@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import { format, isToday, getYear, getDayOfYear, isSameDay } from 'date-fns';
+import { format, isToday, isSameDay } from 'date-fns';
 import { useMediaQuery } from 'react-responsive';
 import { CalenderHook } from '../context/CalenderProvider';
 import { useCallback } from 'react';
 import { Appointment } from '@/types';
-
 import { useSession } from 'next-auth/react';
+import PatientAppointment from './PatientAppointment';
 interface Calender {
     day: Date;
     className?: string;
@@ -17,32 +17,17 @@ const CalenderRow: React.FC<Calender> = ({ day, className, classname, appointmen
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     const { data: session } = useSession();
 
-    const { state, setState, setViewPort, setView, setWeekView, setMonthView, setDayView } =
-        CalenderHook();
+    const {
+        state,
+        setState,
+        setViewPort,
+        setView,
+        setWeekView,
+        setMonthView,
+        setDayView,
+    } = CalenderHook();
 
-    const dayToCompare = (day: Date) => {
-        const yearOfDayToCompare = getYear(day);
-        const dayOfYearToCompare = getDayOfYear(day);
-
-        const obj = {
-            year: yearOfDayToCompare,
-            day: dayOfYearToCompare,
-        };
-
-        return obj;
-    };
-    const stateTocompare = () => {
-        const yearOfDayToCompare = getYear(state);
-        const dayOfYearToCompare = getDayOfYear(state);
-
-        const obj = {
-            year: yearOfDayToCompare,
-            day: dayOfYearToCompare,
-        };
-        return obj;
-    };
-
-    const handleClick = useCallback((day: Date) => {
+    const WeekView = useCallback((day: Date) => {
         setState(day);
 
         setViewPort(2);
@@ -62,8 +47,7 @@ const CalenderRow: React.FC<Calender> = ({ day, className, classname, appointmen
             className={clsx(
                 'flex flex-col border-b h-32 p-2 cursor-pointer dark:border-slate-700',
                 {
-                    'bg-slate-200 dark:bg-[var(--sidebar-background)]':
-                        dayToCompare(day).day === stateTocompare().day,
+                    'bg-slate-200 dark:bg-[var(--sidebar-accent)]': isSameDay(day, state),
                 },
                 className
             )}
@@ -74,7 +58,7 @@ const CalenderRow: React.FC<Calender> = ({ day, className, classname, appointmen
                     className={clsx(
                         'flex size-7 rounded-full ',
                         {
-                            'bg-blue-700 text-slate-100 items-center justify-center': isToday(day),
+                            'bg-blue-700 text-white items-center justify-center': isToday(day),
                         },
                         classname
                     )}
@@ -85,16 +69,22 @@ const CalenderRow: React.FC<Calender> = ({ day, className, classname, appointmen
             <div className="flex flex-col overflow-y-auto">
                 {!isMobile ? (
                     <div className="flex flex-col justify-between group ">
-                        {appointment?.map((task, index) => {
-                            if (isSameDay(task.startDate, day)) {
+                        {appointment?.map((appointment, index) => {
+                            if (
+                                isSameDay(appointment.startDate, day) &&
+                                session?.user.id === appointment.user
+                            ) {
                                 return (
                                     <div
-                                        onClick={() => handleClick(day)}
+                                        onClick={() => WeekView(day)}
                                         key={index}
-                                        style={{ background: task.color }}
-                                        className={`flex justify-between items-center px-2 py-1 my-1 text-sm text-slate-50 font-medium rounded-sm`}
+                                        style={{ background: appointment.color }}
+                                        className={`flex flex-col justify-center items-start px-2 py-1 my-1 text-sm text-slate-50 font-medium rounded-sm`}
                                     >
-                                        {format(task.startDate, 'h:mm a')} {task.task}
+                                        {format(appointment.startDate, 'h:mm a')} {appointment.task}
+                                        {appointment.patientEmail && (
+                                            <PatientAppointment email={appointment.patientEmail} />
+                                        )}
                                     </div>
                                 );
                             }
@@ -102,15 +92,18 @@ const CalenderRow: React.FC<Calender> = ({ day, className, classname, appointmen
                     </div>
                 ) : (
                     <div className="flex ">
-                        {appointment?.map((task, index) => {
-                            if (isSameDay(task.startDate, day) && session?.user.id === task.user) {
+                        {appointment?.map((appointment, index) => {
+                            if (
+                                isSameDay(appointment.startDate, day) &&
+                                session?.user.id === appointment.user
+                            ) {
                                 return (
                                     <div
                                         key={index}
-                                        style={{ background: task.color }}
+                                        style={{ background: appointment.color }}
                                         className={`flex justify-center items-center mx-1 text-sm text-slate-50 font-medium rounded-sm  `}
                                     >
-                                        {task.task}
+                                        {appointment.task}
                                     </div>
                                 );
                             }

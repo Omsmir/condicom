@@ -1,5 +1,5 @@
 import ApiCharts from '@/components/charts/ApiCharts';
-import AreaMetrics from '@/components/charts/metrics/AreaChart';
+import AreaMetrics from '@/components/charts/metrics/ReusableAreaChart';
 import React from 'react';
 
 const page = () => {

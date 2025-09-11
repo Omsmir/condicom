@@ -2,8 +2,14 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { CreateMedication, CreateMultipleMedications, DeleteMedication } from './Medications';
 import { NotificationInstance } from 'antd/es/notification/interface';
 import Swal from 'sweetalert2';
-import { CreateAppointment, DeleteAppointment, UpdateAppointment } from './Appointments';
-import { CreateMultiplePatients, CreatePatient, deleteMultiplePatients, DeletePatient, deletePatientsProps } from './Patients';
+import { AppointmentService, CreateAppointment } from './Appointments';
+import {
+    CreateMultiplePatients,
+    CreatePatient,
+    deleteMultiplePatients,
+    DeletePatient,
+    deletePatientsProps,
+} from './Patients';
 import HandleAxiosErrors from '@/components/HandleAxiosErrors';
 import { DashboardHook } from '@/components/context/Dashboardprovider';
 import {
@@ -26,7 +32,6 @@ import {
 } from './User';
 import { useRouter } from 'next/navigation';
 import { CreateNotification, UpdateNotificationSeen } from './Notification';
-import { data } from '@/components/togglers/Handlers';
 import { AccountHook } from '@/components/context/AccountProvider';
 import { signOut, useSession } from 'next-auth/react';
 import { deleteCode, generateCode } from './Codes';
@@ -69,12 +74,12 @@ export const UseCreateMedication = (api: NotificationInstance) => {
     });
 };
 
-
 export const UseCreateMultipleMedications = (api: NotificationInstance) => {
     const queryClient = useQueryClient();
     const { setIsLoading, setAlertMessage } = PatientHook();
     return useMutation({
-        mutationFn: async (medications: medicationToCreate[]) => await CreateMultipleMedications(medications),
+        mutationFn: async (medications: medicationToCreate[]) =>
+            await CreateMultipleMedications(medications),
         onMutate: data => {
             setIsLoading(true);
             setAlertMessage(data.length);
@@ -101,8 +106,6 @@ export const UseCreateMultipleMedications = (api: NotificationInstance) => {
     });
 };
 
-
-
 export const UseDeleteMedication = (api: NotificationInstance) => {
     const queryClient = useQueryClient();
 
@@ -121,73 +124,85 @@ export const UseDeleteMedication = (api: NotificationInstance) => {
     });
 };
 
-export const UseUpdateAppointment = (api: NotificationInstance, id: string | undefined) => {
-    const queryClient = useQueryClient();
-    return useMutation({
-        mutationFn: (state: data) => UpdateAppointment(id, state),
-        onError: error => {
-            HandleAxiosErrors({ error: error, api: api });
-        },
-        onSettled: async response => {
-            api.success({
-                message: response?.data.message,
-                pauseOnHover: false,
-            });
+export class Mutations {
+    public static UseUpdateAppointment = (api: NotificationInstance, id: string | undefined) => {
+        const queryClient = useQueryClient();
+        return useMutation({
+            mutationFn: (state: AppointmentUpdateI) =>
+                AppointmentService.UpdateAppointment(id, state),
+            onError: error => {
+                HandleAxiosErrors({ error: error, api: api });
+            },
+            onSettled: async response => {
+                api.success({
+                    message: response?.message,
+                    pauseOnHover: false,
+                });
 
-            await queryClient.invalidateQueries({
-                queryKey: ['userAppointments'],
-            });
-        },
-    });
-};
+                await queryClient.invalidateQueries({
+                    queryKey: ['userAppointments'],
+                });
+                await queryClient.invalidateQueries({
+                    queryKey: ['patientAppointments'],
+                });
+            },
+        });
+    };
 
-export const UseDeleteAppointment = (api: NotificationInstance) => {
-    const queryClient = useQueryClient();
+    public static UseDeleteAppointment = (api: NotificationInstance) => {
+        const queryClient = useQueryClient();
 
-    return useMutation({
-        mutationFn: async (id: string | undefined) => DeleteAppointment(id),
-        onError: error => {
-            HandleAxiosErrors({ api: api, error: error });
-        },
-        onSettled: async (data, error) => {
-            api.success({
-                message: data?.data.message,
-                pauseOnHover: false,
-            });
+        return useMutation({
+            mutationFn: async (id: string | undefined) => AppointmentService.DeleteAppointment(id),
+            onError: error => {
+                HandleAxiosErrors({ api, error });
+                
+            },
+            onSettled: async response => {
+                api.success({
+                    message: response?.message,
+                    pauseOnHover: false,
+                });
 
-            await queryClient.invalidateQueries({
-                queryKey: ['userAppointments'],
-            });
-        },
-    });
-};
+                await queryClient.invalidateQueries({
+                    queryKey: ['userAppointments'],
+                });
+            },
+        });
+    };
 
-export const UseCreateAppointment = (api: NotificationInstance) => {
-    const queryClient = useQueryClient();
+    public static UseCreateAppointment = (api: NotificationInstance) => {
+        const queryClient = useQueryClient();
 
-    return useMutation({
-        mutationFn: async (appointment: FormData) => CreateAppointment(appointment),
-        onError: error => {
-            HandleAxiosErrors({ api: api, error: error });
-        },
-        onSuccess: async (data, error) => {
-            api.success({
-                message: 'Appointment Created Successfully',
-                description: 'Your appointment has been successfully created',
-                showProgress: true,
-                pauseOnHover: false,
-            });
+        return useMutation({
+            mutationFn: async ({ appointment, patientState }: CreateAppointmentI) =>
+                AppointmentService.CreateAppointment(appointment, patientState),
+            onError: error => {
+                HandleAxiosErrors({ api: api, error: error });
+            },
+            onSuccess: async response => {
+                api.success({
+                    message: 'Appointment Created Successfully',
+                    description: 'Your appointment has been successfully created',
+                    showProgress: true,
+                    pauseOnHover: false,
+                });
 
-            await queryClient.invalidateQueries({
-                queryKey: ['userAppointments'],
-            });
-        },
-    });
-};
+                await queryClient.invalidateQueries({
+                    queryKey: ['userAppointments'],
+                });
+
+                await queryClient.invalidateQueries({
+                    queryKey: ['patientAppointments', `${response?.appointment.patientEmail}`],
+                });
+            },
+        });
+    };
+}
 
 export const UseDeletePatient = (api: NotificationInstance) => {
     const queryClient = useQueryClient();
-    const router = useRouter()
+    const router = useRouter();
 
     return useMutation({
         mutationFn: async (id: string | undefined) => DeletePatient(id),
@@ -201,6 +216,8 @@ export const UseDeletePatient = (api: NotificationInstance) => {
             });
 
             await new Promise(resolve => setTimeout(resolve, 1000));
+
+            router.push('/dashboard/patients');
             await queryClient.invalidateQueries({
                 queryKey: ['patients'],
             });
@@ -208,8 +225,6 @@ export const UseDeletePatient = (api: NotificationInstance) => {
             await queryClient.invalidateQueries({
                 queryKey: ['patient', variables],
             });
-
-
         },
     });
 };
@@ -218,7 +233,8 @@ export const UseDeleteMultiplePatients = (api: NotificationInstance) => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async ({id,idsArray,query}: deletePatientsProps) => deleteMultiplePatients({idsArray,id,query}),
+        mutationFn: async ({ id, idsArray, query }: deletePatientsProps) =>
+            deleteMultiplePatients({ idsArray, id, query }),
         onError: error => {
             HandleAxiosErrors({ api: api, error: error });
         },
@@ -301,9 +317,6 @@ export const UseCreateMultiplePatients = (api: NotificationInstance) => {
         },
     });
 };
-
-
-
 
 export const useLogin = (api: NotificationInstance, loginState: boolean) => {
     const { setIsLoading } = DashboardHook();

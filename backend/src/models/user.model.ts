@@ -18,8 +18,8 @@ export interface UserInput {
     role: string;
     profileState?: boolean;
     mfa_state?: boolean;
-    isFullyAuthenicated?: boolean;
-    isPartiallyAuthenicated?: boolean;
+    isFullyAuthenticated?: boolean;
+    isPartiallyAuthenticated?: boolean;
     verified?: boolean;
     bio?: string;
     weight?: string;
@@ -58,8 +58,8 @@ const userSchema = new mongoose.Schema<UserDocument>(
         role: { type: String, required: true },
         profileState: { type: Boolean, default: false },
         mfa_state: { type: Boolean, default: false },
-        isFullyAuthenicated: { type: Boolean, default: false },
-        isPartiallyAuthenicated: { type: Boolean, default: false },
+        isFullyAuthenticated: { type: Boolean, default: false },
+        isPartiallyAuthenticated: { type: Boolean, default: false },
         verified: { type: Boolean, default: false },
         bio: { type: String },
         weight: { type: String },

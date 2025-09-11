@@ -10,17 +10,11 @@ import { format, isToday, getDayOfYear, addMonths, endOfMonth, getDate } from 'd
 import { useMediaQuery } from 'react-responsive';
 import { Appointment } from '@/types';
 import WeekViewRows from './WeekViewRows';
-import { MotionComponent } from '../relatedComponents/Motion';
+import { MotionComponent, Motions } from '../relatedComponents/Motion';
 
 const WeekView = ({ appointments }: { appointments: Appointment[] | undefined }) => {
-    const {
-        currDate,
-        setCurrDate,
-        setState,
-        state,
-        DaysOfWeekCalender,
-        theHoursOfDay,
-    } = CalenderHook();
+    const { currDate, setCurrDate, setState, state, DaysOfWeekCalender, theHoursOfDay } =
+        CalenderHook();
     const isMobile = useMediaQuery({ query: '(min-width: 640px)' });
 
     const handleClickForDayMobile = (day: Date) => {
@@ -69,7 +63,7 @@ const WeekView = ({ appointments }: { appointments: Appointment[] | undefined })
                 <div className="sm:col-span-1"></div>
             </div>
             <OverlayScrollbarsComponent defer>
-                <MotionComponent>
+                <MotionComponent form={Motions.FADEIN} duration={1.1}> 
                     <div className="grid grid-cols-12 bg-[var(--sidebar-background)]">
                         <div className="grid grid-rows col-span-2 sm:col-span-1 ">
                             {theHoursOfDay.map((hour, index) => (

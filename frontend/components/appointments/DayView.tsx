@@ -8,7 +8,7 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import 'overlayscrollbars/overlayscrollbars.css';
 import DayViewRows from './DayViewRows';
 import DayViewHeader from './DayViewHeader';
-import { MotionComponent } from '../relatedComponents/Motion';
+import { MotionComponent, Motions } from '../relatedComponents/Motion';
 
 const DayView = ({ appointments }: { appointments: Appointment[] | undefined }) => {
     const { theHoursOfDay } = CalenderHook();
@@ -17,7 +17,7 @@ const DayView = ({ appointments }: { appointments: Appointment[] | undefined }) 
         <div className="flex flex-col w-full h-full">
             <DayViewHeader />
             <OverlayScrollbarsComponent defer>
-                <MotionComponent>
+                <MotionComponent form={Motions.FADEIN} duration={1.1}>
                     <div className="grid grid-cols-12 bg-[var(--sidebar-background)]">
                         <div className="grid grid-rows col-span-2 sm:col-span-1 ">
                             {theHoursOfDay.map((hour, index) => (

@@ -1,11 +1,5 @@
 'use client';
-import { patient } from '@/types';
 import { Divider } from '@mui/material';
-import { Image, Skeleton } from 'antd';
-import { Eye } from 'lucide-react';
-import CustomSkeleton, { SkeletonType } from '../CustomSkeleton';
-import { DashboardHook } from '../context/Dashboardprovider';
-import { differenceInCalendarYears } from 'date-fns';
 import { UsePatientQuery } from '@/actions/queries';
 import SinglePatient from './SinglePatient';
 import Spinner from '../Spinner';

@@ -5,11 +5,11 @@ import { DashboardHook } from '../context/Dashboardprovider';
 interface StatsProps {
     StatsSection: string | undefined;
     StatsIcon: React.ReactNode;
-    data: any;
+    totalDocuments:number
     selectedData: any[];
 }
 
-const Stats = ({ StatsSection, StatsIcon, data, selectedData }: StatsProps) => {
+const Stats = ({ StatsSection, StatsIcon, totalDocuments,selectedData }: StatsProps) => {
     const { contextHolder } = DashboardHook();
     return (
         <div className="flex justify-between items-center p-2 pb-0 w-full">
@@ -18,7 +18,7 @@ const Stats = ({ StatsSection, StatsIcon, data, selectedData }: StatsProps) => {
                 <span className="flex justify-center items-center bg-[var(--sidebar-background)] size-10 rounded-md mr-2">
                     {StatsIcon}
                 </span>
-                <p className="font-medium mr-2">{data.length}</p>
+                <p className="font-medium mr-2">{totalDocuments}</p>
                 <h1 className="text-slate-600 font-medium capitalize">{StatsSection}</h1>
             </div>
             <div className="flex justify-between items-center">

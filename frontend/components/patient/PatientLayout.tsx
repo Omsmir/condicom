@@ -2,9 +2,11 @@
 import React from 'react';
 import { PatientHook } from '../context/PatientProvider';
 import PatientInfomation from './patientInformation/PatientInfomation';
-import { MotionComponent } from '../relatedComponents/Motion';
+import { MotionComponent, Motions } from '../relatedComponents/Motion';
 import { useSpecificPatient } from '@/actions/queries';
 import Link from 'next/link';
+import AppointmentLayout from './appointments/AppointmentLayout';
+import MedicalLayout from './medicalHistory/MedicalLayout';
 
 const PatientLayout = ({ id }: { id: string | undefined }) => {
     const { activeLink } = PatientHook();
@@ -28,10 +30,18 @@ const PatientLayout = ({ id }: { id: string | undefined }) => {
         switch (activeLink) {
             case '#Patient Information':
                 return (
-                    <MotionComponent>
+                    <MotionComponent form={Motions.FADEIN}>
                         <PatientInfomation patient={patient} />
                     </MotionComponent>
                 );
+            case '#Appointments':
+                return (
+                        <AppointmentLayout patient={patient} />
+                );
+            case '#Medical History':
+                return (
+                    <MedicalLayout />
+                )    
             default:
                 return null;
         }

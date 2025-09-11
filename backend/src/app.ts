@@ -1,12 +1,20 @@
 import express from 'express';
-import { BODYSIZELIMIT, CREDENTIALS, LOG_FORMAT, NODE_ENV, ORIGIN, PORT } from '@/config';
-import { deserializeUser } from './middleware/deserializeUser';
+import {
+    BODYSIZELIMIT,
+    CREDENTIALS,
+    LOG_FORMAT,
+    NODE_ENV,
+    ORIGIN,
+    PORT,
+    PROJECT_NAME,
+} from '@/config';
+import DeserializeMiddleware from './middleware/deserializeUser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import http from 'http';
 import { Server } from 'socket.io';
 import SocketServer from './utils/socketServer';
-import RedisConnection from './utils/redis';
+import { RedisConnection } from './utils/redis';
 import morgan from 'morgan';
 import hpp from 'hpp';
 import helmet from 'helmet';
@@ -15,10 +23,12 @@ import { logger, stream } from './utils/logger';
 import { ErrorHandler } from './middleware/errorHandler';
 import { disconnect, set } from 'mongoose';
 import { Routes } from './interfaces/routes.interface';
-import { developedBy, healthShape } from './utils/constants';
+import { developedBy, healthShape, SIGNALS } from './utils/constants';
 import RateLimiters from './middleware/rateLimiters';
 import MongoConnection from './utils/MongoConnection';
 import { sanitizeRequest } from './middleware/xss';
+import { gracefulShutdown } from './utils/gracefulEvents';
+import { SendEmail } from './utils/emailUtils';
 
 class App {
     public port: number | string;
@@ -27,6 +37,7 @@ class App {
     public server: http.Server;
     public static initiator: Server;
     public static mongoConnection: MongoConnection;
+    public static RedisConnection: RedisConnection;
 
     private constructor(routes: Routes[]) {
         this.port = PORT || 8080;
@@ -35,23 +46,25 @@ class App {
         this.server = http.createServer(this.app);
         App.initiator = SocketServer.io(this.server);
         App.mongoConnection = MongoConnection.getInstance();
+        App.RedisConnection = RedisConnection.getInstance();
 
-        this.connectToRedis();
         this.socketInitialize();
         this.initializeMiddlewares();
         this.initializeImplementedMiddlwares();
         this.initializeRoutes(routes);
         this.initializeErrorHandling();
+        this.setupGracefulShutdown();
     }
 
     public listen() {
         this.server.listen(this.port, async () => {
             logger.info(`\n${healthShape}\n${developedBy}`);
-            logger.warn(`===== http://localhost:${this.port} =====`);
+            logger.info(`===== http://localhost:${this.port} =====`);
             logger.info(`===========${this.env}===========`);
             logger.info(`===========port:${this.port}=============`);
             logger.info(`=================================`);
         });
+
     }
 
     public async closeDatabaseConnection(): Promise<void> {
@@ -63,11 +76,11 @@ class App {
         }
     }
 
-    private async connectToRedis() {
-        const redisConnection = new RedisConnection();
+    // private async connectToRedis() {
+    //     const redisConnection = new RedisConnection();
 
-        await redisConnection.initializeConnection();
-    }
+    //     await redisConnection.initializeConnection();
+    // }
     private async socketInitialize() {
         SocketServer.SocketInitiator(App.initiator);
     }
@@ -90,17 +103,29 @@ class App {
         this.app.use(express.json({ limit: BODYSIZELIMIT }));
         this.app.use(express.urlencoded({ extended: true, limit: BODYSIZELIMIT }));
         this.app.use(cookieParser());
+        this.app.set('trust proxy', 1);
         this.app.use(sanitizeRequest);
     }
 
     private initializeImplementedMiddlwares() {
-        this.app.use(deserializeUser);
+        this.app.use(new DeserializeMiddleware().deserializeUser);
         this.app.use(RateLimiters.GlobalRateLimiter);
         // this.app.use(deserializeCode);
     }
 
     private initializeErrorHandling() {
         this.app.use(ErrorHandler);
+    }
+
+    public getServer() {
+        // specfic for testing
+        return this.app;
+    }
+
+    private async setupGracefulShutdown() {
+        for (const signal of SIGNALS) {
+            process.on(signal, async () => await gracefulShutdown.shutdown(signal));
+        }
     }
 }
 

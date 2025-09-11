@@ -4,20 +4,29 @@ import React from 'react';
 import WeekView from './WeekView';
 import MonthView from './MonthView';
 import DayView from './DayView';
-import { UseUserAppointments } from '@/actions/queries';
+import { Queries } from '@/actions/queries';
 import { useSession } from 'next-auth/react';
 import Loading from '@/app/loading';
+import CalenderRow from './CalenderRow';
+import { MotionComponent, Motions } from '../relatedComponents/Motion';
 
 const Calender = () => {
     const { viewPort } = CalenderHook();
 
     const { data: session } = useSession();
-    const { data, isLoading } = UseUserAppointments(session?.user.id);
+    const { data, isLoading } = Queries.UseUserAppointments(session?.user.id);
     if (isLoading) return <Loading />;
 
     switch (viewPort) {
         case 1:
-            return <MonthView appointments={data?.userAppointments} />;
+            return (
+                <MotionComponent form={Motions.FADEIN}>
+                <MonthView
+                    CalenderRow={CalenderRow}
+                    appointments={data?.userAppointments}
+                />
+                </MotionComponent>
+            );
         case 2:
             return <WeekView appointments={data?.userAppointments} />;
         case 3:

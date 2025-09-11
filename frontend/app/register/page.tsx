@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const page = () => {
     return (
-        <main className="flex h-screen min-h-screen">
+        <main className="flex h-screen min-h-screen dark:bg-[var(--sidebar-accent)]">
             <div className="container remove-scrollbar ">
                 <div className=" max-w-[860px] flex-1 flex-col py-10">
                     <RegisterForm />

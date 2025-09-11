@@ -2,11 +2,11 @@
 import { Divider } from '@mui/material';
 import React from 'react';
 import SingleAppointment from './SingleAppointment';
-import { UseUserAppointments } from '@/actions/queries';
+import { Queries } from '@/actions/queries';
 import Spinner from '../Spinner';
 
 const DoctorAppointments = ({ id }: { id: string | undefined }) => {
-    const { data, isError, error, isLoading, isFetching } = UseUserAppointments(id);
+    const { data, isError, error, isLoading, isFetching } = Queries.UseUserAppointments(id);
 
     const appointments = data?.userAppointments;
 

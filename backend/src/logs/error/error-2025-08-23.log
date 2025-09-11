@@ -1,0 +1,9 @@
+2025:08:23 19:04:44:error Received shutdown signal: SIGTERM
+2025:08:23 22:05:14:error error connecting to redis getaddrinfo ENOTFOUND redis
+2025:08:23 22:05:17:error error connecting to redis getaddrinfo ENOTFOUND redis
+2025:08:23 22:05:17:error Received shutdown signal: SIGINT
+2025:08:23 22:07:49:error error connecting to redis getaddrinfo ENOTFOUND redis
+2025:08:23 22:07:51:error error connecting to redis getaddrinfo ENOTFOUND redis
+2025:08:23 22:07:54:error error connecting to redis getaddrinfo ENOTFOUND redis
+2025:08:23 22:07:57:error error connecting to redis getaddrinfo ENOTFOUND redis
+2025:08:23 22:07:58:error Received shutdown signal: SIGINT

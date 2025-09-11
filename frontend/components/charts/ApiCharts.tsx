@@ -1,10 +1,10 @@
 import React from 'react';
-import AreaMetrics from './metrics/AreaChart';
+import CustomizedAreaChart from './metrics/ReusableAreaChart';
 
 const ApiCharts = () => {
     return (
         <div className="flex flex-col pt-14 justify-start">
-            <AreaMetrics />
+            <CustomizedAreaChart />
         </div>
     );
 };

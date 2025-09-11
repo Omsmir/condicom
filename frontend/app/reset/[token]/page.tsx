@@ -20,7 +20,7 @@ const page = async ({ params }: { params: Promise<{ token: string }> }) => {
             token={token}
             KeyType="VerTokenPrivateKey"
         >
-            <div className="flex h-screen justify-center items-center p-4">
+            <div className="flex h-screen justify-center items-center p-4 dark:bg-[var(--sidebar-accent)]">
                 <div className="flex flex-col justify-center items-center w-full h-full p-4 sm:p-6">
                     <Image
                         src="/assets/icons/mark.svg"

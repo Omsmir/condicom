@@ -1,16 +1,24 @@
 import crypto from 'crypto';
-import { NotificationModel } from '@/models/notifications.model';
 import { MedicalStuffRegex } from '@/utils/constants';
 import { UserDocument } from '../models/user.model';
 import bcryptjs from 'bcryptjs';
-import { APP_PASSWORD, SALTWORKFACTOR, SMTP_USER } from 'config';
-import { createTransport } from 'nodemailer';
-import path from 'path';
-import fs from 'fs';
-import Handlebars from 'handlebars';
-import { logger } from './logger';
-import { codeProps, GenerateOtpProps, sendEmailProps } from '@/interfaces/global.interface';
+import { SALTWORKFACTOR } from 'config';
+import { codeProps, GenerateOtpProps } from '@/interfaces/global.interface';
 
+import { isSameDay } from 'date-fns';
+import { toZonedTime } from 'date-fns-tz';
+
+export const IsSameDayWithTimeZone = ({
+    startDate,
+    endDate,
+}: {
+    startDate: Date;
+    endDate: Date;
+}): boolean => {
+     const tz = 'Europe/Athens';
+
+    return isSameDay(toZonedTime(startDate, tz), toZonedTime(endDate, tz));
+};
 
 export const generateRandomToken = ({
     bytes,
@@ -25,7 +33,6 @@ export const generateRandomToken = ({
 export const VerifyRandomTokenWithHash = ({ token }: { token: string }) => {
     return crypto.createHash('sha256').update(token).digest('hex');
 };
-
 
 export const assignedNotifications = (user: UserDocument): string => {
     return user.role === 'Admin' ? 'AdminOnly' : 'AdminsFromAll';
@@ -48,7 +55,6 @@ export const generateCode = ({ numbers, fiveNumbers, characters }: codeProps) =>
     }
     return code;
 };
-
 
 export const signRole = (code: string): string => {
     let role = '';
@@ -91,53 +97,6 @@ export const hashPassword = async ({ password }: { password: string }) => {
 
     return hash;
 };
-
-
-export const sendEmail = async ({
-    to,
-    link,
-    templateName,
-    health,
-    year,
-    date,
-    otp,
-}: sendEmailProps) => {
-    try {
-        const transport = createTransport({
-            host: 'smtp.gmail.com',
-            port: 465,
-            auth: {
-                user: SMTP_USER,
-                pass: APP_PASSWORD,
-            },
-        });
-        const from = 'HealthCare';
-        const subject = 'HealthCare Email Verification';
-
-        const html = renderTemplate(`${templateName}`, {
-            to,
-            link,
-            health,
-            year,
-            date,
-            otp,
-        });
-        await transport.sendMail({ from, subject, to, html });
-
-        logger.info(`Email sent to ${to} with template ${templateName}`);
-    } catch (error: any) {
-        logger.error(error.message);
-        throw new Error(`Failed to send email: ${error.message}`);
-    }
-};
-
-export const renderTemplate = (templateName: string, context: object) => {
-    const filePath = path.resolve(__dirname, `../templates/${templateName}`);
-    const source = fs.readFileSync(filePath, 'utf-8');
-    const template = Handlebars.compile(source);
-    return template(context);
-};
-
 
 export const generateOtp = ({ length, type }: GenerateOtpProps) => {
     let otp = '';

@@ -101,7 +101,7 @@ export const CalenderProvider = ({ children }: { children: React.ReactNode }) =>
 
     const endOfPrevMonth = endOfMonth(prevMonth);
 
-    const DateOfPrev = new Date(endOfPrevMonth.setDate(endOfPrevMonth.getDate() - startDayOfWeek));
+    const FirstRangeOfPrevMonth = new Date(endOfPrevMonth.setDate(endOfPrevMonth.getDate() - startDayOfWeek));
     const daysOfThisMonth = eachDayOfInterval({
         // The Total Number Of Days Of This Month
         start: FirstDayOfTheMonth,
@@ -109,7 +109,7 @@ export const CalenderProvider = ({ children }: { children: React.ReactNode }) =>
     });
 
     const DaysOfthePrevMonth = eachDayOfInterval({
-        start: DateOfPrev,
+        start: FirstRangeOfPrevMonth,
         end: endOfMonth(prevMonth),
     });
 
@@ -129,9 +129,9 @@ export const CalenderProvider = ({ children }: { children: React.ReactNode }) =>
 
     const DaysOfWeekCalender = [...WeeksInterval];
 
-    const isTablet = useMediaQuery({ query: '(min-width: 1024px)' });
+    const isNotMobile = useMediaQuery({ query: '(min-width: 1024px)' });
 
-    if (isTablet) {
+    if (isNotMobile) {
         DaysOfWeekCalender.splice(7);
     } else {
         DaysOfWeekCalender.splice(4);

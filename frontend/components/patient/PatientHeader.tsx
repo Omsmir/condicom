@@ -1,5 +1,4 @@
 'use client';
-import { patient } from '@/types';
 import React from 'react';
 import CustomSkeleton, { SkeletonType } from '../CustomSkeleton';
 import { PatientHook } from '../context/PatientProvider';
@@ -17,14 +16,18 @@ import AnchorElments from './AnchorElements';
 import { useSpecificPatient } from '@/actions/queries';
 import Loading from '@/app/loading';
 import { DashboardHook } from '../context/Dashboardprovider';
+import { BulletsDescription } from './appointments/bulletDecorator';
+import AddAppointment from '../AddAppointment';
+
 const PatientHeader = ({ id }: { id: string | undefined }) => {
-    const { loading, setLoading } = PatientHook();
-    const {contextHolder} = DashboardHook()
+    const { loading, setLoading, activeLink } = PatientHook();
+    const { contextHolder } = DashboardHook();
 
     const { data, isLoading } = useSpecificPatient(id);
 
     const patient = data?.patient;
     const printTemplate = () => [window.print()];
+
 
     if (isLoading) return <Loading />;
 
@@ -61,7 +64,12 @@ const PatientHeader = ({ id }: { id: string | undefined }) => {
                                 />
                             </div>
                         </div>
-                        <div className="h-full">
+                        <div className="flex">
+                            <AddAppointment
+                                patient={patient}
+                                buttonText="Create Appointment"
+                                patientState
+                            />
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                     <Button
@@ -76,12 +84,14 @@ const PatientHeader = ({ id }: { id: string | undefined }) => {
                                     align="end"
                                     className="bg-slate-100 dark:bg-[var(--sidebar-accent)] p-0 border-0"
                                 >
-                                    <DropdownMenuItem
-                                        className="cursor-pointer hover:bg-slate-200 dark:hover:bg-[var(--sidebar-background)]"
-                                        onClick={printTemplate}
-                                    >
-                                        print
-                                    </DropdownMenuItem>
+                                    {activeLink === '#Patient Information' && (
+                                        <DropdownMenuItem
+                                            className="cursor-pointer hover:bg-slate-200 dark:hover:bg-[var(--sidebar-background)]"
+                                            onClick={printTemplate}
+                                        >
+                                            print
+                                        </DropdownMenuItem>
+                                    )}
                                     <DeleteHandler
                                         id={patient?.id}
                                         apiString="patient"
@@ -93,8 +103,10 @@ const PatientHeader = ({ id }: { id: string | undefined }) => {
                             </DropdownMenu>
                         </div>
                     </div>
-                    <div className="flex mt-4 notPrintable">
+                    <div className="flex flex-col-reverse lg:flex-row justify-between items-center mt-4 notPrintable">
                         <AnchorElments />
+
+                        {activeLink === '#Appointments' && <BulletsDescription />}
                     </div>
                 </div>
             </div>

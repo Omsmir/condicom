@@ -8,14 +8,13 @@ import { DashboardHook } from '../context/Dashboardprovider';
 import { useSession } from 'next-auth/react';
 import { DropdownMenuItem } from '../ui/dropdown-menu';
 import React from 'react';
-import { CreateNotification, switchOnNotifications, userRole } from './TopBarEvents';
+import {  switchOnNotifications } from './TopBarEvents';
 import {
+    Mutations,
     UseCreateNotification,
-    UseDeleteAppointment,
     UseDeleteMedication,
     UseDeleteMultiplePatients,
     UseDeletePatient,
-    UseUpdateAppointment,
 } from '@/actions/mutation';
 import { Table } from '@tanstack/react-table';
 
@@ -98,11 +97,11 @@ export const DeleteHandler = ({
 }: DeleteHandlerProps) => {
     const { api } = DashboardHook();
     const { data: session } = useSession();
-    const router = useRouter()
+    const router = useRouter();
 
     const deleteMedication = UseDeleteMedication(api);
 
-    const deleteAppointment = UseDeleteAppointment(api);
+    const deleteAppointment = Mutations.UseDeleteAppointment(api);
 
     const deletePatient = UseDeletePatient(api);
 
@@ -183,14 +182,12 @@ export const DeleteHandler = ({
     );
 };
 
-export interface data {
-    state: boolean;
-}
 
 export const ToggleButton = ({ id, state }: { id: string | undefined; state: boolean }) => {
     const { api } = DashboardHook();
 
-    const toggleAppointment = UseUpdateAppointment(api, id);
+    const toggleAppointment = Mutations.UseUpdateAppointment(api, id);
+
 
     const data = {
         state: state,

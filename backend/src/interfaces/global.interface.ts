@@ -32,9 +32,15 @@ export interface sendEmailProps {
     otp?: string;
     year?: string | number | Date;
     date?: string | number | Date;
+    subject: string
 }
 
 export interface GenerateOtpProps {
     length: number;
     type: 'number' | 'string';
+}
+
+export interface checkReservedDates {
+    startDate: Date 
+    endDate: Date 
 }

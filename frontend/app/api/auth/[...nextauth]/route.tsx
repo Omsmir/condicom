@@ -36,8 +36,8 @@ export const authOptions: AuthOptions = {
                             role: decodedToken.role,
                             mfa_state: decodedToken.mfa_state || false,
                             profileState: decodedToken.profileState,
-                            isFullyAuthenicated: decodedToken.isFullyAuthenicated,
-                            isPartiallyAuthenicated: decodedToken.isPartiallyAuthenicated,
+                            isFullyAuthenticated: decodedToken.isFullyAuthenticated,
+                            isPartiallyAuthenticated: decodedToken.isPartiallyAuthenticated,
                             temporalToken,
                         };
                     } else if (accessToken) {
@@ -56,8 +56,8 @@ export const authOptions: AuthOptions = {
                             passwordUpdatedAt: decodedToken.passwordUpdatedAt,
                             codeExp: decodedToken.codePlan,
                             mfa_state: decodedToken.mfa_state,
-                            isFullyAuthenicated: decodedToken.isFullyAuthenicated,
-                            isPartiallyAuthenicated: decodedToken.isPartiallyAuthenicated,
+                            isFullyAuthenticated: decodedToken.isFullyAuthenticated,
+                            isPartiallyAuthenticated: decodedToken.isPartiallyAuthenticated,
                             accessToken,
                             refreshToken,
                         };
@@ -90,16 +90,16 @@ export const authOptions: AuthOptions = {
             if (
                 user &&
                 user.mfa_state &&
-                !user.isFullyAuthenicated &&
-                user.isPartiallyAuthenicated
+                !user.isFullyAuthenticated &&
+                user.isPartiallyAuthenticated
             ) {
                 token.id = user.id;
                 token.role = user.role;
                 token.mfa_state = user.mfa_state;
                 token.profileState = user.profileState;
                 token.temporalToken = user.temporalToken;
-                token.isFullyAuthenicated = user.isFullyAuthenicated;
-                token.isPartiallyAuthenicated = user.isPartiallyAuthenicated;
+                token.isFullyAuthenticated = user.isFullyAuthenticated;
+                token.isPartiallyAuthenticated = user.isPartiallyAuthenticated;
             } else if (user) {
                 token.id = user.id;
                 token.role = user.role;
@@ -115,14 +115,14 @@ export const authOptions: AuthOptions = {
                 token.passwordUpdatedAt = user.passwordUpdatedAt;
                 token.codeExp = user.codeExp;
                 token.mfa_state = user.mfa_state;
-                token.isFullyAuthenicated = user.isFullyAuthenicated;
-                token.isPartiallyAuthenicated = user.isPartiallyAuthenicated;
+                token.isFullyAuthenticated = user.isFullyAuthenticated;
+                token.isPartiallyAuthenticated = user.isPartiallyAuthenticated;
             }
 
             if (trigger === 'update' && !token.profileState) {
                 token.profileState = true;
             }
-            if (trigger === 'update' && token.temporalToken && token.isPartiallyAuthenicated) {
+            if (trigger === 'update' && token.temporalToken && token.isPartiallyAuthenticated) {
                 return await refreshAccessToken({
                     token: token.temporalToken as string,
                     headerName: 'x-temporal-token',
@@ -150,14 +150,15 @@ export const authOptions: AuthOptions = {
                 });
             }
 
+
             return token;
         },
         async session({ session, token }) {
             if (
                 token &&
                 token.mfa_state &&
-                !token.isFullyAuthenicated &&
-                token.isPartiallyAuthenicated
+                !token.isFullyAuthenticated &&
+                token.isPartiallyAuthenticated
             ) {
                 session.user = {
                     id: token.id,
@@ -165,8 +166,8 @@ export const authOptions: AuthOptions = {
                     mfa_state: token.mfa_state,
                     profileState: token.profileState,
                     temporalToken: token.temporalToken,
-                    isFullyAuthenicated: token.isFullyAuthenicated,
-                    isPartiallyAuthenicated: token.isPartiallyAuthenicated,
+                    isFullyAuthenticated: token.isFullyAuthenticated,
+                    isPartiallyAuthenticated: token.isPartiallyAuthenticated,
                 };
             } else if (token) {
                 session.user = {
@@ -184,9 +185,10 @@ export const authOptions: AuthOptions = {
                     passwordUpdatedAt: token.passwordUpdatedAt,
                     codeExp: token.codeExp,
                     mfa_state: token.mfa_state,
-                    isFullyAuthenicated: token.isFullyAuthenicated,
-                    isPartiallyAuthenicated: token.isPartiallyAuthenicated,
+                    isFullyAuthenticated: token.isFullyAuthenticated,
+                    isPartiallyAuthenticated: token.isPartiallyAuthenticated,
                 };
+            
                 // console.log(new Date().toLocaleString());
                 session.expires = new Date(token.expiresAt as number).toLocaleString();
             }

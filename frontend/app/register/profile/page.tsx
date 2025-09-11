@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const page = () => {
     return (
-        <main className="min-h-screen flex justify-center items-center py-4 px-4 sm:px-0">
+        <main className="min-h-screen flex justify-center items-center py-4 px-4 sm:px-0 dark:bg-[var(--sidebar-accent)]">
             <div className="sub-container max-w-[680px]">
                 <Profile />
             </div>

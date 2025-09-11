@@ -122,6 +122,9 @@ export const AppointmentSchema = z.object({
     startDate: z.date({ message: 'please support a start date' }), // Validates ISO 8601 datetime
     endDate: z.date({ message: 'please support an end time' }),
     color: z.custom(),
+    patientEmail: z
+        .string({ message: 'Please Provide a Patient Email' })
+        .optional(),
 });
 
 const PatientPayload = {

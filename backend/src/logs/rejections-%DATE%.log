@@ -322,3 +322,56 @@ TypeError: Cannot read properties of undefined (reading 'connect')
     at node:internal/modules/cjs/loader:1706:10
     at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:114:20)
     at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:71:20)
+2025:07:16 07:39:25:error unhandledRejection: Red is not defined
+ReferenceError: Red is not defined
+    at new RedisConnection (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:9:28)
+    at App.connectToRedis (C:\Users\omar\Documents\Health\backend\src\app.ts:69:33)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:40:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:83:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:114:20)
+2025:07:16 07:39:35:error unhandledRejection: Redi is not defined
+ReferenceError: Redi is not defined
+    at new RedisConnection (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:9:28)
+    at App.connectToRedis (C:\Users\omar\Documents\Health\backend\src\app.ts:69:33)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:40:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:83:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:114:20)
+2025:07:16 07:41:15:error unhandledRejection: RedisConnection.initializeConnection is not a function
+TypeError: RedisConnection.initializeConnection is not a function
+    at new RedisConnection (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:10:25)
+    at App.connectToRedis (C:\Users\omar\Documents\Health\backend\src\app.ts:69:33)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:40:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:83:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:114:20)
+2025:08:12 13:50:18:error unhandledRejection: (0 , backevents_1.sendEmail) is not a function
+TypeError: (0 , backevents_1.sendEmail) is not a function
+    at /app/src/controllers/notifications.controller.ts:165:32
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:08:12 15:08:42:error unhandledRejection: Cannot read properties of undefined (reading 'reIssueAccessToken')
+TypeError: Cannot read properties of undefined (reading 'reIssueAccessToken')
+    at deserializeUser (/app/src/middleware/deserializeUser.ts:30:62)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:08:15 00:34:00:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:655:11)
+    at ServerResponse.header (/app/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/app/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/app/node_modules/express/lib/response.js:278:15)
+    at PatientController.handleError (/app/src/controllers/base.controller.ts:28:32)
+    at getAllPatientsHandler (/app/src/controllers/patients.controller.ts:117:18)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)

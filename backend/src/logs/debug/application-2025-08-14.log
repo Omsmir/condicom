@@ -1,0 +1,603 @@
+2025:08:14 10:47:17:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 10:47:17:info ===== http://localhost:8080 =====
+2025:08:14 10:47:17:info ===========development===========
+2025:08:14 10:47:17:info ===========port:8080=============
+2025:08:14 10:47:17:info =================================
+2025:08:14 10:47:17:info Redis is connected
+2025:08:14 10:47:17:info Mongodb is connected to database:health
+2025:08:14 11:02:39:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 189.356 ms - -[0m
+2025:08:14 11:02:42:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 90.191 ms - -[0m
+2025:08:14 11:02:52:info [0mOPTIONS /api/auth/logout/67b611137de19fc1c39f0f18 [32m204[0m 0.539 ms - 0[0m
+2025:08:14 11:02:52:info [0mPUT /api/auth/logout/67b611137de19fc1c39f0f18 [32m200[0m 52.756 ms - 37[0m
+2025:08:14 12:47:16:info email have been successfully sent to:omarsamir232@gmail.com
+2025:08:14 12:47:16:info [0mPOST /api/auth/login [32m200[0m 2795.180 ms - 508[0m
+2025:08:14 12:47:25:info xss log: value (MULTI_AUTH_SECRET) is of type: string
+2025:08:14 12:47:25:info [0mGET /api/auth/token/eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2I2MTExMzdkZTE5ZmMxYzM5ZjBmMTgiLCJtZmFfc3RhdGUiOnRydWUsInJvbGUiOiJBZG1pbiIsInByb2ZpbGVTdGF0ZSI6dHJ1ZSwiSGFzaE5hbWUiOiJtZmE6NjdiNjExMTM3ZGUxOWZjMWMzOWYwZjE4IiwiaXNGdWxseUF1dGhlbmljYXRlZCI6ZmFsc2UsImlzUGFydGlhbGx5QXV0aGVuaWNhdGVkIjp0cnVlLCJpYXQiOjE3NTUxNzU2MzQsImV4cCI6MTc1NTE3OTIzNH0.2bJKdy1WzMfiqC0ULLIEKYJOuMUulK6usdxn9FB1kB5YIIlrrTBogkSerK3amSF5cJ7QQJICGDeGEF7F4tVfew?KeyType=MULTI_AUTH_SECRET [32m200[0m 28.486 ms - 38[0m
+2025:08:14 12:47:58:info [0mPOST /api/auth/multi-auth-verification/67b611137de19fc1c39f0f18 [32m200[0m 1534.744 ms - 52[0m
+2025:08:14 12:47:59:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 51.596 ms - -[0m
+2025:08:14 12:47:59:info xss log: value (MULTI_AUTH_SECRET) is of type: string
+2025:08:14 12:47:59:info [0mGET /api/auth/token/eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2I2MTExMzdkZTE5ZmMxYzM5ZjBmMTgiLCJtZmFfc3RhdGUiOnRydWUsInJvbGUiOiJBZG1pbiIsInByb2ZpbGVTdGF0ZSI6dHJ1ZSwiSGFzaE5hbWUiOiJtZmE6NjdiNjExMTM3ZGUxOWZjMWMzOWYwZjE4IiwiaXNGdWxseUF1dGhlbmljYXRlZCI6ZmFsc2UsImlzUGFydGlhbGx5QXV0aGVuaWNhdGVkIjp0cnVlLCJpYXQiOjE3NTUxNzU2MzQsImV4cCI6MTc1NTE3OTIzNH0.2bJKdy1WzMfiqC0ULLIEKYJOuMUulK6usdxn9FB1kB5YIIlrrTBogkSerK3amSF5cJ7QQJICGDeGEF7F4tVfew?KeyType=MULTI_AUTH_SECRET [33m404[0m 7.256 ms - 41[0m
+2025:08:14 12:48:01:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 27.298 ms - -[0m
+2025:08:14 12:52:56:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 138.637 ms - -[0m
+2025:08:14 12:53:21:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 10.424 ms - -[0m
+2025:08:14 13:47:16:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 111.186 ms - -[0m
+2025:08:14 14:00:10:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 33.132 ms - -[0m
+2025:08:14 14:02:18:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 32.208 ms - -[0m
+2025:08:14 14:02:18:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 22.533 ms - -[0m
+2025:08:14 14:06:11:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 11.020 ms - -[0m
+2025:08:14 14:06:15:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 13.403 ms - -[0m
+2025:08:14 14:11:26:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 13.856 ms - -[0m
+2025:08:14 14:11:36:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 7.347 ms - -[0m
+2025:08:14 14:12:10:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 21.785 ms - -[0m
+2025:08:14 14:12:25:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 18.113 ms - -[0m
+2025:08:14 14:12:26:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 10.081 ms - -[0m
+2025:08:14 14:12:29:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 53.800 ms - -[0m
+2025:08:14 14:17:23:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 32.069 ms - -[0m
+2025:08:14 14:17:46:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 70.484 ms - -[0m
+2025:08:14 14:21:25:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 10.711 ms - -[0m
+2025:08:14 14:47:36:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 24.384 ms - -[0m
+2025:08:14 14:47:37:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 12.108 ms - -[0m
+2025:08:14 14:47:41:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 20.720 ms - -[0m
+2025:08:14 14:47:59:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 8.301 ms - -[0m
+2025:08:14 14:47:59:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 9.367 ms - -[0m
+2025:08:14 14:48:02:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 9.849 ms - -[0m
+2025:08:14 14:48:15:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 15.661 ms - -[0m
+2025:08:14 14:48:16:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 8.406 ms - -[0m
+2025:08:14 14:48:20:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 45.499 ms - -[0m
+2025:08:14 14:48:26:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 8.098 ms - -[0m
+2025:08:14 14:48:41:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 11.473 ms - -[0m
+2025:08:14 14:58:03:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 13.024 ms - -[0m
+2025:08:14 14:58:08:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 10.150 ms - -[0m
+2025:08:14 15:03:38:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 7.667 ms - -[0m
+2025:08:14 15:03:41:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 12.999 ms - -[0m
+2025:08:14 15:03:49:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 9.217 ms - -[0m
+2025:08:14 15:03:50:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 14.003 ms - -[0m
+2025:08:14 15:03:53:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 10.987 ms - -[0m
+2025:08:14 15:04:03:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 6.062 ms - -[0m
+2025:08:14 15:04:09:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 39.842 ms - -[0m
+2025:08:14 15:04:37:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 9.180 ms - -[0m
+2025:08:14 15:05:18:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 9.459 ms - -[0m
+2025:08:14 15:05:37:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 7.756 ms - -[0m
+2025:08:14 15:06:22:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 8.313 ms - -[0m
+2025:08:14 15:06:37:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 9.253 ms - -[0m
+2025:08:14 15:06:43:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 37.770 ms - -[0m
+2025:08:14 15:07:31:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 8.571 ms - -[0m
+2025:08:14 15:07:35:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 7.684 ms - -[0m
+2025:08:14 15:07:49:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 13.868 ms - -[0m
+2025:08:14 15:07:56:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 22.905 ms - -[0m
+2025:08:14 15:08:00:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 5.691 ms - -[0m
+2025:08:14 15:08:06:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 6.053 ms - -[0m
+2025:08:14 15:08:25:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 11.260 ms - -[0m
+2025:08:14 15:08:30:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 12.108 ms - -[0m
+2025:08:14 15:09:31:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 7.486 ms - -[0m
+2025:08:14 15:10:19:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 9.552 ms - -[0m
+2025:08:14 15:10:46:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 15.103 ms - -[0m
+2025:08:14 15:10:49:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 8.197 ms - -[0m
+2025:08:14 15:11:09:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 7.551 ms - -[0m
+2025:08:14 15:11:12:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 8.721 ms - -[0m
+2025:08:14 15:12:19:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 6.018 ms - -[0m
+2025:08:14 15:12:21:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 14.702 ms - -[0m
+2025:08:14 15:12:26:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 9.335 ms - -[0m
+2025:08:14 15:22:48:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 10.040 ms - -[0m
+2025:08:14 15:22:58:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 9.279 ms - -[0m
+2025:08:14 15:23:43:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 26.266 ms - -[0m
+2025:08:14 15:24:13:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 31.317 ms - -[0m
+2025:08:14 15:25:21:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 14.512 ms - -[0m
+2025:08:14 15:26:00:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 8.482 ms - -[0m
+2025:08:14 15:26:21:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 47.254 ms - -[0m
+2025:08:14 15:29:00:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 16.857 ms - -[0m
+2025:08:14 15:30:41:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 9.271 ms - -[0m
+2025:08:14 15:30:42:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 13.295 ms - -[0m
+2025:08:14 15:30:46:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 10.330 ms - -[0m
+2025:08:14 15:32:45:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 7.186 ms - -[0m
+2025:08:14 15:32:47:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 11.990 ms - -[0m
+2025:08:14 15:32:50:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 8.607 ms - -[0m
+2025:08:14 15:34:27:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 11.100 ms - -[0m
+2025:08:14 15:35:01:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 16.230 ms - -[0m
+2025:08:14 15:35:05:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 11.510 ms - -[0m
+2025:08:14 15:38:15:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 10.834 ms - -[0m
+2025:08:14 15:38:17:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 52.861 ms - -[0m
+2025:08:14 15:38:22:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 12.603 ms - -[0m
+2025:08:14 15:41:24:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 87.716 ms - -[0m
+2025:08:14 15:56:43:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 107.959 ms - -[0m
+2025:08:14 15:57:05:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 19.434 ms - -[0m
+2025:08:14 15:58:18:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 11.728 ms - -[0m
+2025:08:14 15:59:57:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 159.286 ms - -[0m
+2025:08:14 16:02:54:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 26.147 ms - -[0m
+2025:08:14 16:04:47:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 7.373 ms - -[0m
+2025:08:14 16:05:20:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 7.805 ms - -[0m
+2025:08:14 16:05:22:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 11.109 ms - -[0m
+2025:08:14 16:05:25:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 8.108 ms - -[0m
+2025:08:14 16:12:13:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 83.613 ms - -[0m
+2025:08:14 16:12:16:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 5.039 ms - -[0m
+2025:08:14 16:12:22:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 4.878 ms - -[0m
+2025:08:14 16:13:06:info [0mGET /api/patients [36m304[0m 3460.439 ms - -[0m
+2025:08:14 16:13:09:info [0mGET /api/patients [36m304[0m 2028.227 ms - -[0m
+2025:08:14 16:13:22:info [0mGET /api/patients/b679d3a8-394c-48c4-a93c-114fe74b66dc [32m200[0m 161.551 ms - 614[0m
+2025:08:14 16:13:24:info xss log: value (user9961@example.com) is of type: string
+2025:08:14 16:13:24:info [0mGET /api/appointments/email?email=user9961%40example.com [33m404[0m 13.232 ms - 50[0m
+2025:08:14 16:13:24:info xss log: value (user9961@example.com) is of type: string
+2025:08:14 16:13:24:info [0mGET /api/appointments/email?email=user9961%40example.com [33m404[0m 4.371 ms - 50[0m
+2025:08:14 16:13:25:info xss log: value (user9961@example.com) is of type: string
+2025:08:14 16:13:25:info [0mGET /api/appointments/email?email=user9961%40example.com [33m404[0m 2.965 ms - 50[0m
+2025:08:14 16:13:28:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 4.915 ms - -[0m
+2025:08:14 16:13:33:info [0mGET /api/auth/users/67b611137de19fc1c39f0f18 [32m200[0m 65.059 ms - -[0m
+2025:08:14 16:13:44:info [0mGET /api/auth/67b6196f6e5f967ae612f544 [32m200[0m 57.839 ms - 911[0m
+2025:08:14 16:13:44:info [0mGET /api/appointments/67b6196f6e5f967ae612f544 [36m304[0m 34.352 ms - -[0m
+2025:08:14 16:13:46:info [0mGET /api/patients [36m304[0m 2490.094 ms - -[0m
+2025:08:14 16:14:09:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 44.543 ms - -[0m
+2025:08:14 16:14:29:info [0mGET /api/patients/c819ce4f-8fca-496c-bfe7-7a6aefd84f82 [32m200[0m 18.095 ms - 601[0m
+2025:08:14 16:14:33:info [0mGET /api/auth/67b6196f6e5f967ae612f544 [36m304[0m 10.013 ms - -[0m
+2025:08:14 16:14:33:info [0mGET /api/appointments/67b6196f6e5f967ae612f544 [32m200[0m 16.302 ms - -[0m
+2025:08:14 16:14:35:info [0mGET /api/patients [36m304[0m 2230.534 ms - -[0m
+2025:08:14 16:14:36:info [0mGET /api/patients/c819ce4f-8fca-496c-bfe7-7a6aefd84f82 [36m304[0m 4.959 ms - -[0m
+2025:08:14 16:14:37:info [0mGET /api/auth/67b6196f6e5f967ae612f544 [36m304[0m 5.117 ms - -[0m
+2025:08:14 16:14:37:info [0mGET /api/appointments/67b6196f6e5f967ae612f544 [36m304[0m 50.767 ms - -[0m
+2025:08:14 16:14:39:info [0mGET /api/patients [36m304[0m 1592.511 ms - -[0m
+2025:08:14 16:14:41:info [0mGET /api/patients/5e1c102b-3d46-4615-9b75-14dc79afc6c4 [32m200[0m 3.964 ms - 613[0m
+2025:08:14 16:14:45:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 7.527 ms - -[0m
+2025:08:14 16:14:50:info [0mGET /api/patients [36m304[0m 1580.747 ms - -[0m
+2025:08:14 16:14:55:info [0mGET /api/medications/ [36m304[0m 43.559 ms - -[0m
+2025:08:14 16:15:22:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 11.908 ms - -[0m
+2025:08:14 16:16:12:info [0mGET /api/patients [36m304[0m 1914.059 ms - -[0m
+2025:08:14 16:16:15:info [0mGET /api/patients/c819ce4f-8fca-496c-bfe7-7a6aefd84f82 [36m304[0m 4.961 ms - -[0m
+2025:08:14 16:16:17:info xss log: value (user9991@example.com) is of type: string
+2025:08:14 16:16:17:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 4.507 ms - 50[0m
+2025:08:14 16:16:18:info xss log: value (user9991@example.com) is of type: string
+2025:08:14 16:16:18:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 3.107 ms - 50[0m
+2025:08:14 16:16:18:info xss log: value (user9991@example.com) is of type: string
+2025:08:14 16:16:18:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 2.853 ms - 50[0m
+2025:08:14 16:16:19:info xss log: value (user9991@example.com) is of type: string
+2025:08:14 16:16:19:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 3.259 ms - 50[0m
+2025:08:14 16:16:19:info xss log: value (user9991@example.com) is of type: string
+2025:08:14 16:16:19:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 2.985 ms - 50[0m
+2025:08:14 16:16:20:info xss log: value (user9991@example.com) is of type: string
+2025:08:14 16:16:20:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 3.815 ms - 50[0m
+2025:08:14 16:16:23:info [0mGET /api/auth/users/67b611137de19fc1c39f0f18 [32m200[0m 11.964 ms - -[0m
+2025:08:14 16:16:26:info [0mGET /api/patients [36m304[0m 1861.486 ms - -[0m
+2025:08:14 16:16:52:info [0mGET /api/medications/ [36m304[0m 29.237 ms - -[0m
+2025:08:14 16:18:56:info [0mGET /api/auth/67b611137de19fc1c39f0f18 [32m200[0m 4.271 ms - 977[0m
+2025:08:14 16:19:08:info xss log: value (4) is of type: string
+2025:08:14 16:19:08:info [0mGET /api/auth/users/67b611137de19fc1c39f0f18 [32m200[0m 22.863 ms - -[0m
+2025:08:14 16:19:08:info [0mGET /api/code/find/67b611137de19fc1c39f0f18?limit=4 [32m200[0m 32.389 ms - 968[0m
+2025:08:14 16:19:11:info xss log: value (4) is of type: string
+2025:08:14 16:19:11:info xss log: value (67e2ec5d3c9cdd8e01eb3a0f) is of type: string
+2025:08:14 16:19:11:info [0mGET /api/code/find/67b611137de19fc1c39f0f18?limit=4&cursor=67e2ec5d3c9cdd8e01eb3a0f [32m200[0m 7.734 ms - 615[0m
+2025:08:14 16:19:35:info [0mOPTIONS /api/auth/password/reset/message/ [32m204[0m 1.002 ms - 0[0m
+2025:08:14 16:19:35:info [0mPUT /api/auth/password/reset/message/ [33m403[0m 14.125 ms - 60[0m
+2025:08:14 16:19:44:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 11.910 ms - -[0m
+2025:08:14 16:19:47:info xss log: value (4) is of type: string
+2025:08:14 16:19:47:info [0mGET /api/code/find/67b611137de19fc1c39f0f18?limit=4 [36m304[0m 14.595 ms - -[0m
+2025:08:14 16:19:47:info [0mGET /api/auth/users/67b611137de19fc1c39f0f18 [32m200[0m 15.496 ms - -[0m
+2025:08:14 16:19:56:info [0mOPTIONS /api/auth/password/reset/message/ [32m204[0m 0.228 ms - 0[0m
+2025:08:14 16:19:56:info [0mPUT /api/auth/password/reset/message/ [33m403[0m 4.407 ms - 60[0m
+2025:08:14 16:20:10:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 9.245 ms - -[0m
+2025:08:14 16:22:49:info [0mGET /api/patients [36m304[0m 1792.896 ms - -[0m
+2025:08:14 16:22:52:info [0mGET /api/patients [36m304[0m 2254.253 ms - -[0m
+2025:08:14 16:22:54:info [0mOPTIONS /api/patients/c819ce4f-8fca-496c-bfe7-7a6aefd84f82 [32m204[0m 0.141 ms - 0[0m
+2025:08:14 16:22:54:info [0mPOST /api/notifications/create [32m201[0m 96.883 ms - 430[0m
+2025:08:14 16:22:54:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 19.389 ms - -[0m
+2025:08:14 16:22:54:info [0mDELETE /api/patients/c819ce4f-8fca-496c-bfe7-7a6aefd84f82 [32m200[0m 126.936 ms - 42[0m
+2025:08:14 16:22:57:info [0mGET /api/patients [32m200[0m 1650.859 ms - -[0m
+2025:08:14 16:23:04:info [0mGET /api/auth/67b611137de19fc1c39f0f18 [32m200[0m 2.686 ms - 977[0m
+2025:08:14 16:23:12:info [0mOPTIONS /api/auth/password/reset/message/ [32m204[0m 0.166 ms - 0[0m
+2025:08:14 16:23:32:info [0mPUT /api/auth/password/reset/message/ [0m-[0m - ms - -[0m
+2025:08:14 16:23:33:error error sending email to: omarsamir232@gmail.com
+2025:08:14 16:23:36:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 16.630 ms - -[0m
+2025:08:14 16:24:08:info [0mOPTIONS /api/auth/password/reset/message/ [32m204[0m 0.171 ms - 0[0m
+2025:08:14 16:24:08:info [0mPUT /api/auth/password/reset/message/ [33m400[0m 8.118 ms - 44[0m
+2025:08:14 16:24:45:info [0mOPTIONS /api/auth/password/reset/message/ [32m204[0m 0.119 ms - 0[0m
+2025:08:14 16:24:45:info [0mPUT /api/auth/password/reset/message/ [33m403[0m 5.320 ms - 60[0m
+2025:08:14 16:24:58:info [0mOPTIONS /api/auth/password/reset/message/ [32m204[0m 0.126 ms - 0[0m
+2025:08:14 16:25:19:error error sending email to: omarsamir232@gmail.com
+2025:08:14 16:25:19:info [0mPUT /api/auth/password/reset/message/ [32m200[0m 21065.379 ms - 37[0m
+2025:08:14 16:25:30:info [0mOPTIONS /api/auth/password/reset/message/ [32m204[0m 0.127 ms - 0[0m
+2025:08:14 16:25:30:info [0mPUT /api/auth/password/reset/message/ [33m400[0m 3.795 ms - 44[0m
+2025:08:14 16:25:42:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 9.144 ms - -[0m
+2025:08:14 16:26:26:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 26.083 ms - -[0m
+2025:08:14 16:29:34:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 22.671 ms - -[0m
+2025:08:14 16:32:16:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 9.178 ms - -[0m
+2025:08:14 16:32:21:info [0mGET /api/auth/67b611137de19fc1c39f0f18 [36m304[0m 3.365 ms - -[0m
+2025:08:14 16:32:41:info [0mOPTIONS /api/auth/password/reset/message/ [32m204[0m 0.196 ms - 0[0m
+2025:08:14 16:32:43:info email have been successfully sent to:omarsamir232@gmail.com
+2025:08:14 16:32:43:info [0mPUT /api/auth/password/reset/message/ [32m200[0m 1851.969 ms - 37[0m
+2025:08:14 16:34:29:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 13.892 ms - -[0m
+2025:08:14 16:34:29:info xss log: value (VerTokenPrivateKey) is of type: string
+2025:08:14 16:34:29:info [0mGET /api/auth/token/eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2I2MTExMzdkZTE5ZmMxYzM5ZjBmMTgiLCJlbWFpbCI6Im9tYXJzYW1pcjIzMkBnbWFpbC5jb20iLCJIYXNoTmFtZSI6InJlc2V0cGFzc3dvcmQ6NjdiNjExMTM3ZGUxOWZjMWMzOWYwZjE4IiwiaWF0IjoxNzU1MTg5MTYxLCJleHAiOjE3NTUxOTI3NjF9.Shvdw8Hkvb53ci_B7AEa9oSWIc34hzf_LQUs4HkcDR4-pPKMNoXa3XAMiGlMFrfaWhbikzF0A-ztgTP4PqEA0Q?KeyType=VerTokenPrivateKey [32m200[0m 20.123 ms - 38[0m
+2025:08:14 16:34:44:info [0mOPTIONS /api/auth/password/reset/eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2I2MTExMzdkZTE5ZmMxYzM5ZjBmMTgiLCJlbWFpbCI6Im9tYXJzYW1pcjIzMkBnbWFpbC5jb20iLCJIYXNoTmFtZSI6InJlc2V0cGFzc3dvcmQ6NjdiNjExMTM3ZGUxOWZjMWMzOWYwZjE4IiwiaWF0IjoxNzU1MTg5MTYxLCJleHAiOjE3NTUxOTI3NjF9.Shvdw8Hkvb53ci_B7AEa9oSWIc34hzf_LQUs4HkcDR4-pPKMNoXa3XAMiGlMFrfaWhbikzF0A-ztgTP4PqEA0Q [32m204[0m 0.192 ms - 0[0m
+2025:08:14 16:34:44:info [0mPUT /api/auth/password/reset/eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2I2MTExMzdkZTE5ZmMxYzM5ZjBmMTgiLCJlbWFpbCI6Im9tYXJzYW1pcjIzMkBnbWFpbC5jb20iLCJIYXNoTmFtZSI6InJlc2V0cGFzc3dvcmQ6NjdiNjExMTM3ZGUxOWZjMWMzOWYwZjE4IiwiaWF0IjoxNzU1MTg5MTYxLCJleHAiOjE3NTUxOTI3NjF9.Shvdw8Hkvb53ci_B7AEa9oSWIc34hzf_LQUs4HkcDR4-pPKMNoXa3XAMiGlMFrfaWhbikzF0A-ztgTP4PqEA0Q [32m200[0m 158.432 ms - 47[0m
+2025:08:14 16:35:37:info [0mOPTIONS /api/auth/password/reset/message/ [32m204[0m 0.122 ms - 0[0m
+2025:08:14 16:35:37:info [0mPUT /api/auth/password/reset/message/ [33m403[0m 3.619 ms - 60[0m
+2025:08:14 16:35:41:info [0mPUT /api/auth/password/reset/message/ [33m400[0m 6.680 ms - 44[0m
+2025:08:14 16:46:21:info [0mGET /api/patients/period [33m404[0m 12.078 ms - 36[0m
+2025:08:14 16:46:33:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 130.958 ms - -[0m
+2025:08:14 16:46:54:info [0mGET /api/patients/period [33m404[0m 3.320 ms - 36[0m
+2025:08:14 16:46:55:info [0mGET /api/patients/period [33m404[0m 2.137 ms - 36[0m
+2025:08:14 16:47:08:info [0mGET /api/patients/periods [33m404[0m 2.962 ms - 36[0m
+2025:08:14 16:47:09:info [0mGET /api/patients/periods [33m404[0m 12.367 ms - 36[0m
+2025:08:14 16:47:43:info [0mGET /api/patients/period [33m404[0m 8.411 ms - 36[0m
+2025:08:14 16:47:44:info [0mGET /api/patients/period [33m404[0m 2.683 ms - 36[0m
+2025:08:14 16:47:45:info [0mGET /api/patients/period [33m404[0m 2.875 ms - 36[0m
+2025:08:14 16:48:03:info [0mGET /api/patients/period/u [33m404[0m 72.919 ms - 160[0m
+2025:08:14 16:48:04:info [0mGET /api/patients/period/u [33m404[0m 0.972 ms - 160[0m
+2025:08:14 16:48:05:info [0mGET /api/patients/period/u [33m404[0m 0.658 ms - 160[0m
+2025:08:14 16:48:17:info [0mGET /api//patients [32m200[0m 2673.076 ms - -[0m
+2025:08:14 16:48:43:info [0mGET /api//un [33m404[0m 1.681 ms - 146[0m
+2025:08:14 16:49:09:info [0mGET /api//8ac6f29e-79aa-4a2c-a530-ee710d165009 [33m404[0m 3.296 ms - 180[0m
+2025:08:14 16:49:10:info [0mGET /api//8ac6f29e-79aa-4a2c-a530-ee710d165009 [33m404[0m 0.739 ms - 180[0m
+2025:08:14 16:49:22:info [0mGET /api//patients/8ac6f29e-79aa-4a2c-a530-ee710d165009 [32m200[0m 11.811 ms - 591[0m
+2025:08:14 16:49:29:info xss log: value (user0@example.com) is of type: string
+2025:08:14 16:49:29:info [0mGET /api//single?email=user0@example.com [33m404[0m 3.777 ms - 150[0m
+2025:08:14 16:49:30:info xss log: value (user0@example.com) is of type: string
+2025:08:14 16:49:30:info [0mGET /api//single?email=user0@example.com [33m404[0m 1.259 ms - 150[0m
+2025:08:14 16:49:39:info xss log: value (user0@example.com) is of type: string
+2025:08:14 16:49:39:info [0mGET /api//patients/single?email=user0@example.com [33m404[0m 3.164 ms - 36[0m
+2025:08:14 16:49:40:info xss log: value (user0@example.com) is of type: string
+2025:08:14 16:49:40:info [0mGET /api//patients/single?email=user0@example.com [33m404[0m 4.145 ms - 36[0m
+2025:08:14 16:49:55:info xss log: value (user0@example.com) is of type: string
+2025:08:14 16:49:55:info [0mGET /api/patients/single?email=user0@example.com [33m404[0m 4.413 ms - 36[0m
+2025:08:14 16:50:01:info xss log: value (user999@example.com) is of type: string
+2025:08:14 16:50:01:info [0mGET /api/patients/single?email=user999@example.com [33m404[0m 3.942 ms - 36[0m
+2025:08:14 16:50:04:info xss log: value (user99@example.com) is of type: string
+2025:08:14 16:50:04:info [0mGET /api/patients/single?email=user99@example.com [33m404[0m 5.842 ms - 36[0m
+2025:08:14 16:50:09:info xss log: value (user9949@example.com) is of type: string
+2025:08:14 16:50:09:info [0mGET /api/patients/single?email=user9949@example.com [33m404[0m 3.440 ms - 36[0m
+2025:08:14 16:50:10:info xss log: value (user9949@example.com) is of type: string
+2025:08:14 16:50:10:info [0mGET /api/patients/single?email=user9949@example.com [33m404[0m 3.633 ms - 36[0m
+2025:08:14 16:50:22:info xss log: value (user2@example.com) is of type: string
+2025:08:14 16:50:22:info [0mGET /api/patients/single?email=user2@example.com [33m404[0m 3.277 ms - 36[0m
+2025:08:14 16:51:03:info xss log: value (user2@example.com) is of type: string
+2025:08:14 16:51:05:info [0mGET /api/patients?email=user2@example.com [32m200[0m 1612.425 ms - -[0m
+2025:08:14 16:51:25:info xss log: value (user2@example.com) is of type: string
+2025:08:14 16:51:25:info [0mGET /api/patients/email?email=user2@example.com [32m200[0m 4.573 ms - 614[0m
+2025:08:14 16:51:38:info xss log: value (user299@example.com) is of type: string
+2025:08:14 16:51:38:info [0mGET /api/patients/email?email=user299@example.com [32m200[0m 4.662 ms - 596[0m
+2025:08:14 16:51:40:info xss log: value (user99@example.com) is of type: string
+2025:08:14 16:51:40:info [0mGET /api/patients/email?email=user99@example.com [32m200[0m 4.202 ms - 607[0m
+2025:08:14 16:51:42:info xss log: value (user9x9@example.com) is of type: string
+2025:08:14 16:51:42:info [0mGET /api/patients/email?email=user9x9@example.com [33m404[0m 12.858 ms - 36[0m
+2025:08:14 16:52:01:info xss log: value (user9x9@example.com) is of type: string
+2025:08:14 16:52:01:info [0mGET /api/patients/email?email=user9x9@example.com [33m404[0m 7.934 ms - 36[0m
+2025:08:14 16:52:02:info xss log: value (user9x9@example.com) is of type: string
+2025:08:14 16:52:02:info [0mGET /api/patients/email?email=user9x9@example.com [33m404[0m 7.766 ms - 36[0m
+2025:08:14 16:52:14:info xss log: value (user9x9@example.com) is of type: string
+2025:08:14 16:52:14:info [0mGET /api/patients/email?email=user9x9@example.com [33m404[0m 23.853 ms - 36[0m
+2025:08:14 16:52:15:info xss log: value (user9x9@example.com) is of type: string
+2025:08:14 16:52:15:info [0mGET /api/patients/email?email=user9x9@example.com [33m404[0m 13.074 ms - 36[0m
+2025:08:14 16:52:16:info xss log: value (user9x9@example.com) is of type: string
+2025:08:14 16:52:16:info [0mGET /api/patients/email?email=user9x9@example.com [33m404[0m 9.890 ms - 36[0m
+2025:08:14 16:52:21:error Received shutdown signal: SIGTERM
+2025:08:14 16:52:21:info Mongodb connection closed successfully
+2025:08:14 16:52:21:warn redis connection had been disconnected
+2025:08:14 16:52:37:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 16:52:37:info ===== http://localhost:8080 =====
+2025:08:14 16:52:37:info ===========development===========
+2025:08:14 16:52:37:info ===========port:8080=============
+2025:08:14 16:52:37:info =================================
+2025:08:14 16:52:37:info Redis is connected
+2025:08:14 16:52:38:info Mongodb is connected to database:health
+2025:08:14 16:52:54:info xss log: value (user9x9@example.com) is of type: string
+2025:08:14 16:52:54:info [0mGET /api/patients/email?email=user9x9@example.com [33m404[0m 30.198 ms - 35[0m
+2025:08:14 16:53:03:info [0mGET /api/patients/period/ [33m404[0m 4.965 ms - 36[0m
+2025:08:14 16:53:06:info [0mGET /api/patients/period/ [33m404[0m 2.868 ms - 36[0m
+2025:08:14 16:53:16:info [0mGET /api/patients/period [33m404[0m 3.838 ms - 36[0m
+2025:08:14 16:53:17:info [0mGET /api/patients/period [33m404[0m 4.204 ms - 36[0m
+2025:08:14 16:53:27:info xss log: value (o) is of type: string
+2025:08:14 16:53:28:info [0mGET /api/patients/period?date=o [33m404[0m 6.322 ms - 36[0m
+2025:08:14 16:53:28:info xss log: value (o) is of type: string
+2025:08:14 16:53:28:info [0mGET /api/patients/period?date=o [33m404[0m 3.711 ms - 36[0m
+2025:08:14 16:53:43:error Received shutdown signal: SIGTERM
+2025:08:14 16:53:53:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 16:53:53:info ===== http://localhost:8080 =====
+2025:08:14 16:53:53:info ===========development===========
+2025:08:14 16:53:53:info ===========port:8080=============
+2025:08:14 16:53:53:info =================================
+2025:08:14 16:53:53:info Redis is connected
+2025:08:14 16:53:53:info Mongodb is connected to database:health
+2025:08:14 16:53:56:info xss log: value (o) is of type: string
+2025:08:14 16:53:56:info [0mGET /api/patients/period?date=o [33m404[0m 34.437 ms - 50[0m
+2025:08:14 16:54:01:info xss log: value (user9x9@example.com) is of type: string
+2025:08:14 16:54:01:info [0mGET /api/patients/email?email=user9x9@example.com [33m404[0m 12.383 ms - 35[0m
+2025:08:14 16:54:04:info [0mGET /api//patients/8ac6f29e-79aa-4a2c-a530-ee710d165009 [32m200[0m 7.028 ms - 591[0m
+2025:08:14 16:54:09:info [0mGET /api//patients [32m200[0m 1851.321 ms - -[0m
+2025:08:14 16:54:27:info xss log: value (o) is of type: string
+2025:08:14 16:54:27:info [0mGET /api/patients/period?date=o [33m404[0m 18.519 ms - 50[0m
+2025:08:14 16:54:29:info xss log: value (o) is of type: string
+2025:08:14 16:54:29:info [0mGET /api/patients/period?date=o [33m404[0m 9.731 ms - 50[0m
+2025:08:14 16:55:12:info xss log: value (2025-07-06T18:31:34.113 00:00) is of type: string
+2025:08:14 16:55:12:info [0mGET /api/patients/period?date=2025-07-06T18:31:34.113+00:00 [33m404[0m 16.431 ms - 50[0m
+2025:08:14 16:55:13:info xss log: value (2025-07-06T18:31:34.113 00:00) is of type: string
+2025:08:14 16:55:13:info [0mGET /api/patients/period?date=2025-07-06T18:31:34.113+00:00 [33m404[0m 12.170 ms - 50[0m
+2025:08:14 16:56:03:error Received shutdown signal: SIGTERM
+2025:08:14 16:56:12:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 16:56:12:info ===== http://localhost:8080 =====
+2025:08:14 16:56:12:info ===========development===========
+2025:08:14 16:56:12:info ===========port:8080=============
+2025:08:14 16:56:12:info =================================
+2025:08:14 16:56:12:info Redis is connected
+2025:08:14 16:56:13:info Mongodb is connected to database:health
+2025:08:14 16:56:20:info xss log: value (2025-07-06T18:31:34.113 00:00) is of type: string
+2025:08:14 16:56:20:info [0mGET /api/patients/period?date=2025-07-06T18:31:34.113+00:00 [33m404[0m 33.874 ms - 50[0m
+2025:08:14 16:56:21:info xss log: value (2025-07-06T18:31:34.113 00:00) is of type: string
+2025:08:14 16:56:21:info [0mGET /api/patients/period?date=2025-07-06T18:31:34.113+00:00 [33m404[0m 12.559 ms - 50[0m
+2025:08:14 16:57:22:error Received shutdown signal: SIGTERM
+2025:08:14 16:57:22:info Mongodb connection closed successfully
+2025:08:14 16:57:22:warn redis connection had been disconnected
+2025:08:14 16:57:32:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 16:57:32:info ===== http://localhost:8080 =====
+2025:08:14 16:57:32:info ===========development===========
+2025:08:14 16:57:32:info ===========port:8080=============
+2025:08:14 16:57:32:info =================================
+2025:08:14 16:57:32:info Redis is connected
+2025:08:14 16:57:32:info Mongodb is connected to database:health
+2025:08:14 16:57:37:info xss log: value (2025-07-06T18:31:34.113 00:00) is of type: string
+2025:08:14 16:57:37:info [0mGET /api/patients/period?date=2025-07-06T18:31:34.113+00:00 [33m400[0m 11.823 ms - 67[0m
+2025:08:14 16:57:53:info [0mGET /api/patients/period [33m400[0m 2.803 ms - 67[0m
+2025:08:14 16:57:54:info [0mGET /api/patients/period [33m400[0m 1.613 ms - 67[0m
+2025:08:14 16:58:00:info [0mGET /api/patients/period [33m400[0m 0.888 ms - 67[0m
+2025:08:14 16:58:01:info [0mGET /api/patients/period [33m400[0m 0.978 ms - 67[0m
+2025:08:14 17:01:42:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 65.386 ms - -[0m
+2025:08:14 17:01:47:error Received shutdown signal: SIGTERM
+2025:08:14 17:01:58:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 17:01:58:info ===== http://localhost:8080 =====
+2025:08:14 17:01:58:info ===========development===========
+2025:08:14 17:01:58:info ===========port:8080=============
+2025:08:14 17:01:58:info =================================
+2025:08:14 17:01:58:info Redis is connected
+2025:08:14 17:01:58:info Mongodb is connected to database:health
+2025:08:14 17:02:06:info [0mGET /api/patients/period [33m400[0m 10.698 ms - 67[0m
+2025:08:14 17:02:12:info [0mGET /api/patients/period [33m400[0m 1.991 ms - 67[0m
+2025:08:14 17:02:37:error Received shutdown signal: SIGTERM
+2025:08:14 17:02:47:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 17:02:47:info ===== http://localhost:8080 =====
+2025:08:14 17:02:47:info ===========development===========
+2025:08:14 17:02:47:info ===========port:8080=============
+2025:08:14 17:02:47:info =================================
+2025:08:14 17:02:47:info Redis is connected
+2025:08:14 17:02:47:info Mongodb is connected to database:health
+2025:08:14 17:02:50:info [0mGET /api/patients/period [33m400[0m 11.151 ms - 67[0m
+2025:08:14 17:03:14:info [0mGET /api/patients/period [33m400[0m 2.154 ms - 67[0m
+2025:08:14 17:03:21:info [0mGET /api/patients/period [33m400[0m 1.249 ms - 67[0m
+2025:08:14 17:03:22:info [0mGET /api/patients/period [33m400[0m 0.846 ms - 67[0m
+2025:08:14 17:04:36:info [0mGET /api/patients/period [33m400[0m 1.891 ms - 67[0m
+2025:08:14 17:04:37:info [0mGET /api/patients/period [33m400[0m 1.400 ms - 67[0m
+2025:08:14 17:04:48:info xss log: value (30) is of type: string
+2025:08:14 17:04:48:info [0mGET /api/patients/period?date=30 [33m400[0m 2.533 ms - 67[0m
+2025:08:14 17:05:25:error Received shutdown signal: SIGTERM
+2025:08:14 17:05:48:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 17:05:48:info ===== http://localhost:8080 =====
+2025:08:14 17:05:48:info ===========development===========
+2025:08:14 17:05:48:info ===========port:8080=============
+2025:08:14 17:05:48:info =================================
+2025:08:14 17:05:48:info Redis is connected
+2025:08:14 17:05:48:info Mongodb is connected to database:health
+2025:08:14 17:06:04:error Received shutdown signal: SIGTERM
+2025:08:14 17:06:04:info Mongodb connection closed successfully
+2025:08:14 17:06:04:warn redis connection had been disconnected
+2025:08:14 17:06:14:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 17:06:14:info ===== http://localhost:8080 =====
+2025:08:14 17:06:14:info ===========development===========
+2025:08:14 17:06:14:info ===========port:8080=============
+2025:08:14 17:06:14:info =================================
+2025:08:14 17:06:14:info Redis is connected
+2025:08:14 17:06:15:info Mongodb is connected to database:health
+2025:08:14 17:06:20:info xss log: value (30) is of type: string
+2025:08:14 17:06:20:info [0mGET /api/patients/period?date=30 [33m404[0m 78.243 ms - 50[0m
+2025:08:14 17:06:46:error Received shutdown signal: SIGTERM
+2025:08:14 17:06:55:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 17:06:55:info ===== http://localhost:8080 =====
+2025:08:14 17:06:55:info ===========development===========
+2025:08:14 17:06:55:info ===========port:8080=============
+2025:08:14 17:06:55:info =================================
+2025:08:14 17:06:55:info Redis is connected
+2025:08:14 17:06:55:info Mongodb is connected to database:health
+2025:08:14 17:06:59:info xss log: value (30) is of type: string
+2025:08:14 17:06:59:info [0mGET /api/patients/period?date=30 [33m404[0m 166.796 ms - 50[0m
+2025:08:14 17:07:01:info xss log: value (30) is of type: string
+2025:08:14 17:07:01:info [0mGET /api/patients/period?date=30 [33m404[0m 13.430 ms - 50[0m
+2025:08:14 17:07:02:info xss log: value (30) is of type: string
+2025:08:14 17:07:02:info [0mGET /api/patients/period?date=30 [33m404[0m 10.100 ms - 50[0m
+2025:08:14 17:08:49:error Received shutdown signal: SIGTERM
+2025:08:14 17:08:49:info Mongodb connection closed successfully
+2025:08:14 17:08:59:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 17:08:59:info ===== http://localhost:8080 =====
+2025:08:14 17:08:59:info ===========development===========
+2025:08:14 17:08:59:info ===========port:8080=============
+2025:08:14 17:08:59:info =================================
+2025:08:14 17:08:59:info Redis is connected
+2025:08:14 17:08:59:info Mongodb is connected to database:health
+2025:08:14 17:09:00:info xss log: value (30) is of type: string
+2025:08:14 17:09:00:info [0mGET /api/patients/period?date=30 [33m404[0m 45.364 ms - 50[0m
+2025:08:14 17:09:02:info xss log: value (30) is of type: string
+2025:08:14 17:09:02:info [0mGET /api/patients/period?date=30 [33m404[0m 15.162 ms - 50[0m
+2025:08:14 17:09:45:info [0mGET /api/patients [36m304[0m 1909.233 ms - -[0m
+2025:08:14 17:09:51:info [0mGET /api/patients [36m304[0m 2476.097 ms - -[0m
+2025:08:14 17:10:41:info [0mGET /api/auth/users/67b611137de19fc1c39f0f18 [32m200[0m 104.379 ms - -[0m
+2025:08:14 17:10:48:info [0mGET /api/patients [36m304[0m 3207.138 ms - -[0m
+2025:08:14 17:10:48:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 34.999 ms - -[0m
+2025:08:14 17:10:59:info [0mGET /api/medications/ [36m304[0m 57.348 ms - -[0m
+2025:08:14 17:11:45:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 8.551 ms - -[0m
+2025:08:14 17:12:02:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 8.049 ms - -[0m
+2025:08:14 17:12:21:info [0mGET /api/medications/ [36m304[0m 69.427 ms - -[0m
+2025:08:14 17:12:27:info [0mGET /api/patients [36m304[0m 2225.701 ms - -[0m
+2025:08:14 17:12:28:info [0mGET /api/auth/67b611137de19fc1c39f0f18 [32m200[0m 6.781 ms - 977[0m
+2025:08:14 17:12:31:info xss log: value (4) is of type: string
+2025:08:14 17:12:31:info [0mGET /api/auth/users/67b611137de19fc1c39f0f18 [32m200[0m 30.759 ms - -[0m
+2025:08:14 17:12:31:info [0mGET /api/code/find/67b611137de19fc1c39f0f18?limit=4 [36m304[0m 34.549 ms - -[0m
+2025:08:14 17:12:33:info [0mGET /api/auth/users/67b611137de19fc1c39f0f18 [32m200[0m 6.432 ms - -[0m
+2025:08:14 17:12:38:info [0mGET /api/patients [36m304[0m 2248.798 ms - -[0m
+2025:08:14 17:12:38:info [0mGET /api/patients/082ea477-b307-41a8-a5ea-eb5f5202eeeb [32m200[0m 46.755 ms - 613[0m
+2025:08:14 17:13:11:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 27.460 ms - -[0m
+2025:08:14 17:13:44:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 44.602 ms - -[0m
+2025:08:14 17:13:59:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 15.018 ms - -[0m
+2025:08:14 17:14:12:info [0mGET /api/auth/users/67b611137de19fc1c39f0f18 [32m200[0m 26.613 ms - -[0m
+2025:08:14 17:14:13:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 11.587 ms - -[0m
+2025:08:14 17:14:13:info [0mGET /api/auth/users/67b611137de19fc1c39f0f18 [32m200[0m 7.528 ms - -[0m
+2025:08:14 17:14:17:info [0mGET /api/auth/67b6196f6e5f967ae612f544 [36m304[0m 3.490 ms - -[0m
+2025:08:14 17:14:18:info [0mGET /api/appointments/67b6196f6e5f967ae612f544 [36m304[0m 14.284 ms - -[0m
+2025:08:14 17:14:21:info [0mGET /api/patients [36m304[0m 3170.549 ms - -[0m
+2025:08:14 17:14:24:info [0mGET /api/patients [36m304[0m 2815.482 ms - -[0m
+2025:08:14 17:14:25:info [0mGET /api/patients/082ea477-b307-41a8-a5ea-eb5f5202eeeb [36m304[0m 18.369 ms - -[0m
+2025:08:14 17:14:45:info [0mGET /api/patients [36m304[0m 2170.233 ms - -[0m
+2025:08:14 17:14:53:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 23.041 ms - -[0m
+2025:08:14 17:15:01:info [0mGET /api/patients [36m304[0m 2491.119 ms - -[0m
+2025:08:14 17:15:01:info [0mGET /api/medications/ [36m304[0m 20.407 ms - -[0m
+2025:08:14 17:15:12:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 10.449 ms - -[0m
+2025:08:14 17:15:27:info xss log: value (30) is of type: string
+2025:08:14 17:15:27:info [0mGET /api/patients/period?date=30 [33m404[0m 19.433 ms - 50[0m
+2025:08:14 17:15:52:info xss log: value (user99@example.com) is of type: string
+2025:08:14 17:15:52:info [0mGET /api/patients/email?email=user99@example.com [32m200[0m 8.388 ms - 607[0m
+2025:08:14 17:17:09:error Received shutdown signal: SIGTERM
+2025:08:14 17:17:09:info Mongodb connection closed successfully
+2025:08:14 17:17:09:warn redis connection had been disconnected
+2025:08:14 17:17:23:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 17:17:23:info ===== http://localhost:8080 =====
+2025:08:14 17:17:23:info ===========development===========
+2025:08:14 17:17:23:info ===========port:8080=============
+2025:08:14 17:17:23:info =================================
+2025:08:14 17:17:23:info Redis is connected
+2025:08:14 17:17:24:info Mongodb is connected to database:health
+2025:08:14 17:17:30:info xss log: value (30) is of type: string
+2025:08:14 17:17:31:info [0mGET /api/patients/period?date=30 [32m200[0m 193.420 ms - 610[0m
+2025:08:14 17:17:50:error Received shutdown signal: SIGTERM
+2025:08:14 17:17:50:info Mongodb connection closed successfully
+2025:08:14 17:17:50:warn redis connection had been disconnected
+2025:08:14 17:18:01:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:08:14 17:18:01:info ===== http://localhost:8080 =====
+2025:08:14 17:18:01:info ===========development===========
+2025:08:14 17:18:01:info ===========port:8080=============
+2025:08:14 17:18:01:info =================================
+2025:08:14 17:18:01:info Redis is connected
+2025:08:14 17:18:01:info Mongodb is connected to database:health
+2025:08:14 17:18:05:info xss log: value (30) is of type: string
+2025:08:14 17:18:05:info [0mGET /api/patients/period?date=30 [33m404[0m 35.457 ms - 50[0m
+2025:08:14 17:18:06:info xss log: value (30) is of type: string
+2025:08:14 17:18:06:info [0mGET /api/patients/period?date=30 [33m404[0m 12.449 ms - 50[0m
+2025:08:14 17:18:07:info xss log: value (30) is of type: string
+2025:08:14 17:18:07:info [0mGET /api/patients/period?date=30 [33m404[0m 11.290 ms - 50[0m
+2025:08:14 17:18:12:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 71.222 ms - -[0m
+2025:08:14 17:18:18:info [0mGET /api/patients [36m304[0m 2887.193 ms - -[0m
+2025:08:14 17:19:20:info [0mPOST /api/patients/create [32m201[0m 4594.392 ms - -[0m
+2025:08:14 17:19:22:info [0mGET /api/patients [32m200[0m 1933.756 ms - -[0m
+2025:08:14 17:19:23:info [0mPOST /api/notifications/create [32m201[0m 51.347 ms - 379[0m
+2025:08:14 17:19:23:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 8.398 ms - -[0m
+2025:08:14 17:19:31:info [0mGET /api/patients/872b796d-0e75-47c7-822a-fa13cb04a035 [32m200[0m 6.039 ms - -[0m
+2025:08:14 17:19:45:info xss log: value (30) is of type: string
+2025:08:14 17:19:45:info [0mGET /api/patients/period?date=30 [32m200[0m 29.764 ms - -[0m

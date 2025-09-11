@@ -2,7 +2,7 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { MotionComponent } from './relatedComponents/Motion';
+import { MotionComponent, Motions } from './relatedComponents/Motion';
 const LoginForm = dynamic(() => import('./LoginForm'));
 
 import { DashboardHook } from '@/components/context/Dashboardprovider';
@@ -11,8 +11,8 @@ const Login = () => {
     const { NProgress } = DashboardHook();
     NProgress.done();
     return (
-        <MotionComponent>
-            <main className=" min-h-screen h-screen flex justify-center items-center ">
+        <MotionComponent form={Motions.FADEIN}>
+            <main className=" min-h-screen h-screen flex justify-center items-center dark:bg-[var(--sidebar-accent)]">
                 <div className="sub-container max-w-[686px] ">
                     <LoginForm />
                 </div>

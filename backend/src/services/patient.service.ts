@@ -21,8 +21,14 @@ class PatientService {
         return await this.patientModel.deleteOne(query);
     };
 
-    public getAllPatients = async (query?: FilterQuery<PatientDocument>) => {
-        return await this.patientModel.find({ query });
+    public getAllPatients = async (query: FilterQuery<PatientDocument>) => {
+        return await this.patientModel.find(query);
+    };
+    public getAllPatientsWithPagination = async (pageIndex: number, pageSize: number) => {
+        return await this.patientModel
+            .find({})
+            .skip(pageIndex * pageSize)
+            .limit(pageSize);
     };
 
     public CreateMultiplePatients = async (input: PatientsInput) => {
@@ -36,7 +42,10 @@ class PatientService {
     public deleteAllPatients = async () => {
         return await this.patientModel.deleteMany({});
     };
+
+    public getPatientsCount = async (query?: FilterQuery<PatientDocument>) => {
+        return await this.patientModel.countDocuments(query ? query : {});
+    };
 }
 
-
-export default PatientService
+export default PatientService;

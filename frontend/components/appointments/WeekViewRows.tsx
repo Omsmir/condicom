@@ -6,8 +6,8 @@ import { isSameDay, format } from 'date-fns';
 import React from 'react';
 import { DeleteHandler, ToggleButton } from '../togglers/Handlers';
 import { CalenderHook } from '../context/CalenderProvider';
-import { useSession } from 'next-auth/react';
 import { useMediaQuery } from 'react-responsive';
+import PatientAppointment from './PatientAppointment';
 
 const WeekViewRows = ({ appointment }: { appointment: Appointment[] | undefined }) => {
     const isMobile = useMediaQuery({ query: '(min-width: 640px)' });
@@ -29,13 +29,13 @@ const WeekViewRows = ({ appointment }: { appointment: Appointment[] | undefined 
                     key={index}
                 >
                     {theMinutes.map((hour, hourIndex) => {
-                        // Filter tasks for the specific day and hour
-                        const filteredTasks = appointment?.filter(task => {
+                        // Filter appointments for the specific day and hour
+                        const filteredAppointments = appointment?.filter(appointment => {
                             if (
-                                isSameDay(task.startDate, day) &&
-                                format(task.startDate, 'h:mm a') === format(hour, 'h:mm a')
+                                isSameDay(appointment.startDate, day) &&
+                                format(appointment.startDate, 'h:mm a') === format(hour, 'h:mm a')
                             ) {
-                                return task;
+                                return appointment;
                             }
                         });
 
@@ -44,36 +44,40 @@ const WeekViewRows = ({ appointment }: { appointment: Appointment[] | undefined 
                                 className="flex justify-center cursor-pointer border-b h-20 relative dark:border-slate-700 hover:bg-slate-200  dark:hover:bg-[var(--sidebar-accent)]"
                                 key={hourIndex}
                             >
-                                {filteredTasks &&
-                                    filteredTasks.length > 0 &&
-                                    filteredTasks.map((task, taskIndex) => (
+                                {filteredAppointments &&
+                                    filteredAppointments.length > 0 &&
+                                    filteredAppointments.map((appointment, appointmentIndex) => (
                                         <div
-                                            key={taskIndex} // Ensure unique key for each task
+                                            key={appointmentIndex} // Ensure unique key for each appointment
                                             style={{
-                                                height: `${task.interval}%`,
-                                                backgroundColor: task.color,
+                                                height: `${appointment.interval}%`,
+                                                backgroundColor: appointment.color,
                                             }}
                                             className={clsx(
                                                 `flex  w-[95%] rounded-md cursor-pointer z-10 hover:opacity-85 relative overflow-hidden main`,
-                                                { 'opacity-40 hover:opacity-40 ': task.completed }
+                                                { 'opacity-40 hover:opacity-40 ': appointment.completed }
                                             )}
                                         >
                                             <ToggleButton
-                                                id={task._id}
-                                                state={!task.completed}
+                                                id={appointment._id}
+                                                state={!appointment.completed}
                                             />
                                             <div className="flex flex-col items-start text-slate-50 p-3 ">
                                                 <p className="font-medium text-[13px]">
-                                                    {format(task.startDate, 'h:mm a')}
+                                                    {format(appointment.startDate, 'h:mm a')}
                                                 </p>
 
-                                                <p className="font-medium text-sm">{task.task}</p>
+                                                <p className="font-medium text-sm">{appointment.task}</p>
                                                 <p className="text-[12px] text-slate-400">
-                                                    {task.description}
+                                                    {appointment.description}
                                                 </p>
+
+                                                {appointment.patientEmail && (
+                                                    <PatientAppointment email={appointment.patientEmail} />
+                                                )}
                                             </div>
                                             <DeleteHandler
-                                                id={task._id}
+                                                id={appointment._id}
                                                 apiString="appointments"
                                                 messagePopup="do you want to delete the appointment"
                                                 className="absolute text-slate-50 right-0 hidden hover:text-red-800 transition-colors delete"

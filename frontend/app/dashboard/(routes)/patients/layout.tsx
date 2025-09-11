@@ -5,7 +5,9 @@ export const metadata: Metadata = {
     title: 'Dashboard - Patients',
 };
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
-    return <PatientProvider>{children}</PatientProvider>;
+    return (
+            <PatientProvider>{children}</PatientProvider>
+    );
 };
 
 export default RootLayout;

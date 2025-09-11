@@ -1,0 +1,10 @@
+2025:08:21 14:28:22:error error connecting to redis Socket closed unexpectedly
+2025:08:21 14:28:22:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:22:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:22:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:22:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:22:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:22:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:23:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:23:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:24:error Received shutdown signal: SIGTERM

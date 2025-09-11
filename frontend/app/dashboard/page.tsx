@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import Overview from '@/components/Overview';
+import ConstructedLayout from '@/components/ConstructedLayout';
+import OverviewLayout from '@/components/overview/OverviewLayout';
 
 export const metadata: Metadata = {
     title: 'Health - Dashboard',
@@ -7,6 +8,10 @@ export const metadata: Metadata = {
 };
 
 const Home = () => {
-    return <Overview />;
+    return (
+        <ConstructedLayout>
+            <OverviewLayout />
+        </ConstructedLayout>
+    );
 };
 export default Home;

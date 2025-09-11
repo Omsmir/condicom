@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-
 import { bloodTypes, genders } from '@/lib/constants';
 import { ColumnDef, ColumnFiltersState } from '@tanstack/react-table';
 import { Input } from '../ui/input';
@@ -16,6 +15,8 @@ const ColumnFilters = <TData, TValue>({
     columnFilters,
     setColumnFilters,
 }: ColumnFiltersProps<TData, TValue>) => {
+
+
     const setColumnFilterForRows = ({
         e,
         columnId,
@@ -48,7 +49,6 @@ const ColumnFilters = <TData, TValue>({
             {columns.map((column: any, index: number) => {
                 const columnId = column.accessorKey;
                 const value = columnFilters.find(f => f.id === columnId)?.value as string;
-
                 switch (columnId) {
                     case 'gender':
                         return (

@@ -18,18 +18,31 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useSession } from 'next-auth/react';
 import { DashboardHook } from './context/Dashboardprovider';
 import { CreateNotification, userRole } from './togglers/TopBarEvents';
-import { UseCreateAppointment, UseCreateNotification } from '@/actions/mutation';
+import { Mutations, UseCreateNotification } from '@/actions/mutation';
+import { Tabs, TabsList, TabsTrigger } from './ui/tabs';
+import { patient } from '@/types';
+import { CreateNewFolder } from '@mui/icons-material';
+import { useMediaQuery } from 'react-responsive';
+import { PlusCircleFilled } from '@ant-design/icons';
 
-const AddAppointment = () => {
+interface AddAppointmentProps {
+    patient?: patient | undefined;
+    buttonText?: string;
+    patientState: boolean | undefined ;
+}
+
+const AddAppointment = ({ patientState, patient, buttonText }: AddAppointmentProps) => {
     const { data: session } = useSession();
 
     const [isLoading, setIsLoading] = useState(false);
+    const [isActive, setIsActive] = useState<string>('general');
+    const isMobile = useMediaQuery({ query: '(min-width: 1040px)' });
 
     const { visible, setVisible, calendarDays, date, disabled } = CalenderHook();
 
     const { api, contextHolder } = DashboardHook();
 
-    const createAppointment = UseCreateAppointment(api);
+    const createAppointment = Mutations.UseCreateAppointment(api);
     const createNotifcation = UseCreateNotification(api);
     const handleClickOpen = () => {
         setVisible(true);
@@ -51,6 +64,7 @@ const AddAppointment = () => {
         endDate.setSeconds(0);
         endDate.setMilliseconds(0);
 
+
         const data = {
             startDate: startDate,
             endDate: endDate,
@@ -59,6 +73,7 @@ const AddAppointment = () => {
             color: `#${values.color}`,
             userId: session?.user.id,
             description: values.description,
+            patientEmail: values.patientEmail || patient?.email || '',
         };
 
         Object.entries(data).map(([key, value]) => {
@@ -75,7 +90,10 @@ const AddAppointment = () => {
             eventType: 'creation',
         });
         try {
-            const response = await createAppointment.mutateAsync(formData);
+            await createAppointment.mutateAsync({
+                appointment: formData,
+                patientState: patient?.email ? true : undefined,
+            });
 
             await createNotifcation.mutateAsync(notificationData);
             setVisible(false);
@@ -94,6 +112,7 @@ const AddAppointment = () => {
             endDate: new Date(),
             color: '242c55',
             description: '',
+            patientEmail: '',
         },
     });
     return (
@@ -103,7 +122,7 @@ const AddAppointment = () => {
                 className="AppointmentCreate"
                 onClick={handleClickOpen}
             >
-                Add Event
+                {!isMobile ? <PlusCircleFilled /> : buttonText || 'Add Event'}
             </Button>
             <Dialog
                 onClose={handleClose}
@@ -140,6 +159,28 @@ const AddAppointment = () => {
                             onSubmit={form.handleSubmit(onSubmit)}
                             className="flex-1 space-y-12 "
                         >
+                            {!patientState && (
+                                <div className="flex w-full max-w-sm flex-col gap-6">
+                                    <Tabs defaultValue="general">
+                                        <TabsList className="bg-slate-200 rounded-lg dark:bg-slate-800">
+                                            <TabsTrigger
+                                                value="general"
+                                                className={`${isActive === 'general' && 'bg-slate-50 dark:bg-slate-700'} rounded-md dark:text-slate-50`}
+                                                onClick={() => setIsActive('general')}
+                                            >
+                                                General
+                                            </TabsTrigger>
+                                            <TabsTrigger
+                                                value="patient"
+                                                className={`${isActive === 'patient' && 'bg-slate-50 dark:bg-slate-700'} rounded-md dark:text-slate-50`}
+                                                onClick={() => setIsActive('patient')}
+                                            >
+                                                Patient
+                                            </TabsTrigger>
+                                        </TabsList>
+                                    </Tabs>
+                                </div>
+                            )}
                             <CustomFormField
                                 control={form.control}
                                 Lucide={<User className="dark:text-dark-600" />}
@@ -167,7 +208,7 @@ const AddAppointment = () => {
                                 calenderDays={calendarDays}
                                 error={form.formState.errors.startDate}
                             />
-                            <section className="flex ">
+                            <div className="flex">
                                 <div className="flex items-center w-[80%]">
                                     <CustomFormField
                                         control={form.control}
@@ -187,8 +228,25 @@ const AddAppointment = () => {
                                         name="color"
                                     />
                                 </div>
-                            </section>
-
+                            </div>
+                            {!patientState && (
+                                <div className="flex flex-col gap-2">
+                                    <CustomFormField
+                                        control={form.control}
+                                        fieldType={FormFieldType.INPUT}
+                                        label="patient email"
+                                        name="patientEmail"
+                                        placeholder="patient@gmail.com"
+                                        type="email"
+                                        state
+                                        disabled={isActive === 'general'}
+                                    />
+                                    <p className="text-xs text-slate-500 w-full">
+                                        please write down the patient email correctly just to ensure
+                                        that these appointment will be assigned to the patient
+                                    </p>
+                                </div>
+                            )}
                             <SubmitButton
                                 isLoading={isLoading}
                                 className="bg-[#6366f1] w-full text-slate-50"

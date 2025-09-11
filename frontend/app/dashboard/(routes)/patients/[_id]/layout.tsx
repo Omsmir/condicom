@@ -1,5 +1,6 @@
 import { PatientProvider } from '@/components/context/PatientProvider';
 import PatientHeader from '@/components/patient/PatientHeader';
+import { Fragment } from 'react';
 
 const RootLayout = async ({
     children,
@@ -11,10 +12,12 @@ const RootLayout = async ({
     const id = (await params)._id;
 
     return (
-        <PatientProvider>
-            <PatientHeader id={id} />
-            {children}
-        </PatientProvider>
+        <Fragment>
+            <PatientProvider>
+                <PatientHeader id={id} />
+                {children}
+            </PatientProvider>
+        </Fragment>
     );
 };
 

@@ -11,16 +11,18 @@ const CalenderHeader = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className={`flex h-screen pt-14 ${inter.className} `}>
             <div className="flex flex-col w-full border border-l-0 border-t-0 dark:bg-[var(--sidebar-accent)] dark:border-slate-800">
-                <div className="flex p-4 justify-between items-center bg-[var(--sidebar-background)] ">
-                    <div className="flex items-center font-medium">
+                <div className="flex p-4 justify-between items-center bg-[var(--sidebar-background)] flex-col sm:flex-row ">
+                    <div className="flex w-full items-center justify-start  mb-4 sm:mb-0">
                         <SwitchMonth />
-                        <p className="mx-1">{currDate.getFullYear()}</p>
+                        <p className="mx-1 font-medium">{currDate.getFullYear()}</p>
                     </div>
-                    <div className="flex">
-                        <SwitchDay />
-                        <FadeMenu />
+                    <div className="flex w-full items-center justify-between sm:justify-end">
+                        <div className="flex">
+                            <SwitchDay />
+                            <FadeMenu />
+                        </div>
                         <div className="ml-8 border-l pl-4">
-                            <AppointmentCreationButton />
+                            <AppointmentCreationButton patientState={false} />
                         </div>
                     </div>
                 </div>

@@ -61,11 +61,11 @@ const JsonUploader = (props: CustomFileUploaderProps<any[]>) => {
             maxCount={props.maxCount}
             onRemove={handleRemove}
         >
-            <p className="ant-upload-drag-icon">
+            <p className="ant-upload-drag-icon ">
                 <InboxOutlined />
             </p>
-            <p className="ant-upload-text">Click or drag file to this area to upload</p>
-            <p className="ant-upload-hint">Allowed Types JSON/CSV Only</p>
+            <p className="dark:text-slate-50">Click or drag file to this area to upload</p>
+            <p className="dark:text-slate-50">Allowed Types JSON/CSV Only</p>
         </Dragger>
     );
 };

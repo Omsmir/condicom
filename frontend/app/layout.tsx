@@ -13,6 +13,7 @@ import 'primeicons/primeicons.css';
 import './globals.css';
 import { getServerSession } from 'next-auth';
 import { authOptions } from './api/auth/[...nextauth]/route';
+import ReduxProvider from '@/components/store/reduxProvider';
 
 export const metadata: Metadata = {
     title: 'Sign in',
@@ -26,24 +27,28 @@ export default async function RootLayout({
 }>) {
     const session = await getServerSession(authOptions);
     return (
-        <html
-            lang="en"
-            suppressHydrationWarning
-        >
+        <html lang="en">
             <body className={`min-h-screen ${poppins.className}`}>
-                <ThemeProvider>
-                    <QueryProvider>
-                        <AuthHolder session={session}>
-                            <AuthProvider>
-                                <PrimeReactProvider>
-                                    <CalenderProvider>
-                                        <DashboardProvider>{children}</DashboardProvider>
-                                    </CalenderProvider>
-                                </PrimeReactProvider>
-                            </AuthProvider>
-                        </AuthHolder>
-                    </QueryProvider>
-                </ThemeProvider>
+                <ReduxProvider>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <QueryProvider>
+                            <AuthHolder session={session}>
+                                <AuthProvider>
+                                    <PrimeReactProvider>
+                                        <CalenderProvider>
+                                            <DashboardProvider>{children}</DashboardProvider>
+                                        </CalenderProvider>
+                                    </PrimeReactProvider>
+                                </AuthProvider>
+                            </AuthHolder>
+                        </QueryProvider>
+                    </ThemeProvider>
+                </ReduxProvider>
             </body>
         </html>
     );

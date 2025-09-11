@@ -19,11 +19,12 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Pagination from './Pagination';
 import UpperTableEvents from './UpperTableEvents';
 import dynamic from 'next/dynamic';
-import { config } from '@/config';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { setTotalPages } from '../store/slices/PatientsSlicer';
 const DynamicStats = dynamic(() => import('./Stats'));
 interface DataTableProps<TData extends { _id: string }, TValue> {
     hiddenColumns?: ColumnDef<TData, TValue>[];
@@ -33,9 +34,10 @@ interface DataTableProps<TData extends { _id: string }, TValue> {
     breadCrumbString?: string;
     StatsIcon?: React.ReactNode;
     message?: string;
+    totalPages:number
 }
 
-export function DataTable<TData extends { _id: string}, TValue>({
+export function DataTable<TData extends { _id: string }, TValue>({
     columns,
     data,
     renderSwitchState,
@@ -43,11 +45,16 @@ export function DataTable<TData extends { _id: string}, TValue>({
     StatsIcon,
     message,
     hiddenColumns,
+    totalPages 
 }: DataTableProps<TData, TValue>) {
+    const dispatch = useAppDispatch()
+    
+    const { totalPages:tp } = useAppSelector((state) => state.pagination)
     const [pagination, setPagination] = useState({
         pageIndex: 0,
-        pageSize: 12,
+        pageSize: 15,
     });
+
     const [sorting, setSorting] = useState<SortingState>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -56,6 +63,7 @@ export function DataTable<TData extends { _id: string}, TValue>({
     const table = useReactTable({
         data,
         columns,
+        pageCount: Math.ceil(tp/ pagination.pageSize),
         state: { pagination, sorting, globalFilter, columnFilters, expanded },
         onPaginationChange: setPagination,
         getCoreRowModel: getCoreRowModel(),
@@ -72,7 +80,6 @@ export function DataTable<TData extends { _id: string}, TValue>({
     const selectedRows = table.getFilteredSelectedRowModel().rows;
     const selectedData = selectedRows.map(row => row.original._id as any);
 
-
     // const deselecteData = table.deselectRows // Removed as 'deselectRows' does not exist
     // Deselect all rows
     const deselectAllRows = () => {
@@ -81,6 +88,11 @@ export function DataTable<TData extends { _id: string}, TValue>({
 
     // const allRows = table.getCoreRowModel().rows
     // const allSelectedRows = allRows.map((row) => row.original._id)
+  
+
+    useEffect(() => {
+        dispatch(setTotalPages(totalPages))
+    },[totalPages])
     return (
         <div className="pt-14 min-h-screen w-full px-2 sm:px-0">
             {/* Table Wrapper */}
@@ -88,7 +100,7 @@ export function DataTable<TData extends { _id: string}, TValue>({
                 <DynamicStats
                     StatsSection={breadCrumbString}
                     StatsIcon={StatsIcon}
-                    data={data}
+                    totalDocuments={tp}
                     selectedData={selectedData}
                 />
             </div>
@@ -105,111 +117,108 @@ export function DataTable<TData extends { _id: string}, TValue>({
             />
 
             {/* Table Container */}
-            <div className="rounded-md border border-l-0 border-[var(--sidebar-background)] max-h-[625px] overflow-x-auto overflow-y-scroll">
-                    <Table>
-                        <TableHeader className=" bg-[var(--sidebar-background)]">
-                            {table.getHeaderGroups().map(headerGroup => (
-                                <TableRow key={headerGroup.id}>
-                                    {headerGroup.headers.map(header => (
-                                        <TableHead
-                                            key={header.id}
-                                            className="text-[12px] px-2 whitespace-nowrap "
-                                        >
-                                            {header.isPlaceholder
-                                                ? null
-                                                : flexRender(
-                                                      header.column.columnDef.header,
-                                                      header.getContext()
-                                                  )}
-                                        </TableHead>
-                                    ))}
-                                </TableRow>
-                            ))}
-                        </TableHeader>
-                        <TableBody>
-                            {table?.getRowModel()?.rows?.length ? (
-                                table.getRowModel().rows.map(row => (
-                                    <React.Fragment key={row.id}>
-                                        {/* Main Table Row */}
-                                        <TableRow
-                                            data-state={row.getIsSelected() && 'selected'}
-                                            className="bg-[var(--sidebar-background)] hover:bg-slate-200 dark:border-[var(--sidebar-accent)] dark:hover:bg-[var(--sidebar-accent)] cursor-pointer"
-                                            onClick={() => row.toggleExpanded()}
-                                        >
-                                            {row.getVisibleCells().map(cell => (
-                                                <TableCell
-                                                    key={cell.id}
-                                                    className="p-2 text-[12px] whitespace-nowrap"
-                                                >
-                                                    {flexRender(
-                                                        cell.column.columnDef.cell,
-                                                        cell.getContext()
-                                                    )}
-                                                </TableCell>
-                                            ))}
-                                        </TableRow>
-
-                                        {row.getIsExpanded() && hiddenColumns && (
-                                            <React.Fragment>
-                                                <TableRow
-                                                    key="table-header"
-                                                    className="bg-[var(--sidebar-background)]"
-                                                >
-                                                    {hiddenColumns?.map((column, index) => (
-                                                        <TableHead
-                                                            key={`header-${column.id}`}
-                                                            className="text-[12px] px-2 whitespace-nowrap"
-                                                        >
-                                                            {typeof column.header === 'function'
-                                                                ? column.header({} as any)
-                                                                : column.header}
-                                                        </TableHead>
-                                                    ))}
-                                                </TableRow>
-                                                <TableRow
-                                                    key="table-cell"
-                                                    className="flex-1"
-                                                >
-                                                    {row.getVisibleCells().map(cell => {
-                                                        const hiddenColumnsFilter =
-                                                            hiddenColumns.map(
-                                                                (col: any) => col.accessorKey
-                                                            );
-                                                        if (
-                                                            hiddenColumnsFilter.includes(
-                                                                cell.column.id
-                                                            )
-                                                        ) {
-                                                            return (
-                                                                <TableCell
-                                                                    key={cell.id}
-                                                                    className="p-2 text-[12px] whitespace-nowrap"
-                                                                >
-                                                                    {flexRender(
-                                                                        cell.column.columnDef.cell,
-                                                                        cell.getContext()
-                                                                    )}
-                                                                </TableCell>
-                                                            );
-                                                        }
-                                                    })}
-                                                </TableRow>
-                                            </React.Fragment>
-                                        )}
-                                    </React.Fragment>
-                                ))
-                            ) : (
-                                <TableRow>
-                                    <TableCell
-                                        colSpan={columns.length}
-                                        className="h-24 text-center"
+            <div className="rounded-md border border-l-0 border-[var(--sidebar-background)] max-h-[700px] overflow-x-auto overflow-y-scroll">
+                <Table>
+                    <TableHeader className=" bg-[var(--sidebar-background)]">
+                        {table.getHeaderGroups().map(headerGroup => (
+                            <TableRow key={headerGroup.id}>
+                                {headerGroup.headers.map(header => (
+                                    <TableHead
+                                        key={header.id}
+                                        className="text-[12px] px-2 whitespace-nowrap "
                                     >
-                                        {message ?? 'no data'}
-                                    </TableCell>
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
+                                        {header.isPlaceholder
+                                            ? null
+                                            : flexRender(
+                                                  header.column.columnDef.header,
+                                                  header.getContext()
+                                              )}
+                                    </TableHead>
+                                ))}
+                            </TableRow>
+                        ))}
+                    </TableHeader>
+                    <TableBody>
+                        {table?.getRowModel()?.rows?.length ? (
+                            table.getRowModel().rows.map(row => (
+                                <React.Fragment key={row.id}>
+                                    {/* Main Table Row */}
+                                    <TableRow
+                                        data-state={row.getIsSelected() && 'selected'}
+                                        className="bg-[var(--sidebar-background)] hover:bg-slate-200 dark:border-[var(--sidebar-accent)] dark:hover:bg-[var(--sidebar-accent)] cursor-pointer"
+                                        onClick={() => row.toggleExpanded()}
+                                    >
+                                        {row.getVisibleCells().map(cell => (
+                                            <TableCell
+                                                key={cell.id}
+                                                className="p-2 text-[12px] whitespace-nowrap"
+                                            >
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext()
+                                                )}
+                                            </TableCell>
+                                        ))}
+                                    </TableRow>
+
+                                    {row.getIsExpanded() && hiddenColumns && (
+                                        <React.Fragment>
+                                            <TableRow
+                                                key="table-header"
+                                                className="bg-[var(--sidebar-background)]"
+                                            >
+                                                {hiddenColumns?.map((column, index) => (
+                                                    <TableHead
+                                                        key={`header-${column.id}`}
+                                                        className="text-[12px] px-2 whitespace-nowrap"
+                                                    >
+                                                        {typeof column.header === 'function'
+                                                            ? column.header({} as any)
+                                                            : column.header}
+                                                    </TableHead>
+                                                ))}
+                                            </TableRow>
+                                            <TableRow
+                                                key="table-cell"
+                                                className="flex-1"
+                                            >
+                                                {row.getVisibleCells().map(cell => {
+                                                    const hiddenColumnsFilter = hiddenColumns.map(
+                                                        (col: any) => col.accessorKey
+                                                    );
+                                                    if (
+                                                        hiddenColumnsFilter.includes(cell.column.id)
+                                                    ) {
+                                                        return (
+                                                            <TableCell
+                                                                key={cell.id}
+                                                                className="p-2 text-[12px] whitespace-nowrap"
+                                                            >
+                                                                {flexRender(
+                                                                    cell.column.columnDef.cell,
+                                                                    cell.getContext()
+                                                                )}
+                                                            </TableCell>
+                                                        );
+                                                    }
+                                                })}
+                                            </TableRow>
+                                        </React.Fragment>
+                                    )}
+                                </React.Fragment>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell
+                                    colSpan={columns.length}
+                                    className="h-24 text-center"
+                                >
+                                    {message ?? 'no data'}
+                                </TableCell>
+                            </TableRow>
+                        )}
+                    </TableBody>
+                </Table>
             </div>
             {/* Pagination */}
             <Pagination

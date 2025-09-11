@@ -5,35 +5,52 @@ import { validate } from '../middleware/validateResource';
 import {
     deletePatientSchema,
     deletePatientsSchema,
+    getPatientByEmailSchema,
     getPatientSchema,
+    getPatientsForPeriodSchema,
     patientSchema,
     PatientsSchema,
 } from '../schemas/patient.schema';
 
-import { Routes } from '@/interfaces/routes.interface';
 import PatientController from '@/controllers/patients.controller';
+import { BaseRoute } from './base.route';
 
-class PatientRoutes implements Routes {
-    public path = '/patient';
-    public router = express.Router();
-
+class PatientRoutes extends BaseRoute {
     constructor(private patientController: PatientController) {
+        super('/patients');
         this.initializeRoutes();
     }
 
-    private initializeRoutes() {
+    protected initializeRoutes() {
         this.router.post(
             `${this.path}/create`,
             upload.single('profileImg'),
             validate(patientSchema),
             this.patientController.createPatientHandler
         );
-        this.router.get(`${this.path}`, this.patientController.getAllPatientsHandler);
+
+        this.router.get(
+            `${this.path}`,
+            upload.none(),
+            validate(getPatientsForPeriodSchema),
+            this.patientController.getAllPatientsHandler
+        );
+        this.router.get(
+            `${this.path}/period`,
+            validate(getPatientsForPeriodSchema),
+            this.patientController.getAllPatientsHandler
+        );
+        this.router.get(
+            `${this.path}/email`,
+            validate(getPatientByEmailSchema),
+            this.patientController.getPatientByEmail
+        );
         this.router.get(
             `${this.path}/:id`,
             validate(getPatientSchema),
             this.patientController.getPatientHandler
         );
+
         this.router.delete(
             `${this.path}/:id`,
             validate(deletePatientSchema),

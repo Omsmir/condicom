@@ -1,4 +1,3 @@
-import { Router } from 'express';
 import upload from '../middleware/multer';
 import { validate } from '../middleware/validateResource';
 
@@ -8,18 +7,16 @@ import {
     updateNotificationSchema,
 } from '../schemas/notifications.schema';
 
-import { Routes } from '@/interfaces/routes.interface';
 import NotificationController from '@/controllers/notifications.controller';
+import { BaseRoute } from './base.route';
 
-class NotificationsRoutes implements Routes {
-    public path = '/notifications';
-    public router = Router();
-
+class NotificationsRoutes extends BaseRoute {
     constructor(private notificationController: NotificationController) {
+        super('/notifications');
         this.initializeRoutes();
     }
 
-    private initializeRoutes() {
+    protected initializeRoutes() {
         this.router.post(
             `${this.path}/create`,
             upload.none(),
@@ -40,7 +37,10 @@ class NotificationsRoutes implements Routes {
             this.notificationController.updateNotificationSeenHandler
         );
 
-        this.router.post(`${this.path}/send`, this.notificationController.sendEmailVerificationTest);
+        this.router.post(
+            `${this.path}/send`,
+            this.notificationController.sendEmailVerificationTest
+        );
     }
 }
 

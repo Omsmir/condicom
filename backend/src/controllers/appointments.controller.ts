@@ -3,88 +3,108 @@ import {
     AppointmentParamInterface,
     AppointmentSchemaInterface,
     AppointmentUpdateInterface,
+    GetAppointmentByEmailInterface,
 } from '../schemas/appointment.schema';
 import AppointmentService from '../services/appointments.service';
-import { isBefore, isEqual, isSameDay } from 'date-fns';
 import UserService from '../services/user.service';
 import { BaseController } from './base.controller';
 import HttpException from '@/exceptions/httpException';
+import PatientService from '@/services/patient.service';
+import { sortBy } from 'lodash';
+import { isSameDay } from 'date-fns';
+import { toZonedTime } from 'date-fns-tz';
+import { IsSameDayWithTimeZone } from '@/utils/backevents';
 
 class AppointmentController extends BaseController {
     private appointmentService: AppointmentService;
     private userService: UserService;
+    private patientService: PatientService;
     constructor() {
         super();
         this.appointmentService = new AppointmentService();
         this.userService = new UserService();
+        this.patientService = new PatientService();
     }
     public createAppointmentHandler = async (
-        req: Request<{}, {}, AppointmentSchemaInterface['body']>,
+        req: Request<
+            {},
+            {},
+            AppointmentSchemaInterface['body'],
+            AppointmentSchemaInterface['query']
+        >,
         res: Response
     ) => {
         try {
             const userId = req.body.userId;
+            const patientEmail = req.body.patientEmail;
+            const patientState = req.query.patientState
 
-            const startDate = req.body.startDate;
-            const endDate = req.body.endDate;
-            const reservedDates = await this.appointmentService.findUserAppointments({
-                user: userId,
+            const startDate = new Date(req.body.startDate);
+            const endDate = new Date(req.body.endDate);
+
+
+            const query = {
                 $or: [
                     {
-                        // Case 1: New startDate falls within an existing range
+                        // New startDate inside an existing range
                         startDate: { $lt: startDate },
                         endDate: { $gt: startDate },
                     },
                     {
-                        // Case 2: New endDate falls within an existing range
+                        // New endDate inside an existing range
                         startDate: { $lt: endDate },
                         endDate: { $gt: endDate },
                     },
                     {
-                        // Case 3: The new range entirely overlaps an existing range
+                        // New range engulfs an existing one
                         startDate: { $gte: startDate },
                         endDate: { $lte: endDate },
                     },
                 ],
-            });
-
-            const reservedFrontDates = () => {
-                let datesArrayState = false;
-                if (
-                    isBefore(endDate, startDate) ||
-                    isEqual(endDate, startDate) ||
-                    !isSameDay(endDate, startDate)
-                ) {
-                    datesArrayState = true;
-                    if (isBefore(endDate, startDate)) {
-                        return {
-                            datesArrayState,
-                            msg: 'The end date is before the start date',
-                        };
-                    }
-
-                    if (isEqual(startDate, endDate)) {
-                        return {
-                            datesArrayState,
-                            msg: 'The start and end dates are the same',
-                        };
-                    }
-                    if (!isSameDay(endDate, startDate)) {
-                        return {
-                            datesArrayState,
-                            msg: 'The Dates are not the on the same day',
-                        };
-                    }
-                }
-
-                return { datesArrayState };
             };
 
-            if (reservedFrontDates().datesArrayState) {
-                throw new HttpException(400, reservedFrontDates().msg as string);
+            const generalReservedDates = await this.appointmentService.findUserAppointments({
+                user: userId,
+                ...query,
+            });
+
+
+            if (patientEmail) {
+                const patient = await this.patientService.getPatient({ email: patientEmail });
+
+                if (!patient) {
+                    throw new HttpException(404, 'Patient with the provided email is not found');
+                }
+
+                const patientReservedDates = await this.appointmentService.findUserAppointments({
+                    patientEmail,
+                    ...query,
+                });
+
+                if (patientReservedDates.length > 0) {
+                    throw new HttpException(
+                        404,
+                        'The new appointment conflicts with another appointments for this patient'
+                    );
+                }
             }
 
-            if (reservedDates.length > 0) {
+            const { message, reservedDateState } = await this.appointmentService.checkReservedDates(
+                { startDate, endDate }
+            );
+
+            if (reservedDateState) {
+                throw new HttpException(400, message);
+            }
+
+            if (generalReservedDates && generalReservedDates.length > 0) {
+                if (patientState) {
+                    throw new HttpException(
+                        400,
+                        'The new appointment conflicts with another patient appointment or other.'
+                    );
+                }
+                
                 throw new HttpException(400, 'The new task conflicts with existing appointments.');
             }
 
@@ -118,16 +138,40 @@ class AppointmentController extends BaseController {
                 user: id,
             });
 
+            const sortedAppointments = sortBy(userAppointments, ['startDate']);
+
             if (!userAppointments) {
                 throw new HttpException(404, 'no appointments');
             }
 
-            res.status(200).json({ userAppointments });
+            res.status(200).json({ userAppointments: sortedAppointments });
         } catch (error) {
             this.handleError(res, error);
         }
     };
 
+    public getAppointmentByEmail = async (
+        req: Request<GetAppointmentByEmailInterface['query']>,
+        res: Response
+    ) => {
+        try {
+            const email = req.query.email;
+
+            const appointments = await this.appointmentService.findUserAppointments({
+                patientEmail: email,
+            });
+
+            const sortedAppointments = sortBy(appointments, ['startDate']);
+
+            if (!appointments || appointments.length === 0) {
+                throw new HttpException(404, 'No appointments found for this email');
+            }
+
+            res.status(200).json({ appointments: sortedAppointments });
+        } catch (error) {
+            this.handleError(res, error);
+        }
+    };
     public deleteAppointmentHandler = async (
         req: Request<AppointmentParamInterface['params']>,
         res: Response
@@ -179,6 +223,4 @@ class AppointmentController extends BaseController {
     };
 }
 
-
-
-export default AppointmentController
+export default AppointmentController;

@@ -97,8 +97,8 @@ declare module "next-auth" {
       codeExp?: Date;
       temporalToken?: string;
       mfa_state: boolean;
-      isFullyAuthenicated?: boolean;
-      isPartiallyAuthenicated?: boolean;
+      isFullyAuthenticated?: boolean;
+      isPartiallyAuthenticated?: boolean;
     } & DefaultSession["user"];
   }
 
@@ -113,8 +113,8 @@ declare module "next-auth" {
     temporalToken?: string;
     codeExp?: Date;
     mfa_state: boolean;
-    isFullyAuthenicated?: boolean;
-    isPartiallyAuthenicated?: boolean;
+    isFullyAuthenticated?: boolean;
+    isPartiallyAuthenticated?: boolean;
   }
 }
 
@@ -134,8 +134,8 @@ declare module "next-auth/jwt" {
     codeExp: Date;
     mfa_state: boolean;
     temporalToken?: string;
-    isFullyAuthenicated?: boolean;
-    isPartiallyAuthenicated?: boolean;
+    isFullyAuthenticated?: boolean;
+    isPartiallyAuthenticated?: boolean;
   }
 }
 
@@ -150,6 +150,7 @@ declare interface Appointment {
   user: string;
   completed: boolean;
   createdAt: Date;
+  patientEmail?: string;
 }
 
 declare interface UserAppointments {}
@@ -157,7 +158,9 @@ declare interface UserAppointments {}
 declare interface Appointments {
   userAppointments: Appointment[];
 }
-
+declare interface PatientAppointments {
+  appointments:Appointment[]
+}
 declare module "jspdf" {
   interface jsPDF {
     autoTable: (options: any) => jsPDF;
@@ -287,7 +290,8 @@ declare interface patientToCreate{
 
 
 declare interface PatientsToQuery {
-  Patients: patient[];
+  patients: patient[];
+  totalPages: number;
 }
 
 declare interface PatientToQuery {

@@ -1,4 +1,3 @@
-import { Router } from 'express';
 import upload from '../middleware/multer';
 import { validate } from '../middleware/validateResource';
 import {
@@ -7,18 +6,16 @@ import {
     multipleMedicationSchema,
 } from '../schemas/medication.schema';
 
-import { Routes } from '@/interfaces/routes.interface';
 import MedicationController from '@/controllers/medication.controller';
+import { BaseRoute } from './base.route';
 
-class MedicationRoutes implements Routes {
-    public path = '/medications';
-    public router = Router();
-
-    constructor(private medicationController:MedicationController) {
+class MedicationRoutes extends BaseRoute {
+    constructor(private medicationController: MedicationController) {
+        super('/medications');
         this.initializeRoutes();
     }
 
-    private initializeRoutes() {
+    protected initializeRoutes() {
         this.router.post(
             `${this.path}/create`,
             upload.none(),

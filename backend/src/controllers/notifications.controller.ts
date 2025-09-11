@@ -7,20 +7,25 @@ import {
 import UserService from '../services/user.service';
 import mongoose from 'mongoose';
 import NotificationService from '../services/notifications.service';
-import { assignedNotifications, sendEmail } from '../utils/backevents';
+import { assignedNotifications } from '../utils/backevents';
 import App from '@/app';
-import { createHash } from '@/utils/redis';
 import { DFTOKENTTL } from '@/config';
 import { BaseController } from './base.controller';
 import HttpException from '@/exceptions/httpException';
+import { RedisConnection, RedisServices } from '@/utils/redis';
+import { EmailSubjects, Invoker, SendEmail } from '@/utils/emailUtils';
 
 class NotificationController extends BaseController {
     private notificationService: NotificationService;
     private userService: UserService;
+    private redisService: RedisServices;
+    private invoker: Invoker;
     constructor() {
         super();
         this.notificationService = new NotificationService();
         this.userService = new UserService();
+        this.redisService = new RedisServices(RedisConnection.getInstance().getClient());
+        this.invoker = new Invoker();
     }
 
     public createNotificationHandler = async (
@@ -136,13 +141,14 @@ class NotificationController extends BaseController {
     public sendEmailVerificationTest = async (req: Request, res: Response) => {
         try {
             const unVerifiedUsers = await this.userService.getAllUsers({ verified: false });
+            console.log(unVerifiedUsers);
             const initiator = App.initiator;
 
             if (!unVerifiedUsers || unVerifiedUsers.length < 1) {
                 throw new HttpException(404, 'no unverified users found');
             }
 
-            unVerifiedUsers.map(async user => {
+            for (const user of unVerifiedUsers) {
                 const notification = this.notificationService.systemNotifications(
                     'emailVerification',
                     user
@@ -160,20 +166,26 @@ class NotificationController extends BaseController {
 
                 initiator.emit(`EmailVerification${user._id}`, createdNotification);
 
-                await sendEmail({
-                    to: user.email,
-                    health: 'health',
-                    year: new Date().getFullYear(),
-                    templateName: 'emailVerificationAlert.hbs',
-                });
+                this.invoker.add_invoker(
+                    new SendEmail({
+                        to: user.email,
+                        health: 'health',
+                        year: new Date().getFullYear(),
+                        templateName: 'emailVerificationAlert.hbs',
+                        subject: EmailSubjects.EMAIL_VERIFICATION_ALERT,
+                    })
+                );
                 const HashName = `emailVerificationAlert:${user._id}`;
 
-                await createHash({
+                await this.redisService.createHash({
                     HashName,
                     content: { lastemail: new Date().toISOString() },
                     expire: parseInt(DFTOKENTTL as string) * 24.5,
                 });
-            });
+            }
+
+            this.invoker.run();
+
             res.status(200).json({ message: 'Alert messages sent successfully ' });
         } catch (error) {
             this.handleError(res, error);

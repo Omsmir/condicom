@@ -55,7 +55,14 @@ const DeletePatientsPayload = {
         }),
     }),
     query: z.object({
-        all: z.string({required_error:"query is required"})
+        all: z.string({ required_error: 'query is required' }),
+    }),
+};
+const getPatientPayload = {
+    query: z.object({
+        email: z
+            .string({ message: 'email is required' })
+            .email({ message: 'Invalid email address' }),
     }),
 };
 const payload = {
@@ -88,6 +95,20 @@ const params = {
     }),
 };
 
+const GetPatientsForSpecificPeriodPayload = {
+     body:z.object({
+        filters:z.array(z.object({
+            columnId:z.string(),
+            value:z.any()
+        }))
+    }),
+    query: z.object({
+        date: z.string().optional(),
+        pageSize: z.string().optional(),
+        pageIndex: z.string().optional(),
+    })
+   
+};
 export const patientSchema = z.object({
     ...payload,
 });
@@ -96,6 +117,9 @@ export const getPatientSchema = z.object({
     ...params,
 });
 
+export const getPatientByEmailSchema = z.object({
+    ...getPatientPayload,
+});
 export const deletePatientSchema = z.object({
     ...params,
 });
@@ -108,8 +132,15 @@ export const deletePatientsSchema = z.object({
     ...params,
     ...DeletePatientsPayload,
 });
+
+export const getPatientsForPeriodSchema = z.object({
+    ...GetPatientsForSpecificPeriodPayload,
+});
+
 export type patientSchemaInterface = z.infer<typeof patientSchema>;
 export type GetpatientSchemaInterface = z.infer<typeof getPatientSchema>;
 export type DeletepatientSchemaInterface = z.infer<typeof deletePatientSchema>;
 export type PatientsSchemaInterface = z.infer<typeof PatientsSchema>;
 export type DeletePatientsSchemaInterface = z.infer<typeof deletePatientsSchema>;
+export type GetPatientByEmailSchemaInterface = z.infer<typeof getPatientByEmailSchema>;
+export type GetPatientsForPeriodSchemaInterface = z.infer<typeof getPatientsForPeriodSchema>;

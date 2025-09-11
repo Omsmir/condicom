@@ -1,5 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
 import { UserDocument } from './user.model';
+import { PatientDocument } from './patient.model';
 
 export interface AppointmentInput {
     user: UserDocument['_id'];
@@ -10,7 +11,11 @@ export interface AppointmentInput {
     interval: string;
     color: string;
     completed?: boolean;
+    patientEmail?: PatientDocument["email"]; 
 }
+
+
+export type AppointmentInputs = AppointmentInput[]
 
 export interface AppointmentDocument extends AppointmentInput, Document {
     createdAt: Date;
@@ -27,6 +32,7 @@ const AppointmentSchema = new Schema<AppointmentDocument>(
         interval: { type: String, required: true },
         color: { type: String, required: true },
         completed: { type: Boolean, default: false },
+        patientEmail: { type: String, required: false }, 
     },
     { timestamps: true }
 );

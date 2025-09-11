@@ -119,6 +119,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                         <Input
                             placeholder={props.placeholder}
                             {...field}
+                            disabled={props.disabled}
                             className="shad-input border-0"
                         />
                     </FormControl>
@@ -136,6 +137,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                             placeholder={props.placeholder}
                             {...field}
                             type={props.type}
+                            disabled={props.disabled}
                             className="shad-input border-0"
                         />
                     </FormControl>
@@ -170,6 +172,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                             {...field}
                             min={props.min}
                             max={props.max}
+                            disabled={props.disabled}
                             className="shad-input flex-1 border-0 px-4 focus:outline-none"
                         />
                     </FormControl>
@@ -183,6 +186,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                     <Textarea
                         placeholder={props.placeholder}
                         {...field}
+                        disabled={props.disabled}
                         className="shad-textArea border-0"
                     />
                 </FormControl>
@@ -193,6 +197,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                     <Select
                         onValueChange={field.onChange}
                         value={field.value}
+                        disabled={props.disabled}
                     >
                         <FormControl>
                             <SelectTrigger className="shad-select-trigger text-slate-500">
@@ -236,6 +241,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                         withCountryCallingCode
                         value={field.value}
                         onChange={field.onChange}
+                        disabled={props.disabled}
                         international
                         className="input-phone "
                     />
@@ -251,6 +257,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                             searchable
                             searchPlaceholder={props.placeholder}
                             optionsListMaxHeight={150}
+                            disabled={props.disabled}
                             classes={classes}
                             fullWidth
                         />
@@ -283,6 +290,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                         <Checkbox
                             id={props.name}
                             onCheckedChange={field.onChange}
+                            disabled={props.disabled}
                             checked={field.value}
                         />
                     </div>

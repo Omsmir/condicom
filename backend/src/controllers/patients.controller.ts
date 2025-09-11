@@ -2,7 +2,9 @@ import { Response, Request } from 'express';
 import {
     DeletepatientSchemaInterface,
     DeletePatientsSchemaInterface,
+    GetPatientByEmailSchemaInterface,
     GetpatientSchemaInterface,
+    GetPatientsForPeriodSchemaInterface,
     patientSchemaInterface,
     PatientsSchemaInterface,
 } from '../schemas/patient.schema';
@@ -12,14 +14,18 @@ import UserService from '@/services/user.service';
 import { BaseController } from './base.controller';
 import PatientService from '@/services/patient.service';
 import HttpException from '@/exceptions/httpException';
-
+import AppointmentService from '@/services/appointments.service';
+import { subDays } from 'date-fns';
+import { PatientDocument, PatientModel } from '@/models/patient.model';
 class PatientController extends BaseController {
     private patientService: PatientService;
     private userService: UserService;
+    private appointmentService: AppointmentService;
     constructor() {
         super();
         this.patientService = new PatientService();
         this.userService = new UserService();
+        this.appointmentService = new AppointmentService();
     }
 
     public createPatientHandler = async (
@@ -86,16 +92,61 @@ class PatientController extends BaseController {
             this.handleError(res, error);
         }
     };
-
-    public getAllPatientsHandler = async (req: Request, res: Response) => {
+    public getAllPatientsHandler = async (
+        req: Request<
+            {},
+            {},
+            GetPatientsForPeriodSchemaInterface['body'],
+            GetPatientsForPeriodSchemaInterface['query']
+        >,
+        res: Response
+    ) => {
         try {
-            const Patients = (await this.patientService.getAllPatients()).sort().reverse();
+            const date = req.query.date;
+            const pageSize = req.query.pageSize as string;
+            const pageIndex = req.query.pageIndex as string;
+            const filters = req.body.filters;
+            if (date) {
+                const validDate = subDays(new Date(), parseInt(date));
 
-            if (!Patients) {
+                // console.log(validDate);
+
+                const patientCount = await this.patientService.getPatientsCount({
+                    createdAt: { $gte: validDate },
+                });
+
+                res.status(200).json({ message: 'success', patientCount });
+                return;
+            }
+
+            if (filters) {
+                let patients;
+                for (const filter of filters) {
+                    patients = await this.patientService.getAllPatients({
+                        [filter.columnId]: filter.value,
+                    });
+                }
+                if (!patients || patients.length < 1) {
+                    throw new HttpException(404, 'no patients');
+                }
+                
+
+                res.status(200).json({ message: 'success', patients ,totalPages:patients.length});
+                return;
+            }
+            if (!pageSize || !pageIndex) {
+                throw new HttpException(400, 'Invalid page size or index');
+            }
+            const patients = await PatientModel.find({})
+                .skip(parseInt(pageSize) * parseInt(pageIndex))
+                .limit(parseInt(pageSize));
+
+            const patientCount = await this.patientService.getPatientsCount();
+            if (!patients) {
                 throw new HttpException(404, "patients doesn't exists");
             }
 
-            res.status(200).json({ message: 'success', Patients });
+            res.status(200).json({ message: 'success', patients, totalPages: patientCount });
         } catch (error) {
             this.handleError(res, error);
         }
@@ -107,6 +158,7 @@ class PatientController extends BaseController {
     ) => {
         try {
             const id = req.params.id;
+
             const patient = await this.patientService.getPatient({ id: id });
 
             if (!patient) {
@@ -131,12 +183,39 @@ class PatientController extends BaseController {
                 throw new HttpException(404, "patient doesn't exists");
             }
 
+            const appointments = await this.appointmentService.findUserAppointments({
+                patientEmail: patient.email,
+            });
+
+            if (appointments) {
+                await this.appointmentService.deleteMultipleAppointment({
+                    patientEmail: patient.email,
+                });
+            }
             await deleteImage(patient.profileImg?.path);
 
             await this.patientService.deletePatient({ id: id });
             res.status(200).json({
                 message: 'patient deleted successfully',
             });
+        } catch (error) {
+            this.handleError(res, error);
+        }
+    };
+
+    public getPatientByEmail = async (
+        req: Request<GetPatientByEmailSchemaInterface['query']>,
+        res: Response
+    ) => {
+        try {
+            const email = req.query.email;
+
+            const patient = await this.patientService.getPatient({ email });
+
+            if (!patient) {
+                throw new HttpException(404, "patient doesn't exist");
+            }
+            res.status(200).json({ patient });
         } catch (error) {
             this.handleError(res, error);
         }
@@ -174,6 +253,28 @@ class PatientController extends BaseController {
                 });
                 return;
             }
+
+            for (const id of ids) {
+                const patient = await this.patientService.getPatient({ _id: id });
+
+                if (!patient) {
+                    throw new HttpException(
+                        400,
+                        `patient with id: ${id} is not found interfering with the deletion process`
+                    );
+                }
+
+                const patientApppointments = await this.appointmentService.findUserAppointments({
+                    patientEmail: patient.email,
+                });
+
+                if (patientApppointments) {
+                    await this.appointmentService.deleteMultipleAppointment({
+                        patientEmail: patient.email,
+                    });
+                }
+            }
+
             const deletedPatients = await this.patientService.deleteMultiplePatients(ids);
 
             if (!deletedPatients || deletedPatients.deletedCount === 0) {

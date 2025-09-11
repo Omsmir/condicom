@@ -105,16 +105,18 @@ const UpperTableEvents = <TData, TValue>({
                     </DropdownMenuContent>
                 </DropdownMenu>
                 <ButtonState />
-                <DeleteHandler
-                    apiString={`multiple-${dataName}`}
-                    id={session?.user.id}
-                    messagePopup={`do you want to delete the selected ${dataName}`}
-                    disabled={!isSelectedData}
-                    selectedData={selectedData}
-                    table={table}
-                >
-                    <Trash className="text-red-800" />
-                </DeleteHandler>
+                {session?.user.role === 'Admin' && (
+                    <DeleteHandler
+                        apiString={`multiple-${dataName}`}
+                        id={session?.user.id}
+                        messagePopup={`do you want to delete the selected ${dataName}`}
+                        disabled={!isSelectedData}
+                        selectedData={selectedData}
+                        table={table}
+                    >
+                        <Trash className="text-red-800" />
+                    </DeleteHandler>
+                )}
             </div>
         </div>
     );

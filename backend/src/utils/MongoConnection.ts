@@ -20,14 +20,31 @@ class MongoConnection {
         }
         return MongoConnection.instance;
     }
+
+    static async CloseConnection() {
+        if (MongoConnection.instance) {
+            await mongoose.connection
+                .close()
+                .then(() => logger.info('Mongodb connection closed successfully'))
+                .catch((error: any) =>
+                    logger.error(`Error closing MongoDB connection: ${error.message}`)
+                );
+        }
+    }
     private async initializeConnection() {
         try {
-            const connection = await mongoose.connect(MongoConnection.MONGO_DB_URI, {
-                user: MONGO_AUTH_USER,
-                pass: MONGO_PASSWD,
-                dbName: MongoConnection.MONGO_DB_NAME,
-            });
-            logger.info(`Mongodb is connected to database:${connection.connection.name}`);
+            await mongoose
+                .connect(MongoConnection.MONGO_DB_URI, {
+                    user: MONGO_AUTH_USER,
+                    pass: MONGO_PASSWD,
+                    dbName: MongoConnection.MONGO_DB_NAME,
+                })
+                .then(conn =>
+                    logger.info(`Mongodb is connected to database:${conn.connection.name}`)
+                )
+                .catch((error: any) => {
+                    logger.error(`Error connecting to MongoDB: ${error.message}`);
+                });
         } catch (error: any) {
             logger.error(error.message);
             throw new Error(error.message);

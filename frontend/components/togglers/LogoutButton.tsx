@@ -5,8 +5,10 @@ import Swal from 'sweetalert2';
 import { signOut, useSession } from 'next-auth/react';
 import { DashboardHook } from '../context/Dashboardprovider';
 import { useLogout } from '@/actions/mutation';
-
-const LogoutButton = (props: prop) => {
+interface LogoutButtonProps {
+  className?: string;
+}
+const LogoutButton = ({className}:LogoutButtonProps) => {
     const { setTheme, api } = DashboardHook();
     const { data: session } = useSession();
     const logout = useLogout(api, session?.user.id);
@@ -38,7 +40,7 @@ const LogoutButton = (props: prop) => {
     };
     return (
         <Button
-            className={props.className}
+            className={className}
             onClick={handelLogOut}
         >
             Sign Out

@@ -43,7 +43,6 @@ const ForgetPassword = ({ state }: { state: boolean }) => {
             }
         });
         try {
-            console.log('formData', formData);
             SendVerificationEmail.mutate(formData, {
                 onSuccess: async () => {
                     form.reset();

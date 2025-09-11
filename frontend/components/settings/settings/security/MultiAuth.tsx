@@ -21,6 +21,7 @@ const MutliAuth = () => {
 
     const form = useForm();
 
+    
     const onSubmit = async () => {
         const formData = new FormData();
 

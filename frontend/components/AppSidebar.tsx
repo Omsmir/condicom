@@ -33,18 +33,18 @@ const AppSidebar = () => {
                 >
                     <span className={`flex justify-start items-center cursor-pointer `}>
                         <Image
-                            src="/assets/icons/mark.svg"
+                            src="/assets/logo.png"
                             alt="Logo"
-                            width={25}
-                            height={25}
-                            className="mr-1 min-w-[25px] min-h-[25px]"
+                            width={35}
+                            height={35}
+                            className="min-w-[25px] min-h-[25px]"
                         />
                         <h1
                             className={clsx(`text-xl font-bold capitalize ${inter.className}`, {
                                 hidden: !open && !isMobile,
                             })}
                         >
-                            conduktor
+                            condicom
                         </h1>
                     </span>
                 </SidebarHeader>

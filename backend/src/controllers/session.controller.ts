@@ -10,24 +10,27 @@ import {
     TEMPORALTOKENTTL,
 } from 'config';
 import CodeService from '../services/code.service';
-import { checkHash, createHash, DelHash } from '@/utils/redis';
-import { generateOtp, sendEmail } from '@/utils/backevents';
+import { generateOtp } from '@/utils/backevents';
 import { CheckOtpInterface } from '@/schemas/user.schema';
 import HttpException from '@/exceptions/httpException';
 import { BaseController } from './base.controller';
 import SessionService from '@/services/session.service';
+import { RedisConnection, RedisServices } from '@/utils/redis';
+import { EmailSubjects, SendEmail } from '@/utils/emailUtils';
 
 class SessionController extends BaseController {
     private userService: UserService;
     private sessionService: SessionService;
     private codeService: CodeService;
     private static FRONTEND_URL: string | undefined;
+    private redisService: RedisServices
     constructor() {
         super();
         this.userService = new UserService();
         this.sessionService = new SessionService();
         this.codeService = new CodeService();
-        SessionController.FRONTEND_URL = NODE_ENV === 'development' ? FRONTEND_URI_DEV : '';
+        this.redisService = new RedisServices(RedisConnection.getInstance().getClient());
+        SessionController.FRONTEND_URL = FRONTEND_URI_DEV;
     }
 
     public login = async (req: Request<{}, {}, SessionSchemaInterface['body']>, res: Response) => {
@@ -61,9 +64,9 @@ class SessionController extends BaseController {
             if (user.mfa_state) {
                 const hashName = `mfa:${user._id}`;
 
-                const existingToken = await checkHash(`${hashName}:token`, 'token');
+                const existingToken = await this.redisService.checkHash(`${hashName}:token`, 'token');
 
-                const existingOtp = await checkHash(`${hashName}:otp`, 'otp');
+                const existingOtp = await this.redisService.checkHash(`${hashName}:otp`, 'otp');
 
                 if (existingToken && existingOtp) {
                     res.status(200).json({
@@ -76,7 +79,7 @@ class SessionController extends BaseController {
                 if (existingToken) {
                     const otp = generateOtp({ length: 8, type: 'number' });
 
-                    await createHash({
+                    await this.redisService.createHash({
                         HashName: `${hashName}:otp`,
                         content: { otp },
                         expire: parseInt(TEMPORALTOKENTTL as string),
@@ -84,14 +87,16 @@ class SessionController extends BaseController {
 
                     const link = `${SessionController.FRONTEND_URL}/multi-auth-verification/${existingToken}`;
 
-                    await sendEmail({
+                    await new SendEmail({
                         to: user.email,
                         link,
                         templateName: 'multiAuthOtp.hbs',
                         health: 'HealthCare',
                         year: new Date().getFullYear(),
                         otp,
-                    });
+                        subject: EmailSubjects.MFA_STEP_OTP,
+                    }).execute();
+
                     res.status(200).json({
                         message: 'An otp has been sent to your email',
                         temporalToken: existingToken,
@@ -102,7 +107,7 @@ class SessionController extends BaseController {
 
                 const updatedUser = await this.userService.updateUser(
                     { _id: user._id },
-                    { isPartiallyAuthenicated: true },
+                    { isPartiallyAuthenticated: true },
                     { runValidators: true, new: true }
                 );
                 if (!updatedUser) {
@@ -115,13 +120,13 @@ class SessionController extends BaseController {
                     role: user.role,
                     profileState: user.profileState,
                     HashName: `${hashName}`,
-                    isFullyAuthenicated: user.isFullyAuthenicated,
-                    isPartiallyAuthenicated: updatedUser.isPartiallyAuthenicated,
+                    isFullyAuthenticated: user.isFullyAuthenticated,
+                    isPartiallyAuthenticated: updatedUser.isPartiallyAuthenticated,
                 };
                 const token = await signJwt(obj, 'MULTI_AUTH_SECRET', 'HS512', {
                     expiresIn: (parseInt(TEMPORALTOKENTTL as string) * 12) as number,
                 });
-                await createHash({
+                await this.redisService.createHash({
                     HashName: `${hashName}:token`,
                     content: { token },
                     expire: (parseInt(TEMPORALTOKENTTL as string) * 12) as number,
@@ -129,7 +134,7 @@ class SessionController extends BaseController {
 
                 const otp = generateOtp({ length: 8, type: 'number' });
 
-                await createHash({
+                await this.redisService.createHash({
                     HashName: `${hashName}:otp`,
                     content: { otp },
                     expire: parseInt(TEMPORALTOKENTTL as string),
@@ -137,14 +142,15 @@ class SessionController extends BaseController {
 
                 const link = `${SessionController.FRONTEND_URL}/multi-auth-verification/${token}`;
 
-                await sendEmail({
+                await new SendEmail({
                     to: user.email,
                     link,
                     templateName: 'multiAuthOtp.hbs',
                     health: 'HealthCare',
                     year: new Date().getFullYear(),
                     otp,
-                });
+                    subject: EmailSubjects.MFA_STEP_OTP,
+                }).execute();
 
                 res.status(200).json({
                     message: 'mfa is enabled, please verify your code',
@@ -162,7 +168,7 @@ class SessionController extends BaseController {
                     id: user._id,
                     session: session._id,
                     codePlan: code.expiration,
-                    isPartiallyAuthenicated: user.isPartiallyAuthenicated,
+                    isPartiallyAuthenicated: user.isPartiallyAuthenticated,
                 },
                 'accessTokenPrivateKey',
                 'RS256',
@@ -197,9 +203,9 @@ class SessionController extends BaseController {
             }
             const hashName = `mfa:${user?._id}`;
 
-            const existingToken = await checkHash(`${hashName}:token`, 'token');
+            const existingToken = await this.redisService.checkHash(`${hashName}:token`, 'token');
 
-            const existingOtp = await checkHash(`${hashName}:otp`, 'otp');
+            const existingOtp = await this.redisService.checkHash(`${hashName}:otp`, 'otp');
 
             if (!existingToken || !existingOtp) {
                 res.status(404).json({ message: 'token or otp not found', state: false });
@@ -212,14 +218,14 @@ class SessionController extends BaseController {
 
             await this.userService.updateUser(
                 { _id: user._id },
-                { isFullyAuthenicated: true, isPartiallyAuthenicated: false },
+                { isFullyAuthenticated: true, isPartiallyAuthenticated: false },
                 { runValidators: true, new: true }
             );
             await new Promise(resolve => setTimeout(resolve, 1500));
 
-            await DelHash(`${hashName}:token`, 'token');
+            await this.redisService.DelHash(`${hashName}:token`, 'token');
 
-            await DelHash(`${hashName}:otp`, 'otp');
+            await this.redisService.DelHash(`${hashName}:otp`, 'otp');
 
             res.status(200).json({ message: 'otp verified successfully', state: true });
         } catch (error) {
@@ -260,7 +266,7 @@ class SessionController extends BaseController {
             );
             await this.userService.updateUser(
                 { _id: user._id },
-                { isFullyAuthenicated: false },
+                { isFullyAuthenticated: false },
                 { runValidators: true, new: true }
             );
             res.status(200).json({ message: 'logged out successfully' });

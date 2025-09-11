@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router } from 'express';
 import upload from '../middleware/multer';
 import { validate } from '../middleware/validateResource';
 import {
@@ -18,21 +18,20 @@ import UserController from '../controllers/user.controller';
 import { logOutSchema, SessionSchema } from '../schemas/session.schema';
 
 import { requireUser } from '../middleware/requireUser';
-import { Routes } from '@/interfaces/routes.interface';
 import SessionController from '@/controllers/session.controller';
+import { BaseRoute } from './base.route';
 
-class UserRoutes implements Routes {
-    public path = '/auth';
-    public router = express.Router();
 
+class UserRoutes extends BaseRoute {
     constructor(
         private userController: UserController,
         private sessionController: SessionController
     ) {
+        super("/auth")
         this.initializeRoutes();
     }
 
-    private initializeRoutes() {
+    protected initializeRoutes() {
         this.router.get(
             `${this.path}/reIssueAccessToken`,
             this.userController.reIssueAccessTokenHandler

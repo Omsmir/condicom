@@ -1,3 +1,4 @@
+import { PatientProvider } from '@/components/context/PatientProvider';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -5,7 +6,7 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
-    return children;
+    return <PatientProvider>{children}</PatientProvider>;
 };
 
 export default RootLayout;

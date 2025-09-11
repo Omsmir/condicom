@@ -1,37 +1,90 @@
 import { createClient, RedisClientType } from 'redis';
-import { NODE_ENV, REDIS_DEV_URI, REDIS_PWD } from 'config';
+import { REDIS_DEV_URI, REDIS_PWD } from 'config';
 import { logger } from './logger';
 
-class RedisConnection {
-    public redisClient: RedisClientType | null;
+interface addToHashProps {
+    HashName: string;
+    token: any;
+    channel?: string;
+    expire: number;
+    content: object;
+}
 
-    constructor() {
-        this.redisClient = null;
+interface CreateHashProps {
+    HashName: string;
+    content: any;
+    expire?: number;
+}
+
+export class RedisConnection {
+    private static instance: RedisConnection;
+    private redisClient: RedisClientType;
+
+    private constructor() {
+        this.redisClient = createClient({ url: REDIS_DEV_URI, password: REDIS_PWD });
+        this.initializeConnection();
     }
-    public async initializeConnection(): Promise<RedisClientType> {
+
+    public static getInstance(): RedisConnection {
+        if (!RedisConnection.instance) {
+            RedisConnection.instance = new RedisConnection();
+        }
+        return RedisConnection.instance;
+    }
+
+    private async initializeConnection() {
         try {
-            if (!this.redisClient) {
-                this.redisClient = createClient({
-                    url: NODE_ENV === 'development' ? REDIS_DEV_URI : '',
-                    password: REDIS_PWD,
-                });
+            this.redisClient.on('connect', () => logger.info('Redis is connected'));
 
-                this.redisClient.on('connect', () => {
-                    logger.info('connected to redis');
-                });
-
-
-                this.redisClient.on("error",() => {
-                    logger.error("redis connection error please check connectivity")
-                })
-                await this.redisClient.connect(); // Ensure the client is connected
-            }
-            return this.redisClient;
-        } catch (error:any) {
-            logger.error(error);
-            throw new Error(error.message);
+            this.redisClient.on('error', err => logger.error('error connecting to redis', err));
+            await this.redisClient.connect();
+        } catch (error) {
+            logger.error('Error connecting to Redis:', error);
+            throw new Error('Could not connect to Redis');
         }
     }
+
+    public getClient(): RedisClientType {
+        return this.redisClient;
+    }
+
+    public static async disconnect() {
+        if (RedisConnection.instance) {
+            await RedisConnection.instance.redisClient.quit();
+        }
+    }
+}
+
+export class RedisServices {
+    constructor(private redisClient: RedisClientType) {}
+
+    public addToHash = async ({ HashName, token, expire, content }: addToHashProps) => {
+        await this.redisClient.hSet(HashName, token);
+
+        for (const [key, value] of Object.entries(content)) {
+            await this.redisClient.hSet(`${HashName}:1`, key, value);
+        }
+        await this.redisClient.expire(HashName, expire);
+    };
+
+    public createHash = async ({ HashName, content, expire }: CreateHashProps) => {
+        await this.redisClient.hSet(HashName, content);
+
+        if (expire) {
+            await this.redisClient.expire(HashName, expire);
+        }
+    };
+    public checkHash = async (HashName: string, value: string) => {
+        return await this.redisClient.hGet(HashName, value);
+    };
+
+    public GetHashExpiration = async (HashName: string) => {
+        return await this.redisClient.ttl(HashName);
+    };
+
+    public DelHash = async (HashName: string, value: string) => {
+        return await this.redisClient.hDel(HashName, value);
+    };
 }
 
 // export const redisBroker = async () => {
@@ -54,67 +107,3 @@ class RedisConnection {
 //         initiator.emit('redis-updates', message);
 //     });
 // };
-
-interface addToHashProps {
-    HashName: string;
-    token: any;
-    channel?: string;
-    expire: number;
-    content: object;
-}
-
-interface CreateHashProps {
-    HashName: string;
-    content: any;
-    expire?: number;
-}
-
-export const addToHash = async ({ HashName, token, channel, expire, content }: addToHashProps) => {
-    const connection = new RedisConnection();
-
-    const redis = await connection.initializeConnection();
-
-    await redis.hSet(HashName, token);
-
-    Object.entries(content).forEach(([key, value]) => {
-        redis.hSet(`${HashName}:1`, key, value);
-    });
-    await redis.expire(HashName, expire);
-};
-
-export const createHash = async ({ HashName, content, expire }: CreateHashProps) => {
-    const connection = new RedisConnection();
-
-    const redis = await connection.initializeConnection();
-
-    await redis.hSet(HashName, content);
-
-    if (expire) {
-        await redis.expire(HashName, expire);
-    }
-};
-
-export const checkHash = async (HashName: string, value: string) => {
-    const connection = new RedisConnection();
-
-    const redis = await connection.initializeConnection();
-
-    return await redis.hGet(HashName, value);
-};
-
-export const DelHash = async (HashName: string, value: string) => {
-    const connection = new RedisConnection();
-
-    const redis = await connection.initializeConnection();
-
-    return await redis.hDel(HashName, value);
-};
-
-export const GetHashExpiration = async (HashName: string) => {
-    const connection = new RedisConnection();
-
-    const redis = await connection.initializeConnection();
-    return await redis.ttl(HashName);
-};
-
-export default RedisConnection;

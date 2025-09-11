@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Anchor } from 'antd';
 import { PatientHook } from '../context/PatientProvider';
 import { useMediaQuery } from 'react-responsive';
@@ -15,15 +15,16 @@ const items = [
         href: '#Appointments',
         title: <p className="dark:text-slate-50">Appointments</p>,
     },
-    {
-        key: 'Next Treatments',
-        href: '#Next Treatments',
-        title: <p className="dark:text-slate-50">Next Treatments</p>,
-    },
+
     {
         key: 'Medical History',
         href: '#Medical History',
         title: <p className="dark:text-slate-50">Medical History</p>,
+    },
+    {
+        key: 'Invoices',
+        href: '#Invoices',
+        title: <p className="dark:text-slate-50">Invoices</p>,
     },
 ];
 

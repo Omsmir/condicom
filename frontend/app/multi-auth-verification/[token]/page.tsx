@@ -13,7 +13,7 @@ const page = async ({ params }: { params: Promise<{ token: string }> }) => {
             token={token}
             KeyType="MULTI_AUTH_SECRET"
         >
-            <div className="flex items-center justify-center h-screen">
+            <div className="flex items-center justify-center h-screen dark:bg-[var(--sidebar-accent)]">
                 <div className="w-full max-w-[586px] p-4 rounded-lg shadow-md">
                     <MultiAuthPage />
                 </div>
