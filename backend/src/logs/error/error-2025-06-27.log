@@ -1,0 +1,88 @@
+2025:06:27 00:07:31:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1093:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:11:47:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1093:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:15:25:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1093:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:15:45:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1093:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:17:00:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1094:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:17:28:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1095:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:17:45:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1095:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:18:07:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1095:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:21:40:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1093:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:26:16:error Firebase Storage: Object 'doctors/680292107bee6dd9cc35acc8' does not exist. (storage/object-not-found)
+2025:06:27 18:29:55:error Invalid image file provided
+2025:06:27 18:29:55:error Error uploading image: Invalid image file provided
+2025:06:27 18:30:17:error Invalid image file provided
+2025:06:27 18:30:17:error Error uploading image: Invalid image file provided
+2025:06:27 18:30:30:error Invalid image file provided
+2025:06:27 18:32:29:error no image provided for upload

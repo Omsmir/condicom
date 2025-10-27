@@ -1,0 +1,104 @@
+2025:07:24 13:33:47:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 15.381 ms - -[0m
+2025:07:24 13:33:50:info [0mGET /api/notifications/67b6196f6e5f967ae612f544 [32m200[0m 4.710 ms - 20[0m
+2025:07:24 13:33:50:info [0mGET /api/patients/c819ce4f-8fca-496c-bfe7-7a6aefd84f82 [36m304[0m 4.732 ms - -[0m
+2025:07:24 13:34:32:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 10.776 ms - -[0m
+2025:07:24 13:34:35:info [0mGET /api/notifications/67b6196f6e5f967ae612f544 [36m304[0m 5.058 ms - -[0m
+2025:07:24 13:34:35:info [0mGET /api/patients/c819ce4f-8fca-496c-bfe7-7a6aefd84f82 [36m304[0m 3.222 ms - -[0m
+2025:07:24 13:35:51:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 9.486 ms - -[0m
+2025:07:24 13:35:55:info [0mGET /api/notifications/67b6196f6e5f967ae612f544 [36m304[0m 4.338 ms - -[0m
+2025:07:24 13:35:55:info [0mGET /api/patients/c819ce4f-8fca-496c-bfe7-7a6aefd84f82 [36m304[0m 4.055 ms - -[0m
+2025:07:24 13:36:02:info xss log: value (user9991@example.com) is of type: string
+2025:07:24 13:36:02:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 5.057 ms - 50[0m
+2025:07:24 13:36:02:info xss log: value (user9991@example.com) is of type: string
+2025:07:24 13:36:02:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 3.088 ms - 50[0m
+2025:07:24 13:36:22:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 17.292 ms - -[0m
+2025:07:24 13:36:25:info [0mGET /api/notifications/67b6196f6e5f967ae612f544 [36m304[0m 4.473 ms - -[0m
+2025:07:24 13:36:25:info [0mGET /api/patients/c819ce4f-8fca-496c-bfe7-7a6aefd84f82 [36m304[0m 3.962 ms - -[0m
+2025:07:24 13:36:48:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 7.771 ms - -[0m
+2025:07:24 13:55:55:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 12.995 ms - -[0m
+2025:07:24 13:55:56:info xss log: value (user9991@example.com) is of type: string
+2025:07:24 13:55:56:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 3.668 ms - 50[0m
+2025:07:24 13:55:56:info xss log: value (user9991@example.com) is of type: string
+2025:07:24 13:55:56:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 2.829 ms - 50[0m
+2025:07:24 13:55:57:info xss log: value (user9991@example.com) is of type: string
+2025:07:24 13:55:57:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 3.399 ms - 50[0m
+2025:07:24 13:55:57:info xss log: value (user9991@example.com) is of type: string
+2025:07:24 13:55:57:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 2.495 ms - 50[0m
+2025:07:24 13:55:58:info xss log: value (user9991@example.com) is of type: string
+2025:07:24 13:55:58:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 5.979 ms - 50[0m
+2025:07:24 13:55:58:info xss log: value (user9991@example.com) is of type: string
+2025:07:24 13:55:58:info [0mGET /api/appointments/email?email=user9991%40example.com [33m404[0m 4.245 ms - 50[0m
+2025:07:24 13:56:20:info [0mGET /api/appointments/67b6196f6e5f967ae612f544 [36m304[0m 18.247 ms - -[0m
+2025:07:24 13:56:20:info xss log: value (user77@example.com) is of type: string
+2025:07:24 13:56:20:info [0mGET /api/patients/email?email=user77%40example.com [36m304[0m 4.380 ms - -[0m
+2025:07:24 13:56:23:info xss log: value (user77@example.com) is of type: string
+2025:07:24 13:56:23:info xss log: value (user9996@example.com) is of type: string
+2025:07:24 13:56:23:info [0mGET /api/patients/email?email=user77%40example.com [36m304[0m 8.489 ms - -[0m
+2025:07:24 13:56:23:info [0mGET /api/patients/email?email=user9996%40example.com [33m404[0m 35.465 ms - 36[0m
+2025:07:24 13:56:23:info xss log: value (user77@example.com) is of type: string
+2025:07:24 13:56:23:info [0mGET /api/patients/email?email=user77%40example.com [36m304[0m 2.848 ms - -[0m
+2025:07:24 13:56:24:info xss log: value (user9996@example.com) is of type: string
+2025:07:24 13:56:24:info [0mGET /api/patients/email?email=user9996%40example.com [33m404[0m 10.775 ms - 36[0m
+2025:07:24 13:56:24:info xss log: value (user9996@example.com) is of type: string
+2025:07:24 13:56:24:info [0mGET /api/patients/email?email=user9996%40example.com [33m404[0m 7.032 ms - 36[0m
+2025:07:24 13:56:25:info xss log: value (user9996@example.com) is of type: string
+2025:07:24 13:56:25:info [0mGET /api/patients/email?email=user9996%40example.com [33m404[0m 6.682 ms - 36[0m
+2025:07:24 13:56:25:info xss log: value (user77@example.com) is of type: string
+2025:07:24 13:56:25:info [0mGET /api/patients/email?email=user77%40example.com [36m304[0m 4.116 ms - -[0m
+2025:07:24 13:56:25:info xss log: value (user77@example.com) is of type: string
+2025:07:24 13:56:25:info [0mGET /api/patients/email?email=user77%40example.com [36m304[0m 3.366 ms - -[0m
+2025:07:24 13:56:25:info xss log: value (user9996@example.com) is of type: string
+2025:07:24 13:56:25:info [0mGET /api/patients/email?email=user9996%40example.com [33m404[0m 7.752 ms - 36[0m
+2025:07:24 13:56:26:info xss log: value (user9996@example.com) is of type: string
+2025:07:24 13:56:26:info [0mGET /api/patients/email?email=user9996%40example.com [33m404[0m 7.796 ms - 36[0m
+2025:07:24 13:56:31:info [0mGET /api/patients/7602b082-1ca6-4bfb-b352-e21aa115b292 [36m304[0m 3.571 ms - -[0m
+2025:07:24 13:56:33:info xss log: value (user77@example.com) is of type: string
+2025:07:24 13:56:33:info [0mGET /api/appointments/email?email=user77%40example.com [36m304[0m 3.370 ms - -[0m
+2025:07:24 13:57:08:info [0mGET /api/medications/ [36m304[0m 61.508 ms - -[0m
+2025:07:24 13:57:08:info [0mGET /api/notifications/67b6196f6e5f967ae612f544 [36m304[0m 6.741 ms - -[0m
+2025:07:24 13:57:08:info [0mGET /api/medications/ [36m304[0m 14.726 ms - -[0m
+2025:07:24 13:57:49:info [0mGET /api/patients [36m304[0m 1656.494 ms - -[0m
+2025:07:24 13:57:54:info [0mGET /api/patients/082ea477-b307-41a8-a5ea-eb5f5202eeeb [32m200[0m 8.445 ms - 613[0m
+2025:07:24 13:57:56:info xss log: value (user9990@example.com) is of type: string
+2025:07:24 13:57:56:info [0mGET /api/appointments/email?email=user9990%40example.com [33m404[0m 3.061 ms - 50[0m
+2025:07:24 13:57:57:info xss log: value (user9990@example.com) is of type: string
+2025:07:24 13:57:57:info [0mGET /api/appointments/email?email=user9990%40example.com [33m404[0m 2.629 ms - 50[0m
+2025:07:24 13:57:57:info xss log: value (user9990@example.com) is of type: string
+2025:07:24 13:57:57:info [0mGET /api/appointments/email?email=user9990%40example.com [33m404[0m 2.119 ms - 50[0m
+2025:07:24 13:57:58:info xss log: value (user9990@example.com) is of type: string
+2025:07:24 13:57:58:info [0mGET /api/appointments/email?email=user9990%40example.com [33m404[0m 5.904 ms - 50[0m
+2025:07:24 13:57:58:info xss log: value (user9990@example.com) is of type: string
+2025:07:24 13:57:58:info [0mGET /api/appointments/email?email=user9990%40example.com [33m404[0m 2.204 ms - 50[0m
+2025:07:24 13:57:59:info xss log: value (user9990@example.com) is of type: string
+2025:07:24 13:57:59:info [0mGET /api/appointments/email?email=user9990%40example.com [33m404[0m 2.304 ms - 50[0m
+2025:07:24 13:58:10:info [0mGET /api/auth/67b6196f6e5f967ae612f544 [32m200[0m 4.530 ms - 911[0m
+2025:07:24 13:58:26:info [0mGET /api/auth/67b6196f6e5f967ae612f544 [36m304[0m 4.582 ms - -[0m
+2025:07:24 13:58:28:info xss log: value (user77@example.com) is of type: string
+2025:07:24 13:58:28:info [0mGET /api/patients/email?email=user77%40example.com [32m200[0m 14.557 ms - 610[0m
+2025:07:24 13:58:28:info [0mGET /api/appointments/67b6196f6e5f967ae612f544 [36m304[0m 13.881 ms - -[0m
+2025:07:24 13:58:30:info xss log: value (user77@example.com) is of type: string
+2025:07:24 13:58:30:info xss log: value (user79@example.com) is of type: string
+2025:07:24 13:58:30:info xss log: value (user1@example.com) is of type: string
+2025:07:24 13:58:30:info xss log: value (user4@example.com) is of type: string
+2025:07:24 13:58:30:info [0mGET /api/patients/email?email=user77%40example.com [36m304[0m 20.861 ms - -[0m
+2025:07:24 13:58:30:info [0mGET /api/patients/email?email=user79%40example.com [36m304[0m 19.692 ms - -[0m
+2025:07:24 13:58:30:info [0mGET /api/patients/email?email=user1%40example.com [32m200[0m 19.576 ms - 591[0m
+2025:07:24 13:58:30:info xss log: value (user9@example.com) is of type: string
+2025:07:24 13:58:30:info xss log: value (user7@example.com) is of type: string
+2025:07:24 13:58:30:info xss log: value (user9996@example.com) is of type: string
+2025:07:24 13:58:30:info [0mGET /api/patients/email?email=user9%40example.com [36m304[0m 11.329 ms - -[0m
+2025:07:24 13:58:30:info [0mGET /api/patients/email?email=user7%40example.com [36m304[0m 11.124 ms - -[0m
+2025:07:24 13:58:30:info [0mGET /api/patients/email?email=user9996%40example.com [33m404[0m 15.719 ms - 36[0m
+2025:07:24 13:58:30:info [0mGET /api/patients/email?email=user4%40example.com [32m200[0m 63.902 ms - 593[0m
+2025:07:24 13:58:31:info xss log: value (user9996@example.com) is of type: string
+2025:07:24 13:58:31:info [0mGET /api/patients/email?email=user9996%40example.com [33m404[0m 8.721 ms - 36[0m
+2025:07:24 13:58:31:info xss log: value (user9996@example.com) is of type: string
+2025:07:24 13:58:31:info [0mGET /api/patients/email?email=user9996%40example.com [33m404[0m 7.584 ms - 36[0m
+2025:07:24 13:58:32:info xss log: value (user9996@example.com) is of type: string
+2025:07:24 13:58:32:info [0mGET /api/patients/email?email=user9996%40example.com [33m404[0m 10.132 ms - 36[0m
+2025:07:24 13:58:32:info xss log: value (user9996@example.com) is of type: string
+2025:07:24 13:58:32:info [0mGET /api/patients/email?email=user9996%40example.com [33m404[0m 6.677 ms - 36[0m
+2025:07:24 13:58:33:info xss log: value (user9996@example.com) is of type: string
+2025:07:24 13:58:33:info [0mGET /api/patients/email?email=user9996%40example.com [33m404[0m 8.013 ms - 36[0m
+2025:07:24 13:58:38:info xss log: value (user77@example.com) is of type: string
+2025:07:24 13:58:38:info [0mGET /api/patients/email?email=user77%40example.com [36m304[0m 4.329 ms - -[0m

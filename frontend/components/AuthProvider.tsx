@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import Loading from "@/app/loading";
-import { useSession } from "next-auth/react";
+import Loading from '@/app/loading';
+import { useSession } from 'next-auth/react';
 
 interface AuthCheckProps {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }
 
 const AuthProvider: React.FC<AuthCheckProps> = ({ children }) => {
-  const {status } = useSession();
+    const { status } = useSession();
 
-  // Prevent rendering until session is verified
-  if (status === "loading") {
-    return <Loading />;
-  }
+    // Prevent rendering until session is verified
+    if (status === 'loading') {
+        return <Loading />;
+    }
 
-  return <>{children}</>;
+    return <>{children}</>;
 };
 
 export default AuthProvider;

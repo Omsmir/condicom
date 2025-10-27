@@ -1,142 +1,133 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from 'express';
 import {
-  codeSchemaInterface,
-  DeleteCodeSchemaInterface,
-  GetcodeSchemaInterface,
-} from "../schemas/code.schema";
-import {
-  detectExpiredCode,
-  generateCode,
-  generateExpirationDate,
-  role,
-  signRole,
-} from "../utils/backevents";
-import { createCode, deleteCode, findCode, getCodes } from "../services/code.service";
-import { findUser } from "../services/user.service";
-import mongoose from "mongoose";
+    codeSchemaInterface,
+    DeleteCodeSchemaInterface,
+    GetcodeSchemaInterface,
+} from '../schemas/code.schema';
+import { generateCode, generateExpirationDate, signRole } from '../utils/backevents';
+import CodeService  from '../services/code.service';
+import UserService from '../services/user.service';
+import { BaseController } from './base.controller';
+import HttpException from '@/exceptions/httpException';
 
-export const createCodeHandler = async (
-  req: Request<codeSchemaInterface["params"], {}, codeSchemaInterface["body"]>,
-  res: Response
-) => {
-  try {
-    const id = req.params.id;
-
-    const existingAdminUser = await findUser({ _id: id, role: "Admin" });
-
-    if (!existingAdminUser || !id) {
-      res.status(403).json({ message: "forbidden" });
-      return;
+class CodeController extends BaseController {
+    private codeService: CodeService;
+    private userService: UserService;
+    constructor() {
+        super();
+        this.codeService = new CodeService();
+        this.userService = new UserService();
     }
-    const numbers = [req.body.numbers];
-    const fiveNumbers = [req.body.fiveNumbers];
-    const characters = [req.body.characters];
 
-    const obj = {
-      numbers,
-      fiveNumbers,
-      characters,
+    public createCodeHandler = async (
+        req: Request<codeSchemaInterface['params'], {}, codeSchemaInterface['body']>,
+        res: Response
+    ) => {
+        try {
+            const id = req.params.id;
+
+            const existingAdminUser = await this.userService.findUser({ _id: id, role: 'Admin' });
+
+            if (!existingAdminUser || !id) {
+                throw new HttpException(403, 'Forbidden');
+            }
+            const numbers = [req.body.numbers];
+            const fiveNumbers = [req.body.fiveNumbers];
+            const characters = [req.body.characters];
+
+            const obj = {
+                numbers,
+                fiveNumbers,
+                characters,
+            };
+            const code = generateCode({ ...obj });
+
+            const existingCode = await this.codeService.findCode({ code });
+
+            if (existingCode) {
+                throw new HttpException(409, 'Code already exists');
+            }
+            const role = signRole(code);
+
+            if (!role) {
+                throw new HttpException(400, 'Not Supported Yet');
+            }
+
+            const expiration = generateExpirationDate({ month: req.body.expiration });
+
+            const newCode = await this.codeService.createCode({ role, code, expiration });
+
+            res.status(201).json({
+                message: `${newCode.role} code generated successfully`,
+                code: newCode,
+            });
+        } catch (error) {
+            this.handleError(res, error);
+        }
     };
-    const code = generateCode({ ...obj });
 
-    const existingCode = await findCode({ code });
+    public getCodesHandler = async (
+        req: Request<GetcodeSchemaInterface['params'], {}, {}, GetcodeSchemaInterface['query']>,
+        res: Response
+    ) => {
+        try {
+            const id = req.params.id;
 
-    if (existingCode) {
-      res.status(409).json({ message: "Code already exists" });
-      return;
-    }
-    const role = signRole(code);
+            const limit = req.query.limit;
+            const cursor = req.query.cursor;
 
-    if (!role) {
-      res.status(400).json({ message: "Not Supported Yet" });
-      return;
-    }
+            const existingAdminUser = await this.userService.findUser({ _id: id, role: 'Admin' });
 
-    const expiration = generateExpirationDate({ month: req.body.expiration });
+            if (!existingAdminUser || !id) {
+                throw new HttpException(403, 'Forbidden');
+            }
 
-    const newCode = await createCode({ role, code, expiration });
+            const { codes, nextCursor } = await this.codeService.getCodes({}, limit || 3, cursor);
 
-    res.status(201).json({
-      message: `${newCode.role} code generated successfully`,
-      code: newCode,
-    });
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
-};
-export const getCodesHandler = async (
-  req: Request<
-    GetcodeSchemaInterface["params"],
-    {},
-    {},
-    GetcodeSchemaInterface["query"]
-  >,
-  res: Response
-) => {
-  try {
-    const id = req.params.id;
+            if (!codes || codes.length < 1) {
+                res.status(403).json({ message: 'no codes', nextCursor: null });
+                return;
+            }
 
-    const limit = req.query.limit;
-    const cursor = req.query.cursor;
+            res.status(200).json({ codes, nextCursor });
+        } catch (error: any) {
+            this.handleError(res, error);
+        }
+    };
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      res.status(400).json({ message: "invalid id provided" });
-      return;
-    }
-    const existingAdminUser = await findUser({ _id: id, role: "Admin" });
+    public deleteCodeHandler = async (
+        req: Request<DeleteCodeSchemaInterface['params'], {}, DeleteCodeSchemaInterface['body']>,
+        res: Response
+    ) => {
+        try {
+            const id = req.params.id;
+            const code = req.body.code;
 
-    if (!existingAdminUser || !id) {
-      res.status(403).json({ message: "forbidden" });
-      return;
-    }
+            const existingAdminUser = await this.userService.findUser({ _id: id, role: 'Admin' });
 
-    const { codes, nextCursor } = await getCodes({}, limit || 3, cursor);
+            if (!existingAdminUser || !id) {
+                throw new HttpException(403, 'Forbidden');
+            }
 
-    if (!codes || codes.length < 1) {
-      res.status(403).json({ message: "no codes",nextCursor:null });
-      return;
-    }
+            const existingCode = await this.codeService.findCode({ code });
 
-    res.status(200).json({ codes, nextCursor });
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
-};
+            if (!existingCode) {
+                throw new HttpException(400, 'invalid code supported');
+            }
 
-export const deleteCodeHandler = async (
-  req: Request<DeleteCodeSchemaInterface["params"],{},DeleteCodeSchemaInterface["body"]>,
-  res: Response
-) => {
-  try {
-    const id = req.params.id
-    const code = req.body.code
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      res.status(400).json({ message: "invalid id provided" });
-      return;
-    }
-    const existingAdminUser = await findUser({ _id: id, role: "Admin" });
+            if (existingCode.used) {
+                throw new HttpException(403, 'unable to delete used code');
+            }
 
-    if (!existingAdminUser || !id) {
-      res.status(403).json({ message: "forbidden" });
-      return;
-    }
+            await this.codeService.deleteCode({ _id: existingCode._id });
 
-    const existingCode = await findCode({code})
+            res.status(200).json({ message: 'code deleted successfully' });
+        } catch (error) {
+            this.handleError(res,error)
+        }
+    };
+}
 
-    if(!existingCode){
-      res.status(404).json({message:"invalid code supported"})
-      return
-    }
-  
-    if(existingCode.used){
-      res.status(403).json({message:"unable to delete used code"})
-      return
-    }
 
-    await deleteCode({_id:existingCode._id})
 
-    res.status(200).json({message:"code deleted successfully"})
-  } catch (error:any) {
-    res.status(500).json({ message: error.message });
-  }
-};
+export default CodeController

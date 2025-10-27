@@ -1,0 +1,269 @@
+2025:07:05 18:02:13:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:07:05 18:02:13:warn ===== http://localhost:8080 =====
+2025:07:05 18:02:13:info ===========development===========
+2025:07:05 18:02:13:info ===========port:8080=============
+2025:07:05 18:02:13:info =================================
+2025:07:05 18:02:13:info connected to redis
+2025:07:05 18:02:13:info Connected to MongoDB: health
+2025:07:05 18:03:17:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:07:05 18:03:17:warn ===== http://localhost:8080 =====
+2025:07:05 18:03:17:info ===========development===========
+2025:07:05 18:03:17:info ===========port:8080=============
+2025:07:05 18:03:17:info =================================
+2025:07:05 18:03:17:info connected to redis
+2025:07:05 18:03:17:info Connected to MongoDB: health
+2025:07:05 18:04:04:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:07:05 18:04:04:warn ===== http://localhost:8080 =====
+2025:07:05 18:04:04:info ===========development===========
+2025:07:05 18:04:04:info ===========port:8080=============
+2025:07:05 18:04:04:info =================================
+2025:07:05 18:04:04:info connected to redis
+2025:07:05 18:04:04:info Connected to MongoDB: health
+2025:07:05 18:04:14:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:07:05 18:04:14:warn ===== http://localhost:8080 =====
+2025:07:05 18:04:14:info ===========development===========
+2025:07:05 18:04:14:info ===========port:8080=============
+2025:07:05 18:04:14:info =================================
+2025:07:05 18:04:14:error unhandledRejection: Cannot read properties of undefined (reading 'connect')
+TypeError: Cannot read properties of undefined (reading 'connect')
+    at App.connectToMongo (C:\Users\omar\Documents\Health\backend\src\app.ts:70:36)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:38:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:88:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:71:20)
+2025:07:05 18:04:14:info connected to redis
+2025:07:05 18:06:02:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:07:05 18:06:02:warn ===== http://localhost:8080 =====
+2025:07:05 18:06:02:info ===========development===========
+2025:07:05 18:06:02:info ===========port:8080=============
+2025:07:05 18:06:02:info =================================
+2025:07:05 18:06:02:error unhandledRejection: Cannot read properties of undefined (reading 'connect')
+TypeError: Cannot read properties of undefined (reading 'connect')
+    at App.connectToMongo (C:\Users\omar\Documents\Health\backend\src\app.ts:70:36)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:38:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:88:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:71:20)
+2025:07:05 18:06:02:info connected to redis
+2025:07:05 18:06:12:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:07:05 18:06:12:warn ===== http://localhost:8080 =====
+2025:07:05 18:06:12:info ===========development===========
+2025:07:05 18:06:12:info ===========port:8080=============
+2025:07:05 18:06:12:info =================================
+2025:07:05 18:06:12:error unhandledRejection: Cannot read properties of undefined (reading 'connect')
+TypeError: Cannot read properties of undefined (reading 'connect')
+    at App.connectToMongo (C:\Users\omar\Documents\Health\backend\src\app.ts:70:36)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:38:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:88:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:71:20)
+2025:07:05 18:06:12:info connected to redis
+2025:07:05 18:06:23:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:07:05 18:06:23:warn ===== http://localhost:8080 =====
+2025:07:05 18:06:23:info ===========development===========
+2025:07:05 18:06:23:info ===========port:8080=============
+2025:07:05 18:06:23:info =================================
+2025:07:05 18:06:23:error unhandledRejection: Cannot read properties of undefined (reading 'connect')
+TypeError: Cannot read properties of undefined (reading 'connect')
+    at App.connectToMongo (C:\Users\omar\Documents\Health\backend\src\app.ts:70:36)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:38:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:88:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:71:20)
+2025:07:05 18:06:23:info connected to redis
+2025:07:05 18:06:44:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:07:05 18:06:44:warn ===== http://localhost:8080 =====
+2025:07:05 18:06:44:info ===========development===========
+2025:07:05 18:06:44:info ===========port:8080=============
+2025:07:05 18:06:44:info =================================
+2025:07:05 18:06:44:info connected to redis
+2025:07:05 18:06:44:info Mongodb is connected to database:health
+2025:07:05 18:08:59:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:07:05 18:08:59:warn ===== http://localhost:8080 =====
+2025:07:05 18:08:59:info ===========development===========
+2025:07:05 18:08:59:info ===========port:8080=============
+2025:07:05 18:08:59:info =================================
+2025:07:05 18:08:59:info connected to redis
+2025:07:05 18:08:59:info Mongodb is connected to database:health
+2025:07:05 18:09:12:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:07:05 18:09:12:warn ===== http://localhost:8080 =====
+2025:07:05 18:09:12:info ===========development===========
+2025:07:05 18:09:12:info ===========port:8080=============
+2025:07:05 18:09:12:info =================================
+2025:07:05 18:09:12:info connected to redis
+2025:07:05 18:09:12:info Mongodb is connected to database:health
+2025:07:05 18:09:58:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 43.021 ms - -[0m
+2025:07:05 18:10:25:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 10.673 ms - -[0m
+2025:07:05 18:10:29:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [36m304[0m 43.860 ms - -[0m
+2025:07:05 18:11:16:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 108.335 ms - -[0m
+2025:07:05 18:11:18:info [0mGET /api/patient [36m304[0m 1749.657 ms - -[0m
+2025:07:05 18:11:20:info [0mGET /api/patient [36m304[0m 1703.859 ms - -[0m
+2025:07:05 18:11:25:info [0mOPTIONS /api/patient/delete-multi/67b611137de19fc1c39f0f18?all= [32m204[0m 0.282 ms - 0[0m
+2025:07:05 18:11:25:info xss log: value (686382c83dbf797ecfb7d79b) is of type: string
+2025:07:05 18:11:25:info xss log: value (686382c83dbf797ecfb7d79a) is of type: string
+2025:07:05 18:11:25:info xss log: value (686382c83dbf797ecfb7d799) is of type: string
+2025:07:05 18:11:25:info xss log: value (686382c83dbf797ecfb7d798) is of type: string
+2025:07:05 18:11:25:info xss log: value (686382c83dbf797ecfb7d797) is of type: string
+2025:07:05 18:11:25:info xss log: value (686382c83dbf797ecfb7d796) is of type: string
+2025:07:05 18:11:25:info xss log: value (686382c83dbf797ecfb7d795) is of type: string
+2025:07:05 18:11:25:info xss log: value (686382c83dbf797ecfb7d794) is of type: string
+2025:07:05 18:11:25:info xss log: value (686382c83dbf797ecfb7d793) is of type: string
+2025:07:05 18:11:25:info xss log: value (686382c83dbf797ecfb7d792) is of type: string
+2025:07:05 18:11:25:info xss log: value (686382c83dbf797ecfb7d791) is of type: string
+2025:07:05 18:11:25:info xss log: value (686382c83dbf797ecfb7d790) is of type: string
+2025:07:05 18:11:25:info xss log: value () is of type: string
+2025:07:05 18:11:25:info [0mPOST /api/notifications/create [32m201[0m 119.239 ms - 420[0m
+2025:07:05 18:11:25:info [0mDELETE /api/patient/delete-multi/67b611137de19fc1c39f0f18?all= [32m201[0m 120.351 ms - 56[0m
+2025:07:05 18:11:25:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 7.878 ms - 20[0m
+2025:07:05 18:11:28:info [0mGET /api/patient [32m200[0m 1664.696 ms - -[0m
+2025:07:05 19:28:12:info [0mGET /api/appointments/67b611137de19fc1c39f0f18 [36m304[0m 26.470 ms - -[0m
+2025:07:05 19:28:49:info [0mGET /api/auth/67b611137de19fc1c39f0f18 [36m304[0m 4.420 ms - -[0m
+2025:07:05 19:34:46:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 20.725 ms - -[0m
+2025:07:05 19:34:48:info [0mGET /api/patient [36m304[0m 2047.827 ms - -[0m
+2025:07:05 19:35:16:info [0mGET /api/patient [32m200[0m 7.950 ms - 35[0m
+2025:07:05 19:35:16:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 11.467 ms - 20[0m
+2025:07:05 19:35:17:info [0mGET /api/patient [36m304[0m 8.029 ms - -[0m
+2025:07:05 19:35:34:info [0mOPTIONS /api/patient/create-multi [32m204[0m 0.845 ms - 0[0m
+2025:07:05 19:35:34:info xss log: value (Michele) is of type: string
+2025:07:05 19:37:12:info 
+
+██╗  ██╗███████╗ █████╗ ██╗     ████████╗██╗  ██╗
+██║  ██║██╔════╝██╔══██╗██║     ╚══██╔══╝██║  ██║
+███████║█████╗  ███████║██║        ██║   ███████║
+██╔══██║██╔══╝  ██╔══██║██║        ██║   ██╔══██║
+██║  ██║███████╗██║  ██║███████╗   ██║   ██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+
+            Developed by Omar Fouad
+2025:07:05 19:37:12:warn ===== http://localhost:8080 =====
+2025:07:05 19:37:12:info ===========development===========
+2025:07:05 19:37:12:info ===========port:8080=============
+2025:07:05 19:37:12:info =================================
+2025:07:05 19:37:12:info connected to redis
+2025:07:05 19:37:12:info Mongodb is connected to database:health
+2025:07:05 19:37:16:info [0mPOST /api/patient/create-multi [0m-[0m - ms - -[0m
+2025:07:05 19:37:20:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 15.855 ms - 20[0m
+2025:07:05 19:37:20:info [0mGET /api/patient [36m304[0m 5.473 ms - -[0m
+2025:07:05 19:37:22:info [0mGET /api/patient [36m304[0m 3.275 ms - -[0m
+2025:07:05 19:37:34:info [0mOPTIONS /api/patient/create-multi [32m204[0m 1.153 ms - 0[0m
+2025:07:05 19:37:34:info [0mPOST /api/patient/create-multi [33m403[0m 166.277 ms - 66[0m
+2025:07:05 19:37:44:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 5.454 ms - 20[0m
+2025:07:05 19:37:47:info [0mGET /api/patient [32m200[0m 2614.261 ms - -[0m
+2025:07:05 19:37:51:info [0mGET /api/patient [36m304[0m 2176.033 ms - -[0m
+2025:07:05 19:38:03:info [0mGET /api/notifications/67b611137de19fc1c39f0f18 [32m200[0m 7.773 ms - 20[0m
+2025:07:05 19:38:04:info [0mGET /api/patient [32m200[0m 4.685 ms - 35[0m
+2025:07:05 19:38:04:info [0mGET /api/patient [36m304[0m 4.705 ms - -[0m
+2025:07:05 19:38:18:info [0mOPTIONS /api/patient/create-multi [32m204[0m 0.342 ms - 0[0m
+2025:07:05 19:38:28:info [0mPOST /api/patient/create-multi [32m201[0m 9884.022 ms - 44[0m
+2025:07:05 19:38:30:info [0mGET /api/patient [32m200[0m 1717.839 ms - -[0m
+2025:07:05 19:39:04:info [0mGET /api/patient/e09574c0-51e8-4b18-ae18-62fbc23cbcc1 [32m200[0m 7.876 ms - 608[0m

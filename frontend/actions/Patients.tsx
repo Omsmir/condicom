@@ -1,29 +1,66 @@
-import {  PatientsToQuery, PatientToQuery } from "@/types";
-import axios from "axios";
+import { PatientsToQuery, patientToCreate, PatientToQuery } from '@/types';
+import axios from 'axios';
+
+export interface patientsParams {
+    pageSize?: number;
+    pageIndex?: number;
+    date?: number;
+    filters?: {
+        columnId: string;
+        value: any;
+    }[];
+}
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+const axiosInstance = axios.create({ baseURL: `${API_URL}/api/patients` });
 
-const axiosInstace = axios.create({ baseURL: `${API_URL}/api` });
-
-export const GetPatients = async () => {
-  const response = await axiosInstace.get<PatientsToQuery>("/patient");
-  await new Promise((resolve) => setTimeout(resolve, 300));
-  return response.data;
+export const GetPatients = async ({ pageIndex, pageSize, date,filters }: patientsParams) => {
+    const response = await axiosInstance.get<PatientsToQuery>('', {
+        params: { pageIndex, pageSize, date },
+    });
+    await new Promise(resolve => setTimeout(resolve, 300));
+  
+    return response.data;
 };
 
-export const GetSpecificPatient = async (id: string | undefined) => {
-  const response = await axiosInstace.get<PatientToQuery>(`/patient/${id}`);
-
-  await new Promise((resolve) => setTimeout(resolve, 300));
-
-  return response.data;
+export const GetSpecificPatient = async (id: string | undefined, email?: string) => {
+    const response = await axiosInstance.get<PatientToQuery>(`/${id}`, { params: { email } });
+    await new Promise(resolve => setTimeout(resolve, 300));
+    return response.data;
 };
 
 export const DeletePatient = async (id: string | undefined) => {
-  return await axiosInstace.delete(`/patient/${id}`);
+    return await axiosInstance.delete(`/${id}`);
 };
 
 export const CreatePatient = async (patient: FormData) => {
-  return await axiosInstace.post(`/patient/create`, patient);
+    return await axiosInstance.post(`/create`, patient);
+};
+
+export const CreateMultiplePatients = async (patients: patientToCreate[]) => {
+    await new Promise(resolve => setTimeout(resolve, 2500));
+
+    const response = await axiosInstance.post('/create-multi', { patients });
+    return response;
+};
+
+export const getPatientWithEmail = async (email: string | undefined) => {
+    const response = await axiosInstance.get<PatientToQuery>('/email', { params: { email } });
+    return response.data;
+};
+
+export interface deletePatientsProps {
+    idsArray: any[] | undefined;
+    id: string | undefined;
+    query: string;
+}
+
+export const deleteMultiplePatients = async ({ idsArray, id, query }: deletePatientsProps) => {
+    return await axiosInstance.delete(`/delete-multi/${id}`, {
+        data: { patientsIds: idsArray },
+        params: {
+            all: query,
+        },
+    });
 };

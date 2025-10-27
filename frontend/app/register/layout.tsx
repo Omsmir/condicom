@@ -1,9 +1,8 @@
-"use client";
-import { MotionComponent } from "@/components/relatedComponents/Motion";
+'use client';
+import { MotionComponent, Motions } from '@/components/relatedComponents/Motion';
 
 const Rootlayout = ({ children }: { children: React.ReactNode }) => {
-
-  return <MotionComponent>{children}</MotionComponent>;
+    return <MotionComponent form={Motions.FADEIN}>{children}</MotionComponent>;
 };
 
 export default Rootlayout;

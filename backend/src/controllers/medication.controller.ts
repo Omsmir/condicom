@@ -1,82 +1,129 @@
-import { NextFunction, Response, Request } from "express";
+import { Response, Request } from 'express';
 import {
-  GetmedicationSchemaInterface,
-  medicationSchemaInterface,
-} from "../schemas/medication.schema";
-import {
-  createMedication,
-  deleteMedication,
-  getMedications,
-  getSpecficMedication,
-} from "../services/medication.serice";
-export const createMedicationHandler = async (
-  req: Request<{}, {}, medicationSchemaInterface["body"]>,
-  res: Response
-) => {
-  try {
-    const name = req.body.name;
+    GetmedicationSchemaInterface,
+    medicationSchemaInterface,
+    medicationsSchemaInterface,
+} from '@schemas/medication.schema';
+import { BaseController } from './base.controller';
+import MedicationService from '@/services/medication.service';
+import HttpException from '@/exceptions/httpException';
 
-    const strength = req.body.strength;
-    const stock_quantity = req.body.stock_quantity;
-
-    const existedMedication = await getSpecficMedication({ name, strength });
-
-    if (existedMedication) {
-      existedMedication.stock_quantity =
-        Number(existedMedication.stock_quantity) + Number(stock_quantity);
-
-      existedMedication.updateOne(req.body);
-
-
-      await existedMedication.save()
-
-      res.status(201).json({ message: "medication updated successfully",existedMedication });
-      return;
+class MedicationController extends BaseController {
+    private medicationService: MedicationService;
+    constructor() {
+        super();
+        this.medicationService = new MedicationService();
     }
 
-    const medication = await createMedication(req.body);
+    public createMedicationHandler = async (
+        req: Request<{}, {}, medicationSchemaInterface['body']>,
+        res: Response
+    ) => {
+        try {
+            const name = req.body.name;
 
-    res
-      .status(201)
-      .json({ message: "medication created successfully", medication });
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
-};
+            const strength = req.body.strength;
+            const stock_quantity = req.body.stock_quantity;
 
-export const deleteMedicationHandler = async (
-  req: Request<GetmedicationSchemaInterface["params"]>,
-  res: Response
-) => {
-  try {
-    const id = req.params.id;
+            const existedMedication = await this.medicationService.getSpecficMedication({
+                name,
+                strength,
+            });
 
-    const medication = await getSpecficMedication({ _id: id });
+            if (existedMedication) {
+                existedMedication.stock_quantity =
+                    Number(existedMedication.stock_quantity) + Number(stock_quantity);
 
-    if (!medication) {
-      res.status(404).json({ message: "medication doesn't exist" });
-      return;
-    }
+                existedMedication.updateOne(req.body);
 
-    await deleteMedication({ _id: id });
+                await existedMedication.save();
 
-    res.status(200).json({ message: "medication deleted successfully" });
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
-};
+                res.status(201).json({
+                    message: 'medication updated successfully',
+                    existedMedication,
+                });
+                return;
+            }
 
-export const getAllMedicationsHandler = async (req: Request, res: Response) => {
-  try {
-    const medications = await getMedications();
+            const medication = await this.medicationService.createMedication(req.body);
 
-    if (!medications) {
-      res.status(404).json({ message: "No medications" });
-      return;
-    }
+            res.status(201).json({ message: 'medication created successfully', medication });
+        } catch (error) {
+            this.handleError(res, error);
+        }
+    };
 
-    res.status(200).json({ message: "success", medications });
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
-};
+    public createMultipleMedicationsHandler = async (
+        req: Request<{}, {}, medicationsSchemaInterface['body']>,
+        res: Response
+    ) => {
+        try {
+            const medications = req.body.medications;
+
+            for (const medication of medications) {
+                const existedMedication = await this.medicationService.getSpecficMedication({
+                    name: medication.name,
+                    strength: medication.strength,
+                });
+
+                if (existedMedication) {
+                    throw new HttpException(
+                        403,
+                        `medication with name ${existedMedication.name} already exists `
+                    );
+                }
+            }
+
+            const createdmedications =
+                await this.medicationService.createMultipleMedications(medications);
+
+            if (!createdmedications) {
+                throw new HttpException(400, 'error occured while creating medications');
+            }
+
+            res.status(201).json({
+                message: `${createdmedications.length} medications have been added`,
+            });
+        } catch (error) {
+            this.handleError(res, error);
+        }
+    };
+
+    public deleteMedicationHandler = async (
+        req: Request<GetmedicationSchemaInterface['params']>,
+        res: Response
+    ) => {
+        try {
+            const id = req.params.id;
+
+            const medication = await this.medicationService.getSpecficMedication({ _id: id });
+
+            if (!medication) {
+                throw new HttpException(404, "medication doesn't exist");
+            }
+
+            await this.medicationService.deleteMedication({ _id: id });
+
+            res.status(200).json({ message: 'medication deleted successfully' });
+        } catch (error) {
+            this.handleError(res, error);
+        }
+    };
+
+    public getAllMedicationsHandler = async (req: Request, res: Response) => {
+        try {
+            const medications = await this.medicationService.getMedications();
+
+            if (!medications) {
+                throw new HttpException(404, 'No medications');
+            }
+
+            res.status(200).json({ message: 'success', medications });
+        } catch (error) {
+            this.handleError(res, error);
+
+        }
+    };
+}
+
+export default MedicationController

@@ -1,18 +1,24 @@
-import { initializeApp } from "firebase/app";
-import {getStorage} from "firebase/storage"
-import config from 'config'
+import { initializeApp } from 'firebase/app';
+import { getStorage } from 'firebase/storage';
+import {
+    FIREBASE_API_KEY,
+    FIREBASE_APP_ID,
+    FIREBASE_AUTH_DOMAIN,
+    FIREBASE_MESSAGING_SENDER_ID,
+    FIREBASE_MESURMENTID,
+    FIREBASE_PROJECT_ID,
+    FIREBASE_STORAGE_BUCKET,
+} from '@/config';
 
 const firebaseConfig = {
-    apiKey: config.get<string>("apiKey"),
-    authDomain: config.get<string>("authDomain"),
-    projectId: config.get<string>("projectId"),
-    storageBucket: config.get<string>("storageBucket"),
-    messagingSenderId: config.get<string>("messagingSenderId"),
-    appId: config.get<string>("appId"),
-    measurementId:config.get<string>("meID")
+    apiKey: FIREBASE_API_KEY,
+    authDomain: FIREBASE_AUTH_DOMAIN,
+    projectId: FIREBASE_PROJECT_ID,
+    storageBucket: FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+    appId: FIREBASE_APP_ID,
+    measurementId: FIREBASE_MESURMENTID,
 };
 
 const app = initializeApp(firebaseConfig);
-export const storage = getStorage(app)
-
-
+export const storage = getStorage(app);

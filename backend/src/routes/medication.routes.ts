@@ -1,17 +1,41 @@
-import express from 'express'
-import upload from '../middleware/multer'
-import { validate } from '../middleware/validateResource'
-import { getmedicationSchema, medicationSchema } from '../schemas/medication.schema'
-import { createMedicationHandler, deleteMedicationHandler, getAllMedicationsHandler } from '../controllers/medication.controller'
+import upload from '../middleware/multer';
+import { validate } from '../middleware/validateResource';
+import {
+    getmedicationSchema,
+    medicationSchema,
+    multipleMedicationSchema,
+} from '../schemas/medication.schema';
 
+import MedicationController from '@/controllers/medication.controller';
+import { BaseRoute } from './base.route';
 
-const router = express.Router()
+class MedicationRoutes extends BaseRoute {
+    constructor(private medicationController: MedicationController) {
+        super('/medications');
+        this.initializeRoutes();
+    }
 
+    protected initializeRoutes() {
+        this.router.post(
+            `${this.path}/create`,
+            upload.none(),
+            validate(medicationSchema),
+            this.medicationController.createMedicationHandler
+        );
 
-router.post("/create",upload.none(),validate(medicationSchema),createMedicationHandler)
+        this.router.get(`${this.path}`, this.medicationController.getAllMedicationsHandler);
+        this.router.delete(
+            `${this.path}/:id`,
+            validate(getmedicationSchema),
+            this.medicationController.deleteMedicationHandler
+        );
+        this.router.post(
+            `${this.path}/create-multi`,
+            upload.none(),
+            validate(multipleMedicationSchema),
+            this.medicationController.createMultipleMedicationsHandler
+        );
+    }
+}
 
-router.get("/",getAllMedicationsHandler)
-
-router.delete("/:id",validate(getmedicationSchema),deleteMedicationHandler)
-
-export default router
+export default MedicationRoutes;

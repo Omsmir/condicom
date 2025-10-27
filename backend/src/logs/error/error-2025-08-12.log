@@ -1,0 +1,15 @@
+2025:08:12 13:57:51:error Received shutdown signal: SIGTERM
+2025:08:12 13:58:49:error Received shutdown signal: SIGTERM
+2025:08:12 14:00:28:error Received shutdown signal: SIGTERM
+2025:08:12 14:02:20:error Received shutdown signal: SIGTERM
+2025:08:12 14:03:26:error Received shutdown signal: SIGTERM
+2025:08:12 14:19:18:error Unhandled Error: (0 , backevents_1.sendEmail) is not a function
+2025:08:12 14:21:40:error Received shutdown signal: SIGTERM
+2025:08:12 14:43:46:error Received shutdown signal: SIGTERM
+2025:08:12 14:44:26:error Received shutdown signal: SIGTERM
+2025:08:12 14:53:15:error Received shutdown signal: SIGTERM
+2025:08:12 15:08:42:error unhandledRejection: Cannot read properties of undefined (reading 'reIssueAccessToken')
+TypeError: Cannot read properties of undefined (reading 'reIssueAccessToken')
+    at deserializeUser (/app/src/middleware/deserializeUser.ts:30:62)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:08:12 15:13:43:error Received shutdown signal: SIGTERM

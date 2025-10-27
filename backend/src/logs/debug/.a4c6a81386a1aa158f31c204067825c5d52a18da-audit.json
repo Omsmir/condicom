@@ -1,0 +1,85 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/home/omar/Documents/Health/backend/src/logs/debug/.a4c6a81386a1aa158f31c204067825c5d52a18da-audit.json",
+    "files": [
+        {
+            "date": 1749494265897,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-09.log",
+            "hash": "9b2e658c1ca0b06254019cd45c27704e5efe9c2581cec441c282cc985342ff76"
+        },
+        {
+            "date": 1749578180188,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-10.log",
+            "hash": "733915e563576d8b05dae25041b72405a1397ea210918bdf6f6a6823387d41cf"
+        },
+        {
+            "date": 1749589328607,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-11.log",
+            "hash": "8cd0ae50fb5b0ded11b377c17471ba9aa8742fb8d02ffe792490e5748e9c07aa"
+        },
+        {
+            "date": 1749677134778,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-12.log",
+            "hash": "bf07c497d28b30457102f535831d49b8861478b594c76469945f1280222ad211"
+        },
+        {
+            "date": 1750087006020,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-16.log",
+            "hash": "42a54feb545d93da216a3df0486b8031065f3f0d8df1ad73cd279b5e397763b3"
+        },
+        {
+            "date": 1750111463120,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-17.log",
+            "hash": "7d3a903b8f45f032b75fdde56662aaa28fa95a13ed05d5c1f01c0dea1c732afd"
+        },
+        {
+            "date": 1750194520528,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-18.log",
+            "hash": "f8505d3baafed829e2a57471202b8a93fe29e3a4e245004625751d8f8ed29cf1"
+        },
+        {
+            "date": 1750358447445,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-19.log",
+            "hash": "e60bdbd8bb853a28dbcacd783fe42cbcff3736da80cc69bce297a5c4e4978aae"
+        },
+        {
+            "date": 1750395955845,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-20.log",
+            "hash": "2a1563a8a1244f53eb9aefe489e4968aca461407e42c1066b336ab3668ec37fb"
+        },
+        {
+            "date": 1750768965316,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-24.log",
+            "hash": "4085a12514a28807660dad6811c1b92d1408adcb7252629000f73b034ef72c7d"
+        },
+        {
+            "date": 1750814720641,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-25.log",
+            "hash": "3cd3d5dc5a501be1623956a2fdcfc0807c47d1c5e0ac49c7d4f1ce79c14a61fe"
+        },
+        {
+            "date": 1750947149931,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-26.log",
+            "hash": "31da06966e60c3b31d79e906ce8a282d774f69491c2bc409b6976c46e4d34dcd"
+        },
+        {
+            "date": 1750971617473,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-27.log",
+            "hash": "ad450188d256f6a77744454c1470f06263c0196fb7eb07b9e9b2fa8552f355d6"
+        },
+        {
+            "date": 1751063486701,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-28.log",
+            "hash": "2e9147f865717693b8bb7b3b382a5f36f7f23f87a73d624e1d6da79435abf036"
+        },
+        {
+            "date": 1751155248752,
+            "name": "/home/omar/Documents/Health/backend/src/logs/debug/application-2025-06-29.log",
+            "hash": "66e1e7ecf111d77f4b181589024dc8d0bfbab78e55c70405b8f0021bfbcfe042"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -1,12 +1,10 @@
-import React from "react";
-import dynamic from "next/dynamic";
+import React from 'react';
+import dynamic from 'next/dynamic';
 
-const DoctorTable = dynamic(() => import("@/components/Doctors"))
+const DoctorTable = dynamic(() => import('@/components/Doctors'));
 
-const page =  () => {
-  return (
-      <DoctorTable />
-  );
+const page = () => {
+    return <DoctorTable />;
 };
 
 export default page;

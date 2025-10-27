@@ -1,24 +1,26 @@
+# Common base stage
+FROM node:20-alpine as common-build-stage
 
-# Use official Node.js image
-FROM node:20-alpine AS base
-
-# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json first (for caching dependencies)
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
-# Install dependencies
-RUN npm install --omit=dev
+RUN npm install
 
-# Copy the entire backend source code
+# Production build stage
+FROM common-build-stage as production-build-stage
+
 COPY . .
 
-# Build the TypeScript project
-RUN npm run build
+ENV NODE_ENV=production
 
-# Expose the backend port (8080)
-EXPOSE 8080
+CMD ["npm", "run", "start"]
 
-# Command to run the backend server
-CMD ["npm","run", "dev"]
+# Development build stage
+FROM common-build-stage as development-build-stage
+# Copy the rest of the code for initial container start
+COPY . .
+
+ENV NODE_ENV=development
+
+CMD ["npm", "run", "dev"]

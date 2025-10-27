@@ -1,0 +1,377 @@
+2025:06:10 21:37:15:error unhandledRejection: logger_1.logger.s is not a function
+TypeError: logger_1.logger.s is not a function
+    at Server.<anonymous> (/home/omar/Documents/Health/backend/src/app.ts:46:20)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitListeningNT (node:net:1845:10)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+2025:06:10 21:37:19:error unhandledRejection: logger_1.logger.s is not a function
+TypeError: logger_1.logger.s is not a function
+    at Server.<anonymous> (/home/omar/Documents/Health/backend/src/app.ts:46:20)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitListeningNT (node:net:1845:10)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+2025:06:10 21:37:28:error unhandledRejection: Cannot create property 'Symbol(level)' on string '===== http://localhost:8080 ====='
+TypeError: Cannot create property 'Symbol(level)' on string '===== http://localhost:8080 ====='
+    at DerivedLogger.log (/home/omar/Documents/Health/backend/node_modules/winston/lib/winston/logger.js:214:20)
+    at Server.<anonymous> (/home/omar/Documents/Health/backend/src/app.ts:46:20)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitListeningNT (node:net:1845:10)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+2025:06:10 21:37:50:error unhandledRejection: logger_1.logger.c is not a function
+TypeError: logger_1.logger.c is not a function
+    at Server.<anonymous> (/home/omar/Documents/Health/backend/src/app.ts:46:20)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitListeningNT (node:net:1845:10)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+2025:06:10 21:51:38:error unhandledRejection: health3D is not defined
+ReferenceError: health3D is not defined
+    at Server.<anonymous> (/home/omar/Documents/Health/backend/src/app.ts:47:30)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitListeningNT (node:net:1845:10)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+2025:06:10 21:56:47:error unhandledRejection: Cannot read properties of undefined (reading 'warn')
+TypeError: Cannot read properties of undefined (reading 'warn')
+    at Server.<anonymous> (/home/omar/Documents/Health/backend/src/app.ts:50:20)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitListeningNT (node:net:1845:10)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+2025:06:10 22:48:45:error unhandledRejection: initiator is not a function
+TypeError: initiator is not a function
+    at App.socketInitialize (/home/omar/Documents/Health/backend/src/app.ts:77:15)
+    at new App (/home/omar/Documents/Health/backend/src/app.ts:39:14)
+    at Function.create (/home/omar/Documents/Health/backend/src/app.ts:86:16)
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/server.ts:4:17)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-3832602305401889.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-3832602305401889.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-3832602305401889.js:71:20)
+2025:06:10 22:54:20:error unhandledRejection: Cannot read properties of undefined (reading 'o')
+TypeError: Cannot read properties of undefined (reading 'o')
+    at App.socketInitialize (/home/omar/Documents/Health/backend/src/app.ts:79:9)
+    at new App (/home/omar/Documents/Health/backend/src/app.ts:39:14)
+    at Function.create (/home/omar/Documents/Health/backend/src/app.ts:88:16)
+    at Object.<anonymous> (/home/omar/Documents/Health/backend/src/server.ts:4:17)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._compile (/home/omar/Documents/Health/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/tmp/ts-node-dev-hook-3832602305401889.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at require.extensions..jsx.require.extensions..js (/tmp/ts-node-dev-hook-3832602305401889.js:114:20)
+    at require.extensions.<computed> (/tmp/ts-node-dev-hook-3832602305401889.js:71:20)
+2025:06:11 01:16:55:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at login (/home/omar/Documents/Health/backend/src/controllers/session.controller.ts:80:25)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:11 01:17:29:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at login (/home/omar/Documents/Health/backend/src/controllers/session.controller.ts:80:25)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:16 19:11:35:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at SendChangeEmailHandler (/home/omar/Documents/Health/backend/src/controllers/user.controller.ts:709:25)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:16 19:14:26:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at SendChangeEmailHandler (/home/omar/Documents/Health/backend/src/controllers/user.controller.ts:712:25)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:17 01:13:25:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at reIssueAccessTokenHandler (/home/omar/Documents/Health/backend/src/controllers/user.controller.ts:901:25)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:17 01:18:28:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at reIssueAccessTokenHandler (/home/omar/Documents/Health/backend/src/controllers/user.controller.ts:901:25)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:17 01:21:50:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at reIssueAccessTokenHandler (/home/omar/Documents/Health/backend/src/controllers/user.controller.ts:901:25)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:17 01:25:05:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at reIssueAccessTokenHandler (/home/omar/Documents/Health/backend/src/controllers/user.controller.ts:902:25)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:17 01:26:04:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at reIssueAccessTokenHandler (/home/omar/Documents/Health/backend/src/controllers/user.controller.ts:903:25)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:26 18:04:32:error unhandledRejection: ENOENT: no such file or directory, open '/home/omar/Documents/Health/backend/src/templates/emailVerificationAlert'
+Error: ENOENT: no such file or directory, open '/home/omar/Documents/Health/backend/src/templates/emailVerificationAlert'
+    at Object.openSync (node:fs:596:3)
+    at Object.readFileSync (node:fs:464:35)
+    at renderTemplate (/home/omar/Documents/Health/backend/src/utils/backevents.ts:220:23)
+    at sendEmail (/home/omar/Documents/Health/backend/src/utils/backevents.ts:199:32)
+    at /home/omar/Documents/Health/backend/src/controllers/notifications.controller.ts:145:28
+    at Array.map (<anonymous>)
+    at sendEmailVerificationTest (/home/omar/Documents/Health/backend/src/controllers/notifications.controller.ts:140:25)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:26 18:09:11:error unhandledRejection: ENOENT: no such file or directory, open '/home/omar/Documents/Health/backend/src/templates/emailVerificationAlert'
+Error: ENOENT: no such file or directory, open '/home/omar/Documents/Health/backend/src/templates/emailVerificationAlert'
+    at Object.openSync (node:fs:596:3)
+    at Object.readFileSync (node:fs:464:35)
+    at renderTemplate (/home/omar/Documents/Health/backend/src/utils/backevents.ts:220:23)
+    at sendEmail (/home/omar/Documents/Health/backend/src/utils/backevents.ts:199:32)
+    at /home/omar/Documents/Health/backend/src/controllers/notifications.controller.ts:151:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:26 18:09:11:error unhandledRejection: ENOENT: no such file or directory, open '/home/omar/Documents/Health/backend/src/templates/emailVerificationAlert'
+Error: ENOENT: no such file or directory, open '/home/omar/Documents/Health/backend/src/templates/emailVerificationAlert'
+    at Object.openSync (node:fs:596:3)
+    at Object.readFileSync (node:fs:464:35)
+    at renderTemplate (/home/omar/Documents/Health/backend/src/utils/backevents.ts:220:23)
+    at sendEmail (/home/omar/Documents/Health/backend/src/utils/backevents.ts:199:32)
+    at /home/omar/Documents/Health/backend/src/controllers/notifications.controller.ts:151:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:07:31:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1093:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:11:47:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1093:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:15:25:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1093:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:15:45:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1093:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:17:00:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1094:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:17:28:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1095:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:17:45:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1095:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:18:07:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1095:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:27 00:21:40:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:405:5)
+    at ServerResponse.setHeader (node:_http_outgoing:648:11)
+    at ServerResponse.header (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/omar/Documents/Health/backend/node_modules/express/lib/response.js:278:15)
+    at /home/omar/Documents/Health/backend/src/controllers/user.controller.ts:1093:33
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:06:29 21:25:24:error unhandledRejection: (no error message)
+AggregateError: 
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2025:06:29 21:26:05:error unhandledRejection: (no error message)
+Error: 
+    at RedisConnection.initializeConnection (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:28:19)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at App.connectToRedis (C:\Users\omar\Documents\Health\backend\src\app.ts:76:9)
+2025:06:29 21:26:44:error unhandledRejection: The "listener" argument must be of type function. Received undefined
+Error: The "listener" argument must be of type function. Received undefined
+    at RedisConnection.initializeConnection (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:29:19)
+    at App.connectToRedis (C:\Users\omar\Documents\Health\backend\src\app.ts:76:31)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:39:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:88:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-1340349431600576.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-1340349431600576.js:114:20)
+2025:07:05 18:04:14:error unhandledRejection: Cannot read properties of undefined (reading 'connect')
+TypeError: Cannot read properties of undefined (reading 'connect')
+    at App.connectToMongo (C:\Users\omar\Documents\Health\backend\src\app.ts:70:36)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:38:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:88:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:71:20)
+2025:07:05 18:06:02:error unhandledRejection: Cannot read properties of undefined (reading 'connect')
+TypeError: Cannot read properties of undefined (reading 'connect')
+    at App.connectToMongo (C:\Users\omar\Documents\Health\backend\src\app.ts:70:36)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:38:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:88:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:71:20)
+2025:07:05 18:06:12:error unhandledRejection: Cannot read properties of undefined (reading 'connect')
+TypeError: Cannot read properties of undefined (reading 'connect')
+    at App.connectToMongo (C:\Users\omar\Documents\Health\backend\src\app.ts:70:36)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:38:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:88:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:71:20)
+2025:07:05 18:06:23:error unhandledRejection: Cannot read properties of undefined (reading 'connect')
+TypeError: Cannot read properties of undefined (reading 'connect')
+    at App.connectToMongo (C:\Users\omar\Documents\Health\backend\src\app.ts:70:36)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:38:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:88:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:114:20)
+    at require.extensions.<computed> (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-6358497681173307.js:71:20)
+2025:07:16 07:39:25:error unhandledRejection: Red is not defined
+ReferenceError: Red is not defined
+    at new RedisConnection (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:9:28)
+    at App.connectToRedis (C:\Users\omar\Documents\Health\backend\src\app.ts:69:33)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:40:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:83:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:114:20)
+2025:07:16 07:39:35:error unhandledRejection: Redi is not defined
+ReferenceError: Redi is not defined
+    at new RedisConnection (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:9:28)
+    at App.connectToRedis (C:\Users\omar\Documents\Health\backend\src\app.ts:69:33)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:40:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:83:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:114:20)
+2025:07:16 07:41:15:error unhandledRejection: RedisConnection.initializeConnection is not a function
+TypeError: RedisConnection.initializeConnection is not a function
+    at new RedisConnection (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:10:25)
+    at App.connectToRedis (C:\Users\omar\Documents\Health\backend\src\app.ts:69:33)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:40:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:83:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:114:20)
+2025:08:12 13:50:18:error unhandledRejection: (0 , backevents_1.sendEmail) is not a function
+TypeError: (0 , backevents_1.sendEmail) is not a function
+    at /app/src/controllers/notifications.controller.ts:165:32
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:08:12 15:08:42:error unhandledRejection: Cannot read properties of undefined (reading 'reIssueAccessToken')
+TypeError: Cannot read properties of undefined (reading 'reIssueAccessToken')
+    at deserializeUser (/app/src/middleware/deserializeUser.ts:30:62)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025:08:15 00:34:00:error unhandledRejection: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:655:11)
+    at ServerResponse.header (/app/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/app/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/app/node_modules/express/lib/response.js:278:15)
+    at PatientController.handleError (/app/src/controllers/base.controller.ts:28:32)
+    at getAllPatientsHandler (/app/src/controllers/patients.controller.ts:117:18)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)

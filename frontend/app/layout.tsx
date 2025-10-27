@@ -1,43 +1,55 @@
-"use client";
-import AuthProvider from "@/components/AuthProvider";
-import AuthHolder from "@/components/AuthHolder";
-import { PrimeReactProvider } from "primereact/api";
-import "primereact/resources/themes/lara-light-indigo/theme.css";
-import "primeicons/primeicons.css";
-import "./globals.css";
-import { CalenderProvider } from "@/components/context/CalenderProvider";
-import { DashboardProvider } from "@/components/context/Dashboardprovider";
-import { poppins } from "@/fonts/fonts";
-import QueryProvider from "@/components/QueryProvider";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { useTheme } from "next-themes";
-import RefreshSession from "@/components/SessionUpdate";
+import AuthProvider from '@/components/AuthProvider';
+import AuthHolder from '@/components/AuthHolder';
+import { PrimeReactProvider } from 'primereact/api';
+import { CalenderProvider } from '@/components/context/CalenderProvider';
+import { DashboardProvider } from '@/components/context/Dashboardprovider';
+import { poppins } from '@/fonts/fonts';
+import QueryProvider from '@/components/QueryProvider';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { Metadata } from 'next';
 
-export default function RootLayout({
-  children,
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import 'primeicons/primeicons.css';
+import './globals.css';
+import { getServerSession } from 'next-auth';
+import { authOptions } from './api/auth/[...nextauth]/route';
+import ReduxProvider from '@/components/store/reduxProvider';
+
+export const metadata: Metadata = {
+    title: 'Sign in',
+    description: 'Sign In To Dashboard',
+};
+
+export default async function RootLayout({
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-
-const {resolvedTheme} = useTheme()
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`min-h-screen ${poppins.className}`} data-theme={resolvedTheme}>
-        <ThemeProvider>
-          <QueryProvider>
-            <RefreshSession />
-            <AuthHolder>
-              <AuthProvider>
-                <PrimeReactProvider>
-                  <CalenderProvider>
-                    <DashboardProvider>{children}</DashboardProvider>
-                  </CalenderProvider>
-                </PrimeReactProvider>
-              </AuthProvider>
-            </AuthHolder>
-          </QueryProvider>
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+    const session = await getServerSession(authOptions);
+    return (
+        <html lang="en">
+            <body className={`min-h-screen ${poppins.className}`}>
+                <ReduxProvider>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <QueryProvider>
+                            <AuthHolder session={session}>
+                                <AuthProvider>
+                                    <PrimeReactProvider>
+                                        <CalenderProvider>
+                                            <DashboardProvider>{children}</DashboardProvider>
+                                        </CalenderProvider>
+                                    </PrimeReactProvider>
+                                </AuthProvider>
+                            </AuthHolder>
+                        </QueryProvider>
+                    </ThemeProvider>
+                </ReduxProvider>
+            </body>
+        </html>
+    );
 }

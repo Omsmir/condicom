@@ -1,15 +1,16 @@
-"use client"
-import React from 'react'
-import { useSession } from 'next-auth/react'
+'use client';
+import React from 'react';
+import { useSession } from 'next-auth/react';
 
 const Overview = () => {
- const {data:session} = useSession()
- if(session)
-  return (
-    <div className='flex h-screen my-auto justify-center items-center'>
-   {session.user.role}
-    </div>
-  )
-}
+    const { data: session } = useSession();
+    if (session)
+        return (
+            <div className="flex h-screen my-auto justify-center items-center">
 
-export default Overview
+            
+            </div>
+        );
+};
+
+export default Overview;

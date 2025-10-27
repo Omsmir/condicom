@@ -1,0 +1,70 @@
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:00:error redis connection error please check connectivity
+2025:07:16 06:08:01:error redis connection error please check connectivity
+2025:07:16 06:08:01:error redis connection error please check connectivity
+2025:07:16 06:08:01:error redis connection error please check connectivity
+2025:07:16 06:08:01:error redis connection error please check connectivity
+2025:07:16 06:08:01:error redis connection error please check connectivity
+2025:07:16 06:08:01:error redis connection error please check connectivity
+2025:07:16 06:08:02:error redis connection error please check connectivity
+2025:07:16 06:08:02:error redis connection error please check connectivity
+2025:07:16 06:08:02:error redis connection error please check connectivity
+2025:07:16 06:08:02:error redis connection error please check connectivity
+2025:07:16 06:08:03:error redis connection error please check connectivity
+2025:07:16 06:08:03:error redis connection error please check connectivity
+2025:07:16 06:08:03:error redis connection error please check connectivity
+2025:07:16 06:08:04:error redis connection error please check connectivity
+2025:07:16 06:08:04:error redis connection error please check connectivity
+2025:07:16 06:08:05:error redis connection error please check connectivity
+2025:07:16 06:08:05:error redis connection error please check connectivity
+2025:07:16 06:08:06:error redis connection error please check connectivity
+2025:07:16 06:08:06:error redis connection error please check connectivity
+2025:07:16 06:08:06:error redis connection error please check connectivity
+2025:07:16 07:39:25:error unhandledRejection: Red is not defined
+ReferenceError: Red is not defined
+    at new RedisConnection (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:9:28)
+    at App.connectToRedis (C:\Users\omar\Documents\Health\backend\src\app.ts:69:33)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:40:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:83:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:114:20)
+2025:07:16 07:39:35:error unhandledRejection: Redi is not defined
+ReferenceError: Redi is not defined
+    at new RedisConnection (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:9:28)
+    at App.connectToRedis (C:\Users\omar\Documents\Health\backend\src\app.ts:69:33)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:40:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:83:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:114:20)
+2025:07:16 07:41:15:error unhandledRejection: RedisConnection.initializeConnection is not a function
+TypeError: RedisConnection.initializeConnection is not a function
+    at new RedisConnection (C:\Users\omar\Documents\Health\backend\src\utils\redis.ts:10:25)
+    at App.connectToRedis (C:\Users\omar\Documents\Health\backend\src\app.ts:69:33)
+    at new App (C:\Users\omar\Documents\Health\backend\src\app.ts:40:14)
+    at Function.create (C:\Users\omar\Documents\Health\backend\src\app.ts:83:16)
+    at Object.<anonymous> (C:\Users\omar\Documents\Health\backend\src\server.ts:4:17)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (C:\Users\omar\Documents\Health\backend\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\omar\AppData\Local\Temp\ts-node-dev-hook-17312369087718293.js:114:20)
+2025:07:16 15:54:39:error Unhandled Error: (0 , redis_1.checkHash) is not a function

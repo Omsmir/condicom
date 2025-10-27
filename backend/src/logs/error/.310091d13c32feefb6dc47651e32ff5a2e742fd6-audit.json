@@ -1,0 +1,65 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/home/omar/Documents/Health/backend/src/logs/error/.310091d13c32feefb6dc47651e32ff5a2e742fd6-audit.json",
+    "files": [
+        {
+            "date": 1749494265899,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-09.log",
+            "hash": "44aed698c20366597adc82d6d1dae866645bdae0aa7bf831c199320b2b121396"
+        },
+        {
+            "date": 1749578390988,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-10.log",
+            "hash": "062666ea63f6c99122257870ea457146fed2c899991409cfe83c264734823b01"
+        },
+        {
+            "date": 1749589361492,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-11.log",
+            "hash": "1f5d2d7e343ddaf29d07677ac8ba87ee25a5554741350ce93d8be435312ae01b"
+        },
+        {
+            "date": 1749677134780,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-12.log",
+            "hash": "476103b9ebc6c1587284b399c7d4f0bc14370a0d4f7212514118454021a6c9be"
+        },
+        {
+            "date": 1750087006022,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-16.log",
+            "hash": "411ea64cb11eb37bfd3a07ef4fb3f683e299b1abb1983e165af5d5fed8b42dd3"
+        },
+        {
+            "date": 1750111507553,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-17.log",
+            "hash": "150b4cae5c397495c970fd472f81713b4a6ee6f5fb891a9d39197f05b1835825"
+        },
+        {
+            "date": 1750194757486,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-18.log",
+            "hash": "07399868cba6a68437eefc1893faa6a69e86849012f665425ebe4d4a713994e0"
+        },
+        {
+            "date": 1750768965318,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-24.log",
+            "hash": "eaaae459fb30b52751ca02f22500f93955562f3ab9708467e25aceeb867302fe"
+        },
+        {
+            "date": 1750871465878,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-25.log",
+            "hash": "dbda227db11486c457a4c676c900ebd04c9681c8e472cc08239067f59bc63194"
+        },
+        {
+            "date": 1750947214285,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-26.log",
+            "hash": "35d322093baad0edee968b9dfef8455648424a7c781611f55af0b0a5d82bfca8"
+        },
+        {
+            "date": 1750971617489,
+            "name": "/home/omar/Documents/Health/backend/src/logs/error/error-2025-06-27.log",
+            "hash": "b67f8eedd3f28ebb49bcfcf528f35c8cee341a54612ebe11f3c8c7384aaec1b4"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -1,59 +1,52 @@
-import {
-  FilterQuery,
-  QueryOptions,
-  SchemaTypeOptions,
-  UpdateQuery,
-} from "mongoose";
-import UserModel, { UserDocument, UserInput } from "../models/user.model";
-import { omit } from "lodash";
+import { FilterQuery, QueryOptions, SchemaTypeOptions, UpdateQuery } from 'mongoose';
+import UserModel, { UserDocument, UserInput } from '../models/user.model';
+import { omit } from 'lodash';
 
-export const createUser = async (input: UserInput) => {
-    try {
-        const user = await UserModel.create(input);
-    
-        return omit(user.toJSON(), "password");
-      } catch (e: any) {
-        throw new Error(e);
-      }
-};
+class UserService {
+    constructor(private userModel = UserModel) {}
 
-export const updateUser = async (
-  query: FilterQuery<UserDocument>,
-  update: UpdateQuery<UserDocument>,
-  options?: QueryOptions
-) => {
-  return await UserModel.findOneAndUpdate(query, update, options);
-};
+    public createUser = async (input: UserInput) => {
+        const user = await this.userModel.create(input);
 
-export const findUser = async (query: FilterQuery<UserDocument>) => {
-  return await UserModel.findOne(query).lean();
-};
+        return omit(user.toJSON(), 'password');
+    };
 
+    public updateUser = async (
+        query: FilterQuery<UserDocument>,
+        update: UpdateQuery<UserDocument>,
+        options?: QueryOptions
+    ) => {
+        return await this.userModel.findOneAndUpdate(query, update, options);
+    };
 
-export const getAllUsers = async (query?:FilterQuery<UserDocument>) => {
-return await UserModel.find(query ? query : {})
+    public findUser = async (query: FilterQuery<UserDocument>) => {
+        return await this.userModel.findOne(query).lean();
+    };
+    public getAllUsers = async (query?: FilterQuery<UserDocument>) => {
+        return await this.userModel.find(query ? query : {});
+    };
+    public deleteUser = async (query: FilterQuery<UserDocument>) => {
+        return await this.userModel.findOneAndDelete(query);
+    };
+
+    public validatePassword = async ({ email, password }: { email: string; password: string }) => {
+        try {
+            const user = await this.userModel.findOne({ email });
+
+            if (!user) {
+                return false;
+            }
+            const isValid = await user.comparePassword(password);
+
+            if (!isValid) {
+                return false;
+            }
+
+            return omit(user.toJSON(), 'password');
+        } catch (error: any) {
+            throw new Error(`validate service error ${error.message}`);
+        }
+    };
 }
-export const validatePassword = async ({
-  email,
-  password,
-}: {
-  email: string;
-  password: string;
-}) => {
-  try {
-    const user = await UserModel.findOne({ email });
 
-    if (!user) {
-      return false;
-    }
-    const isValid = await user.comparePassword(password);
-
-    if (!isValid) {
-      return false;
-    }
-
-    return omit(user.toJSON(), "password");
-  } catch (error: any) {
-    throw new Error(`validate service error ${error.message}`);
-  }
-};
+export default UserService;

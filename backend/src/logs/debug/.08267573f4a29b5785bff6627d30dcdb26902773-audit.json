@@ -1,0 +1,95 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\.08267573f4a29b5785bff6627d30dcdb26902773-audit.json",
+    "files": [
+        {
+            "date": 1751158787919,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-06-29.log",
+            "hash": "1ef4a9457a9ad8f287fff86f01d6822e1164f837682601d2eed67b8eba73f983"
+        },
+        {
+            "date": 1751240221958,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-06-30.log",
+            "hash": "e6841c877a04927c29f467a4a7b3e98ce5a0fc9b8123eb31e6e98a42b5e0f5bb"
+        },
+        {
+            "date": 1751317211668,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-07-01.log",
+            "hash": "42949e6bec5c693753f2f4b780951b2089b08a98215df99d47611e459b69d4d7"
+        },
+        {
+            "date": 1751727728986,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-07-05.log",
+            "hash": "2f82e2f718167c46d11a0d04695cd830d2647e3f59b37a5f2dd26e88e253057e"
+        },
+        {
+            "date": 1751809772362,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-07-06.log",
+            "hash": "0acf981f23139fc8d61416746e8f5ebaa37e103c3fb9c124d33b0e13f3215419"
+        },
+        {
+            "date": 1751844672726,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-07-07.log",
+            "hash": "2599d08961d74c2bcc8e4658c212e6f061fe13d9a8653ac2593a1536365e350f"
+        },
+        {
+            "date": 1752630771552,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-07-16.log",
+            "hash": "bd460a3e104c5dbadc7e4c5322595e5a86c6c996b13e331877cf7953b9205c1b"
+        },
+        {
+            "date": 1752719051767,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-07-17.log",
+            "hash": "d21c75ef9e853ac1cd3444fc2fb135897cb1f6ea9299690d5ef68363332fedf8"
+        },
+        {
+            "date": 1752798749949,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-07-18.log",
+            "hash": "5dda9682a15cee11b777ff03a7f5d3757ebbf36172642cf2752c63d321ff466a"
+        },
+        {
+            "date": 1753024192144,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-07-20.log",
+            "hash": "3f6e86c03f003725968c7d4706994ed8008f5a3a1977dbece3787abb9884e75d"
+        },
+        {
+            "date": 1753069366816,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-07-21.log",
+            "hash": "c7dd1b95b4c142aa37d17c024d4f6449238bf6a20b1583f7f37727169cd3141b"
+        },
+        {
+            "date": 1753262081162,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-07-23.log",
+            "hash": "01f50b9e2b67c8de8149e6e0f4d0cb92e9ca7f29494501f736c189f8a305053f"
+        },
+        {
+            "date": 1753353227636,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-07-24.log",
+            "hash": "ec830ad75bc304ff478ec21e5b74fbb03bf469c7cc639b65d391090936060b31"
+        },
+        {
+            "date": 1754754043018,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-08-09.log",
+            "hash": "bb2a51a22a3fe892cec82cd783c69b34457498361bed364c1bbc2f271b6e5103"
+        },
+        {
+            "date": 1755975906772,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-08-23.log",
+            "hash": "08981f31759150bb9c46bece3adca342f0362d5157fb1886105cca781d2cb7a3"
+        },
+        {
+            "date": 1755986263540,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-08-24.log",
+            "hash": "08a3bea3a3caccae78f3ffe0e31ef44d368ce9af09957fbee97aa7e10129515b"
+        },
+        {
+            "date": 1756132373385,
+            "name": "C:\\Users\\omar\\Documents\\Health\\backend\\src\\logs\\debug\\application-2025-08-25.log",
+            "hash": "bd683ace538b4f89aeba0282870892a4b3f6a3acd4aabc7a99758251396757f0"
+        }
+    ],
+    "hashType": "sha256"
+}

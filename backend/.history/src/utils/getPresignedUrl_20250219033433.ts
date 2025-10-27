@@ -1,1 +1,0 @@
-const uploadImageToFirebase = async ({image}:{image:Mu})

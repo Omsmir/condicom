@@ -1,25 +1,21 @@
-import { CalenderProvider } from "@/components/context/CalenderProvider";
-import CalenderHeader from "@/components/appointments/CalenderHeader";
+import { CalenderProvider } from '@/components/context/CalenderProvider';
+import CalenderHeader from '@/components/appointments/CalenderHeader';
 
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Health - Appointments",
-  description: "Welcome to dashboard",
-}
-
+    title: 'Health - Appointments',
+    description: 'Welcome to dashboard',
+};
 
 export default async function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-
-  return  (
-    <CalenderProvider>
-      <CalenderHeader>
-        {children}
-        </CalenderHeader>
-    </CalenderProvider>
-  ) ;
+    return (
+        <CalenderProvider>
+            <CalenderHeader>{children}</CalenderHeader>
+        </CalenderProvider>
+    );
 }

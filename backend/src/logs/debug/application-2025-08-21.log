@@ -1,0 +1,13 @@
+2025:08:21 13:09:44:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 34.030 ms - -[0m
+2025:08:21 14:26:52:info [0mGET /api/auth/reIssueAccessToken [32m200[0m 17.543 ms - -[0m
+2025:08:21 14:28:22:error error connecting to redis Socket closed unexpectedly
+2025:08:21 14:28:22:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:22:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:22:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:22:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:22:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:22:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:23:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:23:error error connecting to redis connect ECONNREFUSED 172.20.0.2:6379
+2025:08:21 14:28:24:error Received shutdown signal: SIGTERM
+2025:08:21 14:28:24:info Mongodb connection closed successfully
